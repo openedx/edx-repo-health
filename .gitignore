@@ -1,5 +1,6 @@
 *.class
 *.pyc
+*.egg-info/*
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -15,9 +16,14 @@ build/*
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+venv/*
+.tox/*
 
 *.DS_Store
 
 # PyCharm files
 *.idea/
+
+docs/_build/*
+
 

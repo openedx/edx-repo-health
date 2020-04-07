@@ -3,4 +3,3 @@
 
 -r base.txt               # Core dependencies for this package
 
-code-annotations          # provides commands used by the pii_check make target.

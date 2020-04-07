@@ -1,14 +1,18 @@
-.. edx-repo-health documentation master file, created by
-   sphinx-quickstart on Tue Apr 07 15:03:13 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 edx-repo-health
 ===============
 
 Your project description goes here
 
 Contents:
+
+.. automodule:: repo_health.check_makefile
+      :members:
+
+.. automodule:: repo_health.__init__
+      :members:
+
+.. automodule:: repo_health.check_openedx_yaml
+      :members:
 
 .. toctree::
    :maxdepth: 2

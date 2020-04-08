@@ -46,7 +46,7 @@ def is_requirement(line):
     return line and not line.startswith(('-r', '#', '-e', 'git+', '-c'))
 
 
-VERSION = get_version('repo_health', '__init__.py')
+VERSION = '0.1.0'
 
 if sys.argv[-1] == 'tag':
     print("Tagging the version on github:")
@@ -64,9 +64,6 @@ setup(
     author='jinder',
     author_email='msingh@edx.org',
     url='https://github.com/edx/edx-repo-health',
-    packages=[
-        'repo_health',
-    ],
     include_package_data=True,
     install_requires=load_requirements('requirements/base.in'),
     python_requires=">=3.5",

@@ -49,7 +49,7 @@ Have a question about this repository, or about Open edX in general?  Please
 refer to this `list of resources`_ if you need any assistance.
 
 .. _list of resources: https://open.edx.org/getting-help
-.. _pytest-repo-health: https://github.com/jinder1s/pytest-repo-health
-.. _`file an issue`: https://github.com/jinder1s/edx-repo-health/issues
+.. _pytest-repo-health: https://github.com/edx/pytest-repo-health
+.. _`file an issue`: https://github.com/edx/edx-repo-health/issues
 .. _`pytest`: https://github.com/pytest-dev/pytest
 .. _`tox`: https://tox.readthedocs.io/en/latest/

@@ -5,7 +5,7 @@ import yaml
 import pdb
 import codecs
 
-from utils.utils import squash_and_combine_dicts, write_squashed_dicts_to_csv
+from utils.utils import squash_and_standardize_dicts, write_squashed_dicts_to_csv
 
 def main():
     parser = argparse.ArgumentParser(description="Create basic dashboard")
@@ -24,7 +24,7 @@ def main():
             file_data = f.read()
             parsed_file_data = yaml.safe_load(file_data)
             data[file_name] = parsed_file_data
-    output = squash_and_combine_dicts(data)
+    output = squash_and_standardize_dicts(data)
     write_squashed_dicts_to_csv(output)
 
 

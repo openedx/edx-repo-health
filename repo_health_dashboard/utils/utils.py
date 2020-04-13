@@ -33,8 +33,12 @@ def get_superset_of_keys(dicts={}):
     return output_set
 
 
-def combine_dicts(dicts={}):
+def standardize_dicts(dicts={}):
     """
+    Input: dict: squashed dict of one level(no dict nesting)
+    Parses through dicts, finds all possible keys(superset) from
+    the dicts and makes sure the same keys exist in each dict.
+    If a key is mission, it's added with a None value
     """
     superset_keys = get_superset_of_keys(dicts)
     output = {}
@@ -48,10 +52,10 @@ def combine_dicts(dicts={}):
         output[dict_name] = superset_output
     return output
 
-def squash_and_combine_dicts(dicts={}):
+def squash_and_standardize_dicts(dicts={}):
     for dict_name, item in dicts.items():
         dicts[dict_name] = squash_dict(item)
-    return combine_dicts(dicts)
+    return standardize_dicts(dicts)
 
 def write_squashed_dicts_to_csv(dicts={}):
     """

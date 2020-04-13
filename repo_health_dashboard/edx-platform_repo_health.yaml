@@ -1,0 +1,31 @@
+makefile:
+    exists: true
+    has_upgrade_target: true
+openedx_yaml:
+    is_parsable: true
+    oep-18: true
+    oep-2: true
+    oep-30: false
+    oep-7: true
+    owner: nasthagiri
+repo_structure:
+    .travis.yml: false
+    Makefile: true
+    README.rst: true
+    has_python_files: true
+    openedx.yaml: true
+    pylintrc: true
+    requirements:
+        base.in: true
+        pip-tools.in: true
+    requirements_folder: true
+    tox.ini: true
+requires:
+    django: true
+    nose: false
+    pytest: true
+tox_ini:
+    has_section:
+        testenv: false
+        testenv:quality: false
+        tox: false

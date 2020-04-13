@@ -2,7 +2,6 @@
 Package ___
 """
 import csv
-import pdb
 
 def squash_dict(input, delimiter="."):
     """
@@ -39,6 +38,9 @@ def standardize_dicts(dicts={}):
     Parses through dicts, finds all possible keys(superset) from
     the dicts and makes sure the same keys exist in each dict.
     If a key is mission, it's added with a None value
+
+    TODO(jinder): standardize is not the right name,
+    there is a better word for: making all dicts have the same keys
     """
     superset_keys = get_superset_of_keys(dicts)
     output = {}
@@ -53,6 +55,9 @@ def standardize_dicts(dicts={}):
     return output
 
 def squash_and_standardize_dicts(dicts={}):
+    """
+    Squashes all dicts to only one level and makes sure each has the same keys
+    """
     for dict_name, item in dicts.items():
         dicts[dict_name] = squash_dict(item)
     return standardize_dicts(dicts)

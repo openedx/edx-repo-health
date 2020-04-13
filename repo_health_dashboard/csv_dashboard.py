@@ -12,6 +12,11 @@ def main():
                         help="location of where data yaml files are located",
                         required=True,
                         dest="data_dir")
+
+    parser.add_argument('--output_csv', 
+                        help="path to csv outpu",
+                        dest="output_csv",
+                        default="dashboard.csv")
     args = parser.parse_args()
     data_dir = os.path.abspath(args.data_dir)
     files = glob.glob(os.path.join(data_dir, "*.yaml"), recursive=False)
@@ -24,7 +29,7 @@ def main():
             parsed_file_data = yaml.safe_load(file_data)
             data[file_name] = parsed_file_data
     output = squash_and_standardize_dicts(data)
-    write_squashed_dicts_to_csv(output)
+    write_squashed_dicts_to_csv(output, args.output_csv)
 
 
 

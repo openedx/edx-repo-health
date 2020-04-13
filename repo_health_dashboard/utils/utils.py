@@ -62,12 +62,12 @@ def squash_and_standardize_dicts(dicts={}):
         dicts[dict_name] = squash_dict(item)
     return standardize_dicts(dicts)
 
-def write_squashed_dicts_to_csv(dicts={}):
+def write_squashed_dicts_to_csv(dicts={}, filename="dashboard.csv"):
     """
     Assume all the dicts have the same keys
     """
     superset_keys = list(sorted(get_superset_of_keys(dicts)))
-    with open("temp.csv",'w') as csvfile:
+    with open(filename,'w') as csvfile:
         writer = csv.writer(csvfile)
         csv_header = ['repo_name'] + superset_keys
         writer.writerow(csv_header)

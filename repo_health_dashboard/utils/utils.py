@@ -76,8 +76,3 @@ def write_squashed_dicts_to_csv(dicts={}, filename="dashboard.csv"):
             for key in superset_keys:
                 temp_row.append(item[key])
             writer.writerow(temp_row)
-
-
-
-
-

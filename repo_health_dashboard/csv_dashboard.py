@@ -2,7 +2,6 @@ import os
 import argparse
 import glob
 import yaml
-import pdb
 import codecs
 
 from utils.utils import squash_and_standardize_dicts, write_squashed_dicts_to_csv

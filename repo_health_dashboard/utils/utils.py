@@ -37,7 +37,7 @@ def standardize_dicts(dicts={}):
     Input: dict: squashed dict of one level(no dict nesting)
     Parses through dicts, finds all possible keys(superset) from
     the dicts and makes sure the same keys exist in each dict.
-    If a key is mission, it's added with a None value
+    If a key is missing, it's added with a None value
 
     TODO(jinder): standardize is not the right name,
     there is a better word for: making all dicts have the same keys

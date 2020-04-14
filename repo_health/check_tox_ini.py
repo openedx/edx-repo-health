@@ -6,6 +6,7 @@ import re
 
 import pytest
 from repo_health import get_file_content
+from pytest_repo_health import health_metadata
 
 module_dict_key = 'tox_ini'
 
@@ -17,6 +18,12 @@ def tox_ini(repo_path):
     full_path = os.path.join(repo_path, '/tox.ini')
     return get_file_content(full_path)
 
+@health_metadata([module_dict_key, "has_section"],
+    {
+    ('tox'): "TODO(jinder)",
+    ('testenv'): "TODO(jinder)",
+    ('testenv:quality'): "TODO(jinder"
+    })
 def check_has_sections(tox_ini, all_results):
     """
     Test to check if makefile has an upgrade target

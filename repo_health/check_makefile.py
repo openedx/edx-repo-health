@@ -5,6 +5,7 @@ import re
 import os
 
 import pytest
+from pytest_repo_health import add_key_to_metadata
 from repo_health import get_file_content
 
 
@@ -16,19 +17,20 @@ def makefile(repo_path):
     full_path = os.path.join(repo_path, 'Makefile')
     return get_file_content(full_path)
 
-
+@add_key_to_metadata((module_dict_key, "exists"))
 def check_makefile_exists(makefile, all_results):
     """
-    Test to check if repo has Makefile
+    A repo should contain a makefile with various targets for working with repo
     """
     all_results[module_dict_key]['exists'] = bool(makefile)
 
+@add_key_to_metadata((module_dict_key, "upgrade"))
 def check_has_upgrade(makefile, all_results):
     """
-    Test to check if makefile has an upgrade target
+    upgrade: a target that upgrades our dependencies to newer released versions
     """
     regex_pattern = "upgrade:"
     match = re.search(regex_pattern, makefile)
-    all_results[module_dict_key]['has_upgrade_target'] = False
+    all_results[module_dict_key]['upgrade'] = False
     if match is not None:
-        all_results[module_dict_key]['has_upgrade_target'] = True
+        all_results[module_dict_key]['upgrade'] = True

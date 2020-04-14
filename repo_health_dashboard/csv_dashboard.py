@@ -14,7 +14,7 @@ def main():
                         dest="data_dir")
 
     parser.add_argument('--output_csv', 
-                        help="path to csv outpu",
+                        help="path to csv output",
                         dest="output_csv",
                         default="dashboard.csv")
     args = parser.parse_args()

@@ -5,7 +5,7 @@ import csv
 
 def squash_dict(input, delimiter="."):
     """
-    Takes very nested dict(dicts inside of dicts) and squashes it to only one level
+    Takes very nested dict(metadata_by_repo inside of metadata_by_repo) and squashes it to only one level
     For example:
     for input: {'a':{'b':'1', 'c':{'d':'2'}, 'f':[1,2,3]}, 'e':2}
     the output: {'a.f': [1, 2, 3], 'e': 2, 'a.b': '1', 'a.c.d': '2'}
@@ -32,47 +32,41 @@ def get_superset_of_keys(dicts={}):
     return output_set
 
 
-def standardize_dicts(dicts={}):
+def standardize_metadata_by_repo(metadata_by_repo={}):
     """
     Input: dict: squashed dict of one level(no dict nesting)
-    Parses through dicts, finds all possible keys(superset) from
-    the dicts and makes sure the same keys exist in each dict.
+    Parses through metadata_by_repo dict, finds all possible keys(superset) from
+    the metadata_by_repo and makes sure the same keys exist in each dict.
     If a key is missing, it's added with a None value
 
     TODO(jinder): standardize is not the right name,
-    there is a better word for: making all dicts have the same keys
+    there is a better word for: making all metadata_by_repo have the same keys
     """
-    superset_keys = get_superset_of_keys(dicts)
+    superset_keys = get_superset_of_keys(metadata_by_repo)
+    defaults = {k: None for k in superset_keys}
     output = {}
-    for dict_name, item in dicts.items():
-        superset_output = {}
-        for key in superset_keys:
-            if key in item:
-                superset_output[key] = item[key]
-            else:
-                superset_output[key] = None
+    for dict_name, item in metadata_by_repo.items():
+        superset_output = defaults.copy()
+        superset_output.update(item)
         output[dict_name] = superset_output
     return output
 
-def squash_and_standardize_dicts(dicts={}):
+def squash_and_standardize_metadata_by_repo(metadata_by_repo={}):
     """
-    Squashes all dicts to only one level and makes sure each has the same keys
+    Squashes all metadata_by_repo to only one level and makes sure each has the same keys
     """
-    for dict_name, item in dicts.items():
-        dicts[dict_name] = squash_dict(item)
-    return standardize_dicts(dicts)
+    for dict_name, item in metadata_by_repo.items():
+        metadata_by_repo[dict_name] = squash_dict(item)
+    return standardize_metadata_by_repo(metadata_by_repo)
 
-def write_squashed_dicts_to_csv(dicts={}, filename="dashboard.csv"):
+def write_squashed_metadata_to_csv(metadata_by_repo={}, filename="dashboard.csv"):
     """
-    Assume all the dicts have the same keys
+    Assume all the metadata_by_repo have the same keys
     """
-    superset_keys = list(sorted(get_superset_of_keys(dicts)))
+    superset_keys = list(sorted(get_superset_of_keys(metadata_by_repo)))
     with open(filename,'w') as csvfile:
         writer = csv.writer(csvfile)
         csv_header = ['repo_name'] + superset_keys
         writer.writerow(csv_header)
-        for dict_name, item in dicts.items():
-            temp_row = [dict_name]
-            for key in superset_keys:
-                temp_row.append(item[key])
-            writer.writerow(temp_row)
+        for dict_name, item in metadata_by_repo.items():
+            writer.writerow([dict_name] + [item[k] for k in superset_keys])

@@ -2,6 +2,7 @@
 utils used to create dashboard
 """
 import csv
+import html
 
 def squash_dict(input, delimiter="."):
     """
@@ -70,3 +71,39 @@ def write_squashed_metadata_to_csv(metadata_by_repo={}, filename="dashboard.csv"
         writer.writerow(csv_header)
         for dict_name, item in metadata_by_repo.items():
             writer.writerow([dict_name] + [item[k] for k in superset_keys])
+
+def write_squashed_metadata_to_html(metadata_by_repo={}, filename="dashboard.html"):
+    """
+    Write HTML report of repo metadata (takes output of squash-and-standardize).
+    """
+    sorted_key_tuples = sorted(list(get_superset_of_keys(metadata_by_repo)))
+
+    with open(filename,'w') as f:
+        f.write("""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Repo health dashboard</title>
+</head>
+<body>\n""")
+        f.write("""<table border="1">\n""")
+        f.write("<caption>Results of health checks for various repositories</caption>\n")
+
+        f.write("<thead>\n")
+        f.write("""  <tr>\n""")
+        f.write("""    <th scope="col">Repository</th>\n""")
+        for k in sorted_key_tuples:
+            f.write("""    <th scope="col">%s</th>\n""" % html.escape(k))
+        f.write("  </tr>\n")
+        f.write("</thead>\n")
+
+        f.write("<tbody>\n")
+        # TODO(timmc): Sort rows by repo name
+        for dict_name, item in metadata_by_repo.items():
+            f.write("  <tr>\n")
+            f.write("""    <th scope="row">%s</th>\n""" % html.escape(dict_name))
+            for k in sorted_key_tuples:
+                f.write("""    <td><pre>%s</pre></td>\n""" % html.escape(str(item[k])))
+            f.write("  </tr>\n")
+        f.write("</tbody>\n")
+        f.write("</table>\n")
+        f.write("</body></html>\n")

@@ -3,7 +3,6 @@ import argparse
 import glob
 import yaml
 import codecs
-import pdb
 
 from utils.utils import squash_and_standardize_metadata_by_repo, write_squashed_metadata_to_csv
 

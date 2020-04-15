@@ -23,11 +23,12 @@ def main():
     data = {}
     for file_path in files:
         file_name = file_path[file_path.rfind("/")+1:]
+        repo_name = file_name.replace("_repo_health.yaml", "")
         # TODO(jinder): maybe add a try block here
         with codecs.open(file_path, 'r', 'utf-8') as f:
             file_data = f.read()
             parsed_file_data = yaml.safe_load(file_data)
-            data[file_name] = parsed_file_data
+            data[repo_name] = parsed_file_data
     output = squash_and_standardize_metadata_by_repo(data)
     write_squashed_metadata_to_csv(output, args.output_csv)
 

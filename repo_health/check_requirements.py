@@ -8,6 +8,8 @@ import os
 import pytest
 from repo_health import get_file_lines
 
+from pytest_repo_health import health_metadata
+
 module_dict_key = 'requires'
 
 @pytest.fixture
@@ -24,6 +26,12 @@ def req_lines(repo_path):
 
     return req_lines
 
+@health_metadata([module_dict_key],
+    {
+    ('django'): "repo requires django",
+    ('pytest'): "repo requires pytest",
+    ('nose'): "repo requires nose"
+    })
 def check_requires(req_lines, all_results):
     """
     Test to find whether repo requires some key requirements

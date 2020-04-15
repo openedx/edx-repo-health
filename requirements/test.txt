@@ -13,6 +13,7 @@ pluggy==0.13.1            # via -r requirements/base.txt, pytest
 py==1.8.1                 # via -r requirements/base.txt, pytest
 pyparsing==2.4.7          # via -r requirements/base.txt, packaging
 pytest==5.4.1             # via -r requirements/base.txt
+pyyaml==5.3.1             # via -r requirements/base.txt
 six==1.14.0               # via -r requirements/base.txt, packaging, pathlib2
 wcwidth==0.1.9            # via -r requirements/base.txt, pytest
 zipp==1.2.0               # via -r requirements/base.txt, importlib-metadata

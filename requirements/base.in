@@ -1,5 +1,5 @@
 # Core requirements for using this application
 -c constraints.txt
 
-
-pytest
+pytest                     # edx-repo-health works as a pytest plugin
+pyyaml                     # Read and write YAML files

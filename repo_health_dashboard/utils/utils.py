@@ -2,7 +2,6 @@
 utils used to create dashboard
 """
 import csv
-import pdb
 
 def squash_dict(input, delimiter="."):
     """

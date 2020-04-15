@@ -3,6 +3,7 @@ import argparse
 import glob
 import yaml
 import codecs
+import pdb
 
 from utils.utils import squash_and_standardize_metadata_by_repo, write_squashed_metadata_to_csv
 
@@ -17,7 +18,21 @@ def main():
                         help="path to csv output",
                         dest="output_csv",
                         default="dashboard.csv")
+    parser.add_argument('--configuration', 
+                        help="path to yaml file with configurations for key orders and aliases",
+                        default=None)
     args = parser.parse_args()
+
+    # collect configurations if they were input
+    configuration = {"check_order":[], 'repo_name_order':[], 'key_aliases':{}}
+    if args.configuration:
+        with codecs.open(args.configuration, 'r', 'utf-8') as f:
+            file_data = f.read()
+            parsed_file_data = yaml.safe_load(file_data)
+            configuration["check_order"] = parsed_file_data.get("check_order",[])
+            configuration['repo_name_order'] = parsed_file_data.get('repo_name_order',[])
+            configuration['key_aliases'] = parsed_file_data.get('key_aliases',{})
+
     data_dir = os.path.abspath(args.data_dir)
     files = glob.glob(os.path.join(data_dir, "*.yaml"), recursive=False)
     data = {}
@@ -30,7 +45,7 @@ def main():
             parsed_file_data = yaml.safe_load(file_data)
             data[repo_name] = parsed_file_data
     output = squash_and_standardize_metadata_by_repo(data)
-    write_squashed_metadata_to_csv(output, args.output_csv)
+    write_squashed_metadata_to_csv(output, args.output_csv, configuration)
 
 
 

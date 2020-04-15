@@ -83,9 +83,31 @@ def write_squashed_metadata_to_html(metadata_by_repo={}, filename="dashboard.htm
 <html lang="en">
 <head>
   <title>Repo health dashboard</title>
+  <style>
+    table {
+        border-collapse: collapse;
+        border: 2px solid rgb(100, 100, 100);
+        font-family: sans-serif;
+    }
+
+    td, th {
+        border: 1px solid rgb(100, 100, 100);
+        padding: .5rem .5rem;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    caption {
+        padding: .5rem;
+        caption-side: top;
+        text-align: start;
+    }
+  </style>
 </head>
 <body>\n""")
-        f.write("""<table border="1">\n""")
+        f.write("""<table>\n""")
         f.write("<caption>Results of health checks for various repositories</caption>\n")
 
         f.write("<thead>\n")

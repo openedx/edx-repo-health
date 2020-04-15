@@ -20,9 +20,9 @@ def tox_ini(repo_path):
 
 @health_metadata([module_dict_key, "has_section"],
     {
-    ('tox'): "TODO(jinder)",
-    ('testenv'): "TODO(jinder)",
-    ('testenv:quality'): "TODO(jinder"
+    'tox': "TODO(jinder)",
+    'testenv': "TODO(jinder)",
+    'testenv:quality': "TODO(jinder"
     })
 def check_has_sections(tox_ini, all_results):
     """

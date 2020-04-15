@@ -27,7 +27,7 @@ def check_makefile_exists(makefile, all_results):
 @add_key_to_metadata((module_dict_key, "upgrade"))
 def check_has_upgrade(makefile, all_results):
     """
-    upgrade: a target that upgrades our dependencies to newer released versions
+    upgrade: makefile target that upgrades our dependencies to newer released versions
     """
     regex_pattern = "upgrade:"
     match = re.search(regex_pattern, makefile)

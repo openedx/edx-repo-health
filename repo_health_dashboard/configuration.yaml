@@ -1,0 +1,17 @@
+"check_order":
+    - openedx_yaml.is_parsable
+    - openedx_yaml.oep-18
+    - openedx_yaml.oep-2
+    - openedx_yaml.oep-30
+    - openedx_yaml.oep-30.reason
+    - openedx_yaml.oep-30.state
+    - openedx_yaml.oep-7
+    - openedx_yaml.owner
+    - makefile.exists
+    - makefile.has_upgrade_target
+"key_aliases":
+    makefile.has_upgrade_target: makefile_upgrade
+    tox_ini.has_section.tox: tox_tox_section
+    repo_structure.has_python_files: python_files
+    repo_structure.requirements.base.in: req_base.in
+    repo_structure.requirements.dev.in: req_dev.in

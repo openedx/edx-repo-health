@@ -17,12 +17,25 @@ def main():
                         help="path to csv output",
                         dest="output_csv",
                         default="dashboard.csv")
-
+    parser.add_argument('--configuration', 
+                        help="path to yaml file with configurations for key orders and aliases",
+                        default=None)
     parser.add_argument('--output_html',
                         help="path to HTML output",
                         dest="output_html",
                         default="dashboard.html")
     args = parser.parse_args()
+
+    # collect configurations if they were input
+    configuration = {"check_order":[], 'repo_name_order':[], 'key_aliases':{}}
+    if args.configuration:
+        with codecs.open(args.configuration, 'r', 'utf-8') as f:
+            file_data = f.read()
+            parsed_file_data = yaml.safe_load(file_data)
+            configuration["check_order"] = parsed_file_data.get("check_order",[])
+            configuration['repo_name_order'] = parsed_file_data.get('repo_name_order',[])
+            configuration['key_aliases'] = parsed_file_data.get('key_aliases',{})
+
     data_dir = os.path.abspath(args.data_dir)
     files = glob.glob(os.path.join(data_dir, "*.yaml"), recursive=False)
     data = {}

@@ -26,6 +26,7 @@ pylint-plugin-utils==0.6  # via pylint-celery, pylint-django
 pylint==2.4.2             # via edx-lint, pylint-celery, pylint-django, pylint-plugin-utils
 pyparsing==2.4.7          # via -r requirements/test.txt, packaging
 pytest==5.4.1             # via -r requirements/test.txt
+pyyaml==5.3.1             # via -r requirements/test.txt
 six==1.14.0               # via -r requirements/test.txt, astroid, edx-lint, packaging, pathlib2
 snowballstemmer==2.0.0    # via pydocstyle
 typed-ast==1.4.1          # via astroid

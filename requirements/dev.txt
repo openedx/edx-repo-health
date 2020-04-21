@@ -18,7 +18,7 @@ importlib-resources==1.4.0  # via virtualenv
 inflect==3.0.2            # via jinja2-pluralize
 isort==4.3.21             # via -r requirements/quality.txt, pylint
 jinja2-pluralize==0.3.0   # via diff-cover
-jinja2==2.11.1            # via diff-cover, jinja2-pluralize
+jinja2==2.11.2            # via diff-cover, jinja2-pluralize
 lazy-object-proxy==1.4.3  # via -r requirements/quality.txt, astroid
 markupsafe==1.1.1         # via jinja2
 mccabe==0.6.1             # via -r requirements/quality.txt, pylint
@@ -37,13 +37,14 @@ pylint-plugin-utils==0.6  # via -r requirements/quality.txt, pylint-celery, pyli
 pylint==2.4.2             # via -r requirements/quality.txt, edx-lint, pylint-celery, pylint-django, pylint-plugin-utils
 pyparsing==2.4.7          # via -r requirements/quality.txt, packaging
 pytest==5.4.1             # via -r requirements/quality.txt
+pyyaml==5.3.1             # via -r requirements/quality.txt
 six==1.14.0               # via -r requirements/pip-tools.txt, -r requirements/quality.txt, astroid, diff-cover, edx-lint, packaging, pathlib2, pip-tools, tox, virtualenv
 snowballstemmer==2.0.0    # via -r requirements/quality.txt, pydocstyle
 toml==0.10.0              # via tox
 tox-battery==0.5.2        # via -r requirements/dev.in
 tox==3.14.6               # via tox-battery
 typed-ast==1.4.1          # via -r requirements/quality.txt, astroid
-virtualenv==20.0.16       # via tox
+virtualenv==20.0.17       # via tox
 wcwidth==0.1.9            # via -r requirements/quality.txt, pytest
 wrapt==1.11.2             # via -r requirements/quality.txt, astroid
 zipp==1.2.0               # via -r requirements/quality.txt, importlib-metadata, importlib-resources

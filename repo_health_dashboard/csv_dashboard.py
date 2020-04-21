@@ -4,7 +4,7 @@ import glob
 import yaml
 import codecs
 
-from utils.utils import squash_and_standardize_metadata_by_repo, write_squashed_metadata_to_csv
+from utils import utils
 
 def main():
     parser = argparse.ArgumentParser(description="Create basic dashboard")
@@ -20,6 +20,10 @@ def main():
     parser.add_argument('--configuration', 
                         help="path to yaml file with configurations for key orders and aliases",
                         default=None)
+    parser.add_argument('--output_html',
+                        help="path to HTML output",
+                        dest="output_html",
+                        default="dashboard.html")
     args = parser.parse_args()
 
     # collect configurations if they were input
@@ -43,8 +47,9 @@ def main():
             file_data = f.read()
             parsed_file_data = yaml.safe_load(file_data)
             data[repo_name] = parsed_file_data
-    output = squash_and_standardize_metadata_by_repo(data)
-    write_squashed_metadata_to_csv(output, args.output_csv, configuration)
+    output = utils.squash_and_standardize_metadata_by_repo(data)
+    utils.write_squashed_metadata_to_csv(output, args.output_csv)
+    utils.write_squashed_metadata_to_html(output, args.output_html)
 
 
 

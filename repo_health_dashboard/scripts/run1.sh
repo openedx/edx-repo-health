@@ -21,10 +21,11 @@ repo_names=(
 'edx-postman-config'
 'journals-frontend'
 )
-touch tmp.txt
-for t in ${repo_names[@]}; do
+mkdir temp_data
+cd temp_data
+for t in "${repo_names[@]}"; do
     git_url="git@github.com:edx/${t}.git"
     git clone $git_url
-    pytest --repo-health --repo-health-path $1 --repo-path $t --output-path ${t}_repo_health.yaml --noconftest -v -c tmp.txt
+    pytest --repo-health --repo-health-path $1 --repo-path $t --output-path "${t}_repo_health.yaml" --noconftest -v -c /dev/null
     rm -rf $t
 done

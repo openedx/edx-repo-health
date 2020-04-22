@@ -66,6 +66,10 @@ setup(
     url='https://github.com/edx/edx-repo-health',
     include_package_data=True,
     install_requires=load_requirements('requirements/base.in'),
+    packages=[
+        'repo_health_dashboard',
+        'repo_health_dashboard.utils'
+    ],
     python_requires=">=3.5",
     license="Apache Software License 2.0",
     zip_safe=False,
@@ -81,4 +85,9 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
+    entry_points={
+        'console_scripts': [
+                'repo_health_dashboard = repo_health_dashboard.repo_health_dashboard:main'
+        ]
+    }
 )

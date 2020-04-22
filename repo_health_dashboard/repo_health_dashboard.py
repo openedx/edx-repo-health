@@ -4,7 +4,7 @@ import glob
 import yaml
 import codecs
 
-from utils import utils
+from .utils import utils
 
 def main():
     parser = argparse.ArgumentParser(description="Create basic dashboard")
@@ -12,15 +12,14 @@ def main():
                         help="location of where data yaml files are located",
                         required=True,
                         dest="data_dir")
-
-    parser.add_argument('--output_csv', 
+    parser.add_argument('--output-csv', 
                         help="path to csv output",
                         dest="output_csv",
                         default="dashboard.csv")
     parser.add_argument('--configuration', 
                         help="path to yaml file with configurations for key orders and aliases",
                         default=None)
-    parser.add_argument('--output_html',
+    parser.add_argument('--output-html',
                         help="path to HTML output",
                         dest="output_html",
                         default="dashboard.html")
@@ -48,7 +47,7 @@ def main():
             parsed_file_data = yaml.safe_load(file_data)
             data[repo_name] = parsed_file_data
     output = utils.squash_and_standardize_metadata_by_repo(data)
-    utils.write_squashed_metadata_to_csv(output, args.output_csv)
+    utils.write_squashed_metadata_to_csv(output, args.output_csv, configuration)
     utils.write_squashed_metadata_to_html(output, args.output_html)
 
 

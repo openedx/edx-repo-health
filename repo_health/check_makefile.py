@@ -17,12 +17,6 @@ def makefile(repo_path):
     full_path = os.path.join(repo_path, 'Makefile')
     return get_file_content(full_path)
 
-@add_key_to_metadata((module_dict_key, "exists"))
-def check_makefile_exists(makefile, all_results):
-    """
-    A repo should contain a makefile with various targets for working with repo
-    """
-    all_results[module_dict_key]['exists'] = bool(makefile)
 
 @add_key_to_metadata((module_dict_key, "upgrade"))
 def check_has_upgrade(makefile, all_results):

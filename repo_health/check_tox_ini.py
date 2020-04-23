@@ -15,7 +15,7 @@ module_dict_key = 'tox_ini'
 def tox_ini(repo_path):
     """Fixture containing the text content of tox.ini"""
     #TODO(jinder): make below work with inputs with both "/" at end and not
-    full_path = os.path.join(repo_path, '/tox.ini')
+    full_path = os.path.join(repo_path, 'tox.ini')
     return get_file_content(full_path)
 
 @health_metadata([module_dict_key, "has_section"],

@@ -83,7 +83,7 @@ def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration):
 
         # TODO(jinder): order repos based on configuration["repo_name_order"]
         for repo_name, item in metadata_by_repo.items():
-            writer.writerow([repo_name] + [item[k] for k in sorted_keys])
+            writer.writerow([repo_name] + [item[k] if k in item else None for k in sorted_keys])
 
 def write_squashed_metadata_to_html(metadata_by_repo={}, filename="dashboard.html"):
     """

@@ -1,5 +1,5 @@
 "check_order":
-    - openedx_yaml.is_parsable
+    - openedx_yaml.parsable
     - openedx_yaml.oep-18
     - openedx_yaml.oep-2
     - openedx_yaml.oep-30

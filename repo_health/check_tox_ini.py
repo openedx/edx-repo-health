@@ -7,6 +7,7 @@ import re
 import pytest
 from repo_health import get_file_content
 from pytest_repo_health import health_metadata
+import pdb
 
 module_dict_key = 'tox_ini'
 
@@ -28,10 +29,11 @@ def check_has_sections(tox_ini, all_results):
     """
     Test to check if makefile has an upgrade target
     """
+    pdb.set_trace()
     required_sections = [r'tox', r'testenv', r'testenv:quality']
     all_results[module_dict_key]['has_section'] = {}
     for section in required_sections:
-        regex_pattern = r"\[" + section + r"\]"
+        regex_pattern = r"[" + section + r"]"
         match = re.search(regex_pattern, tox_ini)
         all_results[module_dict_key]['has_section'][section] = False
         if match is not None:

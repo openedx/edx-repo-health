@@ -60,6 +60,14 @@ def squash_and_standardize_metadata_by_repo(metadata_by_repo):
         metadata_by_repo[dict_name] = squash_dict(item)
     return standardize_metadata_by_repo(metadata_by_repo)
 
+def get_sheets(parsed_yaml_file, sheet_name):
+    sheet_configuration = {}
+    sheet_configuration["check_order"] = parsed_yaml_file[sheet_name].get("check_order",[])
+    sheet_configuration['repo_name_order'] = parsed_yaml_file[sheet_name].get('repo_name_order',[])
+    sheet_configuration['key_aliases'] = parsed_yaml_file[sheet_name].get('key_aliases',{})
+    return sheet_configuration
+
+
 def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration):
     """
     Assume all the metadata_by_repo have the same keys
@@ -67,7 +75,11 @@ def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration):
     superset_keys = get_superset_of_keys(metadata_by_repo)
     for key in configuration['check_order']:
         superset_keys.discard(key)
-    sorted_keys = configuration['check_order'] + list(sorted(superset_keys))
+    if configuration.get("subset", False):
+        sorted_keys = configuration['check_order'] + list(sorted(superset_keys))
+    else:
+        sorted_keys = configuration['check_order']
+
     # change key names to its alias for display(csv header row)
     sorted_aliased_keys = []
     for key in sorted_keys:
@@ -76,7 +88,7 @@ def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration):
         else:
             sorted_aliased_keys.append(key)
 
-    with open(filename,'w') as csvfile:
+    with open(filename+".csv",'w') as csvfile:
         writer = csv.writer(csvfile)
         csv_header = ['repo_name'] + sorted_aliased_keys
         writer.writerow(csv_header)
@@ -91,7 +103,7 @@ def write_squashed_metadata_to_html(metadata_by_repo={}, filename="dashboard.htm
     """
     sorted_key_tuples = sorted(list(get_superset_of_keys(metadata_by_repo)))
 
-    with open(filename,'w') as f:
+    with open(filename + ".html",'w') as f:
         f.write("""<!DOCTYPE html>
 <html lang="en">
 <head>

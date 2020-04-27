@@ -76,9 +76,9 @@ def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration):
     for key in configuration['check_order']:
         superset_keys.discard(key)
     if configuration.get("subset", False):
-        sorted_keys = configuration['check_order'] + list(sorted(superset_keys))
-    else:
         sorted_keys = configuration['check_order']
+    else:
+        sorted_keys = configuration['check_order'] + list(sorted(superset_keys))
 
     # change key names to its alias for display(csv header row)
     sorted_aliased_keys = []

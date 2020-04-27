@@ -38,7 +38,7 @@ def check_tox_ini(repo_path, all_results):
 @add_key_to_metadata((module_dict_key, ".travis.yml"))
 def check_travis_yml(repo_path, all_results):
     """
-    TODO(jinder)
+    The ``.travis.yml`` file configures the repo for automated builds with Travis CI
     """
     all_results[module_dict_key]['.travis.yml'] = file_exists(repo_path, '.travis.yml')
 
@@ -107,4 +107,3 @@ def check_gitignore(repo_path, all_results):
     TODO(jinder)
     """
     all_results[module_dict_key]['.gitignore'] = file_exists(repo_path, '.gitignore')
-

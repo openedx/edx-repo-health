@@ -63,6 +63,8 @@ def check_changelog_rst(repo_path, all_results):
 def check_pylintrc(repo_path, all_results):
     """
     Edx has a standardized pylint errors that should be used with all edx python repos
+
+    Generated using: git branch --set-upstream-to=origin/<branch> msingh/exists
     """
     all_results[module_dict_key]['pylintrc'] = file_exists(repo_path, 'pylintrc')
 

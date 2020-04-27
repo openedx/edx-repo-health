@@ -62,6 +62,7 @@ def squash_and_standardize_metadata_by_repo(metadata_by_repo):
 
 def get_sheets(parsed_yaml_file, sheet_name):
     sheet_configuration = {}
+    sheet_configuration.update(parsed_yaml_file[sheet_name])
     sheet_configuration["check_order"] = parsed_yaml_file[sheet_name].get("check_order",[])
     sheet_configuration['repo_name_order'] = parsed_yaml_file[sheet_name].get('repo_name_order',[])
     sheet_configuration['key_aliases'] = parsed_yaml_file[sheet_name].get('key_aliases',{})

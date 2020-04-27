@@ -47,7 +47,7 @@ def main():
             parsed_file_data = yaml.safe_load(file_data)
             data[repo_name] = parsed_file_data
     output = utils.squash_and_standardize_metadata_by_repo(data)
-    for key, configuration in configurations:
+    for key, configuration in configurations.items():
         utils.write_squashed_metadata_to_csv(output, args.output_csv + "_" + key, configuration)
     utils.write_squashed_metadata_to_html(output, args.output_html)
 

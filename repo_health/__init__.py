@@ -28,8 +28,8 @@ def get_file_content(path):
     Used for pytest fixtures.
     """
     if not os.path.exists(path):
-        return ''
-    with codecs.open(path, 'r', 'utf-8') as f:
+        return ""
+    with codecs.open(path, "r", "utf-8") as f:
         return f.read()
 
 
@@ -41,8 +41,9 @@ def get_file_lines(path):
     """
     if not os.path.exists(path):
         return []
-    with codecs.open(path, 'r', 'utf-8') as f:
+    with codecs.open(path, "r", "utf-8") as f:
         return [line.strip() for line in f.readlines()]
+
 
 def get_file_names(path, file_type):
     """

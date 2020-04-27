@@ -4,6 +4,7 @@ utils used to create dashboard
 import csv
 import html
 
+
 def squash_dict(input, delimiter="."):
     """
     Takes very nested dict(metadata_by_repo inside of metadata_by_repo) and squashes it to only one level
@@ -52,6 +53,7 @@ def standardize_metadata_by_repo(metadata_by_repo):
         output[dict_name] = superset_output
     return output
 
+
 def squash_and_standardize_metadata_by_repo(metadata_by_repo):
     """
     Squashes all metadata_by_repo to only one level and makes sure each has the same keys
@@ -60,12 +62,19 @@ def squash_and_standardize_metadata_by_repo(metadata_by_repo):
         metadata_by_repo[dict_name] = squash_dict(item)
     return standardize_metadata_by_repo(metadata_by_repo)
 
+
 def get_sheets(parsed_yaml_file, sheet_name):
     sheet_configuration = {}
     sheet_configuration.update(parsed_yaml_file[sheet_name])
-    sheet_configuration["check_order"] = parsed_yaml_file[sheet_name].get("check_order",[])
-    sheet_configuration['repo_name_order'] = parsed_yaml_file[sheet_name].get('repo_name_order',[])
-    sheet_configuration['key_aliases'] = parsed_yaml_file[sheet_name].get('key_aliases',{})
+    sheet_configuration["check_order"] = parsed_yaml_file[sheet_name].get(
+        "check_order", []
+    )
+    sheet_configuration["repo_name_order"] = parsed_yaml_file[sheet_name].get(
+        "repo_name_order", []
+    )
+    sheet_configuration["key_aliases"] = parsed_yaml_file[sheet_name].get(
+        "key_aliases", {}
+    )
     return sheet_configuration
 
 
@@ -74,29 +83,32 @@ def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration):
     Assume all the metadata_by_repo have the same keys
     """
     superset_keys = get_superset_of_keys(metadata_by_repo)
-    for key in configuration['check_order']:
+    for key in configuration["check_order"]:
         superset_keys.discard(key)
     if configuration.get("subset", False):
-        sorted_keys = configuration['check_order']
+        sorted_keys = configuration["check_order"]
     else:
-        sorted_keys = configuration['check_order'] + list(sorted(superset_keys))
+        sorted_keys = configuration["check_order"] + list(sorted(superset_keys))
 
     # change key names to its alias for display(csv header row)
     sorted_aliased_keys = []
     for key in sorted_keys:
-        if key in configuration['key_aliases']:
-            sorted_aliased_keys.append(configuration['key_aliases'][key])
+        if key in configuration["key_aliases"]:
+            sorted_aliased_keys.append(configuration["key_aliases"][key])
         else:
             sorted_aliased_keys.append(key)
 
-    with open(filename + ".csv",'w') as csvfile:
+    with open(filename + ".csv", "w") as csvfile:
         writer = csv.writer(csvfile)
-        csv_header = ['repo_name'] + sorted_aliased_keys
+        csv_header = ["repo_name"] + sorted_aliased_keys
         writer.writerow(csv_header)
 
         # TODO(jinder): order repos based on configuration["repo_name_order"]
         for repo_name, item in metadata_by_repo.items():
-            writer.writerow([repo_name] + [item[k] if k in item else None for k in sorted_keys])
+            writer.writerow(
+                [repo_name] + [item[k] if k in item else None for k in sorted_keys]
+            )
+
 
 def write_squashed_metadata_to_html(metadata_by_repo={}, filename="dashboard.html"):
     """
@@ -104,8 +116,9 @@ def write_squashed_metadata_to_html(metadata_by_repo={}, filename="dashboard.htm
     """
     sorted_key_tuples = sorted(list(get_superset_of_keys(metadata_by_repo)))
 
-    with open(filename + ".html",'w') as f:
-        f.write("""<!DOCTYPE html>
+    with open(filename + ".html", "w") as f:
+        f.write(
+            """<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Repo health dashboard</title>
@@ -132,9 +145,12 @@ def write_squashed_metadata_to_html(metadata_by_repo={}, filename="dashboard.htm
     }
   </style>
 </head>
-<body>\n""")
+<body>\n"""
+        )
         f.write("""<table>\n""")
-        f.write("<caption>Results of health checks for various repositories</caption>\n")
+        f.write(
+            "<caption>Results of health checks for various repositories</caption>\n"
+        )
 
         f.write("<thead>\n")
         f.write("""  <tr>\n""")

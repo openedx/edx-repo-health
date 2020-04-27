@@ -89,7 +89,7 @@ def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration):
         else:
             sorted_aliased_keys.append(key)
 
-    with open(filename+".csv",'w') as csvfile:
+    with open(filename + ".csv",'w') as csvfile:
         writer = csv.writer(csvfile)
         csv_header = ['repo_name'] + sorted_aliased_keys
         writer.writerow(csv_header)

@@ -14,7 +14,9 @@ def file_exists(repo_path, file_name):
 @add_key_to_metadata((module_dict_key, "openedx.yaml"))
 def check_openedx_yaml(repo_path, all_results):
     """
-    TODO(jinder)
+    openedx.yaml should contain repository metadata as outlined in OEP-2
+    
+    https://open-edx-proposals.readthedocs.io/en/latest/oep-0002-bp-repo-metadata.html
     """
     all_results[module_dict_key]['openedx.yaml'] = file_exists(repo_path, 'openedx.yaml')
 
@@ -105,5 +107,4 @@ def check_gitignore(repo_path, all_results):
     TODO(jinder)
     """
     all_results[module_dict_key]['.gitignore'] = file_exists(repo_path, '.gitignore')
-
 

@@ -17,6 +17,8 @@
         repo_structure.requirements.base.in: req_base.in
         repo_structure.requirements.dev.in: req_dev.in
 "python_3":
+    "owner": jinder1s
+    "team": archbom
     "subset": true
     "check_order":
         - openedx_yaml.oep-2

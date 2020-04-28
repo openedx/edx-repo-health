@@ -5,7 +5,7 @@ import csv
 import html
 
 
-def squash_dict(input, delimiter="."):
+def squash_dict(input_dict, delimiter="."):
     """
     Takes very nested dict(metadata_by_repo inside of metadata_by_repo) and squashes it to only one level
     For example:
@@ -13,7 +13,7 @@ def squash_dict(input, delimiter="."):
     the output: {'a.f': [1, 2, 3], 'e': 2, 'a.b': '1', 'a.c.d': '2'}
     """
     output = {}
-    for key, value in input.items():
+    for key, value in input_dict.items():
         if isinstance(value, dict):
             temp_output = squash_dict(value)
             for key2, value2 in temp_output.items():

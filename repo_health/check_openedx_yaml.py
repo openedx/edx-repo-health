@@ -118,7 +118,7 @@ def check_oep_18(oeps, all_results):
 
 
 @add_key_to_metadata((module_dict_key, "oep_30"))
-def check_oep_18(oeps, all_results):
+def check_oep_30(oeps, all_results):
     """
     Indicates compliance with OEP-30: Personally Identifiable Information Markup and Auditing
     """

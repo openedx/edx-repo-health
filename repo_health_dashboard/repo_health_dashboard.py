@@ -1,8 +1,8 @@
 import os
 import argparse
 import glob
-import yaml
 import codecs
+import yaml
 
 from .utils import utils
 

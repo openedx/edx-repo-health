@@ -4,11 +4,12 @@
 #
 #    make upgrade
 #
+-e git+https://github.com/edx/pytest-repo-health.git@44abdabc7271ff42e403ed44add19453a72f202b#egg=pytest-repo-health  # via -r requirements/quality.txt, -r requirements/travis.txt
 appdirs==1.4.3            # via -r requirements/quality.txt, -r requirements/travis.txt, virtualenv
 astroid==2.3.3            # via -r requirements/quality.txt, pylint, pylint-celery
 attrs==19.3.0             # via -r requirements/quality.txt, -r requirements/travis.txt, pytest
 click-log==0.3.2          # via -r requirements/quality.txt, edx-lint
-click==7.1.1              # via -r requirements/pip-tools.txt, -r requirements/quality.txt, -r requirements/travis.txt, click-log, edx-lint, pip-tools
+click==7.1.2              # via -r requirements/pip-tools.txt, -r requirements/quality.txt, -r requirements/travis.txt, click-log, edx-lint, pip-tools
 diff-cover==2.6.1         # via -r requirements/dev.in
 distlib==0.3.0            # via -r requirements/quality.txt, -r requirements/travis.txt, virtualenv
 edx-lint==1.4.1           # via -r requirements/quality.txt
@@ -36,8 +37,8 @@ pylint-django==2.0.11     # via -r requirements/quality.txt, edx-lint
 pylint-plugin-utils==0.6  # via -r requirements/quality.txt, pylint-celery, pylint-django
 pylint==2.4.2             # via -r requirements/quality.txt, edx-lint, pylint-celery, pylint-django, pylint-plugin-utils
 pyparsing==2.4.7          # via -r requirements/quality.txt, -r requirements/travis.txt, packaging
-pytest==5.4.1             # via -r requirements/quality.txt, -r requirements/travis.txt
-pyyaml==5.3.1             # via -r requirements/quality.txt, -r requirements/travis.txt
+pytest==5.4.1             # via -r requirements/quality.txt, -r requirements/travis.txt, pytest-repo-health
+pyyaml==5.3.1             # via -r requirements/quality.txt, -r requirements/travis.txt, pytest-repo-health
 six==1.14.0               # via -r requirements/pip-tools.txt, -r requirements/quality.txt, -r requirements/travis.txt, astroid, diff-cover, edx-lint, packaging, pathlib2, pip-tools, tox, virtualenv
 snowballstemmer==2.0.0    # via -r requirements/quality.txt, pydocstyle
 toml==0.10.0              # via -r requirements/quality.txt, -r requirements/travis.txt, tox

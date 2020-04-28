@@ -5,8 +5,8 @@ import os
 import re
 
 import pytest
-from repo_health import get_file_content
 from pytest_repo_health import health_metadata
+from repo_health import get_file_content
 
 module_dict_key = "tox_ini"
 

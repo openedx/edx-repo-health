@@ -5,7 +5,7 @@ import csv
 import html
 
 
-def squash_dict(input, delimiter="."):
+def squash_dict(input_dict, delimiter="."):
     """
     Takes very nested dict(metadata_by_repo inside of metadata_by_repo) and squashes it to only one level
     For example:
@@ -13,7 +13,7 @@ def squash_dict(input, delimiter="."):
     the output: {'a.f': [1, 2, 3], 'e': 2, 'a.b': '1', 'a.c.d': '2'}
     """
     output = {}
-    for key, value in input.items():
+    for key, value in input_dict.items():
         if isinstance(value, dict):
             temp_output = squash_dict(value)
             for key2, value2 in temp_output.items():
@@ -64,6 +64,13 @@ def squash_and_standardize_metadata_by_repo(metadata_by_repo):
 
 
 def get_sheets(parsed_yaml_file, sheet_name):
+    """
+    Parses configuration yaml file and makes sure each requested output configuration has
+    the right setting keys
+
+    Rest of the system expects the keys("check_order", "repo_name_order", and "key_aliases")
+    to exists in configuration dict
+    """
     sheet_configuration = {}
     sheet_configuration.update(parsed_yaml_file[sheet_name])
     sheet_configuration["check_order"] = parsed_yaml_file[sheet_name].get(
@@ -110,10 +117,12 @@ def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration):
             )
 
 
-def write_squashed_metadata_to_html(metadata_by_repo={}, filename="dashboard.html"):
+def write_squashed_metadata_to_html(metadata_by_repo=None, filename="dashboard.html"):
     """
     Write HTML report of repo metadata (takes output of squash-and-standardize).
     """
+    if not metadata_by_repo:
+        metadata_by_repo = {}
     sorted_key_tuples = sorted(list(get_superset_of_keys(metadata_by_repo)))
 
     with open(filename + ".html", "w") as f:

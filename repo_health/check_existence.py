@@ -1,6 +1,8 @@
+"""
+Functions to check the existence of files.
+"""
 import os
 
-import pytest
 from pytest_repo_health import add_key_to_metadata
 from repo_health import get_file_content
 
@@ -17,7 +19,7 @@ def file_exists(repo_path, file_name):
 def check_openedx_yaml(repo_path, all_results):
     """
     openedx.yaml should contain repository metadata as outlined in OEP-2
-    
+
     https://open-edx-proposals.readthedocs.io/en/latest/oep-0002-bp-repo-metadata.html
     """
     all_results[module_dict_key]["openedx.yaml"] = file_exists(

@@ -64,7 +64,7 @@
 #
 # ------------------------------
 [MASTER]
-ignore = 
+ignore = ,.git,.tox
 persistent = yes
 load-plugins = edx_lint.pylint,pylint_django,pylint_celery
 
@@ -354,6 +354,7 @@ disable =
 	using-cmp-argument,
 	xrange-builtin,
 	zip-builtin-not-iterating,
+	django-not-available
 
 [REPORTS]
 output-format = text
@@ -453,4 +454,4 @@ int-import-graph =
 [EXCEPTIONS]
 overgeneral-exceptions = Exception
 
-# d784746e5ebe9eb66794d942ded84799d4f7f2fa
+# 38a3d5f36647f0ffdc0bdd1e2eb6fb8e1ce87551

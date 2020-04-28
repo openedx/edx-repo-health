@@ -5,14 +5,14 @@ import os
 import re
 
 import pytest
-from repo_health import get_file_content
 from pytest_repo_health import health_metadata
+from repo_health import get_file_content
 
 module_dict_key = "tox_ini"
 
 
-@pytest.fixture
-def tox_ini(repo_path):
+@pytest.fixture(name='tox_ini')
+def fixture_tox_ini(repo_path):
     """Fixture containing the text content of tox.ini"""
     # TODO(jinder): make below work with inputs with both "/" at end and not
     full_path = os.path.join(repo_path, "tox.ini")

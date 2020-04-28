@@ -36,3 +36,11 @@ def check_has_python_38_classifiers(python_versions_in_classifiers, all_results)
     Are there classifiers with python 3.8?
     """
     all_results[module_dict_key]["py38_classifiers"] = "3.8" in python_versions_in_classifiers
+
+
+@add_key_to_metadata((module_dict_key, "python_versions"))
+def check_travis_python_versions(python_versions_in_classifiers, all_results):
+    """
+    Add list of python versions to the results
+    """
+    all_results[module_dict_key]["python_versions"] = python_versions_in_classifiers

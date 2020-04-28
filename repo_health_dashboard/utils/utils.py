@@ -110,10 +110,12 @@ def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration):
             )
 
 
-def write_squashed_metadata_to_html(metadata_by_repo={}, filename="dashboard.html"):
+def write_squashed_metadata_to_html(metadata_by_repo=None, filename="dashboard.html"):
     """
     Write HTML report of repo metadata (takes output of squash-and-standardize).
     """
+    if not metadata_by_repo:
+        metadata_by_repo = {}
     sorted_key_tuples = sorted(list(get_superset_of_keys(metadata_by_repo)))
 
     with open(filename + ".html", "w") as f:

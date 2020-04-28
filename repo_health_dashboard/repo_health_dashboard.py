@@ -1,3 +1,7 @@
+"""
+repo-health-dashboard CLI
+"""
+
 import os
 import argparse
 import glob

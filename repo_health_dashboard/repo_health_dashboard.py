@@ -12,6 +12,9 @@ from .utils import utils
 
 
 def main():
+    """
+    Create basic dashboard
+    """
     parser = argparse.ArgumentParser(description="Create basic dashboard")
     parser.add_argument(
         "--data-dir",

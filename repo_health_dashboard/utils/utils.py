@@ -64,6 +64,13 @@ def squash_and_standardize_metadata_by_repo(metadata_by_repo):
 
 
 def get_sheets(parsed_yaml_file, sheet_name):
+    """
+    Parses configuration yaml file and makes sure each requested output configuration has
+    the right setting keys
+
+    Rest of the system expects the keys("check_order", "repo_name_order", and "key_aliases")
+    to exists in configuration dict
+    """
     sheet_configuration = {}
     sheet_configuration.update(parsed_yaml_file[sheet_name])
     sheet_configuration["check_order"] = parsed_yaml_file[sheet_name].get(

@@ -58,22 +58,6 @@ def check_owner(parsed_data, all_results):
         all_results[module_dict_key]["owner"] = parsed_data["owner"]
 
 
-@add_key_to_metadata((module_dict_key, "oep_2"))
-def check_oep_2(parsed_data, all_results):
-    """
-    Checks for significant oeps info
-    """
-    important_oeps = [2, 7, 18, 30]
-    if "oeps" in parsed_data:
-        oeps = parsed_data["oeps"]
-        for oep_num in important_oeps:
-            oep_name = "oep-{num}".format(num=oep_num)
-            if oep_name in oeps:
-                all_results[module_dict_key][oep_name] = oeps[oep_name]
-            else:
-                all_results[module_dict_key][oep_name] = False
-
-
 @pytest.fixture(name='oeps')
 def fixture_oeps(parsed_data):
     if "oeps" in parsed_data:

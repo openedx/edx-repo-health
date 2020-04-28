@@ -1,0 +1,7 @@
+# Local tweaks to pylintrc
+[MASTER]
+ignore+ = ,.git,.tox
+
+[MESSAGES CONTROL]
+disable+ = 
+	django-not-available	

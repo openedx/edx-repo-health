@@ -6,15 +6,14 @@ import glob
 import os
 
 import pytest
-from repo_health import get_file_lines
-
 from pytest_repo_health import health_metadata
+from repo_health import get_file_lines
 
 module_dict_key = "requires"
 
 
-@pytest.fixture
-def req_lines(repo_path):
+@pytest.fixture(name='req_lines')
+def fixture_req_lines(repo_path):
     """
     Fixture containing the text content of req_files
     """

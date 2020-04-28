@@ -2,9 +2,9 @@
 Checks to see if openedx.yaml follows minimum standards
 And gathers info
 """
+import os
 import pytest
 import yaml
-import os
 
 from pytest_repo_health import add_key_to_metadata
 
@@ -15,15 +15,15 @@ from repo_health import get_file_content
 module_dict_key = "openedx_yaml"
 
 
-@pytest.fixture
-def openedx_yaml(repo_path):
+@pytest.fixture(name='openedx_yaml')
+def fixture_openedx_yaml(repo_path):
     """Fixture containing the text content of openedx.yaml"""
     full_path = os.path.join(repo_path, "openedx.yaml")
     return get_file_content(full_path)
 
 
-@pytest.fixture
-def parsed_data(openedx_yaml):
+@pytest.fixture(name='parsed_data')
+def fixture_parsed_data(openedx_yaml):
     """
     Parses openedx.yaml returns resulting dict.
     """
@@ -74,8 +74,8 @@ def check_oep_2(parsed_data, all_results):
                 all_results[module_dict_key][oep_name] = False
 
 
-@pytest.fixture
-def oeps(parsed_data):
+@pytest.fixture(name='oeps')
+def fixture_oeps(parsed_data):
     if "oeps" in parsed_data:
         return parsed_data["oeps"]
     return {}

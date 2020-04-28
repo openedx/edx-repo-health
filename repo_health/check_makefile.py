@@ -12,8 +12,8 @@ from repo_health import get_file_content
 module_dict_key = "makefile"
 
 
-@pytest.fixture
-def makefile(repo_path):
+@pytest.fixture(name='makefile')
+def fixture_makefile(repo_path):
     """Fixture containing the text content of Makefile"""
     full_path = os.path.join(repo_path, "Makefile")
     return get_file_content(full_path)

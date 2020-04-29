@@ -1,5 +1,5 @@
-"main":
-    "check_order":
+main:
+    check_order:
         - openedx_yaml.parsable
         - openedx_yaml.oep-18
         - openedx_yaml.oep-2
@@ -10,16 +10,17 @@
         - openedx_yaml.owner
         - makefile.exists
         - makefile.has_upgrade_target
-    "key_aliases":
+    key_aliases:
         makefile.has_upgrade_target: makefile_upgrade
         tox_ini.has_section.tox: tox_tox_section
         repo_structure.has_python_files: python_files
         repo_structure.requirements.base.in: req_base.in
         repo_structure.requirements.dev.in: req_dev.in
-"python_3":
-    "owner": jinder1s
-    "team": archbom
-    "subset": true
-    "check_order":
+python_3:
+    owner: jinder1s
+    team: archbom
+    subset: true
+    check_order:
         - openedx_yaml.oep-2
         - openedx_yaml.owner
+        - travis_yml.python_versions

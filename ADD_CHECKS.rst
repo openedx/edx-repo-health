@@ -31,8 +31,7 @@ Anatomy of a check:
         - all_results is a dictionary -> guide to adding info to it are below
  3. function doc string
 
-    - if the function(check) is only adding one key to "all_results" dictionary, you
-        can add info about it in the doc. The plugin will assume the doc string for function is the doc string for added key
+    - if the function(check) is only adding one key to "all_results" dictionary, you can add info about it in the doc. The plugin will assume the doc string for function is the doc string for added key
     - if function(check) adds more than one key
         - use doc string to document the whole check and use "@health_metadata" decorator to add docs on individual keys
  4. function body

@@ -14,6 +14,9 @@ All necessary data about compliance and deviations should be placed in all_resul
 
 Check `pytest-repo-health`_ for more info on check design.
 
+Adding Checks
+-------------
+For more info on adding new checks, please see ``ADD_CHECKS.rst``.
 
 Checks Enchancement path
 ------------------------

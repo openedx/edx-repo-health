@@ -9,6 +9,7 @@ Steps to adding a check:
  2. Look inside repo_health directory and figure out if that info is related to any checks modules already implemented
 
     - if not, create a new python module(file) and put your checks in that
+    - if yes, place your check in relavant module
  3. write your checks. Each check function should be small and ideally gathers one piece of information
 
     - consider using fixtures for info that is shared between multiple checks

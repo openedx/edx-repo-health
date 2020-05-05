@@ -20,11 +20,11 @@ Anatomy of a check:
         - for now, we've chosen not to add any asserts in the check functions
 
 steps to adding a check:
- 1 Define what information you are gathering
- 2 Look inside repo_health directory and figure out if that info is related to any checks modules already implemented
+ 1. Define what information you are gathering
+ 2. Look inside repo_health directory and figure out if that info is related to any checks modules already implemented
     - if not, create a new python module(file) and put your checks in that
- 3 write your checks. Each check function should be small and ideally gathers one piece of information
+ 3. write your checks. Each check function should be small and ideally gathers one piece of information
     - consider using fixtures for info that is shared between multiple checks
- 4 Add docs explaining info gathered in this check
+ 4. Add docs explaining info gathered in this check
     - use "@add_key_to_metadata" decorator if your check only adds one key
     - use "@health_metadata" decorator if your check adds mroe than one key

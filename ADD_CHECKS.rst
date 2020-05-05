@@ -17,6 +17,7 @@ Steps to adding a check:
 
     - use "@add_key_to_metadata" decorator if your check only adds one key
     - use "@health_metadata" decorator if your check adds mroe than one key
+    - the decorators are imported from pytest-repo-health
 
 
 
@@ -26,6 +27,7 @@ Anatomy of a check:
  1. Decorator to add info about check
 
     - use "@health_metadata" or "@add_key_to_metadata" decorators to add docs about the information you gather in this check
+    - the decorators are imported from pytest-repo-health
  2. function inputs: pytest fixtures
 
     - if you would like to add additional info to output yaml file, use the fixture "all_results"

@@ -61,7 +61,7 @@ def fixture_python_version(parsed_data_travis):
                 if "python" in worker.keys():
                     python_versions.add(worker["python"])
     if python_versions:
-        python_versions = sorted(python_versions)
+        python_versions = sorted(python_versions, key=str)
     else:
         python_versions = set()
     return python_versions

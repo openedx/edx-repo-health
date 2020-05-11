@@ -63,7 +63,7 @@ def fixture_python_version(parsed_data_travis):
     if python_versions:
         python_versions = sorted(python_versions)
     else:
-        python_versions = None
+        python_versions = []
     return python_versions
 
 @add_key_to_metadata((module_dict_key, "py38_tests"))

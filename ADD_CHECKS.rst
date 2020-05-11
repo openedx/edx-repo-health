@@ -2,27 +2,53 @@
 Adding Additional Checks
 ========================
 
+This document explains how to add checks to edx-repo-health.
+
 Steps to adding a check:
-========================
+------------------------
 
  1. Define what information you are gathering
- 2. Look inside repo_health directory and figure out if that info is related to any checks modules already implemented
+ 2. Review existing checks for reuse or extension
+ 3. Write your check(s).
+ 4. Document you check(s).
 
-    - if not, create a new python module(file) and put your checks in that
-    - if yes, place your check in relavant module
- 3. write your checks. Each check function should be small and ideally gathers one piece of information
+
+Writing your check:
+-------------------
+Some guidelines: 
+ - keep your check function body as small as possible
+ - as a standard, only add one key to all_results dict
+ - 
+
+
+all_results fixture:
+--------------------
+
+Documenting Checks:
+-------------------
+ To make it easier to programmatically handle each check/info, we use Decorators to add docs on each key defined by your checks.
+    - the decorators are imported from pytest-repo-health
+    - if your check adss more than one key to "all_results dictionary"
+        - use "@health_metadata" decorator
+    - if the function(check) is only adding one key to "all_results" dictionary
+        - write your documentation on the key in check doc string
+        - declare the key using "@add_key_to_metadata" decorator
+
+ 3. Write your check(s)
+
+    - Each check function should be small and ideally gathers one piece of information
 
     - consider using fixtures for info that is shared between multiple checks
  4. Add docs explaining info gathered in this check
 
     - use "@add_key_to_metadata" decorator if your check only adds one key
-    - use "@health_metadata" decorator if your check adds mroe than one key
+    - use "@health_metadata" decorator if your check adds more than one key
     - the decorators are imported from pytest-repo-health
 
 
 
 Anatomy of a check:
-===================
+-------------------
 
  1. Decorator to add info about check
 
@@ -43,3 +69,15 @@ Anatomy of a check:
     - this should be as small as possible
     - if there is any processing happening that might also be useful to another check, consider implementing it as a seperate fixture
     - for now, we've chosen not to add any asserts in the check functions
+
+
+Anatomy of a check:
+-------------------
+
+ 1. Decorator to add info about check
+    - see "Documenting Checks" section below
+ 2. Function inputs: use pytest fixtures
+    - To add further information to yaml output, use all_results fixture
+ 3. Function doc string
+    - see "Documenting Checks" section below
+ 4. Function body

@@ -69,7 +69,6 @@ def main():
         utils.write_squashed_metadata_to_csv(
             output, args.output_csv + "_" + key, configuration
         )
-    utils.write_squashed_metadata_to_html(output, args.output_html)
 
 
 if __name__ == "__main__":

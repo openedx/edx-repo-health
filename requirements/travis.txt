@@ -4,8 +4,7 @@
 #
 #    make upgrade
 #
--e git+https://github.com/edx/pytest-repo-health.git@44abdabc7271ff42e403ed44add19453a72f202b#egg=pytest-repo-health  # via -r requirements/test.txt
-appdirs==1.4.3            # via -r requirements/test.txt, virtualenv
+appdirs==1.4.4            # via -r requirements/test.txt, virtualenv
 attrs==19.3.0             # via -r requirements/test.txt, pytest
 click==7.1.2              # via -r requirements/pip-tools.txt, pip-tools
 distlib==0.3.0            # via -r requirements/test.txt, virtualenv
@@ -15,16 +14,17 @@ importlib-resources==1.5.0  # via -r requirements/test.txt, virtualenv
 more-itertools==8.2.0     # via -r requirements/test.txt, pytest
 packaging==20.3           # via -r requirements/test.txt, pytest, tox
 pathlib2==2.3.5           # via -r requirements/test.txt, pytest
-pip-tools==5.1.0          # via -r requirements/pip-tools.txt
+pip-tools==5.1.2          # via -r requirements/pip-tools.txt
 pluggy==0.13.1            # via -r requirements/test.txt, pytest, tox
 py==1.8.1                 # via -r requirements/test.txt, pytest, tox
 pyparsing==2.4.7          # via -r requirements/test.txt, packaging
-pytest==5.4.1             # via -r requirements/test.txt, pytest-repo-health
+pytest-repo-health==1.0.0  # via -r requirements/test.txt
+pytest==5.4.2             # via -r requirements/test.txt, pytest-repo-health
 pyyaml==5.3.1             # via -r requirements/test.txt, pytest-repo-health
 six==1.14.0               # via -r requirements/pip-tools.txt, -r requirements/test.txt, packaging, pathlib2, pip-tools, tox, virtualenv
 toml==0.10.0              # via -r requirements/test.txt, tox
-tox==3.14.6               # via -r requirements/test.txt
-virtualenv==20.0.18       # via -r requirements/test.txt, tox
+tox==3.15.0               # via -r requirements/test.txt
+virtualenv==20.0.20       # via -r requirements/test.txt, tox
 wcwidth==0.1.9            # via -r requirements/test.txt, pytest
 zipp==1.2.0               # via -r requirements/test.txt, importlib-metadata, importlib-resources
 

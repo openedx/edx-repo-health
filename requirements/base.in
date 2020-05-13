@@ -1,8 +1,6 @@
 # Core requirements for using this application
 -c constraints.txt
 
-pytest                     # edx-repo-health works as a pytest plugin
 pyyaml                     # Read and write YAML files
+pytest-repo-health         # plugin used to run the checks in this repo
 
-# This can be removed once a new release of pytest-repo-health is done
--e git+https://github.com/edx/pytest-repo-health.git@44abdabc7271ff42e403ed44add19453a72f202b#egg=pytest-repo-health

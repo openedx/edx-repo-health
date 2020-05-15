@@ -16,6 +16,7 @@ Steps to adding a check:
 Writing your check:
 -------------------
 Some guidelines:
+
 - keep your check function body as small as possible
 - as a standard, only add one key per check to all_results dict
 - use pytest fixtures to implement lines of code used by multiple Checks
@@ -24,8 +25,8 @@ Some guidelines:
 
 Documenting Checks:
 -------------------
+To make it easier to programmatically handle each check/info, we use Decorators to add docs on each key defined by your checks:
 
-To make it easier to programmatically handle each check/info, we use Decorators to add docs on each key defined by your checks.
 - the decorators are imported from pytest-repo-health
 - if your check adds more than one key to "all_results dictionary"
     - use "@health_metadata" decorator

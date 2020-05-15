@@ -7,24 +7,25 @@ This document explains how to add checks to edx-repo-health.
 Steps to adding a check:
 ------------------------
 
- 1. Define what information you are gathering
- 2. Review existing checks for reuse or extension
- 3. Write your check(s).
- 4. Document you check(s).
+1. Define what information you are gathering
+2. Review existing checks for reuse or extension
+3. Write your check(s).
+4. Document you check(s).
 
 
 Writing your check:
 -------------------
 Some guidelines:
- - keep your check function body as small as possible
- - as a standard, only add one key per check to all_results dict
- - use pytest fixtures to implement lines of code used by multiple Checks
-    - often, multiple checks need info from same file, so we've implemented file read as a fixture
+- keep your check function body as small as possible
+- as a standard, only add one key per check to all_results dict
+- use pytest fixtures to implement lines of code used by multiple Checks
+- often, multiple checks need info from same file, so we've implemented file read as a fixture
 
 
 Documenting Checks:
 -------------------
- To make it easier to programmatically handle each check/info, we use Decorators to add docs on each key defined by your checks.
+
+To make it easier to programmatically handle each check/info, we use Decorators to add docs on each key defined by your checks.
     - the decorators are imported from pytest-repo-health
     - if your check adds more than one key to "all_results dictionary"
         - use "@health_metadata" decorator

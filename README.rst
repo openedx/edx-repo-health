@@ -4,16 +4,18 @@ edx-repo-health
 
 
 edx-repo-health contains static checks on repo structures.
+
 The checks are meant to work in conjunction with `pytest-repo-health`_ plugin.
 
-The checks see if a given repository follows minimum standards.
-Each check is meant to be minimum and only check for simple specific things. This is to make it easier to debug changes.
-No asserts should be placed inside of the checks.
-All necessary data about compliance and deviations should be placed in all_results dictionary.
+- The checks gather information about a given repository.
+- Each check is meant to be minimum and only check for simple specific things. This is to make it easier to debug changes.
+- No asserts should be placed inside of the checks.
+- All necessary data about compliance and deviations should be placed in all_results dictionary.
 (implemented though pytest fixture)
 
-Check `pytest-repo-health`_ for more info on check design.
-
+Adding Checks
+-------------
+For more info on adding new checks, please See `how_tos`_.
 
 Checks Enchancement path
 ------------------------
@@ -50,6 +52,7 @@ refer to this `list of resources`_ if you need any assistance.
 
 .. _list of resources: https://open.edx.org/getting-help
 .. _pytest-repo-health: https://github.com/edx/pytest-repo-health
+.. _how_tos: https://github.com/edx/edx-repo-health/blob/msingh/docs/docs/how_tos/ADD_CHECKS.rst
 .. _`file an issue`: https://github.com/edx/edx-repo-health/issues
 .. _`pytest`: https://github.com/pytest-dev/pytest
 .. _`tox`: https://tox.readthedocs.io/en/latest/

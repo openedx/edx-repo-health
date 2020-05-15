@@ -15,7 +15,7 @@ Steps to adding a check:
 
 Writing your check:
 -------------------
-Some guidelines: 
+Some guidelines:
  - keep your check function body as small as possible
  - as a standard, only add one key per check to all_results dict
  - if there is some information needed by multiple checks, separate it into a pytest fixture
@@ -72,9 +72,8 @@ Available Fixtures:
 
 Example
 -------
-In the example below, the decorator add_key_to_metadata assumes the doc string is the info about the key "upgrade". 
+In the example below, the decorator add_key_to_metadata assumes the doc string is the info about the key "upgrade"::
 
-::
     @add_key_to_metadata((module_dict_key, "upgrade"))
     def check_has_upgrade(makefile, all_results):
         """

@@ -26,27 +26,27 @@ Documenting Checks:
 -------------------
 
 To make it easier to programmatically handle each check/info, we use Decorators to add docs on each key defined by your checks.
-    - the decorators are imported from pytest-repo-health
-    - if your check adds more than one key to "all_results dictionary"
-        - use "@health_metadata" decorator
-    - if the function(check) is only adding one key to "all_results" dictionary
-        - write your documentation on the key in check doc string
-        - declare the key using "@add_key_to_metadata" decorator
+- the decorators are imported from pytest-repo-health
+- if your check adds more than one key to "all_results dictionary"
+    - use "@health_metadata" decorator
+- if the function(check) is only adding one key to "all_results" dictionary
+    - write your documentation on the key in check doc string
+    - declare the key using "@add_key_to_metadata" decorator
 
 
 Anatomy of a check
 ------------------
 
- 1. Decorator to add info about check
-    - use either "@health_metadata" or "@add_key_to_metadata" decorator
- 2. function inputs: pytest fixtures
-    - if check is gathering info, it should use "all_results" fixture
- 3. function doc string
-    - if using "@add_key_to_metadata", this doc string will be treated like the doc for the key
-    - otherwise, write something here to help developers in the future
- 4. function body
-    - code to gather information
-    - make sure to add info into "all_results" dict
+1. Decorator to add info about check
+ - use either "@health_metadata" or "@add_key_to_metadata" decorator
+2. function inputs: pytest fixtures
+ - if check is gathering info, it should use "all_results" fixture
+3. function doc string
+ - if using "@add_key_to_metadata", this doc string will be treated like the doc for the key
+ - otherwise, write something here to help developers in the future
+4. function body
+ - code to gather information
+ - make sure to add info into "all_results" dict
 
 "all_results" fixture
 ---------------------

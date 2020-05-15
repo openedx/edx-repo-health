@@ -55,6 +55,7 @@ Anatomy of a check
 
 structure of all_results
 ~~~~~~~~~~~~~~~~~~~~~~~~
+
 - all_results is a dict
 - the info in dict is structured by check modules: all_results["module_key"]["info"]...
 - the existing modules define a module_dict_key at top of file
@@ -63,6 +64,7 @@ structure of all_results
 
 Available Fixtures:
 --------------------
+
 - "all_results" fixture
     - pytest-repo-health plugin uses a default dict called session_data_holder_dict to hold information for a check run. 
         -  you can add to session_data_holder_dict by using the all_results fixture.
@@ -72,6 +74,7 @@ Available Fixtures:
 
 Example
 -------
+
 In the example below, the decorator add_key_to_metadata assumes the doc string is the info about the key "upgrade"::
 
     @add_key_to_metadata((module_dict_key, "upgrade"))

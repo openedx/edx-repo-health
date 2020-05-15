@@ -18,8 +18,8 @@ Writing your check:
 Some guidelines:
  - keep your check function body as small as possible
  - as a standard, only add one key per check to all_results dict
- - if there is some information needed by multiple checks, separate it into a pytest fixture
-    - examples: file read, some calculation, or some custom parsed information
+ - use pytest fixtures to implement lines of code used by multiple Checks
+    - often, multiple checks need info from same file, so we've implemented file read as a fixture
 
 
 Documenting Checks:

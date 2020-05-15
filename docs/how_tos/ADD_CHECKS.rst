@@ -29,10 +29,10 @@ To make it easier to programmatically handle each check/info, we use Decorators 
 
 - the decorators are imported from pytest-repo-health
 - if your check adds more than one key to "all_results dictionary"
-    - use "@health_metadata" decorator
+ - use "@health_metadata" decorator
 - if the function(check) is only adding one key to "all_results" dictionary
-    - write your documentation on the key in check doc string
-    - declare the key using "@add_key_to_metadata" decorator
+ - write your documentation on the key in check doc string
+ - declare the key using "@add_key_to_metadata" decorator
 
 
 Anatomy of a check

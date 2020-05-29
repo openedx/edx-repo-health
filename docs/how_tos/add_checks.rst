@@ -33,11 +33,9 @@ Some guidelines:
 
 How to Add Data to "all_results":
 --------------------------------
-- if you are creating a new module for your checks
- - define a module_dict_key at top of file
- - add info to "all_results" by::
-    all_results[module_dict_key]["info_key"]=key
-- if you are creating a new check in existing module::
+1. if you are creating a new module for your checks,
+   define a module_dict_key at top of file
+2. add info to "all_results" by::
     all_results[module_dict_key]["info_key"]=key
 
 

@@ -2,7 +2,7 @@
 Check Function
 ==============
 
-A check function is a python test function with "check_" as a prefix rather than "test_". It is meant to be used by pytest-repo-health plugin to gather info about a repository of code. A check stores its results in "all_results"(more on this below). Documentation of a check is done using one of the decorators: "@health_metadata" or "@add_key_to_metadata"
+A check function is a python test function with "check_" as a prefix rather than "test_". It is meant to be used by pytest-repo-health plugin to gather info about a repository of code. A check stores its results in "all_results" (more on this below). Documentation of a check is done using one of the decorators: ``@health_metadata`` or ``@add_key_to_metadata``
 
 
 

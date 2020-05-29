@@ -74,7 +74,7 @@ refer to this `list of resources`_ if you need any assistance.
 
 .. _list of resources: https://open.edx.org/getting-help
 .. _pytest-repo-health: https://github.com/edx/pytest-repo-health
-.. _how_tos: https://github.com/edx/edx-repo-health/blob/msingh/docs/docs/how_tos/ADD_CHECKS.rst
+.. _how_tos: https://github.com/edx/edx-repo-health/blob/master/docs/how_tos/add_checks.rst
 .. _`file an issue`: https://github.com/edx/edx-repo-health/issues
 .. _`pytest`: https://github.com/pytest-dev/pytest
 .. _`tox`: https://tox.readthedocs.io/en/latest/

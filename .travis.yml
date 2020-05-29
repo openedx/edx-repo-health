@@ -1,19 +1,40 @@
-sudo: false
+# Config file for automatic testing at travis-ci.org
+# To connect a new edX repository to Travis, see
+# https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/157464369/How+to+connect+a+repository+to+Travis+CI
+#
+# Be sure to change the Travis settings in the web UI to enable both
+# "Build pushed branches" and "Build pushed pull requests".
+
 language: python
+
+python:
+  - 3.5
+  - 3.8
+
 matrix:
   include:
-  - python: 3.5
-    env: TOX_ENV=py35
-  - python: 3.8
-    env: TOX_ENV=py38
-  - python: 3.5
-    env: TOX_ENV=quality
-install:
-- pip install -r requirements/travis.txt
-script:
-- tox -e $TOX_ENV
-before_cache:
-- rm -rf $HOME/.cache/pip/log
+    - python: 3.5
+      env: TOXENV=py35
+    - python: 3.8
+      env: TOXENV=py38
+    - python: 3.5
+      env: TOXENV=quality
+    - python: 3.5
+      env: TOXENV=docs
+    - python: 3.5
+      env: TOXENV=pii_check
+
 cache:
-  directories:
-  - "$HOME/.cache/pip"
+  - pip
+
+before_install:
+  - pip install --upgrade pip
+
+install:
+  - pip install -r requirements/travis.txt
+
+script:
+  - tox
+
+after_success:
+  - codecov

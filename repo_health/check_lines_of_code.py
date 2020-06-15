@@ -13,7 +13,7 @@ module_dict_key = "static_analysis"
 @pytest.fixture(name="cloc")
 def fixture_analyze_lines_of_code(repo_path):
     """Fixture containing the output from running the scc analysis"""
-    clock_yaml_str = subprocess.check_output([os.path.join(os.getcwd(), 'scc'), '--format', 'cloc-yaml'])
+    clock_yaml_str = subprocess.check_output([os.path.join(os.getcwd(), 'scc'), '--format', 'cloc-yaml', repo_path])
     return yaml.safe_load(clock_yaml_str)
 
 

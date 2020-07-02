@@ -5,7 +5,7 @@ import re
 import os
 
 import pytest
-from pytest_repo_health import add_key_to_metadata
+from pytest_repo_health import health_metadata
 from repo_health import get_file_content
 
 
@@ -19,13 +19,26 @@ def fixture_makefile(repo_path):
     return get_file_content(full_path)
 
 
-@add_key_to_metadata((module_dict_key, "upgrade"))
-def check_has_upgrade(makefile, all_results):
+@health_metadata(
+    [module_dict_key, "has_target"],
+    {
+        "upgrade": "target that upgrades our dependencies to newer released versions",
+        "test": "target that runs tests",
+        "quality": "target that runs code quality checks",
+        "test-js": "target that runs javascript unit tests",
+        "quality-js": "target that runs javascript code quality checks",
+        "test-python": "target that runs python unit tests",
+        "quality-python": "target that runs python code quality checks",
+    },
+)
+def check_has_make_target(makefile, all_results):
     """
-    upgrade: makefile target that upgrades our dependencies to newer released versions
+    Checks make file has provided targets
     """
-    regex_pattern = "upgrade:"
-    match = re.search(regex_pattern, makefile)
-    all_results[module_dict_key]["upgrade"] = False
-    if match is not None:
-        all_results[module_dict_key]["upgrade"] = True
+    targets = ["upgrade", "test", "quality", "test-js", "quality-js", "test-python", "quality-python"]
+    for target in targets:
+        all_results[module_dict_key][target] = False
+        regex_pattern = "".join(["^", target, ":"])
+        match = re.search(regex_pattern, makefile, re.MULTILINE)
+        if match:
+            all_results[module_dict_key][target] = True

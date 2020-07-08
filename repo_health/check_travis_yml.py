@@ -59,7 +59,7 @@ def fixture_python_version(parsed_data_travis):
         if isinstance(parsed_data_travis["matrix"], dict):
             if "include" in parsed_data_travis["matrix"].keys():
                 workers = parsed_data_travis["matrix"]["include"]
-        else isinstance(parsed_data_travis["matrix"], list):
+        elif isinstance(parsed_data_travis["matrix"], list):
             workers = parsed_data_travis["matrix"]
         for worker in workers:
             if isinstance(worker, dict) and "python" in worker.keys():

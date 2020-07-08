@@ -56,14 +56,16 @@ def fixture_python_version(parsed_data_travis):
         python_versions = set(parsed_data_travis["python"])
 
     if "matrix" in parsed_data_travis.keys():
+        workers = None
         if isinstance(parsed_data_travis["matrix"], dict):
             if "include" in parsed_data_travis["matrix"].keys():
                 workers = parsed_data_travis["matrix"]["include"]
         elif isinstance(parsed_data_travis["matrix"], list):
             workers = parsed_data_travis["matrix"]
-        for worker in workers:
-            if isinstance(worker, dict) and "python" in worker.keys():
-                python_versions.add(worker["python"])
+        if workers:
+            for worker in workers:
+                if isinstance(worker, dict) and "python" in worker.keys():
+                    python_versions.add(worker["python"])
 
     if python_versions:
         python_versions = sorted(python_versions, key=str)

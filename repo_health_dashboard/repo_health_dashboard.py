@@ -7,6 +7,8 @@ import argparse
 import glob
 import codecs
 import yaml
+import datetime
+import pdb
 
 from .utils import utils
 
@@ -34,13 +36,11 @@ def main():
         default=None,
     )
     parser.add_argument(
-        "--output-html",
-        help="path to HTML output",
-        dest="output_html",
-        default="dashboard",
+        "--data-life-time",
+        help="days: how many days before individual data yaml files are outdated",
+        default=1,
     )
     args = parser.parse_args()
-
     # collect configurations if they were input
     configurations = {
         "main": {"check_order": [], "repo_name_order": [], "key_aliases": {}}
@@ -63,6 +63,11 @@ def main():
         with codecs.open(file_path, "r", "utf-8") as f:
             file_data = f.read()
             parsed_file_data = yaml.safe_load(file_data)
+            date_of_collection = parsed_file_data["TIMESTAMP"]
+            today_date = datetime.datetime.now().date()
+            days_since_collection = abs((today_date - date_of_collection).days)
+            if days_since_collection > args.data_life_time:
+                continue
             data[repo_name] = parsed_file_data
     output = utils.squash_and_standardize_metadata_by_repo(data)
     for key, configuration in configurations.items():

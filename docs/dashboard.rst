@@ -13,6 +13,7 @@ How to use
 ----------
 
 .. code-block:: bash
+
     $ make requirements
     $ pip install -e .
     $ repo_health_dashboard --data-dir "path_to_data" --configuration "configuration.yaml" --output-csv "path_to_output_dir" --data-life-time 10

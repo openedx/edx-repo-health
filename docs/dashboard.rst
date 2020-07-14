@@ -3,7 +3,7 @@ Dashboard
 =============
 
 The `repo_health_dashboard`_ script is meant to aggregate data from runs of `pytest-repo-health`_ on multiple 
-repos. It aggreegates the data from yaml outputs, flattens it, and outputs it in csv form.
+repos. It aggregates the data from yaml outputs, flattens it, and outputs it in csv form.
 
 
 .. _repo_health_dashboard: https://github.com/edx/edx-repo-health/blob/master/repo_health_dashboard/repo_health_dashboard.py

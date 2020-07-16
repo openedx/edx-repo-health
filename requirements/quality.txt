@@ -4,20 +4,29 @@
 #
 #    make upgrade
 #
+aiohttp==2.3.10           # via -r requirements/test.txt, github.py, pytest-aiohttp
 appdirs==1.4.4            # via -r requirements/test.txt, virtualenv
 astroid==2.3.3            # via pylint, pylint-celery
+async-timeout==2.0.1      # via -r requirements/test.txt, aiohttp
 attrs==19.3.0             # via -r requirements/test.txt, pytest
+chardet==3.0.4            # via -r requirements/test.txt, aiohttp
 click-log==0.3.2          # via edx-lint
 click==7.1.2              # via click-log, edx-lint
 distlib==0.3.1            # via -r requirements/test.txt, virtualenv
 edx-lint==1.5.0           # via -r requirements/quality.in
 filelock==3.0.12          # via -r requirements/test.txt, tox, virtualenv
+gitdb==4.0.5              # via -r requirements/test.txt, gitpython
+github.py==0.5.0          # via -r requirements/test.txt, pytest-repo-health
+gitpython==3.1.7          # via -r requirements/test.txt, pytest-repo-health
+idna-ssl==1.1.0           # via -r requirements/test.txt, aiohttp
+idna==2.10                # via -r requirements/test.txt, idna-ssl, yarl
 importlib-metadata==1.7.0  # via -r requirements/test.txt, pluggy, pytest, tox, virtualenv
 importlib-resources==3.0.0  # via -r requirements/test.txt, virtualenv
 isort==4.3.21             # via -r requirements/quality.in, pylint
 lazy-object-proxy==1.4.3  # via astroid
 mccabe==0.6.1             # via pylint
 more-itertools==8.4.0     # via -r requirements/test.txt, pytest
+multidict==4.7.6          # via -r requirements/test.txt, aiohttp, yarl
 packaging==20.4           # via -r requirements/test.txt, pytest, tox
 pathlib2==2.3.5           # via -r requirements/test.txt, pytest
 pluggy==0.13.1            # via -r requirements/test.txt, pytest, tox
@@ -29,15 +38,18 @@ pylint-django==2.0.11     # via edx-lint
 pylint-plugin-utils==0.6  # via pylint-celery, pylint-django
 pylint==2.4.4             # via edx-lint, pylint-celery, pylint-django, pylint-plugin-utils
 pyparsing==2.4.7          # via -r requirements/test.txt, packaging
-pytest-repo-health==1.0.0  # via -r requirements/test.txt
-pytest==5.4.3             # via -r requirements/test.txt, pytest-repo-health
+pytest-aiohttp==0.3.0     # via -r requirements/test.txt, pytest-repo-health
+pytest-repo-health==1.1.0  # via -r requirements/test.txt
+pytest==5.4.3             # via -r requirements/test.txt, pytest-aiohttp, pytest-repo-health
 pyyaml==5.3.1             # via -r requirements/test.txt, pytest-repo-health
 six==1.15.0               # via -r requirements/test.txt, astroid, edx-lint, packaging, pathlib2, tox, virtualenv
+smmap==3.0.4              # via -r requirements/test.txt, gitdb
 snowballstemmer==2.0.0    # via pydocstyle
 toml==0.10.1              # via -r requirements/test.txt, tox
-tox==3.16.1               # via -r requirements/test.txt
+tox==3.17.1               # via -r requirements/test.txt
 typed-ast==1.4.1          # via astroid
-virtualenv==20.0.26       # via -r requirements/test.txt, tox
+virtualenv==20.0.27       # via -r requirements/test.txt, tox
 wcwidth==0.2.5            # via -r requirements/test.txt, pytest
 wrapt==1.11.2             # via astroid
+yarl==1.4.2               # via -r requirements/test.txt, aiohttp
 zipp==1.2.0               # via -r requirements/test.txt, importlib-metadata, importlib-resources

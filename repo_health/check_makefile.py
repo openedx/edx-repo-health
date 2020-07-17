@@ -10,6 +10,15 @@ from repo_health import get_file_content
 
 
 module_dict_key = "makefile"
+output_keys = {
+    "upgrade": "target that upgrades our dependencies to newer released versions",
+    "test": "target that runs tests",
+    "quality": "target that runs code quality checks",
+    "test-js": "target that runs javascript unit tests",
+    "quality-js": "target that runs javascript code quality checks",
+    "test-python": "target that runs python unit tests",
+    "quality-python": "target that runs python code quality checks",
+    }
 
 
 @pytest.fixture(name='makefile')
@@ -21,22 +30,13 @@ def fixture_makefile(repo_path):
 
 @health_metadata(
     [module_dict_key, "has_target"],
-    {
-        "upgrade": "target that upgrades our dependencies to newer released versions",
-        "test": "target that runs tests",
-        "quality": "target that runs code quality checks",
-        "test-js": "target that runs javascript unit tests",
-        "quality-js": "target that runs javascript code quality checks",
-        "test-python": "target that runs python unit tests",
-        "quality-python": "target that runs python code quality checks",
-    },
+    output_keys
 )
 def check_has_make_target(makefile, all_results):
     """
     Checks make file has provided targets
     """
-    targets = ["upgrade", "test", "quality", "test-js", "quality-js", "test-python", "quality-python"]
-    for target in targets:
+    for target, __ in output_keys.items():
         all_results[module_dict_key][target] = False
         regex_pattern = "".join(["^", target, ":"])
         match = re.search(regex_pattern, makefile, re.MULTILINE)

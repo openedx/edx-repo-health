@@ -116,7 +116,10 @@ async def check_settings(all_results, github_repo):
     coc = github_repo.code_of_conduct
     results["code_of_conduct"] = coc.name if coc else None
     results["created_at"] = github_repo.created_at
-    results["default_branch"] = github_repo.default_branch
+    try:
+        results["default_branch"] = github_repo.default_branch
+    except TypeError:
+        results['default_branch'] = None
     results["description"] = github_repo.description
     results["disk_usage_kb"] = github_repo.disk_usage
     results["fork_count"] = github_repo.fork_count
@@ -129,7 +132,10 @@ async def check_settings(all_results, github_repo):
     results["is_private"] = github_repo.is_private
     results["last_push"] = github_repo.pushed_at
     repo_license = github_repo.license
-    results["license"] = repo_license.nickname or repo_license.name
+    if repo_license is None:
+        results["license"] = None
+    else:
+        results["license"] = repo_license.nickname or repo_license.name
 
 
 @health_metadata(

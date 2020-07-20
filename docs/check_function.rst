@@ -9,16 +9,10 @@ A check function is a python test function with "check_" as a prefix rather than
 Anatomy of a check
 ------------------
 
-1. Decorator to add info about check
- - use either "@health_metadata" or "@add_key_to_metadata" decorator
-2. function inputs: pytest fixtures
- - if check is gathering info(which it should), it should use "all_results" fixture
-3. function doc string
- - if using "@add_key_to_metadata", this doc string will be treated like the doc for the key
- - otherwise, write something here to help developers in the future
-4. function body
- - code to gather information
- - make sure to add info into "all_results" dict
+1. **Decorator to add info about check.** Use either "@health_metadata" or "@add_key_to_metadata" decorator.
+2. **Function inputs: pytest fixtures.**  If the check is gathering info (which it should), it should use the "all_results" fixture
+3. **Function doc string.**  If using "@add_key_to_metadata", this doc string will be treated like the doc for the key.  Otherwise, write something here to help developers in the future.
+4. **Function body.**  Code to gather information.  Make sure to add info into the "all_results" dict.
 
 Available Fixtures:
 --------------------
@@ -45,8 +39,5 @@ Each key added to all_results should be well documented. Decorators are used to 
 
 - the decorators are imported from pytest-repo-health
 - there are currently two available decorators
- - "@health_metadata" decorator
-  - use if your check adds more than one key to "all_results"
- - "@add_key_to_metadata" decorator
-  - if the function(check) is only adding one key to "all_results"
-  - this decorator assumes the function doc string is the documentation on the key
+    - "@health_metadata" decorator - use if your check adds more than one key to "all_results"
+    - "@add_key_to_metadata" decorator - if the function (check) is only adding one key to "all_results". This decorator assumes the function doc string is the documentation on the key

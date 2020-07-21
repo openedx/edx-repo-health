@@ -5,6 +5,7 @@ Checks to collect useful information from the GitHub API about the target reposi
 import functools
 import operator
 
+import pytest
 from pytest_repo_health import health_metadata
 
 MODULE_DICT_KEY = "github"
@@ -109,6 +110,8 @@ async def check_settings(all_results, github_repo):
     """
     Get all the fields of interest from the GitHub repository object itself.
     """
+    if github_repo is None:
+        pytest.skip("There was an error fetching data from GitHub")
     results = all_results[MODULE_DICT_KEY]
     results["allows_merge_commit"] = github_repo.allows_merge_commit
     results["allows_rebase_merge"] = github_repo.allows_rebase_merge
@@ -160,6 +163,8 @@ async def check_languages(all_results, github_repo):
     """
     Get the number of bytes of each programming language in the repository.
     """
+    if github_repo is None:
+        pytest.skip("There was an error fetching data from GitHub")
     results = all_results["language_bytes"]
     languages = await fetch_languages(github_repo)
     for language, size in languages.items():

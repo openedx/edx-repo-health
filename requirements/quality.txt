@@ -39,14 +39,14 @@ pylint-plugin-utils==0.6  # via pylint-celery, pylint-django
 pylint==2.4.4             # via edx-lint, pylint-celery, pylint-django, pylint-plugin-utils
 pyparsing==2.4.7          # via -r requirements/test.txt, packaging
 pytest-aiohttp==0.3.0     # via -r requirements/test.txt, pytest-repo-health
-pytest-repo-health==1.1.0  # via -r requirements/test.txt
+pytest-repo-health==1.1.1  # via -r requirements/test.txt
 pytest==5.4.3             # via -r requirements/test.txt, pytest-aiohttp, pytest-repo-health
 pyyaml==5.3.1             # via -r requirements/test.txt, pytest-repo-health
 six==1.15.0               # via -r requirements/test.txt, astroid, edx-lint, packaging, pathlib2, tox, virtualenv
 smmap==3.0.4              # via -r requirements/test.txt, gitdb
 snowballstemmer==2.0.0    # via pydocstyle
 toml==0.10.1              # via -r requirements/test.txt, tox
-tox==3.17.1               # via -r requirements/test.txt
+tox==3.18.0               # via -r requirements/test.txt
 typed-ast==1.4.1          # via astroid
 virtualenv==20.0.27       # via -r requirements/test.txt, tox
 wcwidth==0.2.5            # via -r requirements/test.txt, pytest

@@ -26,13 +26,13 @@ pluggy==0.13.1            # via -r requirements/base.txt, pytest, tox
 py==1.9.0                 # via -r requirements/base.txt, pytest, tox
 pyparsing==2.4.7          # via -r requirements/base.txt, packaging
 pytest-aiohttp==0.3.0     # via -r requirements/base.txt, pytest-repo-health
-pytest-repo-health==1.1.0  # via -r requirements/base.txt
+pytest-repo-health==1.1.1  # via -r requirements/base.txt
 pytest==5.4.3             # via -r requirements/base.txt, pytest-aiohttp, pytest-repo-health
 pyyaml==5.3.1             # via -r requirements/base.txt, pytest-repo-health
 six==1.15.0               # via -r requirements/base.txt, packaging, pathlib2, tox, virtualenv
 smmap==3.0.4              # via -r requirements/base.txt, gitdb
 toml==0.10.1              # via tox
-tox==3.17.1               # via -r requirements/test.in
+tox==3.18.0               # via -r requirements/test.in
 virtualenv==20.0.27       # via tox
 wcwidth==0.2.5            # via -r requirements/base.txt, pytest
 yarl==1.4.2               # via -r requirements/base.txt, aiohttp

@@ -38,7 +38,7 @@ py==1.9.0                 # via -r requirements/test.txt, pytest, tox
 pygments==2.6.1           # via doc8, readme-renderer, sphinx
 pyparsing==2.4.7          # via -r requirements/test.txt, packaging
 pytest-aiohttp==0.3.0     # via -r requirements/test.txt, pytest-repo-health
-pytest-repo-health==1.1.0  # via -r requirements/test.txt
+pytest-repo-health==1.1.1  # via -r requirements/test.txt
 pytest==5.4.3             # via -r requirements/test.txt, pytest-aiohttp, pytest-repo-health
 pytz==2020.1              # via babel
 pyyaml==5.3.1             # via -r requirements/test.txt, pytest-repo-health
@@ -57,8 +57,8 @@ sphinxcontrib-qthelp==1.0.3  # via sphinx
 sphinxcontrib-serializinghtml==1.1.4  # via sphinx
 stevedore==1.32.0         # via doc8
 toml==0.10.1              # via -r requirements/test.txt, tox
-tox==3.17.1               # via -r requirements/test.txt
-urllib3==1.25.9           # via requests
+tox==3.18.0               # via -r requirements/test.txt
+urllib3==1.25.10          # via requests
 virtualenv==20.0.27       # via -r requirements/test.txt, tox
 wcwidth==0.2.5            # via -r requirements/test.txt, pytest
 webencodings==0.5.1       # via bleach

@@ -23,6 +23,7 @@ def fixture_tox_ini(repo_path):
     [module_dict_key, "has_section"],
     {
         "tox": "TODO(jinder)",
+        "whitelist_externals": "whitelist_externals has been deprecated in favour of allowlist_externals.",
         "testenv": "TODO(jinder)",
         "testenv:quality": "TODO(jinder",
     },
@@ -31,7 +32,7 @@ def check_has_sections(tox_ini, all_results):
     """
     Test to check if makefile has an upgrade target
     """
-    required_sections = [r"tox", r"testenv", r"testenv:quality"]
+    required_sections = [r"tox", r"testenv", r"testenv:quality", r"whitelist_externals"]
     all_results[module_dict_key]["has_section"] = {}
     for section in required_sections:
         regex_pattern = r"[" + section + r"]"

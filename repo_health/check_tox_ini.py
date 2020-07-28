@@ -14,7 +14,6 @@ module_dict_key = "tox_ini"
 @pytest.fixture(name='tox_ini')
 def fixture_tox_ini(repo_path):
     """Fixture containing the text content of tox.ini"""
-    # TODO(jinder): make below work with inputs with both "/" at end and not
     full_path = os.path.join(repo_path, "tox.ini")
     return get_file_content(full_path)
 
@@ -22,10 +21,10 @@ def fixture_tox_ini(repo_path):
 @health_metadata(
     [module_dict_key, "has_section"],
     {
-        "tox": "TODO(jinder)",
+        "tox": "Section to define global settings, these apply to all envs defined in tox.ini",
         "whitelist_externals": "whitelist_externals has been deprecated in favour of allowlist_externals.",
-        "testenv": "TODO(jinder)",
-        "testenv:quality": "TODO(jinder",
+        "testenv": "Settings that apply to all individual testenv:Name envs",
+        "testenv:quality": "Env setting used to run quality linting on repo",
     },
 )
 def check_has_sections(tox_ini, all_results):

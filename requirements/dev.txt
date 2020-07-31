@@ -47,7 +47,7 @@ pylint==2.4.4             # via -r requirements/quality.txt, edx-lint, pylint-ce
 pyparsing==2.4.7          # via -r requirements/quality.txt, -r requirements/travis.txt, packaging
 pytest-aiohttp==0.3.0     # via -r requirements/quality.txt, -r requirements/travis.txt, pytest-repo-health
 pytest-repo-health==1.1.1  # via -r requirements/quality.txt, -r requirements/travis.txt
-pytest==6.0.0             # via -r requirements/quality.txt, -r requirements/travis.txt, pytest-aiohttp, pytest-repo-health
+pytest==6.0.1             # via -r requirements/quality.txt, -r requirements/travis.txt, pytest-aiohttp, pytest-repo-health
 pyyaml==5.3.1             # via -r requirements/quality.txt, -r requirements/travis.txt, pytest-repo-health
 six==1.15.0               # via -r requirements/pip-tools.txt, -r requirements/quality.txt, -r requirements/travis.txt, astroid, diff-cover, edx-lint, packaging, pip-tools, tox, virtualenv
 smmap==3.0.4              # via -r requirements/quality.txt, -r requirements/travis.txt, gitdb

@@ -27,7 +27,7 @@ py==1.9.0                 # via -r requirements/base.txt, pytest, tox
 pyparsing==2.4.7          # via -r requirements/base.txt, packaging
 pytest-aiohttp==0.3.0     # via -r requirements/base.txt, pytest-repo-health
 pytest-repo-health==1.1.1  # via -r requirements/base.txt
-pytest==6.0.0             # via -r requirements/base.txt, pytest-aiohttp, pytest-repo-health
+pytest==6.0.1             # via -r requirements/base.txt, pytest-aiohttp, pytest-repo-health
 pyyaml==5.3.1             # via -r requirements/base.txt, pytest-repo-health
 six==1.15.0               # via -r requirements/base.txt, packaging, tox, virtualenv
 smmap==3.0.4              # via -r requirements/base.txt, gitdb

@@ -9,7 +9,9 @@ appdirs==1.4.4            # via -r requirements/quality.txt, -r requirements/tra
 astroid==2.3.3            # via -r requirements/quality.txt, pylint, pylint-celery
 async-timeout==3.0.1      # via -r requirements/quality.txt, -r requirements/travis.txt, aiohttp
 attrs==19.3.0             # via -r requirements/quality.txt, -r requirements/travis.txt, aiohttp, pytest
-chardet==3.0.4            # via -r requirements/quality.txt, -r requirements/travis.txt, aiohttp
+cachetools==4.1.1         # via -r requirements/quality.txt, -r requirements/travis.txt, google-auth
+certifi==2020.6.20        # via -r requirements/quality.txt, -r requirements/travis.txt, requests
+chardet==3.0.4            # via -r requirements/quality.txt, -r requirements/travis.txt, aiohttp, requests
 click-log==0.3.2          # via -r requirements/quality.txt, edx-lint
 click==7.1.2              # via -r requirements/pip-tools.txt, -r requirements/quality.txt, -r requirements/travis.txt, click-log, edx-lint, pip-tools
 diff-cover==3.0.1         # via -r requirements/dev.in
@@ -19,12 +21,15 @@ filelock==3.0.12          # via -r requirements/quality.txt, -r requirements/tra
 gitdb==4.0.5              # via -r requirements/quality.txt, -r requirements/travis.txt, gitpython
 github.py==0.5.0          # via -r requirements/quality.txt, -r requirements/travis.txt, pytest-repo-health
 gitpython==3.1.7          # via -r requirements/quality.txt, -r requirements/travis.txt, pytest-repo-health
+google-auth-oauthlib==0.4.1  # via -r requirements/quality.txt, -r requirements/travis.txt, gspread
+google-auth==1.20.0       # via -r requirements/quality.txt, -r requirements/travis.txt, google-auth-oauthlib, gspread
+gspread==3.6.0            # via -r requirements/quality.txt, -r requirements/travis.txt
 idna-ssl==1.1.0           # via -r requirements/quality.txt, -r requirements/travis.txt, aiohttp
-idna==2.10                # via -r requirements/quality.txt, -r requirements/travis.txt, idna-ssl, yarl
+idna==2.10                # via -r requirements/quality.txt, -r requirements/travis.txt, idna-ssl, requests, yarl
 importlib-metadata==1.7.0  # via -r requirements/quality.txt, -r requirements/travis.txt, pluggy, pytest, tox, virtualenv
 importlib-resources==3.0.0  # via -r requirements/quality.txt, -r requirements/travis.txt, virtualenv
 inflect==4.1.0            # via jinja2-pluralize
-iniconfig==1.0.0          # via -r requirements/quality.txt, -r requirements/travis.txt, pytest
+iniconfig==1.0.1          # via -r requirements/quality.txt, -r requirements/travis.txt, pytest
 isort==4.3.21             # via -r requirements/quality.txt, pylint
 jinja2-pluralize==0.3.0   # via diff-cover
 jinja2==2.11.2            # via diff-cover, jinja2-pluralize
@@ -33,10 +38,13 @@ markupsafe==1.1.1         # via jinja2
 mccabe==0.6.1             # via -r requirements/quality.txt, pylint
 more-itertools==8.4.0     # via -r requirements/quality.txt, -r requirements/travis.txt, pytest
 multidict==4.7.6          # via -r requirements/quality.txt, -r requirements/travis.txt, aiohttp, yarl
+oauthlib==3.1.0           # via -r requirements/quality.txt, -r requirements/travis.txt, requests-oauthlib
 packaging==20.4           # via -r requirements/quality.txt, -r requirements/travis.txt, pytest, tox
-pip-tools==5.3.0          # via -r requirements/pip-tools.txt, -r requirements/travis.txt
+pip-tools==5.3.1          # via -r requirements/pip-tools.txt, -r requirements/travis.txt
 pluggy==0.13.1            # via -r requirements/quality.txt, -r requirements/travis.txt, diff-cover, pytest, tox
 py==1.9.0                 # via -r requirements/quality.txt, -r requirements/travis.txt, pytest, tox
+pyasn1-modules==0.2.8     # via -r requirements/quality.txt, -r requirements/travis.txt, google-auth
+pyasn1==0.4.8             # via -r requirements/quality.txt, -r requirements/travis.txt, pyasn1-modules, rsa
 pycodestyle==2.6.0        # via -r requirements/quality.txt
 pydocstyle==5.0.2         # via -r requirements/quality.txt
 pygments==2.6.1           # via diff-cover
@@ -49,7 +57,10 @@ pytest-aiohttp==0.3.0     # via -r requirements/quality.txt, -r requirements/tra
 pytest-repo-health==1.1.1  # via -r requirements/quality.txt, -r requirements/travis.txt
 pytest==6.0.1             # via -r requirements/quality.txt, -r requirements/travis.txt, pytest-aiohttp, pytest-repo-health
 pyyaml==5.3.1             # via -r requirements/quality.txt, -r requirements/travis.txt, pytest-repo-health
-six==1.15.0               # via -r requirements/pip-tools.txt, -r requirements/quality.txt, -r requirements/travis.txt, astroid, diff-cover, edx-lint, packaging, pip-tools, tox, virtualenv
+requests-oauthlib==1.3.0  # via -r requirements/quality.txt, -r requirements/travis.txt, google-auth-oauthlib
+requests==2.24.0          # via -r requirements/quality.txt, -r requirements/travis.txt, gspread, requests-oauthlib
+rsa==4.6                  # via -r requirements/quality.txt, -r requirements/travis.txt, google-auth
+six==1.15.0               # via -r requirements/pip-tools.txt, -r requirements/quality.txt, -r requirements/travis.txt, astroid, diff-cover, edx-lint, google-auth, packaging, pip-tools, tox, virtualenv
 smmap==3.0.4              # via -r requirements/quality.txt, -r requirements/travis.txt, gitdb
 snowballstemmer==2.0.0    # via -r requirements/quality.txt, pydocstyle
 toml==0.10.1              # via -r requirements/quality.txt, -r requirements/travis.txt, pytest, tox
@@ -57,10 +68,12 @@ tox-battery==0.6.1        # via -r requirements/dev.in
 tox==3.18.1               # via -r requirements/quality.txt, -r requirements/travis.txt, tox-battery
 typed-ast==1.4.1          # via -r requirements/quality.txt, astroid
 typing-extensions==3.7.4.2  # via -r requirements/quality.txt, -r requirements/travis.txt, aiohttp, yarl
-virtualenv==20.0.28       # via -r requirements/quality.txt, -r requirements/travis.txt, tox
+urllib3==1.25.10          # via -r requirements/quality.txt, -r requirements/travis.txt, requests
+virtualenv==20.0.29       # via -r requirements/quality.txt, -r requirements/travis.txt, tox
 wrapt==1.11.2             # via -r requirements/quality.txt, astroid
-yarl==1.5.0               # via -r requirements/quality.txt, -r requirements/travis.txt, aiohttp
+yarl==1.5.1               # via -r requirements/quality.txt, -r requirements/travis.txt, aiohttp
 zipp==3.1.0               # via -r requirements/quality.txt, -r requirements/travis.txt, importlib-metadata, importlib-resources
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
+# setuptools

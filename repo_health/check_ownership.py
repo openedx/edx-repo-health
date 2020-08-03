@@ -13,14 +13,18 @@ MODULE_DICT_KEY = "ownership"
 
 
 class KnownError(Exception):
-    """Known exception cases where we won't need a stack trace."""
+    """
+    Known exception cases where we won't need a stack trace.
+    """
     def __init__(self, message):
         super().__init__(message)
         self.message = message
 
 
 def find_worksheet(google_creds_file, spreadsheet_url, worksheet_id):
-    """Authenticate to Google and return the matching worksheet."""
+    """
+    Authenticate to Google and return the matching worksheet.
+    """
     all_worksheets = gspread.service_account(filename=google_creds_file) \
                             .open_by_url(spreadsheet_url) \
                             .worksheets()
@@ -41,6 +45,10 @@ def find_worksheet(google_creds_file, spreadsheet_url, worksheet_id):
     },
 )
 def check_ownership(all_results, git_origin_url):
+    """
+    Get all the fields of interest from the tech ownership spreadsheet entry
+    for the repository.
+    """
     try:
         google_creds_file = os.environ["REPO_HEALTH_GOOGLE_CREDS_FILE"]
         spreadsheet_url = os.environ["REPO_HEALTH_OWNERSHIP_SPREADSHEET_URL"]

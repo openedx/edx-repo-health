@@ -17,7 +17,7 @@ gitdb==4.0.5              # via -r requirements/base.txt, gitpython
 github.py==0.5.0          # via -r requirements/base.txt, pytest-repo-health
 gitpython==3.1.7          # via -r requirements/base.txt, pytest-repo-health
 google-auth-oauthlib==0.4.1  # via -r requirements/base.txt, gspread
-google-auth==1.20.0       # via -r requirements/base.txt, google-auth-oauthlib, gspread
+google-auth==1.20.1       # via -r requirements/base.txt, google-auth-oauthlib, gspread
 gspread==3.6.0            # via -r requirements/base.txt
 idna-ssl==1.1.0           # via -r requirements/base.txt, aiohttp
 idna==2.10                # via -r requirements/base.txt, idna-ssl, requests, yarl
@@ -43,10 +43,10 @@ rsa==4.6                  # via -r requirements/base.txt, google-auth
 six==1.15.0               # via -r requirements/base.txt, google-auth, packaging, tox, virtualenv
 smmap==3.0.4              # via -r requirements/base.txt, gitdb
 toml==0.10.1              # via -r requirements/base.txt, pytest, tox
-tox==3.18.1               # via -r requirements/test.in
+tox==3.19.0               # via -r requirements/test.in
 typing-extensions==3.7.4.2  # via -r requirements/base.txt, aiohttp, yarl
 urllib3==1.25.10          # via -r requirements/base.txt, requests
-virtualenv==20.0.29       # via tox
+virtualenv==20.0.30       # via tox
 yarl==1.5.1               # via -r requirements/base.txt, aiohttp
 zipp==3.1.0               # via -r requirements/base.txt, importlib-metadata, importlib-resources
 

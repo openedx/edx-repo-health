@@ -14,7 +14,7 @@ gitdb==4.0.5              # via gitpython
 github.py==0.5.0          # via pytest-repo-health
 gitpython==3.1.7          # via pytest-repo-health
 google-auth-oauthlib==0.4.1  # via gspread
-google-auth==1.20.0       # via google-auth-oauthlib, gspread
+google-auth==1.20.1       # via google-auth-oauthlib, gspread
 gspread==3.6.0            # via -r requirements/base.in
 idna-ssl==1.1.0           # via aiohttp
 idna==2.10                # via idna-ssl, requests, yarl

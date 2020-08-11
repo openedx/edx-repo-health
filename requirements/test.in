@@ -2,6 +2,3 @@
 -c constraints.txt
 
 -r base.txt               # Core dependencies for this package
-
-tox                       # To run python tests in multiple environments
-

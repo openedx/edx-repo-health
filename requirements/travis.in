@@ -1,2 +1,5 @@
--r pip-tools.txt          # pip-tools and its dependencies, for managing requirements files
--r test.txt
+# Requirements for running tests in Travis
+-c constraints.txt
+
+codecov                   # Code coverage reporting
+tox                       # Virtualenv management for tests

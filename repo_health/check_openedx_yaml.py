@@ -6,13 +6,19 @@ import os
 import pytest
 import yaml
 
-from pytest_repo_health import add_key_to_metadata
+from pytest_repo_health import add_key_to_metadata, health_metadata
 
 from repo_health import get_file_content
 
 # Decision: require openedx.yaml to be parsable
 
 module_dict_key = "openedx_yaml"
+output_keys = {
+    "oep-2": "Indicates compliance with OEP-2: standards for how openedx.yaml is structured",
+    "oep-7": "Indicates compliance with OEP-7: has repo migrated to python 3?",
+    "oep-18": "Indicates compliance with OEP-18: standards for make upgrade target and requirement files",
+    "oep-30": "Indicates compliance with OEP-30: Personally Identifiable Information Markup and Auditing",
+}
 
 
 @pytest.fixture(name='openedx_yaml')
@@ -48,16 +54,6 @@ def check_yaml_parsable(openedx_yaml, all_results):
         all_results[module_dict_key]["parsable"] = False
 
 
-@add_key_to_metadata((module_dict_key, "owner"))
-def check_owner(parsed_data, all_results):
-    """
-    The name of official owner of repo(the one reponsible for maintenance)
-    """
-    all_results[module_dict_key]["owner"] = None
-    if "owner" in parsed_data.keys():
-        all_results[module_dict_key]["owner"] = parsed_data["owner"]
-
-
 @pytest.fixture(name='oeps')
 def fixture_oeps(parsed_data):
     if "oeps" in parsed_data:
@@ -65,49 +61,16 @@ def fixture_oeps(parsed_data):
     return {}
 
 
-@add_key_to_metadata((module_dict_key, "oep_2"))
-def check_oep_2(oeps, all_results):
+@health_metadata(
+    [module_dict_key],
+    output_keys
+)
+def check_oeps(oeps, all_results):
     """
-    Indicated compliance with OEP-2: standards for how openedx.yaml is structured
+    Check compliance with OEPs of particular interest
     """
-    oep_name = "oep-2"
-    if oep_name in oeps:
-        all_results[module_dict_key][oep_name] = oeps[oep_name]
-    else:
-        all_results[module_dict_key][oep_name] = False
-
-
-@add_key_to_metadata((module_dict_key, "oep_2"))
-def check_oep_7(oeps, all_results):
-    """
-    Indicates compliance with OEP-7: has repo migrated to python 3
-    """
-    oep_name = "oep-7"
-    if oep_name in oeps:
-        all_results[module_dict_key][oep_name] = oeps[oep_name]
-    else:
-        all_results[module_dict_key][oep_name] = False
-
-
-@add_key_to_metadata((module_dict_key, "oep_18"))
-def check_oep_18(oeps, all_results):
-    """
-    Indicates compliance with OEP-18: standards for make upgrade target and requirement files
-    """
-    oep_name = "oep-18"
-    if oep_name in oeps:
-        all_results[module_dict_key][oep_name] = oeps[oep_name]
-    else:
-        all_results[module_dict_key][oep_name] = False
-
-
-@add_key_to_metadata((module_dict_key, "oep_30"))
-def check_oep_30(oeps, all_results):
-    """
-    Indicates compliance with OEP-30: Personally Identifiable Information Markup and Auditing
-    """
-    oep_name = "oep-30"
-    if oep_name in oeps:
-        all_results[module_dict_key][oep_name] = oeps[oep_name]
-    else:
-        all_results[module_dict_key][oep_name] = False
+    for oep_name, _ in output_keys.items():
+        if oep_name in oeps:
+            all_results[module_dict_key][oep_name] = oeps[oep_name]
+        else:
+            all_results[module_dict_key][oep_name] = False

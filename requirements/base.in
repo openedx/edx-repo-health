@@ -1,5 +1,6 @@
 # Core requirements for using this application
 -c constraints.txt
+-r github.in
 
 gspread                    # Access information from Google Sheets (the ownership spreadsheet)
 pyyaml                     # Read and write YAML files

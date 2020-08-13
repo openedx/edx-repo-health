@@ -17,7 +17,7 @@ doc8==0.8.1               # via -r requirements/doc.in
 docutils==0.16            # via doc8, readme-renderer, restructuredtext-lint, sphinx
 edx-sphinx-theme==1.5.0   # via -r requirements/doc.in
 gitdb==4.0.5              # via -r requirements/test.txt, gitpython
-github.py==0.5.0          # via -r requirements/test.txt, pytest-repo-health
+git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140  # via -r requirements/test.txt
 gitpython==3.1.7          # via -r requirements/test.txt, pytest-repo-health
 google-auth-oauthlib==0.4.1  # via -r requirements/test.txt, gspread
 google-auth==1.20.1       # via -r requirements/test.txt, google-auth-oauthlib, gspread
@@ -41,7 +41,7 @@ pyasn1==0.4.8             # via -r requirements/test.txt, pyasn1-modules, rsa
 pygments==2.6.1           # via doc8, readme-renderer, sphinx
 pyparsing==2.4.7          # via -r requirements/test.txt, packaging
 pytest-aiohttp==0.3.0     # via -r requirements/test.txt, pytest-repo-health
-pytest-repo-health==1.1.1  # via -r requirements/test.txt
+pytest-repo-health==2.0.1  # via -r requirements/test.txt
 pytest==6.0.1             # via -r requirements/test.txt, pytest-aiohttp, pytest-repo-health
 pytz==2020.1              # via babel
 pyyaml==5.3.1             # via -r requirements/test.txt, pytest-repo-health

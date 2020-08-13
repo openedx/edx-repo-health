@@ -116,9 +116,8 @@ async def check_settings(all_results, github_repo):
     results["allows_merge_commit"] = github_repo.allows_merge_commit
     results["allows_rebase_merge"] = github_repo.allows_rebase_merge
     results["allows_squash_merge"] = github_repo.allows_squash_merge
-    # This causes github.py 0.5.0 to choke, newer code isn't on PyPI yet
-    # coc = github_repo.code_of_conduct
-    # results["code_of_conduct"] = coc.name if coc else None
+    coc = github_repo.code_of_conduct
+    results["code_of_conduct"] = coc.name if coc else None
     results["created_at"] = github_repo.created_at
     try:
         results["default_branch"] = github_repo.default_branch

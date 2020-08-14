@@ -5,7 +5,7 @@ import os
 import re
 
 import pytest
-from pytest_repo_health import health_metadata
+from pytest_repo_health import add_key_to_metadata, health_metadata
 from repo_health import get_file_content
 
 module_dict_key = "tox_ini"
@@ -29,9 +29,9 @@ def fixture_tox_ini(repo_path):
 )
 def check_has_sections(tox_ini, all_results):
     """
-    Test to check if makefile has an upgrade target
+    Test to check if tox.ini has all the standard sections
     """
-    required_sections = [r"tox", r"testenv", r"testenv:quality", r"whitelist_externals"]
+    required_sections = [r"tox", r"testenv", r"testenv:quality"]
     all_results[module_dict_key]["has_section"] = {}
     for section in required_sections:
         regex_pattern = r"[" + section + r"]"
@@ -39,3 +39,12 @@ def check_has_sections(tox_ini, all_results):
         all_results[module_dict_key]["has_section"][section] = False
         if match is not None:
             all_results[module_dict_key]["has_section"][section] = True
+
+
+@add_key_to_metadata((module_dict_key, "uses_whitelist_externals"))
+def check_whitelist_externals(tox_ini, all_results):
+    """
+    Does tox.ini still use the deprecated "whitelist_externals" setting
+    (should be replaced with "allowlist_externals")
+    """
+    all_results[module_dict_key]["uses_whitelist_externals"] = "whitelist_externals" in tox_ini

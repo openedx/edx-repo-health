@@ -68,5 +68,3 @@ def check_ownership(all_results, git_origin_url):
         results["theme"] = row["owner.theme"]
         results["squad"] = row["owner.squad"]
         results["priority"] = row["owner.priority"]
-        results["description"] = row["Description"]
-        results['notes'] = row["Notes"]

@@ -37,16 +37,10 @@ query fetch_repository_languages ($repository_id: ID!, $cursor: String=null) {
 LANGUAGES = [
     "css",
     "dockerfile",
-    "go",
-    "groovy",
     "html",
-    "java",
     "javascript",
     "makefile",
-    "objective-c",
-    "php",
     "python",
-    "ruby",
     "shell",
 ]
 
@@ -167,8 +161,8 @@ async def check_languages(all_results, github_repo):
         pytest.skip("There was an error fetching data from GitHub")
     results = all_results["language_bytes"]
     languages = await fetch_languages(github_repo)
-    for language, size in languages.items():
-        results[language] = size
     for language in LANGUAGES:
-        if language not in languages:
+        if language in languages:
+            results[language] = languages[language]
+        else:
             results[language] = 0

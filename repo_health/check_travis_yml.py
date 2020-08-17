@@ -70,8 +70,9 @@ def fixture_python_version(parsed_data_travis):
     if python_versions:
         python_versions = sorted(python_versions, key=str)
     else:
-        python_versions = set()
+        python_versions = []
     return python_versions
+
 
 @add_key_to_metadata((module_dict_key, "py38_tests"))
 def check_has_tests_with_py38(python_versions_in_travis, all_results):

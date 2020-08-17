@@ -70,7 +70,11 @@ def check_oeps(oeps, all_results):
     Check compliance with OEPs of particular interest
     """
     for oep_name, _ in output_keys.items():
+        value = False
         if oep_name in oeps:
-            all_results[module_dict_key][oep_name] = oeps[oep_name]
-        else:
-            all_results[module_dict_key][oep_name] = False
+            oep = oeps[oep_name]
+            if isinstance(oep, bool):
+                value = oep
+            elif "state" in oep:
+                value = oep["state"]
+        all_results[module_dict_key][oep_name] = value

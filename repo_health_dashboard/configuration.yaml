@@ -1,6 +1,8 @@
 main:
     check_order:
+        - ownership.theme
         - ownership.squad
+        - ownership.priority
         - makefile.upgrade
     key_aliases:
         tox_ini.has_section.tox: tox_tox_section
@@ -13,5 +15,6 @@ python_3:
     subset: true
     check_order:
         - openedx_yaml.oep-2
+        - ownership.theme
         - ownership.squad
         - travis_yml.python_versions

@@ -7,7 +7,7 @@
 aiohttp==3.6.2            # via -r requirements/test.txt, github.py, pytest-aiohttp
 alabaster==0.7.12         # via sphinx
 async-timeout==3.0.1      # via -r requirements/test.txt, aiohttp
-attrs==19.3.0             # via -r requirements/test.txt, aiohttp, pytest
+attrs==20.1.0             # via -r requirements/test.txt, aiohttp, pytest
 babel==2.8.0              # via sphinx
 bleach==3.1.5             # via readme-renderer
 cachetools==4.1.1         # via -r requirements/test.txt, google-auth
@@ -53,7 +53,7 @@ rsa==4.6                  # via -r requirements/test.txt, google-auth
 six==1.15.0               # via -r requirements/test.txt, bleach, doc8, edx-sphinx-theme, google-auth, packaging, readme-renderer
 smmap==3.0.4              # via -r requirements/test.txt, gitdb
 snowballstemmer==2.0.0    # via sphinx
-sphinx==3.2.0             # via -r requirements/doc.in, edx-sphinx-theme
+sphinx==3.2.1             # via -r requirements/doc.in, edx-sphinx-theme
 sphinxcontrib-applehelp==1.0.2  # via sphinx
 sphinxcontrib-devhelp==1.0.2  # via sphinx
 sphinxcontrib-htmlhelp==1.0.3  # via sphinx

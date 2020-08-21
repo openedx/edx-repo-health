@@ -6,7 +6,7 @@
 #
 aiohttp==3.6.2            # via -r requirements/base.txt, github.py, pytest-aiohttp
 async-timeout==3.0.1      # via -r requirements/base.txt, aiohttp
-attrs==19.3.0             # via -r requirements/base.txt, aiohttp, pytest
+attrs==20.1.0             # via -r requirements/base.txt, aiohttp, pytest
 cachetools==4.1.1         # via -r requirements/base.txt, google-auth
 certifi==2020.6.20        # via -r requirements/base.txt, requests
 chardet==3.0.4            # via -r requirements/base.txt, aiohttp, requests

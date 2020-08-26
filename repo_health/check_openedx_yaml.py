@@ -20,6 +20,8 @@ output_keys = {
     "oep-30": "Indicates compliance with OEP-30: Personally Identifiable Information Markup and Auditing",
 }
 
+obsolete_fields = ['owner', 'supporting_teams', 'track_pulls', 'track-pulls']
+
 
 @pytest.fixture(name='openedx_yaml')
 def fixture_openedx_yaml(repo_path):
@@ -78,3 +80,12 @@ def check_oeps(oeps, all_results):
             elif "state" in oep:
                 value = oep["state"]
         all_results[module_dict_key][oep_name] = value
+
+
+@health_metadata([module_dict_key], output_keys)
+def check_obsolete_fields(parsed_data, all_results):
+    """
+    Report presence of obsolete fields
+    """
+    obsolete_fields_in_file = [field for field in obsolete_fields if field in parsed_data]
+    all_results[module_dict_key]["obsolete_fields"] = ",".join(obsolete_fields_in_file)

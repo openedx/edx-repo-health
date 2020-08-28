@@ -20,7 +20,7 @@ gitdb==4.0.5              # via -r requirements/test.txt, gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140  # via -r requirements/test.txt
 gitpython==3.1.7          # via -r requirements/test.txt, pytest-repo-health
 google-auth-oauthlib==0.4.1  # via -r requirements/test.txt, gspread
-google-auth==1.20.1       # via -r requirements/test.txt, google-auth-oauthlib, gspread
+google-auth==1.21.0       # via -r requirements/test.txt, google-auth-oauthlib, gspread
 gspread==3.6.0            # via -r requirements/test.txt
 idna-ssl==1.1.0           # via -r requirements/test.txt, aiohttp
 idna==2.10                # via -r requirements/test.txt, idna-ssl, requests, yarl
@@ -62,7 +62,7 @@ sphinxcontrib-qthelp==1.0.3  # via sphinx
 sphinxcontrib-serializinghtml==1.1.4  # via sphinx
 stevedore==3.2.0          # via doc8
 toml==0.10.1              # via -r requirements/test.txt, pytest
-typing-extensions==3.7.4.2  # via -r requirements/test.txt, aiohttp, yarl
+typing-extensions==3.7.4.3  # via -r requirements/test.txt, aiohttp, yarl
 urllib3==1.25.10          # via -r requirements/test.txt, requests
 webencodings==0.5.1       # via bleach
 yarl==1.5.1               # via -r requirements/test.txt, aiohttp

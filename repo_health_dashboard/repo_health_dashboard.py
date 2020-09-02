@@ -13,6 +13,20 @@ import yaml
 from .utils import utils
 
 
+def get_repo_health_data_files(path, repos_to_skip):
+    """
+    returns a list for yaml files to aggregate health dashboard data from while skipping ones with failed pytest repo
+    health checks
+    """
+    data_files_to_skip = ["{0}_repo_health.yaml".format(repo_name) for repo_name in repos_to_skip]
+    data_files = glob.glob(os.path.join(path, "*.yaml"), recursive=False)
+
+    def should_skip_file(data_file):
+        file_name = os.path.splitext(os.path.basename(data_file))[0]
+        return file_name in data_files_to_skip
+    return [data_file for data_file in data_files if should_skip_file(data_file)]
+
+
 def main():
     """
     Create basic dashboard
@@ -40,11 +54,17 @@ def main():
         help="days: how many days before individual data yaml files are outdated",
         default=1,
     )
+    parser.add_argument(
+        "--skip",
+        help="Comma separated string of repository names to skip from repo health data aggregation",
+        default="",
+    )
     args = parser.parse_args()
     # collect configurations if they were input
     configurations = {
         "main": {"check_order": [], "repo_name_order": [], "key_aliases": {}}
     }
+
     if args.configuration:
         with codecs.open(args.configuration, "r", "utf-8") as f:
             file_data = f.read()
@@ -54,7 +74,8 @@ def main():
                 configurations[sheet] = utils.get_sheets(parsed_file_data, sheet)
 
     data_dir = os.path.abspath(args.data_dir)
-    files = glob.glob(os.path.join(data_dir, "*.yaml"), recursive=False)
+    repos_to_skip = args.skip.split(",")
+    files = get_repo_health_data_files(data_dir, repos_to_skip)
     data = {}
     for file_path in files:
         file_name = file_path[file_path.rfind("/") + 1 :]

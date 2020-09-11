@@ -8,7 +8,7 @@ aiohttp==3.6.2            # via -r requirements/quality.txt, github.py, pytest-a
 appdirs==1.4.4            # via -r requirements/travis.txt, virtualenv
 astroid==2.3.3            # via -r requirements/quality.txt, pylint, pylint-celery
 async-timeout==3.0.1      # via -r requirements/quality.txt, aiohttp
-attrs==20.1.0             # via -r requirements/quality.txt, aiohttp, pytest
+attrs==20.2.0             # via -r requirements/quality.txt, aiohttp, pytest
 cachetools==4.1.1         # via -r requirements/quality.txt, google-auth
 certifi==2020.6.20        # via -r requirements/quality.txt, -r requirements/travis.txt, requests
 chardet==3.0.4            # via -r requirements/quality.txt, -r requirements/travis.txt, aiohttp, requests
@@ -22,7 +22,7 @@ edx-lint==1.5.2           # via -r requirements/quality.txt
 filelock==3.0.12          # via -r requirements/travis.txt, tox, virtualenv
 gitdb==4.0.5              # via -r requirements/quality.txt, gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140  # via -r requirements/quality.txt
-gitpython==3.1.7          # via -r requirements/quality.txt, pytest-repo-health
+gitpython==3.1.8          # via -r requirements/quality.txt, pytest-repo-health
 google-auth-oauthlib==0.4.1  # via -r requirements/quality.txt, gspread
 google-auth==1.21.1       # via -r requirements/quality.txt, google-auth-oauthlib, gspread
 gspread==3.6.0            # via -r requirements/quality.txt

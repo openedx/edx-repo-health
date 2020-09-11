@@ -7,7 +7,7 @@
 aiohttp==3.6.2            # via -r requirements/test.txt, github.py, pytest-aiohttp
 astroid==2.3.3            # via pylint, pylint-celery
 async-timeout==3.0.1      # via -r requirements/test.txt, aiohttp
-attrs==20.1.0             # via -r requirements/test.txt, aiohttp, pytest
+attrs==20.2.0             # via -r requirements/test.txt, aiohttp, pytest
 cachetools==4.1.1         # via -r requirements/test.txt, google-auth
 certifi==2020.6.20        # via -r requirements/test.txt, requests
 chardet==3.0.4            # via -r requirements/test.txt, aiohttp, requests
@@ -16,7 +16,7 @@ click==7.1.2              # via click-log, edx-lint
 edx-lint==1.5.2           # via -r requirements/quality.in
 gitdb==4.0.5              # via -r requirements/test.txt, gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140  # via -r requirements/test.txt
-gitpython==3.1.7          # via -r requirements/test.txt, pytest-repo-health
+gitpython==3.1.8          # via -r requirements/test.txt, pytest-repo-health
 google-auth-oauthlib==0.4.1  # via -r requirements/test.txt, gspread
 google-auth==1.21.1       # via -r requirements/test.txt, google-auth-oauthlib, gspread
 gspread==3.6.0            # via -r requirements/test.txt

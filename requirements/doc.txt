@@ -9,7 +9,7 @@ alabaster==0.7.12         # via sphinx
 async-timeout==3.0.1      # via -r requirements/test.txt, aiohttp
 attrs==20.2.0             # via -r requirements/test.txt, aiohttp, pytest
 babel==2.8.0              # via sphinx
-bleach==3.1.5             # via readme-renderer
+bleach==3.2.0             # via readme-renderer
 cachetools==4.1.1         # via -r requirements/test.txt, google-auth
 certifi==2020.6.20        # via -r requirements/test.txt, requests
 chardet==3.0.4            # via -r requirements/test.txt, aiohttp, doc8, requests
@@ -20,7 +20,7 @@ gitdb==4.0.5              # via -r requirements/test.txt, gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140  # via -r requirements/test.txt
 gitpython==3.1.8          # via -r requirements/test.txt, pytest-repo-health
 google-auth-oauthlib==0.4.1  # via -r requirements/test.txt, gspread
-google-auth==1.21.1       # via -r requirements/test.txt, google-auth-oauthlib, gspread
+google-auth==1.21.2       # via -r requirements/test.txt, google-auth-oauthlib, gspread
 gspread==3.6.0            # via -r requirements/test.txt
 idna-ssl==1.1.0           # via -r requirements/test.txt, aiohttp
 idna==2.10                # via -r requirements/test.txt, idna-ssl, requests, yarl
@@ -38,11 +38,11 @@ pluggy==0.13.1            # via -r requirements/test.txt, pytest
 py==1.9.0                 # via -r requirements/test.txt, pytest
 pyasn1-modules==0.2.8     # via -r requirements/test.txt, google-auth
 pyasn1==0.4.8             # via -r requirements/test.txt, pyasn1-modules, rsa
-pygments==2.6.1           # via doc8, readme-renderer, sphinx
+pygments==2.7.1           # via doc8, readme-renderer, sphinx
 pyparsing==2.4.7          # via -r requirements/test.txt, packaging
 pytest-aiohttp==0.3.0     # via -r requirements/test.txt, pytest-repo-health
 pytest-repo-health==2.0.1  # via -r requirements/test.txt
-pytest==6.0.1             # via -r requirements/test.txt, pytest-aiohttp, pytest-repo-health
+pytest==6.0.2             # via -r requirements/test.txt, pytest-aiohttp, pytest-repo-health
 pytz==2020.1              # via babel
 pyyaml==5.3.1             # via -r requirements/test.txt, pytest-repo-health
 readme-renderer==26.0     # via -r requirements/doc.in
@@ -60,7 +60,7 @@ sphinxcontrib-htmlhelp==1.0.3  # via sphinx
 sphinxcontrib-jsmath==1.0.1  # via sphinx
 sphinxcontrib-qthelp==1.0.3  # via sphinx
 sphinxcontrib-serializinghtml==1.1.4  # via sphinx
-stevedore==3.2.1          # via doc8
+stevedore==3.2.2          # via doc8
 toml==0.10.1              # via -r requirements/test.txt, pytest
 typing-extensions==3.7.4.3  # via -r requirements/test.txt, aiohttp, yarl
 urllib3==1.25.10          # via -r requirements/test.txt, requests

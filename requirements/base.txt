@@ -14,11 +14,11 @@ gitdb==4.0.5              # via gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140  # via -r requirements/github.in
 gitpython==3.1.8          # via pytest-repo-health
 google-auth-oauthlib==0.4.1  # via gspread
-google-auth==1.21.2       # via google-auth-oauthlib, gspread
+google-auth==1.21.3       # via google-auth-oauthlib, gspread
 gspread==3.6.0            # via -r requirements/base.in
 idna-ssl==1.1.0           # via aiohttp
 idna==2.10                # via idna-ssl, requests, yarl
-importlib-metadata==1.7.0  # via pluggy, pytest
+importlib-metadata==1.7.0  # via -c requirements/constraints.txt, pluggy, pytest
 iniconfig==1.0.1          # via pytest
 more-itertools==8.5.0     # via pytest
 multidict==4.7.6          # via aiohttp, yarl
@@ -41,8 +41,8 @@ smmap==3.0.4              # via gitdb
 toml==0.10.1              # via pytest
 typing-extensions==3.7.4.3  # via aiohttp, yarl
 urllib3==1.25.10          # via requests
-yarl==1.5.1               # via aiohttp
-zipp==3.1.0               # via importlib-metadata
+yarl==1.6.0               # via aiohttp
+zipp==3.2.0               # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

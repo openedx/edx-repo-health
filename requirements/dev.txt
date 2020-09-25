@@ -16,7 +16,7 @@ click-log==0.3.2          # via -r requirements/quality.txt, edx-lint
 click==7.1.2              # via -r requirements/pip-tools.txt, -r requirements/quality.txt, click-log, edx-lint, pip-tools
 codecov==2.1.9            # via -r requirements/travis.txt
 coverage==5.3             # via -r requirements/travis.txt, codecov
-diff-cover==4.0.0         # via -r requirements/dev.in
+diff-cover==4.0.1         # via -r requirements/dev.in
 distlib==0.3.1            # via -r requirements/travis.txt, virtualenv
 edx-lint==1.5.2           # via -r requirements/quality.txt
 filelock==3.0.12          # via -r requirements/travis.txt, tox, virtualenv
@@ -24,11 +24,11 @@ gitdb==4.0.5              # via -r requirements/quality.txt, gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140  # via -r requirements/quality.txt
 gitpython==3.1.8          # via -r requirements/quality.txt, pytest-repo-health
 google-auth-oauthlib==0.4.1  # via -r requirements/quality.txt, gspread
-google-auth==1.21.2       # via -r requirements/quality.txt, google-auth-oauthlib, gspread
+google-auth==1.21.3       # via -r requirements/quality.txt, google-auth-oauthlib, gspread
 gspread==3.6.0            # via -r requirements/quality.txt
 idna-ssl==1.1.0           # via -r requirements/quality.txt, aiohttp
 idna==2.10                # via -r requirements/quality.txt, -r requirements/travis.txt, idna-ssl, requests, yarl
-importlib-metadata==1.7.0  # via -r requirements/quality.txt, -r requirements/travis.txt, pluggy, pytest, tox, virtualenv
+importlib-metadata==1.7.0  # via -c requirements/constraints.txt, -r requirements/quality.txt, -r requirements/travis.txt, pluggy, pytest, tox, virtualenv
 importlib-resources==3.0.0  # via -r requirements/travis.txt, virtualenv
 inflect==4.1.0            # via jinja2-pluralize
 iniconfig==1.0.1          # via -r requirements/quality.txt, pytest
@@ -73,8 +73,8 @@ typing-extensions==3.7.4.3  # via -r requirements/quality.txt, aiohttp, yarl
 urllib3==1.25.10          # via -r requirements/quality.txt, -r requirements/travis.txt, requests
 virtualenv==20.0.31       # via -r requirements/travis.txt, tox
 wrapt==1.11.2             # via -r requirements/quality.txt, astroid
-yarl==1.5.1               # via -r requirements/quality.txt, aiohttp
-zipp==3.1.0               # via -r requirements/quality.txt, -r requirements/travis.txt, importlib-metadata, importlib-resources
+yarl==1.6.0               # via -r requirements/quality.txt, aiohttp
+zipp==3.2.0               # via -r requirements/quality.txt, -r requirements/travis.txt, importlib-metadata, importlib-resources
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip

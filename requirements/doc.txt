@@ -9,7 +9,7 @@ alabaster==0.7.12         # via sphinx
 async-timeout==3.0.1      # via -r requirements/test.txt, aiohttp
 attrs==20.2.0             # via -r requirements/test.txt, aiohttp, pytest
 babel==2.8.0              # via sphinx
-bleach==3.2.0             # via readme-renderer
+bleach==3.2.1             # via readme-renderer
 cachetools==4.1.1         # via -r requirements/test.txt, google-auth
 certifi==2020.6.20        # via -r requirements/test.txt, requests
 chardet==3.0.4            # via -r requirements/test.txt, aiohttp, doc8, requests
@@ -20,12 +20,12 @@ gitdb==4.0.5              # via -r requirements/test.txt, gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140  # via -r requirements/test.txt
 gitpython==3.1.8          # via -r requirements/test.txt, pytest-repo-health
 google-auth-oauthlib==0.4.1  # via -r requirements/test.txt, gspread
-google-auth==1.21.2       # via -r requirements/test.txt, google-auth-oauthlib, gspread
+google-auth==1.21.3       # via -r requirements/test.txt, google-auth-oauthlib, gspread
 gspread==3.6.0            # via -r requirements/test.txt
 idna-ssl==1.1.0           # via -r requirements/test.txt, aiohttp
 idna==2.10                # via -r requirements/test.txt, idna-ssl, requests, yarl
 imagesize==1.2.0          # via sphinx
-importlib-metadata==1.7.0  # via -r requirements/test.txt, pluggy, pytest, stevedore
+importlib-metadata==1.7.0  # via -c requirements/constraints.txt, -r requirements/test.txt, pluggy, pytest, stevedore
 iniconfig==1.0.1          # via -r requirements/test.txt, pytest
 jinja2==2.11.2            # via sphinx
 markupsafe==1.1.1         # via jinja2
@@ -65,8 +65,8 @@ toml==0.10.1              # via -r requirements/test.txt, pytest
 typing-extensions==3.7.4.3  # via -r requirements/test.txt, aiohttp, yarl
 urllib3==1.25.10          # via -r requirements/test.txt, requests
 webencodings==0.5.1       # via bleach
-yarl==1.5.1               # via -r requirements/test.txt, aiohttp
-zipp==3.1.0               # via -r requirements/test.txt, importlib-metadata
+yarl==1.6.0               # via -r requirements/test.txt, aiohttp
+zipp==3.2.0               # via -r requirements/test.txt, importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

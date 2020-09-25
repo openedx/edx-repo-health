@@ -1,4 +1,4 @@
-  
+
 # Version constraints for pip-installation.
 #
 # This file doesn't install any packages. It specifies version constraints
@@ -8,3 +8,6 @@
 # link to other information that will help people in the future to remove the
 # pin when possible.  Writing an issue against the offending project and
 # linking to it here is good.
+
+# importlib-metadata>1.7.0 is causing conflicts in running make upgrade on python36
+importlib-metadata==1.7.0

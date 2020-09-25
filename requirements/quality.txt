@@ -18,11 +18,11 @@ gitdb==4.0.5              # via -r requirements/test.txt, gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140  # via -r requirements/test.txt
 gitpython==3.1.8          # via -r requirements/test.txt, pytest-repo-health
 google-auth-oauthlib==0.4.1  # via -r requirements/test.txt, gspread
-google-auth==1.21.2       # via -r requirements/test.txt, google-auth-oauthlib, gspread
+google-auth==1.21.3       # via -r requirements/test.txt, google-auth-oauthlib, gspread
 gspread==3.6.0            # via -r requirements/test.txt
 idna-ssl==1.1.0           # via -r requirements/test.txt, aiohttp
 idna==2.10                # via -r requirements/test.txt, idna-ssl, requests, yarl
-importlib-metadata==1.7.0  # via -r requirements/test.txt, pluggy, pytest
+importlib-metadata==1.7.0  # via -c requirements/constraints.txt, -r requirements/test.txt, pluggy, pytest
 iniconfig==1.0.1          # via -r requirements/test.txt, pytest
 isort==4.3.21             # via -r requirements/quality.in, pylint
 lazy-object-proxy==1.4.3  # via astroid
@@ -57,8 +57,8 @@ typed-ast==1.4.1          # via astroid
 typing-extensions==3.7.4.3  # via -r requirements/test.txt, aiohttp, yarl
 urllib3==1.25.10          # via -r requirements/test.txt, requests
 wrapt==1.11.2             # via astroid
-yarl==1.5.1               # via -r requirements/test.txt, aiohttp
-zipp==3.1.0               # via -r requirements/test.txt, importlib-metadata
+yarl==1.6.0               # via -r requirements/test.txt, aiohttp
+zipp==3.2.0               # via -r requirements/test.txt, importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

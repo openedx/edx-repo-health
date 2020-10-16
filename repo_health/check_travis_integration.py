@@ -1,9 +1,10 @@
 """
 Checks repository is on travis.org or .com
 """
+import json
+
 import requests
 from pytest_repo_health import add_key_to_metadata, health_metadata
-import json
 
 module_dict_key = "travis_ci"
 

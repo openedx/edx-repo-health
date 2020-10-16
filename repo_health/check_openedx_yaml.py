@@ -20,7 +20,7 @@ output_keys = {
     "oep-30": "Indicates compliance with OEP-30: Personally Identifiable Information Markup and Auditing",
 }
 
-obsolete_fields = ['owner', 'supporting_teams', 'track_pulls', 'track-pulls']
+obsolete_fields = ['nick', 'owner', 'supporting_teams', 'track_pulls', 'track-pulls']
 
 
 @pytest.fixture(name='openedx_yaml')

@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohttp==3.6.2            # via -r requirements/base.txt, github.py, pytest-aiohttp
+aiohttp==3.6.3            # via -r requirements/base.txt, github.py, pytest-aiohttp
 async-timeout==3.0.1      # via -r requirements/base.txt, aiohttp
 attrs==20.2.0             # via -r requirements/base.txt, aiohttp, pytest
 cachetools==4.1.1         # via -r requirements/base.txt, google-auth
@@ -19,7 +19,7 @@ gspread==3.6.0            # via -r requirements/base.txt
 idna-ssl==1.1.0           # via -r requirements/base.txt, aiohttp
 idna==2.10                # via -r requirements/base.txt, idna-ssl, requests, yarl
 importlib-metadata==2.0.0  # via -r requirements/base.txt, pluggy, pytest
-iniconfig==1.0.1          # via -r requirements/base.txt, pytest
+iniconfig==1.1.1          # via -r requirements/base.txt, pytest
 multidict==4.7.6          # via -r requirements/base.txt, aiohttp, yarl
 oauthlib==3.1.0           # via -r requirements/base.txt, requests-oauthlib
 packaging==20.4           # via -r requirements/base.txt, pytest
@@ -40,7 +40,7 @@ smmap==3.0.4              # via -r requirements/base.txt, gitdb
 toml==0.10.1              # via -r requirements/base.txt, pytest
 typing-extensions==3.7.4.3  # via -r requirements/base.txt, aiohttp, yarl
 urllib3==1.25.10          # via -r requirements/base.txt, requests
-yarl==1.6.0               # via -r requirements/base.txt, aiohttp
+yarl==1.5.1               # via -r requirements/base.txt, aiohttp
 zipp==3.3.0               # via -r requirements/base.txt, importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:

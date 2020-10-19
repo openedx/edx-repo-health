@@ -25,7 +25,7 @@ def fixture_python_version(setup_py):
     """
     The list of python versions in setup.py classifiers
     """
-    regex_pattern = r"Programming Language ?:: ?Python ?:: ?([\d\.]+)"
+    regex_pattern = r"Programming Language :: Python :: ([\d\.]+)"
     python_classifiers = re.findall(regex_pattern, setup_py, re.MULTILINE)
     return python_classifiers
 

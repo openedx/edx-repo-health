@@ -2,7 +2,6 @@
 Checks tox.ini format
 """
 import os
-import re
 
 import pytest
 from pytest_repo_health import add_key_to_metadata, health_metadata
@@ -31,14 +30,11 @@ def check_has_sections(tox_ini, all_results):
     """
     Test to check if tox.ini has all the standard sections
     """
-    required_sections = [r"tox", r"testenv", r"testenv:quality"]
+    required_sections = ["tox", "testenv", "testenv:quality"]
     all_results[module_dict_key]["has_section"] = {}
     for section in required_sections:
-        regex_pattern = r"[" + section + r"]"
-        match = re.search(regex_pattern, tox_ini)
-        all_results[module_dict_key]["has_section"][section] = False
-        if match is not None:
-            all_results[module_dict_key]["has_section"][section] = True
+        section_head = "[" + section + "]"
+        all_results[module_dict_key]["has_section"][section] = section_head in tox_ini
 
 
 @add_key_to_metadata((module_dict_key, "uses_whitelist_externals"))

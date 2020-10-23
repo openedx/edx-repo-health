@@ -39,9 +39,9 @@ six==1.15.0               # via google-auth, packaging
 smmap==3.0.4              # via gitdb
 toml==0.10.1              # via pytest
 typing-extensions==3.7.4.3  # via aiohttp, yarl
-urllib3==1.25.10          # via requests
+urllib3==1.25.11          # via requests
 yarl==1.5.1               # via aiohttp
-zipp==3.3.0               # via importlib-metadata
+zipp==3.3.1               # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

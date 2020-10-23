@@ -39,9 +39,9 @@ six==1.15.0               # via -r requirements/base.txt, google-auth, packaging
 smmap==3.0.4              # via -r requirements/base.txt, gitdb
 toml==0.10.1              # via -r requirements/base.txt, pytest
 typing-extensions==3.7.4.3  # via -r requirements/base.txt, aiohttp, yarl
-urllib3==1.25.10          # via -r requirements/base.txt, requests
+urllib3==1.25.11          # via -r requirements/base.txt, requests
 yarl==1.5.1               # via -r requirements/base.txt, aiohttp
-zipp==3.3.0               # via -r requirements/base.txt, importlib-metadata
+zipp==3.3.1               # via -r requirements/base.txt, importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

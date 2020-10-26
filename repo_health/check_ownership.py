@@ -1,6 +1,7 @@
 """
 Checks to fetch repository ownership information from the Google Sheets speadsheet.
 """
+import logging
 import re
 import os
 
@@ -9,7 +10,15 @@ import pytest
 from pytest_repo_health import health_metadata
 from pytest_repo_health.fixtures.github import URL_PATTERN
 
+logger = logging.getLogger(__name__)
+
 MODULE_DICT_KEY = "ownership"
+
+GOOGLE_CREDENTIALS = "REPO_HEALTH_GOOGLE_CREDS_FILE"
+
+REPO_HEALTH_SHEET_URL = "REPO_HEALTH_OWNERSHIP_SPREADSHEET_URL"
+
+REPO_HEALTH_WORKSHEET = "REPO_HEALTH_REPOS_WORKSHEET_ID"
 
 
 class KnownError(Exception):
@@ -50,11 +59,14 @@ def check_ownership(all_results, git_origin_url):
     for the repository.
     """
     try:
-        google_creds_file = os.environ["REPO_HEALTH_GOOGLE_CREDS_FILE"]
-        spreadsheet_url = os.environ["REPO_HEALTH_OWNERSHIP_SPREADSHEET_URL"]
-        worksheet_id = int(os.environ["REPO_HEALTH_REPOS_WORKSHEET_ID"])
+        google_creds_file = os.environ[GOOGLE_CREDENTIALS]
+        spreadsheet_url = os.environ[REPO_HEALTH_SHEET_URL]
+        worksheet_id = int(os.environ[REPO_HEALTH_WORKSHEET])
     except KeyError:
+        logger.error("At least one of the following REPO_HEALTH_* environment variables is missing\n {0} \n {1} \n {2}"
+                     .format(GOOGLE_CREDENTIALS, REPO_HEALTH_SHEET_URL, REPO_HEALTH_WORKSHEET))
         pytest.skip("At least one of the REPO_HEALTH_* environment variables is missing")
+
     match = re.search(URL_PATTERN, git_origin_url)
     assert match is not None
     org_name = match.group("org_name")

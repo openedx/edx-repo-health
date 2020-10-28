@@ -107,8 +107,11 @@ async def check_settings(all_results, github_repo):
     """
     Get all the fields of interest from the GitHub repository object itself.
     """
-    if github_repo.object is None:
-        logger.error(github_repo.message)
+    message = github_repo.message
+    github_repo = github_repo.object
+
+    if github_repo is None:
+        logger.error(message)
         pytest.skip("There was an error fetching data from GitHub")
 
     results = all_results[MODULE_DICT_KEY]
@@ -162,8 +165,10 @@ async def check_languages(all_results, github_repo):
     """
     Get the number of bytes of each programming language in the repository.
     """
-    if github_repo.object is None:
-        logger.error(github_repo.message)
+    message = github_repo.message
+    github_repo = github_repo.object
+    if github_repo is None:
+        logger.error(message)
         pytest.skip("There was an error fetching data from GitHub")
 
     results = all_results["language_bytes"]

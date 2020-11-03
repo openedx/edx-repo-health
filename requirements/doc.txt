@@ -40,7 +40,7 @@ pyasn1==0.4.8             # via -r requirements/test.txt, pyasn1-modules, rsa
 pygments==2.7.2           # via doc8, readme-renderer, sphinx
 pyparsing==2.4.7          # via -r requirements/test.txt, packaging
 pytest-aiohttp==0.3.0     # via -r requirements/test.txt, pytest-repo-health
-pytest-repo-health==2.0.4  # via -r requirements/test.txt
+pytest-repo-health==2.1.0  # via -r requirements/test.txt
 pytest==6.1.2             # via -r requirements/test.txt, pytest-aiohttp, pytest-repo-health
 pytz==2020.1              # via babel
 pyyaml==5.3.1             # via -r requirements/test.txt, pytest-repo-health

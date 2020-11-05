@@ -23,7 +23,6 @@ def check_travis_integration(all_results, git_origin_url):
 
     match = re.search(URL_PATTERN, git_origin_url)
     repo_name = match.group("repo_name")
-    
     resp = requests.get(
         url='https://api.travis-ci.org/repo/edx%2F{repo_name}'.format(repo_name=repo_name),
         headers={'Travis-API-Version': '3'}

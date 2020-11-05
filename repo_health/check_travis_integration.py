@@ -3,6 +3,7 @@ Checks repository is on travis.org or .com
 """
 import json
 import logging
+import re
 
 import requests
 from pytest_repo_health import add_key_to_metadata
@@ -24,7 +25,7 @@ def check_travis_integration(all_results, git_origin_url):
     repo_name = match.group("repo_name")
     
     resp = requests.get(
-        url='https://api.travis-ci.org/repo/edx%2F{repo_name}'.format(link=link),
+        url='https://api.travis-ci.org/repo/edx%2F{repo_name}'.format(repo_name=repo_name),
         headers={'Travis-API-Version': '3'}
     )
 

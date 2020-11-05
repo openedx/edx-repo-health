@@ -11,6 +11,8 @@ logger = logging.getLogger(__name__)
 
 module_dict_key = "travis_ci"
 
+URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).git"
+
 
 @add_key_to_metadata(module_dict_key)
 def check_travis_integration(all_results, git_origin_url):
@@ -18,9 +20,11 @@ def check_travis_integration(all_results, git_origin_url):
     Checks repository integrated with travis-ci.org or travis-ci.com
     """
 
-    link = git_origin_url.replace('git@github.com:edx/', '').replace('.git', '')  # picking repo name
+    match = re.search(URL_PATTERN, git_origin_url)
+    repo_name = match.group("repo_name")
+    
     resp = requests.get(
-        url='https://api.travis-ci.org/repo/edx%2F{link}'.format(link=link),
+        url='https://api.travis-ci.org/repo/edx%2F{repo_name}'.format(link=link),
         headers={'Travis-API-Version': '3'}
     )
 

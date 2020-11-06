@@ -7,7 +7,7 @@
 aiohttp==3.7.2            # via -r requirements/test.txt, github.py, pytest-aiohttp
 astroid==2.3.3            # via pylint, pylint-celery
 async-timeout==3.0.1      # via -r requirements/test.txt, aiohttp
-attrs==20.2.0             # via -r requirements/test.txt, aiohttp, pytest
+attrs==20.3.0             # via -r requirements/test.txt, aiohttp, pytest
 cachetools==4.1.1         # via -r requirements/test.txt, google-auth
 certifi==2020.6.20        # via -r requirements/test.txt, requests
 chardet==3.0.4            # via -r requirements/test.txt, aiohttp, requests
@@ -51,7 +51,7 @@ rsa==4.6                  # via -r requirements/test.txt, google-auth
 six==1.15.0               # via -r requirements/test.txt, astroid, edx-lint, google-auth, packaging
 smmap==3.0.4              # via -r requirements/test.txt, gitdb
 snowballstemmer==2.0.0    # via pydocstyle
-toml==0.10.1              # via -r requirements/test.txt, pytest
+toml==0.10.2              # via -r requirements/test.txt, pytest
 typed-ast==1.4.1          # via astroid
 typing-extensions==3.7.4.3  # via -r requirements/test.txt, aiohttp, yarl
 urllib3==1.25.11          # via -r requirements/test.txt, requests

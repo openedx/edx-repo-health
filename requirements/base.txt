@@ -6,7 +6,7 @@
 #
 aiohttp==3.7.2            # via github.py, pytest-aiohttp
 async-timeout==3.0.1      # via aiohttp
-attrs==20.2.0             # via aiohttp, pytest
+attrs==20.3.0             # via aiohttp, pytest
 cachetools==4.1.1         # via google-auth
 certifi==2020.6.20        # via requests
 chardet==3.0.4            # via aiohttp, requests
@@ -37,7 +37,7 @@ requests==2.24.0          # via gspread, requests-oauthlib
 rsa==4.6                  # via google-auth
 six==1.15.0               # via google-auth, packaging
 smmap==3.0.4              # via gitdb
-toml==0.10.1              # via pytest
+toml==0.10.2              # via pytest
 typing-extensions==3.7.4.3  # via aiohttp, yarl
 urllib3==1.25.11          # via requests
 yarl==1.6.2               # via aiohttp

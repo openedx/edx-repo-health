@@ -29,10 +29,10 @@ def fixture_req_lines(repo_path):
 @health_metadata(
     [module_dict_key],
     {
-        ("django"): "repo requires django",
-        ("pytest"): "repo requires pytest",
-        ("nose"): "repo requires nose",
-        ("boto"): "repo requires boto",
+        "django": "repo requires django",
+        "pytest": "repo requires pytest",
+        "nose": "repo requires nose",
+        "boto": "repo requires boto",
     },
 )
 def check_requires(req_lines, all_results):

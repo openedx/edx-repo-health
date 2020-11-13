@@ -2,7 +2,7 @@
  Checks which are the dependencies of the repo
 """
 import re
-import glob
+from pathlib import Path
 import os
 
 import pytest
@@ -19,7 +19,7 @@ def fixture_req_packages(repo_path):
     """
     pypi_packages = []
     github_packages = []
-    files = glob.glob(os.path.join(repo_path, "requirements/**/*.txt"), recursive=True)
+    files = [str(file) for file in Path(os.path.join(repo_path, "requirements")).rglob('*.txt')]
     constraints_files = ("constraints.txt", "pins.txt")
     requirement_files = [file for file in files if not file.endswith(constraints_files)]
     for file_path in requirement_files:
@@ -27,7 +27,7 @@ def fixture_req_packages(repo_path):
         stripped_lines = [re.sub(r' +#.*', "", line).replace('-e ', "")
                           for line in lines if line and not line.startswith("#")]
         github_packages.extend([line for line in stripped_lines if re.match(r'^git\+.*', line)])
-        pypi_packages = [line for line in stripped_lines if line not in github_packages and "==" in line]
+        pypi_packages.extend([line for line in stripped_lines if line not in github_packages and "==" in line])
 
     return {
         "pypi": list(set(pypi_packages)),

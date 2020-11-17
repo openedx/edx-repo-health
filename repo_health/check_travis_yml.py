@@ -53,7 +53,8 @@ def fixture_python_version(parsed_data_travis):
     """
     python_versions = set()
     if "python" in parsed_data_travis.keys():
-        python_versions = set(parsed_data_travis["python"])
+        py_versions = parsed_data_travis["python"]
+        python_versions = set([py_versions] if isinstance(py_versions, float) else py_versions)
 
     if "matrix" in parsed_data_travis.keys():
         workers = None

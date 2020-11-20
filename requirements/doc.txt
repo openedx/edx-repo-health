@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohttp==3.7.2            # via -r requirements/test.txt, github.py, pytest-aiohttp
+aiohttp==3.7.3            # via -r requirements/test.txt, github.py, pytest-aiohttp
 alabaster==0.7.12         # via sphinx
 async-timeout==3.0.1      # via -r requirements/test.txt, aiohttp
 attrs==20.3.0             # via -r requirements/test.txt, aiohttp, pytest
@@ -29,7 +29,7 @@ importlib-metadata==2.0.0  # via -r requirements/test.txt, pluggy, pytest, steve
 iniconfig==1.1.1          # via -r requirements/test.txt, pytest
 jinja2==2.11.2            # via sphinx
 markupsafe==1.1.1         # via jinja2
-multidict==5.0.0          # via -r requirements/test.txt, aiohttp, yarl
+multidict==5.0.2          # via -r requirements/test.txt, aiohttp, yarl
 oauthlib==3.1.0           # via -r requirements/test.txt, requests-oauthlib
 packaging==20.4           # via -r requirements/test.txt, bleach, pytest, sphinx
 pbr==5.5.1                # via stevedore
@@ -65,7 +65,7 @@ toml==0.10.2              # via -r requirements/test.txt, pytest
 typing-extensions==3.7.4.3  # via -r requirements/test.txt, aiohttp, yarl
 urllib3==1.26.2           # via -r requirements/test.txt, requests, responses
 webencodings==0.5.1       # via bleach
-yarl==1.6.2               # via -r requirements/test.txt, aiohttp
+yarl==1.6.3               # via -r requirements/test.txt, aiohttp
 zipp==3.4.0               # via -r requirements/test.txt, importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:

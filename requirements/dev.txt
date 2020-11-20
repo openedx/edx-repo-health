@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohttp==3.7.2            # via -r requirements/quality.txt, github.py, pytest-aiohttp
+aiohttp==3.7.3            # via -r requirements/quality.txt, github.py, pytest-aiohttp
 appdirs==1.4.4            # via -r requirements/travis.txt, virtualenv
 astroid==2.3.3            # via -r requirements/quality.txt, pylint, pylint-celery
 async-timeout==3.0.1      # via -r requirements/quality.txt, aiohttp
@@ -30,7 +30,7 @@ idna-ssl==1.1.0           # via -r requirements/quality.txt, aiohttp
 idna==2.10                # via -r requirements/quality.txt, -r requirements/travis.txt, idna-ssl, requests, yarl
 importlib-metadata==2.0.0  # via -r requirements/quality.txt, -r requirements/travis.txt, pluggy, pytest, tox, virtualenv
 importlib-resources==3.3.0  # via -r requirements/travis.txt, virtualenv
-inflect==4.1.0            # via jinja2-pluralize
+inflect==5.0.2            # via jinja2-pluralize
 iniconfig==1.1.1          # via -r requirements/quality.txt, pytest
 isort==4.3.21             # via -r requirements/quality.txt, pylint
 jinja2-pluralize==0.3.0   # via diff-cover
@@ -38,7 +38,7 @@ jinja2==2.11.2            # via diff-cover, jinja2-pluralize
 lazy-object-proxy==1.4.3  # via -r requirements/quality.txt, astroid
 markupsafe==1.1.1         # via jinja2
 mccabe==0.6.1             # via -r requirements/quality.txt, pylint
-multidict==5.0.0          # via -r requirements/quality.txt, aiohttp, yarl
+multidict==5.0.2          # via -r requirements/quality.txt, aiohttp, yarl
 oauthlib==3.1.0           # via -r requirements/quality.txt, requests-oauthlib
 packaging==20.4           # via -r requirements/quality.txt, -r requirements/travis.txt, pytest, tox
 pip-tools==5.3.1          # via -r requirements/pip-tools.txt
@@ -73,7 +73,7 @@ typing-extensions==3.7.4.3  # via -r requirements/quality.txt, aiohttp, yarl
 urllib3==1.26.2           # via -r requirements/quality.txt, -r requirements/travis.txt, requests, responses
 virtualenv==20.1.0        # via -r requirements/travis.txt, tox
 wrapt==1.11.2             # via -r requirements/quality.txt, astroid
-yarl==1.6.2               # via -r requirements/quality.txt, aiohttp
+yarl==1.6.3               # via -r requirements/quality.txt, aiohttp
 zipp==3.4.0               # via -r requirements/quality.txt, -r requirements/travis.txt, importlib-metadata, importlib-resources
 
 # The following packages are considered to be unsafe in a requirements file:

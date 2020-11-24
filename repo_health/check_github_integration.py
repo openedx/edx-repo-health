@@ -45,11 +45,10 @@ class GitHubIntegrationHandler:
 
         self.api_data = json.loads(self.api_response.content)
 
-        if self.api_data['workflows']:
-            self.github_actions = [
-                True for workflow in self.api_data['workflows']
-                if workflow['path'] == '.github/workflows/ci.yml' and workflow['state'] == 'active'
-            ]
+        self.github_actions = [
+            True for workflow in self.api_data['workflows']
+            if workflow['path'] == '.github/workflows/ci.yml' and workflow['state'] == 'active'
+        ]
 
 
 @add_key_to_metadata(module_dict_key)
@@ -61,5 +60,4 @@ def check_githuba_ctions_integration(all_results, git_origin_url):
     repo_name = match.group("repo_name")
     integration_handler = GitHubIntegrationHandler(repo_name)
     integration_handler.handle()
-
     all_results[module_dict_key] = bool(integration_handler.github_actions)

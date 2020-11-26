@@ -3,10 +3,12 @@ Checks repository is on github actions workflow and tests are enabled.
 """
 import json
 import logging
+import os
 import re
 
 import requests
 from pytest_repo_health import add_key_to_metadata
+
 
 logger = logging.getLogger(__name__)
 
@@ -16,7 +18,14 @@ URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).git"
 
 
 def get_githubworkflow_api_response(repo_name):
-    return requests.get(url=f'https://api.github.com/repos/edx/{repo_name}/actions/workflows')
+
+    # For unauthenticated requests, the rate limit allows for up to 60 requests per hour.
+    # https://developer.github.com/v3/#rate-limiting
+
+    return requests.get(
+        url=f'https://api.github.com/repos/edx/{repo_name}/actions/workflows',
+        headers={'Authorization': f'Bearer {os.environ["GITHUB_TOKEN"]}'}
+    )
 
 
 class GitHubIntegrationHandler:

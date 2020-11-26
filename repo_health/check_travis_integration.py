@@ -9,6 +9,8 @@ import pytest
 import requests
 from pytest_repo_health import add_key_to_metadata
 
+from repo_health_dashboard.utils.utils import squash_dict
+
 logger = logging.getLogger(__name__)
 
 module_dict_key = "travis_ci"
@@ -78,11 +80,18 @@ def check_travis_integration(all_results, git_origin_url):
     """
     Checks repository integrated with travis-ci.org or travis-ci.com
     """
-    match = re.search(URL_PATTERN, git_origin_url)
-    repo_name = match.group("repo_name")
-    travis_integration_handler = TravisIntegrationHandler(repo_name)
-    travis_integration_handler.handle()
 
-    all_results[module_dict_key]['active_on_com'] = travis_integration_handler.active_on_com
-    all_results[module_dict_key]['active_on_org'] = travis_integration_handler.active_on_org
-    all_results[module_dict_key]['active'] = travis_integration_handler.active
+    if squash_dict(all_results)['exists..travis.yml']:
+        match = re.search(URL_PATTERN, git_origin_url)
+        repo_name = match.group("repo_name")
+        travis_integration_handler = TravisIntegrationHandler(repo_name)
+        travis_integration_handler.handle()
+
+        all_results[module_dict_key]['active_on_com'] = travis_integration_handler.active_on_com
+        all_results[module_dict_key]['active_on_org'] = travis_integration_handler.active_on_org
+        all_results[module_dict_key]['active'] = travis_integration_handler.active
+
+    else:
+        all_results[module_dict_key]['active_on_com'] = False
+        all_results[module_dict_key]['active_on_org'] = False
+        all_results[module_dict_key]['active'] = False

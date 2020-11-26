@@ -18,6 +18,9 @@ URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).git"
 
 
 def get_githubworkflow_api_response(repo_name):
+    """
+    get the workflows information using api.
+    """
 
     # For unauthenticated requests, the rate limit allows for up to 60 requests per hour.
     # https://developer.github.com/v3/#rate-limiting

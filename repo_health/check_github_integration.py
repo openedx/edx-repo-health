@@ -48,7 +48,12 @@ class GitHubIntegrationHandler:
         if self.api_data and 'workflows' in self.api_data:
             self.github_actions = [
                 True for workflow in self.api_data['workflows']
-                if workflow['path'] == '.github/workflows/ci.yml' and workflow['state'] == 'active'
+
+                if workflow['path'] in [
+                    '.github/workflows/ci.yml',
+                    '.github/workflows/playbook-test.yml',
+                    '.github/workflows/syntax-test.yml'
+                ] and workflow['state'] == 'active'
             ]
 
 

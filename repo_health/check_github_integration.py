@@ -37,9 +37,11 @@ class GitHubIntegrationHandler:
         """
         initiates the process to fetch github actions workflow integration information
         """
-        if self.api_response.status_code == 404:
+        if self.api_response.status_code != 200:
             logger.error(
-                f"An error occurred while fetching github information {self.api_response.content}."
+                f"An error occurred while fetching {self.repo_name}. "
+                f"status code {self.api_response.status_code} "
+                f"content info {self.api_response.content}."
             )
             return
 

@@ -18,9 +18,9 @@ google-auth==1.23.0       # via -r requirements/base.txt, google-auth-oauthlib, 
 gspread==3.6.0            # via -r requirements/base.txt
 idna-ssl==1.1.0           # via -r requirements/base.txt, aiohttp
 idna==2.10                # via -r requirements/base.txt, idna-ssl, requests, yarl
-importlib-metadata==2.1.0  # via -c requirements/constraints.txt, -r requirements/base.txt, pluggy, pytest
+importlib-metadata==2.1.1  # via -c requirements/constraints.txt, -r requirements/base.txt, pluggy, pytest
 iniconfig==1.1.1          # via -r requirements/base.txt, pytest
-multidict==5.0.2          # via -r requirements/base.txt, aiohttp, yarl
+multidict==5.1.0          # via -r requirements/base.txt, aiohttp, yarl
 oauthlib==3.1.0           # via -r requirements/base.txt, requests-oauthlib
 packaging==20.7           # via -r requirements/base.txt, pytest
 pluggy==0.13.1            # via -r requirements/base.txt, pytest

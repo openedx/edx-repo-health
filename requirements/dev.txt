@@ -28,7 +28,7 @@ google-auth==1.23.0       # via -r requirements/quality.txt, google-auth-oauthli
 gspread==3.6.0            # via -r requirements/quality.txt
 idna-ssl==1.1.0           # via -r requirements/quality.txt, aiohttp
 idna==2.10                # via -r requirements/quality.txt, -r requirements/travis.txt, idna-ssl, requests, yarl
-importlib-metadata==2.1.0  # via -c requirements/constraints.txt, -r requirements/quality.txt, -r requirements/travis.txt, pluggy, pytest, tox, virtualenv
+importlib-metadata==2.1.1  # via -c requirements/constraints.txt, -r requirements/quality.txt, -r requirements/travis.txt, pluggy, pytest, tox, virtualenv
 importlib-resources==3.3.0  # via -r requirements/travis.txt, virtualenv
 inflect==5.0.2            # via jinja2-pluralize
 iniconfig==1.1.1          # via -r requirements/quality.txt, pytest
@@ -38,7 +38,7 @@ jinja2==2.11.2            # via diff-cover, jinja2-pluralize
 lazy-object-proxy==1.4.3  # via -r requirements/quality.txt, astroid
 markupsafe==1.1.1         # via jinja2
 mccabe==0.6.1             # via -r requirements/quality.txt, pylint
-multidict==5.0.2          # via -r requirements/quality.txt, aiohttp, yarl
+multidict==5.1.0          # via -r requirements/quality.txt, aiohttp, yarl
 oauthlib==3.1.0           # via -r requirements/quality.txt, requests-oauthlib
 packaging==20.7           # via -r requirements/quality.txt, -r requirements/travis.txt, pytest, tox
 pip-tools==5.4.0          # via -r requirements/pip-tools.txt

@@ -11,7 +11,7 @@ attrs==20.3.0             # via -r requirements/test.txt, aiohttp, pytest
 babel==2.9.0              # via sphinx
 bleach==3.2.1             # via readme-renderer
 cachetools==4.1.1         # via -r requirements/test.txt, google-auth
-certifi==2020.11.8        # via -r requirements/test.txt, requests
+certifi==2020.12.5        # via -r requirements/test.txt, requests
 chardet==3.0.4            # via -r requirements/test.txt, aiohttp, doc8, requests
 doc8==0.8.1               # via -r requirements/doc.in
 docutils==0.16            # via doc8, readme-renderer, restructuredtext-lint, sphinx
@@ -37,7 +37,7 @@ pluggy==0.13.1            # via -r requirements/test.txt, pytest
 py==1.9.0                 # via -r requirements/test.txt, pytest
 pyasn1-modules==0.2.8     # via -r requirements/test.txt, google-auth
 pyasn1==0.4.8             # via -r requirements/test.txt, pyasn1-modules, rsa
-pygments==2.7.2           # via doc8, readme-renderer, sphinx
+pygments==2.7.3           # via doc8, readme-renderer, sphinx
 pyparsing==2.4.7          # via -r requirements/test.txt, packaging
 pytest-aiohttp==0.3.0     # via -r requirements/test.txt, pytest-repo-health
 pytest-repo-health==2.1.0  # via -r requirements/test.txt

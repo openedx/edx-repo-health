@@ -8,7 +8,7 @@ aiohttp==3.7.3            # via -r requirements/base.txt, github.py, pytest-aioh
 async-timeout==3.0.1      # via -r requirements/base.txt, aiohttp
 attrs==20.3.0             # via -r requirements/base.txt, aiohttp, pytest
 cachetools==4.1.1         # via -r requirements/base.txt, google-auth
-certifi==2020.11.8        # via -r requirements/base.txt, requests
+certifi==2020.12.5        # via -r requirements/base.txt, requests
 chardet==3.0.4            # via -r requirements/base.txt, aiohttp, requests
 gitdb==4.0.5              # via -r requirements/base.txt, gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140  # via -r requirements/base.txt

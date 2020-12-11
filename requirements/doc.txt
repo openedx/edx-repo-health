@@ -10,7 +10,7 @@ async-timeout==3.0.1      # via -r requirements/test.txt, aiohttp
 attrs==20.3.0             # via -r requirements/test.txt, aiohttp, pytest
 babel==2.9.0              # via sphinx
 bleach==3.2.1             # via readme-renderer
-cachetools==4.1.1         # via -r requirements/test.txt, google-auth
+cachetools==4.2.0         # via -r requirements/test.txt, google-auth
 certifi==2020.12.5        # via -r requirements/test.txt, requests
 chardet==3.0.4            # via -r requirements/test.txt, aiohttp, doc8, requests
 doc8==0.8.1               # via -r requirements/doc.in

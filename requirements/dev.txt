@@ -9,7 +9,7 @@ appdirs==1.4.4            # via -r requirements/ci.txt, virtualenv
 astroid==2.3.3            # via -r requirements/quality.txt, pylint, pylint-celery
 async-timeout==3.0.1      # via -r requirements/quality.txt, aiohttp
 attrs==20.3.0             # via -r requirements/quality.txt, aiohttp, pytest
-cachetools==4.1.1         # via -r requirements/quality.txt, google-auth
+cachetools==4.2.0         # via -r requirements/quality.txt, google-auth
 certifi==2020.12.5        # via -r requirements/ci.txt, -r requirements/quality.txt, requests
 chardet==3.0.4            # via -r requirements/ci.txt, -r requirements/quality.txt, aiohttp, requests
 click-log==0.3.2          # via -r requirements/quality.txt, edx-lint

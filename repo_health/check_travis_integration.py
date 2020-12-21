@@ -21,7 +21,7 @@ URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).git"
 
 
 def log_travis_api_failure(response):
-    logger.error(f"An error occurred while fetching integration information from Travis. Details: {response.content}")
+    logger.error("An error occurred while fetching integration information from Travis. Details: %s", response.content)
     pytest.skip("Skipped due to an error with Travis API")
 
 

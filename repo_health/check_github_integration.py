@@ -51,9 +51,10 @@ class GitHubIntegrationHandler:
         """
         if self.api_response.status_code != 200:
             logger.error(
-                f"An error occurred while fetching {self.repo_name}. "
-                f"status code {self.api_response.status_code} "
-                f"content info {self.api_response.content}."
+                "An error occurred while fetching %s. status code %s content info %s.",
+                self.repo_name,
+                self.api_response.status_code,
+                self.api_response.content
             )
             return
 

@@ -29,7 +29,7 @@ gspread==3.6.0            # via -r requirements/quality.txt
 idna-ssl==1.1.0           # via -r requirements/quality.txt, aiohttp
 idna==2.10                # via -r requirements/ci.txt, -r requirements/quality.txt, idna-ssl, requests, yarl
 importlib-metadata==2.1.1  # via -c requirements/constraints.txt, -r requirements/ci.txt, -r requirements/quality.txt, pluggy, pytest, tox, virtualenv
-importlib-resources==3.3.0  # via -r requirements/ci.txt, virtualenv
+importlib-resources==4.0.0  # via -r requirements/ci.txt, virtualenv
 inflect==5.0.2            # via jinja2-pluralize
 iniconfig==1.1.1          # via -r requirements/quality.txt, pytest
 isort==5.6.4              # via -r requirements/quality.txt, pylint

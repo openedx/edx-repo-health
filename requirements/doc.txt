@@ -18,7 +18,7 @@ docutils==0.16            # via doc8, readme-renderer, restructuredtext-lint, sp
 edx-sphinx-theme==1.6.0   # via -r requirements/doc.in
 gitdb==4.0.5              # via -r requirements/test.txt, gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140  # via -r requirements/test.txt
-gitpython==3.1.11         # via -r requirements/test.txt, pytest-repo-health
+gitpython==3.1.12         # via -r requirements/test.txt, pytest-repo-health
 google-auth-oauthlib==0.4.2  # via -r requirements/test.txt, gspread
 google-auth==1.24.0       # via -r requirements/test.txt, google-auth-oauthlib, gspread
 gspread==3.6.0            # via -r requirements/test.txt
@@ -53,7 +53,7 @@ rsa==4.6                  # via -r requirements/test.txt, google-auth
 six==1.15.0               # via -r requirements/test.txt, bleach, doc8, edx-sphinx-theme, google-auth, readme-renderer, responses
 smmap==3.0.4              # via -r requirements/test.txt, gitdb
 snowballstemmer==2.0.0    # via sphinx
-sphinx==3.4.1             # via -r requirements/doc.in, edx-sphinx-theme
+sphinx==3.4.3             # via -r requirements/doc.in, edx-sphinx-theme
 sphinxcontrib-applehelp==1.0.2  # via sphinx
 sphinxcontrib-devhelp==1.0.2  # via sphinx
 sphinxcontrib-htmlhelp==1.0.3  # via sphinx

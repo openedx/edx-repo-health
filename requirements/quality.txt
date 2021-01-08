@@ -16,7 +16,7 @@ click==7.1.2              # via click-log, edx-lint
 edx-lint==1.6             # via -r requirements/quality.in
 gitdb==4.0.5              # via -r requirements/test.txt, gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140  # via -r requirements/test.txt
-gitpython==3.1.11         # via -r requirements/test.txt, pytest-repo-health
+gitpython==3.1.12         # via -r requirements/test.txt, pytest-repo-health
 google-auth-oauthlib==0.4.2  # via -r requirements/test.txt, gspread
 google-auth==1.24.0       # via -r requirements/test.txt, google-auth-oauthlib, gspread
 gspread==3.6.0            # via -r requirements/test.txt
@@ -24,7 +24,7 @@ idna-ssl==1.1.0           # via -r requirements/test.txt, aiohttp
 idna==2.10                # via -r requirements/test.txt, idna-ssl, requests, yarl
 importlib-metadata==2.1.1  # via -c requirements/constraints.txt, -r requirements/test.txt, pluggy, pytest
 iniconfig==1.1.1          # via -r requirements/test.txt, pytest
-isort==5.6.4              # via -r requirements/quality.in, pylint
+isort==5.7.0              # via -r requirements/quality.in, pylint
 lazy-object-proxy==1.4.3  # via astroid
 mccabe==0.6.1             # via pylint
 multidict==5.1.0          # via -r requirements/test.txt, aiohttp, yarl
@@ -53,7 +53,7 @@ six==1.15.0               # via -r requirements/test.txt, astroid, edx-lint, goo
 smmap==3.0.4              # via -r requirements/test.txt, gitdb
 snowballstemmer==2.0.0    # via pydocstyle
 toml==0.10.2              # via -r requirements/test.txt, pylint, pytest
-typed-ast==1.4.1          # via astroid
+typed-ast==1.4.2          # via astroid
 typing-extensions==3.7.4.3  # via -r requirements/test.txt, aiohttp, yarl
 urllib3==1.26.2           # via -r requirements/test.txt, requests, responses
 wrapt==1.12.1             # via astroid

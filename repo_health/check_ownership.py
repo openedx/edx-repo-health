@@ -39,7 +39,7 @@ def find_worksheet(google_creds_file, spreadsheet_url, worksheet_id):
                             .worksheets()
     matching = list(filter(lambda w: w.id == worksheet_id, all_worksheets))
     if not matching:
-        raise KnownError("Cannot find a worksheet with ID {}".format(worksheet_id))
+        raise KnownError(f"Cannot find a worksheet with ID {worksheet_id}")
     return matching[0]
 
 
@@ -63,7 +63,7 @@ def check_ownership(all_results, git_origin_url):
         spreadsheet_url = os.environ[REPO_HEALTH_SHEET_URL]
         worksheet_id = int(os.environ[REPO_HEALTH_WORKSHEET])
     except KeyError:
-        logger.error("At least one of the following REPO_HEALTH_* environment variables is missing\n {0} \n {1} \n {2}"
+        logger.error("At least one of the following REPO_HEALTH_* environment variables is missing\n {} \n {} \n {}"
                      .format(GOOGLE_CREDENTIALS, REPO_HEALTH_SHEET_URL, REPO_HEALTH_WORKSHEET))
         pytest.skip("At least one of the REPO_HEALTH_* environment variables is missing")
 
@@ -71,7 +71,7 @@ def check_ownership(all_results, git_origin_url):
     assert match is not None
     org_name = match.group("org_name")
     repo_name = match.group("repo_name")
-    repo_url = "https://github.com/{}/{}".format(org_name, repo_name)
+    repo_url = f"https://github.com/{org_name}/{repo_name}"
     results = all_results[MODULE_DICT_KEY]
     worksheet = find_worksheet(google_creds_file, spreadsheet_url, worksheet_id)
     for row in worksheet.get_all_records():

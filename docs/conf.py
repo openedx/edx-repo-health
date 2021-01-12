@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # edx-repo-health documentation build configuration file, created by
 # sphinx-quickstart on Thu Oct  1 00:43:18 2015.
@@ -46,9 +45,9 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = u"edx-repo-health"
-copyright = u"2015, Manjinder Singh"
-author = u"Manjinder Singh"
+project = "edx-repo-health"
+copyright = "2015, Manjinder Singh"
+author = "Manjinder Singh"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -222,8 +221,8 @@ latex_documents = [
     (
         master_doc,
         "pytest-cookiecutterplugin_name.tex",
-        u"pytest-\\{\\{cookiecutter.plugin\\_name\\}\\} Documentation",
-        u"\\{\\{cookiecutter.full\\_name\\}\\}",
+        "pytest-\\{\\{cookiecutter.plugin\\_name\\}\\} Documentation",
+        "\\{\\{cookiecutter.full\\_name\\}\\}",
         "manual",
     ),
 ]
@@ -257,7 +256,7 @@ man_pages = [
     (
         master_doc,
         "pytest-cookiecutterplugin_name",
-        u"edx-repo-health Documentation",
+        "edx-repo-health Documentation",
         [author],
         1,
     )
@@ -276,7 +275,7 @@ texinfo_documents = [
     (
         master_doc,
         "pytest-cookiecutterplugin_name",
-        u"edx-repo-health Documentation",
+        "edx-repo-health Documentation",
         author,
         "pytest-cookiecutterplugin_name",
         "One line description of project.",

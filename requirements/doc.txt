@@ -70,13 +70,25 @@ google-auth==1.24.0
     #   gspread
 gspread==3.6.0
     # via -r requirements/test.txt
+idna-ssl==1.1.0
+    # via
+    #   -r requirements/test.txt
+    #   aiohttp
 idna==2.10
     # via
     #   -r requirements/test.txt
+    #   idna-ssl
     #   requests
     #   yarl
 imagesize==1.2.0
     # via sphinx
+importlib-metadata==2.1.1
+    # via
+    #   -c requirements/constraints.txt
+    #   -r requirements/test.txt
+    #   pluggy
+    #   pytest
+    #   stevedore
 iniconfig==1.1.1
     # via
     #   -r requirements/test.txt
@@ -119,7 +131,7 @@ pyasn1==0.4.8
     #   -r requirements/test.txt
     #   pyasn1-modules
     #   rsa
-pygments==2.7.3
+pygments==2.7.4
     # via
     #   doc8
     #   readme-renderer
@@ -207,6 +219,7 @@ typing-extensions==3.7.4.3
     # via
     #   -r requirements/test.txt
     #   aiohttp
+    #   yarl
 urllib3==1.26.2
     # via
     #   -r requirements/test.txt
@@ -218,6 +231,10 @@ yarl==1.6.3
     # via
     #   -r requirements/test.txt
     #   aiohttp
+zipp==3.4.0
+    # via
+    #   -r requirements/test.txt
+    #   importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

@@ -65,12 +65,12 @@ async def fetch_languages(repo):
     has_next_page = True
 
     while has_next_page:
-        json = {
+        _json = {
             "query": FETCH_REPOSITORY_LANGUAGES,
             "variables": kwargs.update(cursor=cursor) or kwargs,
         }
 
-        data = await client.request(json=json)
+        data = await client.request(json=_json)
         data = functools.reduce(operator.getitem, ["node", "languages"], data)
 
         edges.extend(data["edges"])

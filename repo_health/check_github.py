@@ -1,17 +1,21 @@
 """
 Checks to collect useful information from the GitHub API about the target repository.
 """
-
 import functools
+import json
 import logging
 import operator
+import os
+import re
 
 import pytest
+import requests
 from pytest_repo_health import health_metadata
 
 logger = logging.getLogger(__name__)
 
 MODULE_DICT_KEY = "github"
+URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).git"
 
 FETCH_REPOSITORY_LANGUAGES = """
 query fetch_repository_languages ($repository_id: ID!, $cursor: String=null) {
@@ -178,3 +182,30 @@ async def check_languages(all_results, github_repo):
             results[language] = languages[language]
         else:
             results[language] = 0
+
+
+def check_branch_and_pr_count(all_results, git_origin_url):
+    """
+    Checks repository integrated with github actions workflow
+    """
+    match = re.search(URL_PATTERN, git_origin_url)
+    repo_name = match.group("repo_name")
+    all_results[MODULE_DICT_KEY]['branch_count'] = get_branch_or_pr_count(repo_name, 'branches')
+    all_results[MODULE_DICT_KEY]['pulls_count'] = get_branch_or_pr_count(repo_name, 'pulls')
+
+
+def get_branch_or_pr_count(repo_name, pulls_or_branches):
+    """
+    Get the count for branches or pull requests using Github API and add the count to report
+    """
+    url = f"https://api.github.com/repos/edx/{repo_name}/{pulls_or_branches}?per_page=1"
+    count = 0
+
+    response = requests.get(url=url, headers={'Authorization': f'Bearer {os.environ["GITHUB_TOKEN"]}'})
+    if response.ok and json.loads(response.content):
+        count = 1
+        if 'last' in response.links:
+            last_page = response.links['last']['url']
+            count = int(re.findall(r'page=(\d+)', last_page)[1])
+
+    return count

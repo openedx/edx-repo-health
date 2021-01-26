@@ -4,9 +4,9 @@ Adding Additional Checks
 
 This document explains how to add checks to edx-repo-health.
 
-To get a better understanding of a check function, read `check_function`_ doc
+To get a better understanding of how check functions work, read the `Check Functions`__ doc.
 
-.. _check_function: https://github.com/edx/edx-repo-health/blob/master/docs/check_function.rst
+__ https://github.com/edx/edx-repo-health/blob/master/docs/check_function.rst
 
 Steps to adding a check:
 ------------------------
@@ -36,7 +36,7 @@ How to Add Data to "all_results":
 1. if you are creating a new module for your checks,
    define a module_dict_key at top of file
 2. add info to "all_results" by::
-    all_results[module_dict_key]["info_key"]=key
+    all_results[module_dict_key]["info_key"]=result
 
 
 Documenting Checks:
@@ -62,3 +62,12 @@ In the example below, the decorator add_key_to_metadata assumes the doc string i
         """
         code ...
         all_results[module_dict_key]["upgrade"]=True
+
+How to Run it
+-------------
+
+Installing this repo (with ``make requirements``) will also install the
+pytest-repo-health tools. See the `pytest-repo-health`_ repo for details on
+using pytest to run the checks.
+
+.. _pytest-repo-health: https://github.com/edx/pytest-repo-health

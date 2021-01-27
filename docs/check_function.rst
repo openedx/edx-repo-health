@@ -1,43 +1,77 @@
-==============
-Check Function
-==============
+===============
+Check Functions
+===============
 
-A check function is a python test function with "check_" as a prefix rather than "test_". It is meant to be used by pytest-repo-health plugin to gather info about a repository of code. A check stores its results in "all_results" (more on this below). Documentation of a check is done using one of the decorators: ``@health_metadata`` or ``@add_key_to_metadata``
+A check function is a Python function that checks some aspect of a repository.  It adds its results to a dictionary called "all_results." It is run by pytest using a customized plugin (`pytest-repo-health`_). This allows every check function to be independent and centrally coordinated, like test functions.
 
+
+How results are structured
+--------------------------
+
+Check functions contribute results to a dictionary called all_results.  The structure of all_results is arbitrarily nested, but usually, it's two-level: the first level is based on the module containing the check function, and the second level is the name of the data result.
+
+For example, in check_existence.py, the check function might write::
+
+    all_results["exists"]["Makefile"] = True
+    all_results["exists"]["tox.ini"] = False
+
+Here, "exists" is the module key, and the second key is the name of the file being checked.  (In a real check function, the result value would be determined from the repo contents, rather than constants.)
 
 
 Anatomy of a check
 ------------------
 
-1. **Decorator to add info about check.** Use either "@health_metadata" or "@add_key_to_metadata" decorator.
-2. **Function inputs: pytest fixtures.**  If the check is gathering info (which it should), it should use the "all_results" fixture
-3. **Function doc string.**  If using "@add_key_to_metadata", this doc string will be treated like the doc for the key.  Otherwise, write something here to help developers in the future.
-4. **Function body.**  Code to gather information.  Make sure to add info into the "all_results" dict.
+#. **Name**: Name your check function with a "check_" prefix, not "test_". The Python file should be named "check_*.py".
 
-Available Fixtures:
---------------------
+#. **Decorator to add metadata:** Use either "@health_metadata" or "@add_key_to_metadata" decorator.  These define the expected structure of the results, and add a descriptive string describing the result. Which you use depends on how many results you will write. See below for details.
 
-- "all_results" fixture
-    - pytest-repo-health plugin uses a default dict called session_data_holder_dict to hold information for a check run. 
-    - the all_results variable is essentially another named variable to data container session_data_holder_dict
-    - Anything you do to all_results variable is done to session_data_holder_dict
+#. **Function inputs:** The check function uses pytest fixtures to get the all_results results dictionary and the location of the repo to check.
 
-- "repo_path" fixture
-    - the path to rootdir of the directory on which the checks are being run
+#. **Function docstring:**  If using "@add_key_to_metadata", this doc string will be treated like the doc for the key.  Otherwise, write something here to help developers in the future.
 
-How data is structured in "all_results":
-----------------------------------------
+#. **Function body:**  Use the repo_path pytest fixture to find the local directory containing the repo to check.  Make sure to add info into the "all_results" dict. Don't write asserts.
 
-- all_results is a dict
-- the info in dict is structured by check modules: all_results["module_key"]["info"]...
-- the existing modules define a module_dict_key at top of file
-    - all_results[module_dict_key] = { dict with all the info in this module}
+Metadata decorators:
 
-Documenting all_results keys:
------------------------------
-Each key added to all_results should be well documented. Decorators are used to facilitate easy programmatic handling of info on each key.
+* "@add_key_to_metadata" is used when your check function produces a single result.  The argument is a tuple, the keys to use in all_results. The function docstring is used as the description of the result::
 
-- the decorators are imported from pytest-repo-health
-- there are currently two available decorators
-    - "@health_metadata" decorator - use if your check adds more than one key to "all_results"
-    - "@add_key_to_metadata" decorator - if the function (check) is only adding one key to "all_results". This decorator assumes the function doc string is the documentation on the key
+    @add_key_to_metadata(("exists", "readme"))
+    def check_readme(repo_path, all_results):
+        """Does the repo have a README?"""
+        all_results["exists"]["readme"] = os.path.exists(os.path.join(repo_path, "README"))
+
+* "@health_metadata" is a more general decorator used when your check produces a number of results.  The first argument is a list of keys, the path down to the result leaves in all_results.  The second argument is a dictionary mapping leaf keys to their descriptions::
+
+    @health_metadata(
+        ["exists"],
+        {
+            "README": "Does the repo have a README?",
+            "Makefile": "Does the repo have a Makefile?",
+            "tox.ini": "Does the repo have a tox.ini?",
+        },
+    )
+    def check_files(repo_path, all_results):
+        for fname in ["README", "Makefile", "tox.ini"]:
+            all_results["exists"][fname] = os.path.exists(os.path.join(repo_path, fname))
+
+
+Available Fixtures
+------------------
+
+These are the two main fixtures. 
+
+- "all_results" fixture: the dictionary to update with your check's results.
+
+- "repo_path" fixture: a str, the path to the repo directory being checked.
+
+The complete set of fixtures is available in the `pytest-repo-health/fixtures`__ directory.
+
+__ https://github.com/edx/pytest-repo-health/tree/master/pytest_repo_health/fixtures
+
+
+Running checks
+--------------
+
+Installing this repo (with ``make requirements``) will install the pytest-repo-health tools.  See the `pytest-repo-health`_ repo for details on using pytest to run the checks.
+
+.. _pytest-repo-health: https://github.com/edx/pytest-repo-health

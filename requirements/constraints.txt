@@ -16,3 +16,6 @@ importlib-metadata<3.0
 
 # aiohttp latest version 3.7.3 requires chardet<4.0, can be removed once aiohttp==4.0.0 is released.
 chardet<4.0
+
+# diff-cover==4.2.0 requires chardet==4.0.0 which is pinned due to aiohttp issue
+diff-cover<4.2.0

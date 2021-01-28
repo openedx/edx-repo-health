@@ -9,29 +9,28 @@ import re
 import requests
 from pytest_repo_health import add_key_to_metadata
 
-
 logger = logging.getLogger(__name__)
 
 module_dict_key = "check_repo_size"
 
 URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).git"
 
-
-ONLY_SERVICES = ['edx-platform', 'credentials', 'registrar']
+# list of services with their respective size.
+ONLY_SERVICES = [{'edx-platform': 11111, 'credentials': 9596, 'registrar': 3201}]
 
 
 def get_api_response(repo_name):
     """
     get the repo information using api.
     """
-
     # For unauthenticated requests, the rate limit allows for up to 60 requests per hour.
     # https://developer.github.com/v3/#rate-limiting
-    if repo_name in ONLY_SERVICES:
-        return requests.get(
-            url=f'https://api.github.com/repos/edx/{repo_name}',
-            headers={'Authorization': f'Bearer {os.environ["GITHUB_TOKEN"]}'}
-        )
+    for data in ONLY_SERVICES:
+        if repo_name in data:
+            return requests.get(
+                url=f'https://api.github.com/repos/edx/{repo_name}',
+                headers={'Authorization': f'Bearer {os.environ["GITHUB_TOKEN"]}'}
+            )
 
 
 class GitHubIntegrationHandler:

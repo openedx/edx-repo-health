@@ -50,10 +50,21 @@ BAD_THINGS = {
 )
 def check_readme_contents(repo_path, all_results):
     """
-    Check that README.rst has or does not have desired or undesirable contents.
+    Check that the README file has or does not have desired or undesirable contents.
     """
-    with open(os.path.join(repo_path, "README.rst")) as freadme:
-        readme = freadme.read()
+    # This check doesn't care what the readme is called, just that it has the
+    # right information in it.  So try a bunch of possibilities.
+    for readme_name in ["README.rst", "README.md", "README.txt", "README"]:
+        try:
+            with open(os.path.join(repo_path, readme_name)) as freadme:
+                readme = freadme.read()
+            break
+        except FileNotFoundError:
+            continue
+    else:
+        # There is no README at all, so nothing to check.
+        return
+
     for key, val in GOOD_THINGS.items():
         present = any(re.search(regex, readme) for regex in val["re"])
         all_results[module_dict_key][key] = present

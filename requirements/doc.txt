@@ -22,9 +22,9 @@ attrs==20.3.0
     #   pytest
 babel==2.9.0
     # via sphinx
-bleach==3.2.1
+bleach==3.2.3
     # via readme-renderer
-cachetools==4.2.0
+cachetools==4.2.1
     # via
     #   -r requirements/test.txt
     #   google-auth
@@ -47,7 +47,7 @@ docutils==0.16
     #   readme-renderer
     #   restructuredtext-lint
     #   sphinx
-edx-sphinx-theme==1.6.0
+edx-sphinx-theme==1.6.1
     # via -r requirements/doc.in
 gitdb==4.0.5
     # via
@@ -146,14 +146,14 @@ pytest-aiohttp==0.3.0
     #   pytest-repo-health
 pytest-repo-health==2.1.0
     # via -r requirements/test.txt
-pytest==6.2.1
+pytest==6.2.2
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp
     #   pytest-repo-health
 pytz==2020.5
     # via babel
-pyyaml==5.3.1
+pyyaml==5.4.1
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
@@ -187,11 +187,11 @@ six==1.15.0
     #   google-auth
     #   readme-renderer
     #   responses
-smmap==3.0.4
+smmap==3.0.5
     # via
     #   -r requirements/test.txt
     #   gitdb
-snowballstemmer==2.0.0
+snowballstemmer==2.1.0
     # via sphinx
 sphinx==3.4.3
     # via
@@ -220,7 +220,7 @@ typing-extensions==3.7.4.3
     #   -r requirements/test.txt
     #   aiohttp
     #   yarl
-urllib3==1.26.2
+urllib3==1.26.3
     # via
     #   -r requirements/test.txt
     #   requests

@@ -41,7 +41,6 @@ class GitHubIntegrationHandler:
     def __init__(self, repo_name):
         self.repo_name = repo_name
         self.api_data = None
-        self.size = 0
         self._set_github_actions_integration_data()
 
     def _set_github_actions_integration_data(self):
@@ -70,7 +69,7 @@ class GitHubIntegrationHandler:
         self.api_data = json.loads(self.api_response.content)
 
         if self.api_data and 'size' in self.api_data:
-            self.size = self.api_data.get('size')
+            return self.api_data.get('size')
 
 
 @add_key_to_metadata(module_dict_key)
@@ -81,5 +80,4 @@ def check_repo_size(all_results, git_origin_url):
     match = re.search(URL_PATTERN, git_origin_url)
     repo_name = match.group("repo_name")
     integration_handler = GitHubIntegrationHandler(repo_name)
-    integration_handler.handle()
-    all_results[module_dict_key] = integration_handler.size
+    all_results[module_dict_key] = integration_handler.handle()

@@ -320,7 +320,7 @@ toml==0.10.2
     #   tox
 tox-battery==0.6.1
     # via -r requirements/dev.in
-tox==3.21.2
+tox==3.21.3
     # via
     #   -r requirements/ci.txt
     #   tox-battery

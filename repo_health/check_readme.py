@@ -9,6 +9,7 @@ from pytest_repo_health import health_metadata
 
 module_dict_key = "readme"
 
+# Good things should be there, and are True if they are present.
 GOOD_THINGS = {
     "security": {
         "description": "Has a security contact",
@@ -24,15 +25,17 @@ GOOD_THINGS = {
     },
 }
 
+# Bad things should not be there, and are True if they are absent, so that all
+# the values should be True.
 BAD_THINGS = {
     "irc-missing": {
-        "description": "Has obsolete IRC info",
+        "description": "Avoids obsolete IRC info",
         "re": [
             r"(?i)`#?edx-code`? IRC channel",
         ],
     },
     "mailing-list-missing": {
-        "description": "Has obsolete mailing list info",
+        "description": "Avoids obsolete mailing list info",
         "re": [
             r"https?://groups.google.com/forum/#!forum/edx-code",
         ],

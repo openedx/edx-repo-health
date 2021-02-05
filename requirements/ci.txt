@@ -32,7 +32,7 @@ importlib-metadata==2.1.1
     #   virtualenv
 importlib-resources==5.1.0
     # via virtualenv
-packaging==20.8
+packaging==20.9
     # via tox
 pluggy==0.13.1
     # via tox
@@ -48,11 +48,11 @@ six==1.15.0
     #   virtualenv
 toml==0.10.2
     # via tox
-tox==3.21.3
+tox==3.21.4
     # via -r requirements/ci.in
 urllib3==1.26.3
     # via requests
-virtualenv==20.4.0
+virtualenv==20.4.2
     # via tox
 zipp==3.4.0
     # via

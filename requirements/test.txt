@@ -46,7 +46,7 @@ google-auth-oauthlib==0.4.2
     # via
     #   -r requirements/base.txt
     #   gspread
-google-auth==1.24.0
+google-auth==1.25.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -82,7 +82,7 @@ oauthlib==3.1.0
     # via
     #   -r requirements/base.txt
     #   requests-oauthlib
-packaging==20.8
+packaging==20.9
     # via
     #   -r requirements/base.txt
     #   pytest

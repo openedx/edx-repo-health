@@ -28,7 +28,7 @@ Usage
 - cd into the directory you wish to run checks on
 - Run the `run_checks` command
 
- `run_checks` is a CLI wrapper around pytest and pytest-repo-health_. Running `run_checks` will run all checks located in edx-repo-health repo on the directory you are currently cd'd into.
+  `run_checks` is a CLI wrapper around pytest and pytest-repo-health_. Running `run_checks` will run all checks located in edx-repo-health repo on the directory you are currently cd'd into.
 
   If you would like to add further flags to the pytest call, you can add the flags after `run_checks` command and they will be passed on the pytest automatically. Find out about additional options at pytest-repo-health_ or run `pytest --help` command.
 

@@ -11,6 +11,28 @@ edx-repo-health is a set of checks of the health of repositories.  They are writ
 - The completed dictionary is written as a YAML file when all the checks have
   been run.
 
+Installation
+------------
+
+1. git clone this repository::
+
+   $ git clone git@github.com:edx/edx-repo-health.git
+
+2. run `make requirements` to install reqs for this repo
+3. run `pip install -e .` to install this project
+
+Usage
+-----
+
+- Follow Installation steps above
+- cd into the directory you wish to run checks on
+- Run the `run_checks` command
+
+ `run_checks` is a CLI wrapper around pytest-repo-health_. Running `run_checks` will run all checks located in edx-repo-health repo on the directory you are currently cd'd into.
+
+  As of now, there is no way to further modify plugin behavior using the CLI `run_checks`, for more custom    behavior, please see readme in pytest-repo-health_.
+
+
 Design
 ------
 

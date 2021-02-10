@@ -75,7 +75,7 @@ class TravisIntegrationHandler:
         self._set_active_on_org()
 
 
-@add_key_to_metadata(module_dict_key)
+@add_key_to_metadata((module_dict_key,))
 def check_travis_integration(all_results, git_origin_url):
     """
     Checks repository integrated with travis-ci.org or travis-ci.com

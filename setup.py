@@ -83,7 +83,8 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "repo_health_dashboard = repo_health_dashboard.repo_health_dashboard:main"
+            "repo_health_dashboard = repo_health_dashboard.repo_health_dashboard:main",
+            "run_checks = scripts.run_checks:main",
         ]
     },
 )

@@ -2,25 +2,25 @@
 Wrapper CLI around pytest call to allow users to use checks in this repo
 without knowing much about pytest-repo-health
 """
-import argparse
+import sys
 import pytest
-import pathlib
+from pathlib import Path
 
 
 def main():
     """
     Initiates pytest in repo-health mode
     """
+    # get location of where edx-repo-health is located so that pytest knows where the checks are located
+    checks_dir = Path(__file__).parent.parent.absolute()
 
     # Allow user to add further flags after run_check command and
     # pass those flags to pytest.
-    parser = argparse.ArgumentParser()
-    args, unknown_args = parser.parse_known_args()
-
-    checks_dir = pathlib.Path(__file__).parent.parent.absolute()
     flags = ["--noconftest", "--repo-health", "--repo-health-path", str(checks_dir)]
-    flags.extend(unknown_args)
+    flags.extend(sys.argv[1:])
+
     pytest.main(flags)
+
 
 
 if __name__ == "__main__":

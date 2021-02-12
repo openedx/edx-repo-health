@@ -95,7 +95,7 @@ gitdb==4.0.5
     #   gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140
     # via -r requirements/quality.txt
-gitpython==3.1.12
+gitpython==3.1.13
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
@@ -103,7 +103,7 @@ google-auth-oauthlib==0.4.2
     # via
     #   -r requirements/quality.txt
     #   gspread
-google-auth==1.25.0
+google-auth==1.26.1
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib

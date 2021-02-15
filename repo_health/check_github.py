@@ -10,7 +10,10 @@ import re
 
 import pytest
 import requests
-from pytest_repo_health import health_metadata
+from pytest_repo_health import add_key_to_metadata, health_metadata
+
+from .queries import FETCH_BUILD_CHECK_RUNS
+from .utils import parse_build_duration_response
 
 logger = logging.getLogger(__name__)
 
@@ -83,6 +86,29 @@ async def fetch_languages(repo):
         name = edge["node"]["name"]
         result[name.lower()] = edge["size"]
     return result
+
+
+@add_key_to_metadata((MODULE_DICT_KEY, "build_details"))
+async def check_build_duration(all_results, github_repo):
+    """
+    Fetches the builds details from Github and calculates the duration of each build
+    """
+    repo = github_repo.object
+    client = repo.http
+    kwargs = {"repository_id": repo.id}
+
+    _json = {
+        "query": FETCH_BUILD_CHECK_RUNS,
+        "variables": kwargs,
+    }
+
+    data = await client.request(json=_json)
+    total_duration, checks_list = parse_build_duration_response(data)
+
+    all_results[MODULE_DICT_KEY]['build_details'] = {
+        'total_duration': total_duration,
+        'checks': checks_list
+    }
 
 
 @health_metadata(

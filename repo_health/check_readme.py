@@ -137,7 +137,12 @@ def check_readme_links(readme, all_results):
         seen.add(url)
         if is_example_url(url):
             continue
-        resp = requests.head(url, allow_redirects=True)
+        try:
+            resp = requests.head(url, allow_redirects=True)
+        except requests.ConnectionError as e:
+            bad[url] = str(e)
+            continue
+
         if 200 <= resp.status_code <= 300:
             good.append(url)
         else:

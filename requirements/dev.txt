@@ -103,12 +103,12 @@ google-auth-oauthlib==0.4.2
     # via
     #   -r requirements/quality.txt
     #   gspread
-google-auth==1.26.1
+google-auth==1.27.0
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
     #   gspread
-gspread==3.6.0
+gspread==3.7.0
     # via -r requirements/quality.txt
 idna-ssl==1.1.0
     # via
@@ -212,7 +212,7 @@ pycodestyle==2.6.0
     # via -r requirements/quality.txt
 pydocstyle==5.1.1
     # via -r requirements/quality.txt
-pygments==2.7.4
+pygments==2.8.0
     # via diff-cover
 pylint-celery==0.3
     # via
@@ -227,7 +227,7 @@ pylint-plugin-utils==0.6
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pylint==2.6.0
+pylint==2.6.2
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -272,12 +272,11 @@ requests==2.25.1
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   codecov
-    #   gspread
     #   requests-oauthlib
     #   responses
 responses==0.12.1
     # via -r requirements/quality.txt
-rsa==4.7
+rsa==4.7.1
     # via
     #   -r requirements/quality.txt
     #   google-auth
@@ -320,7 +319,7 @@ toml==0.10.2
     #   tox
 tox-battery==0.6.1
     # via -r requirements/dev.in
-tox==3.21.4
+tox==3.22.0
     # via
     #   -r requirements/ci.txt
     #   tox-battery

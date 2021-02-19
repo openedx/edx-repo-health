@@ -46,12 +46,12 @@ google-auth-oauthlib==0.4.2
     # via
     #   -r requirements/base.txt
     #   gspread
-google-auth==1.26.1
+google-auth==1.27.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
     #   gspread
-gspread==3.6.0
+gspread==3.7.0
     # via -r requirements/base.txt
 idna-ssl==1.1.0
     # via
@@ -129,12 +129,11 @@ requests-oauthlib==1.3.0
 requests==2.25.1
     # via
     #   -r requirements/base.txt
-    #   gspread
     #   requests-oauthlib
     #   responses
 responses==0.12.1
     # via -r requirements/test.in
-rsa==4.7
+rsa==4.7.1
     # via
     #   -r requirements/base.txt
     #   google-auth

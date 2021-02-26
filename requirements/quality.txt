@@ -4,14 +4,14 @@
 #
 #    make upgrade
 #
-aiohttp==3.7.3
+aiohttp==3.7.4
     # via
     #   -r requirements/test.txt
     #   github.py
     #   pytest-aiohttp
 asgiref==3.3.1
     # via django
-astroid==2.4.2
+astroid==2.5
     # via
     #   pylint
     #   pylint-celery
@@ -47,11 +47,11 @@ click==7.1.2
     #   edx-lint
 code-annotations==1.1.0
     # via edx-lint
-django==3.1.6
+django==3.1.7
     # via
     #   code-annotations
     #   edx-lint
-edx-lint==4.0.1
+edx-lint==4.1.0
     # via -r requirements/quality.in
 gitdb==4.0.5
     # via
@@ -101,7 +101,7 @@ isort==5.7.0
     #   pylint
 jinja2==2.11.3
     # via code-annotations
-lazy-object-proxy==1.4.3
+lazy-object-proxy==1.5.2
     # via astroid
 markupsafe==1.1.1
     # via jinja2
@@ -151,7 +151,7 @@ pylint-plugin-utils==0.6
     # via
     #   pylint-celery
     #   pylint-django
-pylint==2.6.2
+pylint==2.7.1
     # via
     #   edx-lint
     #   pylint-celery
@@ -192,14 +192,13 @@ requests==2.25.1
     #   responses
 responses==0.12.1
     # via -r requirements/test.txt
-rsa==4.7.1
+rsa==4.7.2
     # via
     #   -r requirements/test.txt
     #   google-auth
 six==1.15.0
     # via
     #   -r requirements/test.txt
-    #   astroid
     #   edx-lint
     #   google-auth
     #   responses

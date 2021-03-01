@@ -1,0 +1,87 @@
+{
+  "node": {
+    "defaultBranchRef": {
+      "target": {
+        "history": {
+          "edges": [
+            {
+              "node": {
+                "message": "fix(i18n): update translations",
+                "checkSuites": {
+                  "edges": [
+                    {
+                      "node": {
+                        "checkRuns": {
+                          "edges": [
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "node": {
+                        "checkRuns": {
+                          "edges": [
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "node": {
+                        "checkRuns": {
+                          "edges": [
+                            {
+                              "node": {
+                                "name": "acceptance_tests",
+                                "startedAt": "2021-02-14T20:30:37Z",
+                                "completedAt": "2021-02-14T20:33:48Z"
+                              }
+                            },
+                            {
+                              "node": {
+                                "name": "quality_and_translations_tests",
+                                "startedAt": "2021-02-14T20:30:37Z",
+                                "completedAt": "2021-02-14T20:33:45Z"
+                              }
+                            },
+                            {
+                              "node": {
+                                "name": "code_coverage",
+                                "startedAt": "2021-02-14T20:30:38Z",
+                                "completedAt": "2021-02-14T20:35:28Z"
+                              }
+                            },
+                            {
+                              "node": {
+                                "name": "unit_tests (py38, django22)",
+                                "startedAt": "2021-02-14T20:30:38Z",
+                                "completedAt": "2021-02-14T20:34:53Z"
+                              }
+                            },
+                            {
+                              "node": {
+                                "name": "unit_tests (py38, django30)",
+                                "startedAt": "2021-02-14T20:30:37Z",
+                                "completedAt": "2021-02-14T20:35:21Z"
+                              }
+                            },
+                            {
+                              "node": {
+                                "name": "unit_tests (py38, django31)",
+                                "startedAt": "2021-02-14T20:30:38Z",
+                                "completedAt": "2021-02-14T20:36:01Z"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

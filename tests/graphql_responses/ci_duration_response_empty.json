@@ -1,0 +1,28 @@
+{
+  "node": {
+    "defaultBranchRef": {
+      "target": {
+        "history": {
+          "edges": [
+            {
+              "node": {
+                "message": "Merge pull request #10 from edx/jenkins/cleanup-python-code-7940e14\n\nPython Code Cleanup",
+                "checkSuites": {
+                  "edges": [
+                    {
+                      "node": {
+                        "checkRuns": {
+                          "edges": []
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

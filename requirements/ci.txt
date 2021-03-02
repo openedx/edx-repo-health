@@ -14,7 +14,7 @@ chardet==3.0.4
     #   requests
 codecov==2.1.11
     # via -r requirements/ci.in
-coverage==5.4
+coverage==5.5
     # via codecov
 distlib==0.3.1
     # via virtualenv
@@ -30,7 +30,7 @@ importlib-metadata==2.1.1
     #   pluggy
     #   tox
     #   virtualenv
-importlib-resources==5.1.0
+importlib-resources==5.1.1
     # via virtualenv
 packaging==20.9
     # via tox

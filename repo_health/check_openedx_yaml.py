@@ -89,3 +89,21 @@ def check_obsolete_fields(parsed_data, all_results):
     """
     obsolete_fields_in_file = [field for field in obsolete_fields if field in parsed_data]
     all_results[module_dict_key]["obsolete_fields"] = ",".join(obsolete_fields_in_file)
+
+
+@add_key_to_metadata((module_dict_key, "release"))
+def check_release_ref(parsed_data, all_results):
+    """
+    Is this repo tagged as part of Open edX releases?
+    """
+    ref = parsed_data.get("openedx-release", {}).get("ref", "")
+    all_results[module_dict_key]["release"] = ref
+
+
+@add_key_to_metadata((module_dict_key, "release-maybe"))
+def check_release_maybe(parsed_data, all_results):
+    """
+    Does this repo still have "maybe" for openedx releases?
+    """
+    maybe = parsed_data.get("openedx-release", {}).get("maybe", False)
+    all_results[module_dict_key]["release-maybe"] = maybe

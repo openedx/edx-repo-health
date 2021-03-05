@@ -63,11 +63,11 @@ gitpython==3.1.14
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth-oauthlib==0.4.2
+google-auth-oauthlib==0.4.3
     # via
     #   -r requirements/test.txt
     #   gspread
-google-auth==1.27.0
+google-auth==1.27.1
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib

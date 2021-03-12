@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohttp==3.7.4
+aiohttp==3.7.4.post0
     # via
     #   -r requirements/quality.txt
     #   github.py
@@ -212,7 +212,7 @@ pycodestyle==2.6.0
     # via -r requirements/quality.txt
 pydocstyle==5.1.1
     # via -r requirements/quality.txt
-pygments==2.8.0
+pygments==2.8.1
     # via diff-cover
 pylint-celery==0.3
     # via
@@ -349,7 +349,7 @@ yarl==1.6.3
     # via
     #   -r requirements/quality.txt
     #   aiohttp
-zipp==3.4.0
+zipp==3.4.1
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt

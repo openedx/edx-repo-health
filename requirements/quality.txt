@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohttp==3.7.4
+aiohttp==3.7.4.post0
     # via
     #   -r requirements/test.txt
     #   github.py
@@ -237,7 +237,7 @@ yarl==1.6.3
     # via
     #   -r requirements/test.txt
     #   aiohttp
-zipp==3.4.0
+zipp==3.4.1
     # via
     #   -r requirements/test.txt
     #   importlib-metadata

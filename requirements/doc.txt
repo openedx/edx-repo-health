@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohttp==3.7.4
+aiohttp==3.7.4.post0
     # via
     #   -r requirements/test.txt
     #   github.py
@@ -131,7 +131,7 @@ pyasn1==0.4.8
     #   -r requirements/test.txt
     #   pyasn1-modules
     #   rsa
-pygments==2.8.0
+pygments==2.8.1
     # via
     #   doc8
     #   readme-renderer
@@ -192,7 +192,7 @@ smmap==3.0.5
     #   gitdb
 snowballstemmer==2.1.0
     # via sphinx
-sphinx==3.5.1
+sphinx==3.5.2
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
@@ -230,7 +230,7 @@ yarl==1.6.3
     # via
     #   -r requirements/test.txt
     #   aiohttp
-zipp==3.4.0
+zipp==3.4.1
     # via
     #   -r requirements/test.txt
     #   importlib-metadata

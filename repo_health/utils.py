@@ -25,6 +25,10 @@ def parse_build_duration_response(json_response):
 
         all_check_runs = check_suite['node']['checkRuns']['edges']
         for check_run in all_check_runs:
+            # If check is still in progress, skip it
+            if not check_run['node']['completedAt']:
+                continue
+
             name = check_run['node']['name']
             started_at = datetime.strptime(check_run['node']['startedAt'], GITHUB_DATETIME_FMT)
             completed_at = datetime.strptime(check_run['node']['completedAt'], GITHUB_DATETIME_FMT)

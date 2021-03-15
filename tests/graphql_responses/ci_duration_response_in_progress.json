@@ -1,0 +1,66 @@
+{
+  "node": {
+    "defaultBranchRef": {
+      "target": {
+        "history": {
+          "edges": [
+            {
+              "node": {
+                "message": "fix(i18n): update translations",
+                "checkSuites": {
+                  "edges": [
+                    {
+                      "node": {
+                        "checkRuns": {
+                          "edges": [
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "node": {
+                        "checkRuns": {
+                          "edges": [
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "node": {
+                        "checkRuns": {
+                          "edges": [
+                            {
+                              "node": {
+                                "name": "acceptance_tests",
+                                "startedAt": "2021-02-14T20:30:37Z",
+                                "completedAt": null
+                              }
+                            },
+                            {
+                              "node": {
+                                "name": "quality_tests",
+                                "startedAt": "2021-02-14T20:30:37Z",
+                                "completedAt": "2021-02-14T20:32:37Z"
+                              }
+                            },
+                            {
+                              "node": {
+                                "name": "unit_tests",
+                                "startedAt": "2021-02-14T10:30:37Z",
+                                "completedAt": null
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

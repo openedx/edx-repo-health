@@ -37,3 +37,10 @@ class TestCIDurationChecks:
 
         assert len(checks) == 7
         assert total_time == '10 minutes 10 seconds'
+
+    def test_some_checks_in_progress(self):
+        data = self.read_json_data('tests/graphql_responses/ci_duration_response_in_progress.json')
+        total_time, checks = parse_build_duration_response(data)
+
+        assert len(checks) == 1
+        assert total_time == '2 minutes 0 seconds'

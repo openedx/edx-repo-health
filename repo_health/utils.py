@@ -39,14 +39,21 @@ def parse_build_duration_response(json_response):
                 last_completed_at = completed_at
 
             job_duration = completed_at - started_at
-            minutes, remaining_seconds = divmod(job_duration.total_seconds(), 60)
+            total_seconds = job_duration.total_seconds()
+            minutes, remaining_seconds = divmod(total_seconds, 60)
 
             build_checks.append({
                 'name': name,
-                'duration': f'{int(minutes)} minutes {int(remaining_seconds)} seconds'
+                'duration': f'{int(minutes)} minutes {int(remaining_seconds)} seconds',
+                'seconds': total_seconds
             })
 
     if build_checks:
+        # sorting checks into descending order of duration to get slowest check on top
+        build_checks = sorted(build_checks, key=lambda k: k['seconds'], reverse=True)
+        for check in build_checks:
+            del check['seconds']
+
         build_duration = last_completed_at - first_started_at
         minutes, remaining_seconds = divmod(build_duration.total_seconds(), 60)
 

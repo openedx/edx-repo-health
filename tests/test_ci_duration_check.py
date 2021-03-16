@@ -44,3 +44,17 @@ class TestCIDurationChecks:
 
         assert len(checks) == 1
         assert total_time == '2 minutes 0 seconds'
+
+    def test_checks_sorting(self):
+        data = self.read_json_data('tests/graphql_responses/ci_duration_response_multiple_runs.json')
+        _, checks = parse_build_duration_response(data)
+
+        assert len(checks) == 6
+
+        # Slowest Check
+        assert checks[0]['name'] == 'unit_tests (py38, django31)'
+        assert checks[0]['duration'] == '5 minutes 23 seconds'
+
+        # Fastest Check
+        assert checks[-1]['name'] == 'quality_and_translations_tests'
+        assert checks[-1]['duration'] == '3 minutes 8 seconds'

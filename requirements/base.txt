@@ -31,7 +31,7 @@ gitpython==3.1.14
     # via pytest-repo-health
 google-auth-oauthlib==0.4.3
     # via gspread
-google-auth==1.27.1
+google-auth==1.28.0
     # via
     #   google-auth-oauthlib
     #   gspread
@@ -99,7 +99,7 @@ typing-extensions==3.7.4.3
     # via
     #   aiohttp
     #   yarl
-urllib3==1.26.3
+urllib3==1.26.4
     # via requests
 yarl==1.6.3
     # via aiohttp

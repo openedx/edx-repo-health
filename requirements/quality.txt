@@ -51,7 +51,7 @@ django==3.1.7
     # via
     #   code-annotations
     #   edx-lint
-edx-lint==4.1.0
+edx-lint==4.1.1
     # via -r requirements/quality.in
 gitdb==4.0.5
     # via
@@ -67,7 +67,7 @@ google-auth-oauthlib==0.4.3
     # via
     #   -r requirements/test.txt
     #   gspread
-google-auth==1.27.1
+google-auth==1.28.0
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -139,9 +139,9 @@ pyasn1==0.4.8
     #   -r requirements/test.txt
     #   pyasn1-modules
     #   rsa
-pycodestyle==2.6.0
+pycodestyle==2.7.0
     # via -r requirements/quality.in
-pydocstyle==5.1.1
+pydocstyle==6.0.0
     # via -r requirements/quality.in
 pylint-celery==0.3
     # via edx-lint
@@ -190,7 +190,7 @@ requests==2.25.1
     #   -r requirements/test.txt
     #   requests-oauthlib
     #   responses
-responses==0.12.1
+responses==0.13.1
     # via -r requirements/test.txt
 rsa==4.7.2
     # via
@@ -226,7 +226,7 @@ typing-extensions==3.7.4.3
     #   -r requirements/test.txt
     #   aiohttp
     #   yarl
-urllib3==1.26.3
+urllib3==1.26.4
     # via
     #   -r requirements/test.txt
     #   requests

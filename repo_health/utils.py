@@ -3,10 +3,20 @@ Utility Functions
 """
 import functools
 import operator
+import os
 from datetime import datetime
 
-
 GITHUB_DATETIME_FMT = "%Y-%m-%dT%H:%M:%SZ"
+
+
+def file_exists(repo_path, file_name):
+    full_path = os.path.join(repo_path, file_name)
+    return os.path.isfile(full_path)
+
+
+def dir_exists(repo_path, dir_name):
+    full_path = os.path.join(repo_path, dir_name)
+    return os.path.isdir(full_path)
 
 
 def parse_build_duration_response(json_response):

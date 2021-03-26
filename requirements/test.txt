@@ -32,7 +32,7 @@ chardet==3.0.4
     #   -r requirements/base.txt
     #   aiohttp
     #   requests
-gitdb==4.0.5
+gitdb==4.0.6
     # via
     #   -r requirements/base.txt
     #   gitpython

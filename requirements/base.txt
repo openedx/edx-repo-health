@@ -23,7 +23,7 @@ chardet==3.0.4
     #   -c requirements/constraints.txt
     #   aiohttp
     #   requests
-gitdb==4.0.5
+gitdb==4.0.6
     # via gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140
     # via -r requirements/github.in

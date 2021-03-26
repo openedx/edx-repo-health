@@ -51,9 +51,9 @@ django==3.1.7
     # via
     #   code-annotations
     #   edx-lint
-edx-lint==4.1.1
+edx-lint==5.0.0
     # via -r requirements/quality.in
-gitdb==4.0.5
+gitdb==4.0.6
     # via
     #   -r requirements/test.txt
     #   gitpython
@@ -74,34 +74,22 @@ google-auth==1.28.0
     #   gspread
 gspread==3.7.0
     # via -r requirements/test.txt
-idna-ssl==1.1.0
-    # via
-    #   -r requirements/test.txt
-    #   aiohttp
 idna==2.10
     # via
     #   -r requirements/test.txt
-    #   idna-ssl
     #   requests
     #   yarl
-importlib-metadata==2.1.1
-    # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/test.txt
-    #   pluggy
-    #   pytest
-    #   stevedore
 iniconfig==1.1.1
     # via
     #   -r requirements/test.txt
     #   pytest
-isort==5.7.0
+isort==5.8.0
     # via
     #   -r requirements/quality.in
     #   pylint
 jinja2==2.11.3
     # via code-annotations
-lazy-object-proxy==1.5.2
+lazy-object-proxy==1.6.0
     # via astroid
 markupsafe==1.1.1
     # via jinja2
@@ -219,13 +207,10 @@ toml==0.10.2
     #   -r requirements/test.txt
     #   pylint
     #   pytest
-typed-ast==1.4.2
-    # via astroid
 typing-extensions==3.7.4.3
     # via
     #   -r requirements/test.txt
     #   aiohttp
-    #   yarl
 urllib3==1.26.4
     # via
     #   -r requirements/test.txt
@@ -237,10 +222,6 @@ yarl==1.6.3
     # via
     #   -r requirements/test.txt
     #   aiohttp
-zipp==3.4.1
-    # via
-    #   -r requirements/test.txt
-    #   importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

@@ -82,14 +82,14 @@ django==3.1.7
     #   -r requirements/quality.txt
     #   code-annotations
     #   edx-lint
-edx-lint==4.1.1
+edx-lint==5.0.0
     # via -r requirements/quality.txt
 filelock==3.0.12
     # via
     #   -r requirements/ci.txt
     #   tox
     #   virtualenv
-gitdb==4.0.5
+gitdb==4.0.6
     # via
     #   -r requirements/quality.txt
     #   gitpython
@@ -110,40 +110,19 @@ google-auth==1.28.0
     #   gspread
 gspread==3.7.0
     # via -r requirements/quality.txt
-idna-ssl==1.1.0
-    # via
-    #   -r requirements/quality.txt
-    #   aiohttp
 idna==2.10
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
-    #   idna-ssl
     #   requests
     #   yarl
-importlib-metadata==2.1.1
-    # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/ci.txt
-    #   -r requirements/pip-tools.txt
-    #   -r requirements/quality.txt
-    #   pep517
-    #   pluggy
-    #   pytest
-    #   stevedore
-    #   tox
-    #   virtualenv
-importlib-resources==5.1.2
-    # via
-    #   -r requirements/ci.txt
-    #   virtualenv
 inflect==5.3.0
     # via jinja2-pluralize
 iniconfig==1.1.1
     # via
     #   -r requirements/quality.txt
     #   pytest
-isort==5.7.0
+isort==5.8.0
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -155,7 +134,7 @@ jinja2==2.11.3
     #   code-annotations
     #   diff-cover
     #   jinja2-pluralize
-lazy-object-proxy==1.5.2
+lazy-object-proxy==1.6.0
     # via
     #   -r requirements/quality.txt
     #   astroid
@@ -330,15 +309,10 @@ tox==3.23.0
     # via
     #   -r requirements/ci.txt
     #   tox-battery
-typed-ast==1.4.2
-    # via
-    #   -r requirements/quality.txt
-    #   astroid
 typing-extensions==3.7.4.3
     # via
     #   -r requirements/quality.txt
     #   aiohttp
-    #   yarl
 urllib3==1.26.4
     # via
     #   -r requirements/ci.txt
@@ -357,14 +331,6 @@ yarl==1.6.3
     # via
     #   -r requirements/quality.txt
     #   aiohttp
-zipp==3.4.1
-    # via
-    #   -r requirements/ci.txt
-    #   -r requirements/pip-tools.txt
-    #   -r requirements/quality.txt
-    #   importlib-metadata
-    #   importlib-resources
-    #   pep517
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip

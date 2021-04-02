@@ -17,7 +17,7 @@ asgiref==3.3.1
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==2.5.1
+astroid==2.5.2
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -59,7 +59,7 @@ click==7.1.2
     #   code-annotations
     #   edx-lint
     #   pip-tools
-code-annotations==1.1.0
+code-annotations==1.1.1
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -89,7 +89,7 @@ filelock==3.0.12
     #   -r requirements/ci.txt
     #   tox
     #   virtualenv
-gitdb==4.0.6
+gitdb==4.0.7
     # via
     #   -r requirements/quality.txt
     #   gitpython
@@ -99,7 +99,7 @@ gitpython==3.1.14
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth-oauthlib==0.4.3
+google-auth-oauthlib==0.4.4
     # via
     #   -r requirements/quality.txt
     #   gspread
@@ -233,7 +233,7 @@ pylint-plugin-utils==0.6
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pylint==2.7.2
+pylint==2.7.4
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -280,7 +280,7 @@ requests==2.25.1
     #   codecov
     #   requests-oauthlib
     #   responses
-responses==0.13.1
+responses==0.13.2
     # via -r requirements/quality.txt
 rsa==4.7.2
     # via
@@ -295,7 +295,7 @@ six==1.15.0
     #   responses
     #   tox
     #   virtualenv
-smmap==3.0.5
+smmap==4.0.0
     # via
     #   -r requirements/quality.txt
     #   gitdb

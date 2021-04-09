@@ -13,10 +13,6 @@ appdirs==1.4.4
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-asgiref==3.3.1
-    # via
-    #   -r requirements/quality.txt
-    #   django
 astroid==2.5.2
     # via
     #   -r requirements/quality.txt
@@ -77,8 +73,9 @@ distlib==0.3.1
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==3.1.7
+django==2.2.20
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
     #   code-annotations
     #   edx-lint
@@ -103,7 +100,7 @@ google-auth-oauthlib==0.4.4
     # via
     #   -r requirements/quality.txt
     #   gspread
-google-auth==1.28.0
+google-auth==1.28.1
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
@@ -224,7 +221,7 @@ pylint-celery==0.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-pylint-django==2.4.2
+pylint-django==2.4.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -251,7 +248,7 @@ pytest-aiohttp==0.3.0
     #   pytest-repo-health
 pytest-repo-health==2.1.0
     # via -r requirements/quality.txt
-pytest==6.2.2
+pytest==6.2.3
     # via
     #   -r requirements/quality.txt
     #   pytest-aiohttp

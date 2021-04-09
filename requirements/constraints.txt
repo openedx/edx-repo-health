@@ -9,6 +9,9 @@
 # pin when possible.  Writing an issue against the offending project and
 # linking to it here is good.
 
+# This file contains all common constraints for edx-repos
+-c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+
 # Tox and virtualenv require importlib-metadata<3.0 to support python3.5
 # so pinning until both packages drop support for python3.5 &
 # update their required importlib-metadata version constraint

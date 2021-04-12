@@ -128,7 +128,7 @@ def check_readme_links(readme, all_results):
         return
 
     seen = set()
-    bad = all_results[module_dict_key]["bad_links"] = {}
+    bad = all_results[module_dict_key]["bad_links"] = []
     good = all_results[module_dict_key]["good_links"] = []
 
     for url in re.findall(URL_REGEX, readme):
@@ -140,10 +140,10 @@ def check_readme_links(readme, all_results):
         try:
             resp = requests.head(url, allow_redirects=True)
         except requests.ConnectionError as e:
-            bad[url] = str(e)
+            bad.append(f"{url}: {e}")
             continue
 
         if 200 <= resp.status_code <= 300:
             good.append(url)
         else:
-            bad[url] = resp.status_code
+            bad.append(f"{url}: {resp.status_code}")

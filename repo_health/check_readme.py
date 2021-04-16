@@ -2,14 +2,13 @@
 Check some details in the readme file.
 """
 
-import os.path
 import re
 import urllib.parse
 
-import pytest
 import requests
 
 from pytest_repo_health import health_metadata
+from repo_health import fixture_readme  # pylint:disable=unused-import
 
 module_dict_key = "readme"
 
@@ -45,23 +44,6 @@ BAD_THINGS = {
         ],
     },
 }
-
-
-@pytest.fixture(name='readme')
-def fixture_readme(repo_path):
-    """Fixture producing the text of the readme file."""
-    # These checks don't care what the readme is called, just that it has the
-    # right information in it.  So try a bunch of possibilities.
-    for readme_name in ["README.rst", "README.md", "README.txt", "README"]:
-        try:
-            with open(os.path.join(repo_path, readme_name), encoding="utf-8") as freadme:
-                return freadme.read()
-        except FileNotFoundError:
-            continue
-
-    # There is no README at all, so nothing to check.
-    return None
-
 
 
 @health_metadata(

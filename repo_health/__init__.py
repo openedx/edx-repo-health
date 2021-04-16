@@ -6,6 +6,7 @@ import os
 from configparser import ConfigParser
 from pathlib import Path
 import glob
+import pytest
 
 
 __version__ = "0.1.0"
@@ -53,3 +54,19 @@ def get_file_names(path, file_type):
     path_pattern = path + "**/*." + file_type
     files = glob.glob(path_pattern, recursive=True)
     return files
+
+
+@pytest.fixture(name='readme')
+def fixture_readme(repo_path):
+    """Fixture producing the text of the readme file."""
+    # These checks don't care what the readme is called, just that it has the
+    # right information in it.  So try a bunch of possibilities.
+    for readme_name in ["README.rst", "README.md", "README.txt", "README"]:
+        try:
+            with open(os.path.join(repo_path, readme_name), encoding="utf-8") as freadme:
+                return freadme.read()
+        except FileNotFoundError:
+            continue
+
+    # There is no README at all, so nothing to check.
+    return None

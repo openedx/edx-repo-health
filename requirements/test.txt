@@ -46,7 +46,7 @@ google-auth-oauthlib==0.4.4
     # via
     #   -r requirements/base.txt
     #   gspread
-google-auth==1.28.1
+google-auth==1.29.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib

@@ -64,7 +64,7 @@ google-auth-oauthlib==0.4.4
     # via
     #   -r requirements/test.txt
     #   gspread
-google-auth==1.28.1
+google-auth==1.29.0
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -193,7 +193,7 @@ smmap==4.0.0
     #   gitdb
 snowballstemmer==2.1.0
     # via sphinx
-sphinx==3.5.3
+sphinx==3.5.4
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme

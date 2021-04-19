@@ -29,7 +29,6 @@ def fixture_req_packages(repo_path):
         stripped_lines = [re.sub(r' +#.*', "", line).replace('-e ', "")
                           for line in lines if line and not line.startswith("#")]
 
-
         for line in stripped_lines:
             if re.match(r'^git\+.*', line):
                 key_val = line.split('==')

@@ -1,12 +1,14 @@
 """
  Checks which are the dependencies of the repo
 """
+import json
+import os
 import re
 from pathlib import Path
-import os
 
 import pytest
 from pytest_repo_health import health_metadata
+
 from repo_health import get_file_lines
 
 module_dict_key = "dependencies"
@@ -51,12 +53,12 @@ def check_dependencies(dependencies, all_results):
     """
     all_results[module_dict_key] = {
         "count": len(dependencies["pypi"]) + len(dependencies["github"]),
-        "pypi": {
+        "pypi": json.dumps({
             "count": len(dependencies["pypi"]),
             "list": dependencies["pypi"],
-        },
-        "github": {
+        }),
+        "github": json.dumps({
             "count": len(dependencies["github"]),
             "list": dependencies["github"],
-        },
+        }),
     }

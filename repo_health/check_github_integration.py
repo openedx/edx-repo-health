@@ -82,4 +82,3 @@ def check_githuba_actions_integration(all_results, git_origin_url):
     integration_handler = GitHubIntegrationHandler(repo_name)
     integration_handler.handle()
     all_results[module_dict_key] = bool(integration_handler.github_actions)
-    all_results['org_name'] = match.group("org_name")

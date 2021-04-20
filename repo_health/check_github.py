@@ -111,7 +111,6 @@ async def check_build_duration(all_results, github_repo):
     })
 
 
-
 @health_metadata(
     [MODULE_DICT_KEY],
     {

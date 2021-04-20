@@ -68,7 +68,9 @@ def main():
             days_since_collection = abs((today_date - date_of_collection).days)
             if days_since_collection > args.data_life_time:
                 continue
-            data[repo_name] = parsed_file_data
+            org_repo_name = f'{parsed_file_data["org_name"]}/{repo_name}'
+            data[org_repo_name] = parsed_file_data
+
     output = utils.squash_and_standardize_metadata_by_repo(data)
     for key, configuration in configurations.items():
         utils.write_squashed_metadata_to_csv(

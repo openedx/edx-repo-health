@@ -17,9 +17,10 @@ jobs:
         python-version: ['3.6', '3.7', '3.8']
         toxenv: [python]
         include:
-        - python-version: '3.6'
+        - os: [ubuntu-20.04]
+          python-version: '3.6'
           toxenv: quality
-          os: [ubuntu-20.04]
+
     steps:
 
     - uses: actions/checkout@v2

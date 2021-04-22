@@ -1,10 +1,9 @@
 """
 Functions to check the existence of files.
 """
-import os
-
 from pytest_repo_health import health_metadata
-from repo_health import get_file_content
+
+from .utils import dir_exists, file_exists
 
 
 module_dict_key = "exists"
@@ -28,16 +27,6 @@ req_files = {
 req_dirs = {
     "requirements": "separate folder for requirement files",
 }
-
-
-def file_exists(repo_path, file_name):
-    full_path = os.path.join(repo_path, file_name)
-    return bool(get_file_content(full_path))
-
-
-def dir_exists(repo_path, dir_name):
-    full_path = os.path.join(repo_path, dir_name)
-    return os.path.isdir(full_path)
 
 
 @health_metadata(

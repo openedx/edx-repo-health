@@ -75,8 +75,8 @@ class JavascriptDependencyReader(DependencyReader):
             "count": dependencies_count,
             "js": {
                 "count": dependencies_count,
-                "list": self.js_dependencies,
-                "dev.List": self.js_dev_dependencies
+                "list": json.dumps(list(set(self.js_dependencies))),
+                "dev.List": json.dumps(list(set(self.js_dev_dependencies)))
             }
         }
 

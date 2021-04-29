@@ -60,7 +60,6 @@ async def fetch_languages(repo):
     Fetch the number of bytes of each language in the target repo from the GitHub API.
     This should ideally be part of github.py, but it hasn't been implemented there yet.
     """
-    return
     client = repo.http
     kwargs = {"repository_id": repo.id}
     edges = list()
@@ -94,7 +93,6 @@ async def check_build_duration(all_results, github_repo):
     """
     Fetches the builds details from Github and calculates the duration of each build
     """
-    return
     repo = github_repo.object
     client = repo.http
     kwargs = {"repository_id": repo.id}

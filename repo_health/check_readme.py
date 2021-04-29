@@ -124,7 +124,6 @@ def check_readme_links(readme, all_results):
     """
     Check that the links in the README actually work.
     """
-    return
     if readme is None:
         return
 

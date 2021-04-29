@@ -3,6 +3,7 @@
 """
 import copy
 import json
+import logging
 import os
 import re
 from abc import ABC, abstractmethod
@@ -11,6 +12,8 @@ from pathlib import Path
 from pytest_repo_health import health_metadata
 
 from repo_health import get_file_lines
+
+logger = logging.getLogger(__name__)
 
 module_dict_key = "dependencies"
 
@@ -27,6 +30,10 @@ default_output = {
         "count": 0,
         "list": "",
         "dev.List": ""
+    },
+    "js.dev": {
+        "count": 0,
+        "list": ""
     }
 }
 
@@ -78,11 +85,11 @@ class JavascriptDependencyReader(DependencyReader):
             "count": self.js_dependencies_count + self.js_dev_dependencies_count,
             "js": {
                 "count": self.js_dependencies_count,
-                "list": json.dumps(self.js_dependencies),
+                "list": self.js_dependencies,
             },
             "js.dev": {
                 "count": self.js_dev_dependencies_count,
-                "list": json.dumps(self.js_dev_dependencies)
+                "list": self.js_dev_dependencies
             }
         }
 
@@ -112,8 +119,17 @@ class PythonDependencyReader(DependencyReader):
         pypi_packages = []
         github_packages = []
         files = [str(file) for file in Path(os.path.join(self._repo_path, "requirements")).rglob('*.txt')]
-        constraints_files = ("constraints.txt", "pins.txt")
-        requirement_files = [file for file in files if not file.endswith(constraints_files)]
+
+        # services have production.txt and base.txt but packages have only base.txt
+        # so if both appeared only pick production
+        requirement_files = [file for file in files if file.endswith("production.txt")]
+
+        if not requirement_files:
+            requirement_files = [file for file in files if file.endswith("base.txt")]
+
+        if not requirement_files:
+            logger.error("No production.txt or base.txt files found for this repo %s", self._repo_path)
+
         for file_path in requirement_files:
             lines = get_file_lines(file_path)
             stripped_lines = [re.sub(r' +#.*', "", line).replace('-e ', "")
@@ -125,15 +141,15 @@ class PythonDependencyReader(DependencyReader):
         self.pypi_dependencies = list(set(pypi_packages))
 
         return {
-            "count": len(self.pypi_dependencies) + len(self.github_dependencies),
             "pypi": {
-                "count": len(self.pypi_dependencies),
-                "list": json.dumps(self.pypi_dependencies),
+                "count": len(set(self.pypi_dependencies)),
+                "list": self.pypi_dependencies,
             },
             "github": {
-                "count": len(self.github_dependencies),
-                "list": json.dumps(list(set(github_packages))),
+                "count": len(set(self.github_dependencies)),
+                "list": list(set(github_packages)),
             },
+            "count": len(set(self.pypi_dependencies)) + len(set(self.github_dependencies)),
         }
 
     def read(self) -> dict:
@@ -155,27 +171,22 @@ def get_dependencies(repo_path) -> dict:
         result = reader_instance.read()
         if not result:
             continue
-        dependencies_count += result.get('count')
+
+        dependencies_count += result.get('count', 0)
         dependencies_output.update(result)
         dependencies_output.update({"count": dependencies_count})
+
     return dependencies_output
 
 
 @health_metadata(
     [module_dict_key],
     {
-        "count": "count of total dependencies",
-        "pypi.count": "count of PyPI packages",
-        "pypi.list": "list of PyPI packages with required versions",
-        "github.count": "count of GitHub packages",
-        "github.list": "list of GitHub packages",
-        "js.count": "count of javascript dependencies",
-        "js.list": "list of javascript dependencies",
-        "js.dev": "list of javascript development dependencies"
-    },
+        "dependencies": "all production dependencies"
+    }
 )
 def check_dependencies(repo_path, all_results):
     """
     Test to find the dependencies of the repo
     """
-    all_results[module_dict_key] = get_dependencies(repo_path)
+    all_results[module_dict_key] = json.dumps(get_dependencies(repo_path))

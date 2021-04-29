@@ -56,6 +56,8 @@ class JavascriptDependencyReader(DependencyReader):
         super().__init__(repo_path)
         self.js_dependencies = None
         self.js_dev_dependencies = None
+        self.js_dependencies_count = 0
+        self.js_dev_dependencies_count = 0
 
     def _is_js_repo(self) -> bool:
         return os.path.exists(os.path.join(self._repo_path, "package.json"))
@@ -67,18 +69,19 @@ class JavascriptDependencyReader(DependencyReader):
         package_json_content = open(os.path.join(self._repo_path, "package.json"), 'r').read()
         package_json_data = json.loads(package_json_content)
 
-        self.js_dependencies = package_json_data.get('dependencies')
-        self.js_dev_dependencies = package_json_data.get('devDependencies')
-        dependencies_count = len(self.js_dependencies) + len(self.js_dev_dependencies)
+        self.js_dependencies = package_json_data.get('dependencies', {})
+        self.js_dev_dependencies = package_json_data.get('devDependencies', {})
+        self.js_dependencies_count = len(self.js_dependencies)
+        self.js_dev_dependencies_count = len(self.js_dev_dependencies)
 
         return {
-            "count": dependencies_count,
+            "count": self.js_dependencies_count + self.js_dev_dependencies_count,
             "js": {
-                "count": len(self.js_dependencies),
+                "count": self.js_dependencies_count,
                 "list": json.dumps(self.js_dependencies),
             },
             "js.dev": {
-                "count": len(self.js_dev_dependencies),
+                "count": self.js_dev_dependencies_count,
                 "list": json.dumps(self.js_dev_dependencies)
             }
         }

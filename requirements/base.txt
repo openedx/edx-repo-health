@@ -14,7 +14,7 @@ attrs==20.3.0
     # via
     #   aiohttp
     #   pytest
-cachetools==4.2.1
+cachetools==4.2.2
     # via google-auth
 certifi==2020.12.5
     # via requests
@@ -31,7 +31,7 @@ gitpython==3.1.14
     # via pytest-repo-health
 google-auth-oauthlib==0.4.4
     # via gspread
-google-auth==1.29.0
+google-auth==1.30.0
     # via
     #   google-auth-oauthlib
     #   gspread

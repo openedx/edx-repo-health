@@ -85,11 +85,11 @@ class JavascriptDependencyReader(DependencyReader):
             "count": self.js_dependencies_count + self.js_dev_dependencies_count,
             "js": {
                 "count": self.js_dependencies_count,
-                "list": self.js_dependencies,
+                "list": json.dumps(self.js_dependencies),
             },
             "js.dev": {
                 "count": self.js_dev_dependencies_count,
-                "list": self.js_dev_dependencies
+                "list": json.dumps(self.js_dev_dependencies)
             }
         }
 
@@ -143,11 +143,11 @@ class PythonDependencyReader(DependencyReader):
         return {
             "pypi": {
                 "count": len(set(self.pypi_dependencies)),
-                "list": self.pypi_dependencies,
+                "list": json.dumps(self.pypi_dependencies),
             },
             "github": {
                 "count": len(set(self.github_dependencies)),
-                "list": list(set(github_packages)),
+                "list": json.dumps(github_packages),
             },
             "count": len(set(self.pypi_dependencies)) + len(set(self.github_dependencies)),
         }
@@ -182,11 +182,18 @@ def get_dependencies(repo_path) -> dict:
 @health_metadata(
     [module_dict_key],
     {
-        "dependencies": "all production dependencies"
-    }
+        "count": "count of total dependencies",
+        "pypi.count": "count of PyPI packages",
+        "pypi.list": "list of PyPI packages with required versions",
+        "github.count": "count of GitHub packages",
+        "github.list": "list of GitHub packages",
+        "js.count": "count of javascript dependencies",
+        "js.list": "list of javascript dependencies",
+        "js.dev": "list of javascript development dependencies"
+    },
 )
 def check_dependencies(repo_path, all_results):
     """
     Test to find the dependencies of the repo
     """
-    all_results[module_dict_key] = json.dumps(get_dependencies(repo_path))
+    all_results[module_dict_key] = get_dependencies(repo_path)

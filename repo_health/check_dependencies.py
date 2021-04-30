@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 module_dict_key = "dependencies"
 
 default_output = {
+    "count": 0,
     "pypi": {
         "count": 0,
         "list": ""
@@ -29,7 +30,6 @@ default_output = {
     "js": {
         "count": 0,
         "list": "",
-        "dev.List": ""
     },
     "js.dev": {
         "count": 0,

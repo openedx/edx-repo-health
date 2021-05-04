@@ -129,34 +129,34 @@ class PythonDependencyReader(DependencyReader):
 
         # services have production.txt and base.txt but packages have only base.txt
         # so if both appeared only pick production
+        requirement_files = [file for file in files if file.endswith("production.txt")]
 
-        constraints_files = ("constraints.txt", "pins.txt")
+        if not requirement_files:
+            requirement_files = [file for file in files if file.endswith("base.txt")]
 
-        requirement_files = [file for file in files if not file.endswith(constraints_files)]
-
-        testing_files = [file for file in files if file.endswith(("testing.txt", "test.txt"))]
-        requirement_files = list(set(requirement_files) - set(testing_files))
+        if not requirement_files:
+            logger.error("No production.txt or base.txt files found for this repo %s", self._repo_path)
 
         for file_path in requirement_files:
             lines = get_file_lines(file_path)
-            stripped_lines = [re.sub(r' +#.*', "", line).replace('-e ', "")
-                              for line in lines if line and not line.startswith("#")]
-            github_packages.extend([line for line in stripped_lines if re.match(r'^git\+.*', line)])
-            pypi_packages.extend([line for line in stripped_lines if line not in github_packages and "==" in line])
+            stripped_lines = self.cleanup_lines(lines)
+            github_packages.extend(stripped_lines["github"])
+            pypi_packages.extend(stripped_lines["pypi"])
 
         self.github_dependencies = list(set(github_packages))
         self.pypi_dependencies = list(set(pypi_packages))
 
+        testing_files = [file for file in files if file.endswith(("testing.txt", "test.txt"))]
+
         for file_path in testing_files:
             lines = get_file_lines(file_path)
-            stripped_lines = [re.sub(r' +#.*', "", line).replace('-e ', "")
-                              for line in lines if line and not line.startswith("#")]
-            testing_packages.extend(
-                [line for line in stripped_lines if line not in github_packages and "==" in line]
-            )
-            testing_packages.extend([line for line in stripped_lines if re.match(r'^git\+.*', line)])
+            stripped_lines = self.cleanup_lines(lines)
+            testing_packages.extend(stripped_lines["github"])
+            testing_packages.extend(stripped_lines["pypi"])
 
-        self.testing_dependencies = list(set(testing_packages))
+        self.testing_dependencies = list(
+            set(set(testing_packages) - set(self.github_dependencies) - set(self.pypi_dependencies))
+        )
 
         return {
             "pypi": {
@@ -171,7 +171,25 @@ class PythonDependencyReader(DependencyReader):
                 "count": len(set(self.testing_dependencies)),
                 "list": json.dumps(self.testing_dependencies),
             },
-            "count": len(set(self.pypi_dependencies)) + len(set(self.github_dependencies)) + len(set(self.testing_dependencies))
+            "count": len(set(self.pypi_dependencies)) + len(set(self.github_dependencies)) + len(
+                set(self.testing_dependencies))
+        }
+
+    def cleanup_lines(self, lines):
+        """
+        remove un-necessary strings from lines.
+        @return: dependencies_output
+        """
+        stripped_lines = [
+            re.sub(r' +#.*', "", line).replace('-e ', "")
+            for line in lines if line and not line.startswith("#")
+        ]
+
+        github_packages = [line for line in stripped_lines if re.match(r'^git\+.*', line)]
+
+        return {
+            'github': github_packages,
+            'pypi': [line for line in stripped_lines if line not in github_packages and "==" in line]
         }
 
     def read(self) -> dict:

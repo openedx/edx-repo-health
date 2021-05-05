@@ -47,7 +47,7 @@ class ReadTheDocsChecker:
         self.repo_path = repo_path
         self.git_origin_url = git_origin_url
 
-        self.project_url = 'https://readthedocs.org/api/v3/projects/'
+        self.project_url = 'https://readthedocs.org/api/v3/projects/?limit=100'
         self._token = token
         self._headers = {'Authorization': f'token {self._token}'}
         self._projects = None

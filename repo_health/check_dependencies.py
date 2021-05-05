@@ -27,6 +27,10 @@ default_output = {
         "count": 0,
         "list": ""
     },
+    "testing": {
+        "count": 0,
+        "list": ""
+    },
     "js": {
         "count": 0,
         "list": "",
@@ -108,6 +112,7 @@ class PythonDependencyReader(DependencyReader):
         super().__init__(repo_path)
         self.github_dependencies = None
         self.pypi_dependencies = None
+        self.testing_dependencies = []
 
     def _is_python_repo(self) -> bool:
         return os.path.exists(os.path.join(self._repo_path, "requirements"))
@@ -118,6 +123,8 @@ class PythonDependencyReader(DependencyReader):
         """
         pypi_packages = []
         github_packages = []
+        testing_packages = []
+
         files = [str(file) for file in Path(os.path.join(self._repo_path, "requirements")).rglob('*.txt')]
 
         # services have production.txt and base.txt but packages have only base.txt
@@ -132,13 +139,24 @@ class PythonDependencyReader(DependencyReader):
 
         for file_path in requirement_files:
             lines = get_file_lines(file_path)
-            stripped_lines = [re.sub(r' +#.*', "", line).replace('-e ', "")
-                              for line in lines if line and not line.startswith("#")]
-            github_packages.extend([line for line in stripped_lines if re.match(r'^git\+.*', line)])
-            pypi_packages.extend([line for line in stripped_lines if line not in github_packages and "==" in line])
+            stripped_lines = self.cleanup_lines(lines)
+            github_packages.extend(stripped_lines["github"])
+            pypi_packages.extend(stripped_lines["pypi"])
 
         self.github_dependencies = list(set(github_packages))
         self.pypi_dependencies = list(set(pypi_packages))
+
+        testing_files = [file for file in files if file.endswith(("testing.txt", "test.txt"))]
+
+        for file_path in testing_files:
+            lines = get_file_lines(file_path)
+            stripped_lines = self.cleanup_lines(lines)
+            testing_packages.extend(stripped_lines["github"])
+            testing_packages.extend(stripped_lines["pypi"])
+
+        self.testing_dependencies = list(
+            set(set(testing_packages) - set(self.github_dependencies) - set(self.pypi_dependencies))
+        )
 
         return {
             "pypi": {
@@ -149,7 +167,29 @@ class PythonDependencyReader(DependencyReader):
                 "count": len(set(self.github_dependencies)),
                 "list": json.dumps(github_packages),
             },
-            "count": len(set(self.pypi_dependencies)) + len(set(self.github_dependencies)),
+            "testing": {
+                "count": len(set(self.testing_dependencies)),
+                "list": json.dumps(self.testing_dependencies),
+            },
+            "count": len(set(self.pypi_dependencies)) + len(set(self.github_dependencies)) + len(
+                set(self.testing_dependencies))
+        }
+
+    def cleanup_lines(self, lines):
+        """
+        remove un-necessary strings from lines.
+        @return: dependencies_output
+        """
+        stripped_lines = [
+            re.sub(r' +#.*', "", line).replace('-e ', "")
+            for line in lines if line and not line.startswith("#")
+        ]
+
+        github_packages = [line for line in stripped_lines if re.match(r'^git\+.*', line)]
+
+        return {
+            'github': github_packages,
+            'pypi': [line for line in stripped_lines if line not in github_packages and "==" in line]
         }
 
     def read(self) -> dict:

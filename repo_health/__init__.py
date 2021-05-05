@@ -9,7 +9,7 @@ import glob
 import pytest
 
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 
 def parse_config_file(path):

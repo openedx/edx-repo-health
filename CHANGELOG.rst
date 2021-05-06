@@ -13,6 +13,12 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
+[0.1.2] - 2021-05-05
+~~~~~~~~~~~~~~~~~~~~
+
+changed
++++++++
+* Added development.txt and dev.txt for picking dependencies. Updated tests.
 
 [0.1.1] - 2021-05-04
 ~~~~~~~~~~~~~~~~~~~~

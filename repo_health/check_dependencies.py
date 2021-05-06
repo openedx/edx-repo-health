@@ -128,11 +128,14 @@ class PythonDependencyReader(DependencyReader):
         files = [str(file) for file in Path(os.path.join(self._repo_path, "requirements")).rglob('*.txt')]
 
         # services have production.txt and base.txt but packages have only base.txt
-        # so if both appeared only pick production
-        requirement_files = [file for file in files if file.endswith("production.txt")]
+        # so if both appeared only pick production.
+        # few packages have development.txt or dev.txt also.
 
-        if not requirement_files:
-            requirement_files = [file for file in files if file.endswith("base.txt")]
+        priority_list = ["production.txt", "base.txt", "development.txt", "dev.txt"]
+        for file_name in priority_list:
+            requirement_files = [file for file in files if file.endswith(file_name)]
+            if requirement_files:
+                break
 
         if not requirement_files:
             logger.error("No production.txt or base.txt files found for this repo %s", self._repo_path)
@@ -154,6 +157,7 @@ class PythonDependencyReader(DependencyReader):
             testing_packages.extend(stripped_lines["github"])
             testing_packages.extend(stripped_lines["pypi"])
 
+        # to avoid duplicates get the difference.
         self.testing_dependencies = list(
             set(set(testing_packages) - set(self.github_dependencies) - set(self.pypi_dependencies))
         )

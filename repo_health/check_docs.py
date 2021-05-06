@@ -1,16 +1,19 @@
 """
 Check some details in the readme file.
 """
-
+import logging
 import os.path
 import re
 
+import pytest
 import requests
 import yaml
 
 from pytest_repo_health import health_metadata
 
 from repo_health import fixture_readme, get_file_content  # pylint: disable=unused-import
+
+logger = logging.getLogger(__name__)
 
 module_dict_key = "docs"
 
@@ -28,7 +31,7 @@ def check_build_bagde(readme, all_results):
     if readme is None:
         return
 
-    if '|docs|' in readme and re.search(r':target: *https://edx\.readthedocs\.io/', readme):
+    if re.search(r'image:: *https?://readthedocs\.org/projects', readme):
         all_results[module_dict_key]["build_badge"] = True
     else:
         all_results[module_dict_key]["build_badge"] = False
@@ -39,13 +42,13 @@ class ReadTheDocsChecker:
     Handles all the operations related to Read the Docs checks
     """
 
-    def __init__(self, repo_path=None, git_origin_url=None):
+    def __init__(self, repo_path=None, git_origin_url=None, token=None):
         self._yml_file_name = ".readthedocs.yml"
         self.repo_path = repo_path
         self.git_origin_url = git_origin_url
 
-        self.project_url = 'https://readthedocs.org/api/v3/projects/'
-        self._token = os.environ["READTHEDOCS_API_KEY"]
+        self.project_url = 'https://readthedocs.org/api/v3/projects/?limit=100'
+        self._token = token
         self._headers = {'Authorization': f'token {self._token}'}
         self._projects = None
 
@@ -136,7 +139,13 @@ def check_readthedocs_build(all_results, git_origin_url):
     """
     Checks Read the Docs build status and when last built ran
     """
-    rtd_checker = ReadTheDocsChecker(git_origin_url=git_origin_url)
+    try:
+        token = os.environ["READTHEDOCS_API_KEY"]
+    except KeyError:
+        logger.error("READTHEDOCS_API_KEY is missing in environment variables")
+        pytest.skip("READTHEDOCS_API_KEY is missing in environment variables")
+
+    rtd_checker = ReadTheDocsChecker(git_origin_url=git_origin_url, token=token)
     rtd_checker.update_build_details()
     all_results[module_dict_key]["latest_build_status"] = rtd_checker.build_statuses
     all_results[module_dict_key]["latest_build_ran_at"] = rtd_checker.build_times

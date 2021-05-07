@@ -22,7 +22,7 @@ async-timeout==3.0.1
     # via
     #   -r requirements/quality.txt
     #   aiohttp
-attrs==20.3.0
+attrs==21.1.0
     # via
     #   -r requirements/quality.txt
     #   aiohttp
@@ -73,7 +73,7 @@ distlib==0.3.1
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==2.2.20
+django==2.2.22
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -215,7 +215,7 @@ pycodestyle==2.7.0
     # via -r requirements/quality.txt
 pydocstyle==6.0.0
     # via -r requirements/quality.txt
-pygments==2.8.1
+pygments==2.9.0
     # via diff-cover
 pylint-celery==0.3
     # via
@@ -248,12 +248,12 @@ pytest-aiohttp==0.3.0
     #   pytest-repo-health
 pytest-repo-health==2.1.0
     # via -r requirements/quality.txt
-pytest==6.2.3
+pytest==6.2.4
     # via
     #   -r requirements/quality.txt
     #   pytest-aiohttp
     #   pytest-repo-health
-python-slugify==4.0.1
+python-slugify==5.0.2
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -283,7 +283,7 @@ rsa==4.7.2
     # via
     #   -r requirements/quality.txt
     #   google-auth
-six==1.15.0
+six==1.16.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -323,7 +323,7 @@ toml==0.10.2
     #   tox
 tox-battery==0.6.1
     # via -r requirements/dev.in
-tox==3.23.0
+tox==3.23.1
     # via
     #   -r requirements/ci.txt
     #   tox-battery
@@ -331,7 +331,7 @@ typed-ast==1.4.3
     # via
     #   -r requirements/quality.txt
     #   astroid
-typing-extensions==3.7.4.3
+typing-extensions==3.10.0.0
     # via
     #   -r requirements/quality.txt
     #   aiohttp
@@ -342,7 +342,7 @@ urllib3==1.26.4
     #   -r requirements/quality.txt
     #   requests
     #   responses
-virtualenv==20.4.4
+virtualenv==20.4.6
     # via
     #   -r requirements/ci.txt
     #   tox

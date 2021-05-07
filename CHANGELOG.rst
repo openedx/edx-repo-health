@@ -13,6 +13,13 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
+[0.1.3] - 2021-05-07
+~~~~~~~~~~~~~~~~~~~~
+
+Added
++++++++
+* Added new column for frontend repos to track what npm package name they publish.
+
 [0.1.2] - 2021-05-05
 ~~~~~~~~~~~~~~~~~~~~
 

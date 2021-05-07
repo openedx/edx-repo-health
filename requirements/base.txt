@@ -10,7 +10,7 @@ aiohttp==3.7.4.post0
     #   pytest-aiohttp
 async-timeout==3.0.1
     # via aiohttp
-attrs==20.3.0
+attrs==21.1.0
     # via
     #   aiohttp
     #   pytest
@@ -75,7 +75,7 @@ pytest-aiohttp==0.3.0
     # via pytest-repo-health
 pytest-repo-health==2.1.0
     # via -r requirements/base.in
-pytest==6.2.3
+pytest==6.2.4
     # via
     #   pytest-aiohttp
     #   pytest-repo-health
@@ -89,13 +89,13 @@ requests==2.25.1
     # via requests-oauthlib
 rsa==4.7.2
     # via google-auth
-six==1.15.0
+six==1.16.0
     # via google-auth
 smmap==4.0.0
     # via gitdb
 toml==0.10.2
     # via pytest
-typing-extensions==3.7.4.3
+typing-extensions==3.10.0.0
     # via
     #   aiohttp
     #   yarl

@@ -13,7 +13,7 @@ async-timeout==3.0.1
     # via
     #   -r requirements/base.txt
     #   aiohttp
-attrs==20.3.0
+attrs==21.1.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -113,7 +113,7 @@ pytest-aiohttp==0.3.0
     #   pytest-repo-health
 pytest-repo-health==2.1.0
     # via -r requirements/base.txt
-pytest==6.2.3
+pytest==6.2.4
     # via
     #   -r requirements/base.txt
     #   pytest-aiohttp
@@ -137,7 +137,7 @@ rsa==4.7.2
     # via
     #   -r requirements/base.txt
     #   google-auth
-six==1.15.0
+six==1.16.0
     # via
     #   -r requirements/base.txt
     #   google-auth
@@ -150,7 +150,7 @@ toml==0.10.2
     # via
     #   -r requirements/base.txt
     #   pytest
-typing-extensions==3.7.4.3
+typing-extensions==3.10.0.0
     # via
     #   -r requirements/base.txt
     #   aiohttp

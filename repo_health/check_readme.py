@@ -68,7 +68,10 @@ def check_readme_contents(readme, all_results):
         all_results[module_dict_key][key] = not present
 
 
-URL_REGEX = r"https?://[\w._/?&%=@+\-\[\]]+"
+# URLs have to start with a scheme, but can have lots of stuff in them. They
+# have to end with word or slash, so that trailing punctuation won't be
+# included.
+URL_REGEX = r"https?://[\w._/?&%=@+\-\[\]]+[\w/]"
 
 # Some links in READMEs are just examples, don't bother checking these domains.
 EXAMPLE_DOMAINS = {

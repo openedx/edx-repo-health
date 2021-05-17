@@ -1,6 +1,7 @@
 """
 Check some details in the readme file.
 """
+import json
 import logging
 import os.path
 import re
@@ -52,8 +53,7 @@ class ReadTheDocsChecker:
         self._headers = {'Authorization': f'token {self._token}'}
         self._projects = None
 
-        self.build_times = []
-        self.build_statuses = []
+        self.build_details = []
 
     def _read_readthedocs_yml_file(self):
         full_path = os.path.join(self.repo_path, ".readthedocs.yml")
@@ -81,15 +81,14 @@ class ReadTheDocsChecker:
         self._projects = response.json()['results']
         return self._projects
 
-    def _get_latest_build(self, slug):
+    def _get_all_builds(self, slug):
         """
-            Returns the latest build details for the project slug prvoided
+            Returns all builds details for the project whose slug is provided
         """
         build_url = f"https://readthedocs.org/api/v3/projects/{slug}/builds/"
         response = requests.get(build_url, headers=self._headers)
-        json = response.json()
-        # Getting latest build from results
-        return json['results'][0]
+        _json = response.json()
+        return _json['results']
 
     def get_python_version(self):
         """
@@ -105,13 +104,19 @@ class ReadTheDocsChecker:
         """
             Updates the status of latest Read the Docs build and when last built ran
         """
+        self.build_details = []
 
         for item in self._get_projects():
             if item['repository']['url'] == self.git_origin_url:
-                build = self._get_latest_build(item['slug'])
-                status = 'success' if build['success'] else 'failure'
-                self.build_statuses.append({'project': item['name'], 'status': status})
-                self.build_times.append({'project': item['name'], 'time': build['created']})
+                all_builds = self._get_all_builds(item['slug'])
+                last_build = all_builds[0]
+                last_successful_build = next((build for build in all_builds if build['success']), None)
+                self.build_details.append({
+                    'project': item['name'],
+                    'last_build_status': 'success' if last_build['success'] else 'failure',
+                    'last_build_time': last_build['created'],
+                    'last_good_build_time': last_successful_build['created'] if last_successful_build else None
+                })
 
 
 @health_metadata(
@@ -131,8 +136,7 @@ def check_python_version(repo_path, all_results):
 @health_metadata(
     [module_dict_key],
     {
-        "latest_build_status": "The status of latest build ran for Read the Docs",
-        "latest_build_ran_at": "The time latest build ran for Read the Docs",
+        "build_details": "This contains the build details of all Read the Docs projects connected with that repo",
     }
 )
 def check_readthedocs_build(all_results, git_origin_url):
@@ -147,5 +151,4 @@ def check_readthedocs_build(all_results, git_origin_url):
 
     rtd_checker = ReadTheDocsChecker(git_origin_url=git_origin_url, token=token)
     rtd_checker.update_build_details()
-    all_results[module_dict_key]["latest_build_status"] = rtd_checker.build_statuses
-    all_results[module_dict_key]["latest_build_ran_at"] = rtd_checker.build_times
+    all_results[module_dict_key]["build_details"] = json.dumps(rtd_checker.build_details)

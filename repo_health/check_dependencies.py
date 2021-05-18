@@ -19,15 +19,11 @@ module_dict_key = "dependencies"
 
 default_output = {
     "count": 0,
-    "pypi": {
-        "count": 0,
-        "list": ""
-    },
     "github": {
         "count": 0,
         "list": ""
     },
-    "testing": {
+    "pypi_all": {
         "count": 0,
         "list": ""
     },
@@ -112,7 +108,6 @@ class PythonDependencyReader(DependencyReader):
         super().__init__(repo_path)
         self.github_dependencies = None
         self.pypi_dependencies = None
-        self.testing_dependencies = []
 
     def _is_python_repo(self) -> bool:
         return os.path.exists(os.path.join(self._repo_path, "requirements"))
@@ -123,60 +118,32 @@ class PythonDependencyReader(DependencyReader):
         """
         pypi_packages = []
         github_packages = []
-        testing_packages = []
 
         files = [str(file) for file in Path(os.path.join(self._repo_path, "requirements")).rglob('*.txt')]
 
-        # services have production.txt and base.txt but packages have only base.txt
-        # so if both appeared only pick production.
-        # few packages have development.txt or dev.txt also.
-
-        priority_list = ["production.txt", "base.txt", "development.txt", "dev.txt"]
-        for file_name in priority_list:
-            requirement_files = [file for file in files if file.endswith(file_name)]
-            if requirement_files:
-                break
-
-        if not requirement_files:
-            logger.error("No production.txt or base.txt files found for this repo %s", self._repo_path)
+        constraints_files = ("constraints.txt", "pins.txt",)
+        requirement_files = [file for file in files if not file.endswith(constraints_files)]
 
         for file_path in requirement_files:
             lines = get_file_lines(file_path)
-            stripped_lines = self.cleanup_lines(lines)
-            github_packages.extend(stripped_lines["github"])
-            pypi_packages.extend(stripped_lines["pypi"])
+            stripped_lines = [re.sub(r' +#.*', "", line).replace('-e ', "")
+                              for line in lines if line and not line.startswith("#")]
+            github_packages.extend([line for line in stripped_lines if re.match(r'^git\+.*', line)])
+            pypi_packages.extend([line for line in stripped_lines if line not in github_packages and "==" in line])
 
         self.github_dependencies = list(set(github_packages))
         self.pypi_dependencies = list(set(pypi_packages))
 
-        testing_files = [file for file in files if file.endswith(("testing.txt", "test.txt"))]
-
-        for file_path in testing_files:
-            lines = get_file_lines(file_path)
-            stripped_lines = self.cleanup_lines(lines)
-            testing_packages.extend(stripped_lines["github"])
-            testing_packages.extend(stripped_lines["pypi"])
-
-        # to avoid duplicates get the difference.
-        self.testing_dependencies = list(
-            set(set(testing_packages) - set(self.github_dependencies) - set(self.pypi_dependencies))
-        )
-
         return {
-            "pypi": {
-                "count": len(set(self.pypi_dependencies)),
-                "list": json.dumps(self.pypi_dependencies),
-            },
             "github": {
                 "count": len(set(self.github_dependencies)),
                 "list": json.dumps(github_packages),
             },
-            "testing": {
-                "count": len(set(self.testing_dependencies)),
-                "list": json.dumps(self.testing_dependencies),
+            "pypi_all": {
+                "count": len(set(self.pypi_dependencies)),
+                "list": json.dumps(self.pypi_dependencies),
             },
-            "count": len(set(self.pypi_dependencies)) + len(set(self.github_dependencies)) + len(
-                set(self.testing_dependencies))
+            "count": len(set(self.pypi_dependencies)) + len(set(self.github_dependencies))
         }
 
     def cleanup_lines(self, lines):
@@ -227,8 +194,8 @@ def get_dependencies(repo_path) -> dict:
     [module_dict_key],
     {
         "count": "count of total dependencies",
-        "pypi.count": "count of PyPI packages",
-        "pypi.list": "list of PyPI packages with required versions",
+        "pypi_all.count": "count of PyPI packages",
+        "pypi_all.list": "list of PyPI packages with required versions",
         "github.count": "count of GitHub packages",
         "github.list": "list of GitHub packages",
         "js.count": "count of javascript dependencies",

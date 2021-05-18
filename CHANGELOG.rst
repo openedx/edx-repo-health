@@ -13,8 +13,13 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
-[0.1.3] - 2021-05-07
+
+[0.1.3] - 2021-05-18
 ~~~~~~~~~~~~~~~~~~~~
+
+Changed
++++++++
+* Added all JS dependencies from package-lock.json. Updated tests.
 
 Added
 +++++++

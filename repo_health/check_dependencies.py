@@ -11,7 +11,7 @@ from pathlib import Path
 
 from pytest_repo_health import health_metadata
 
-from repo_health import get_file_lines
+from repo_health import get_file_lines, get_file_content
 
 logger = logging.getLogger(__name__)
 
@@ -90,10 +90,11 @@ class JavascriptDependencyReader(DependencyReader):
         self.js_dependencies_count = len(self.js_dependencies)
         self.js_dev_dependencies_count = len(self.js_dev_dependencies)
 
-        package_lock_content = open(os.path.join(self._repo_path, "package-lock.json"), 'r').read()
-        package_lock_data = json.loads(package_lock_content)
-        for dependency, details in package_lock_data.get('dependencies', {}).items():
-            self.js_dependencies_all[dependency] = details["version"]
+        package_lock_content = get_file_content(os.path.join(self._repo_path, "package-lock.json"))
+        if package_lock_content:
+            package_lock_data = json.loads(package_lock_content)
+            for dependency, details in package_lock_data.get('dependencies', {}).items():
+                self.js_dependencies_all[dependency] = details["version"]
 
         return {
             "count": self.js_dependencies_count + self.js_dev_dependencies_count,

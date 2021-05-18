@@ -12,13 +12,14 @@ def test_python_js_repo_dependency_check():
     repo_path = get_repo_path('fake_repos/python_js_repo')
     dependencies = get_dependencies(repo_path)
 
-    assert 'fs==2.0.18' in dependencies["pypi"]["list"]
+    assert 'fs==2.0.18' in dependencies["pypi_all"]["list"]
     assert "react-redux" in dependencies["js"]["list"]
-    assert dependencies["count"] == 329
-    assert dependencies["pypi"]["count"] == 225
-    assert dependencies["github"]["count"] == 13
+    assert dependencies["count"] == 350
+    assert dependencies["pypi_all"]["count"] == 299
+    assert dependencies["github"]["count"] == 14
     assert dependencies["js.all"]["count"] == 10
     assert dependencies["js"]["count"] == 26
+    assert dependencies["pypi"]["count"] == 225
 
 
 def test_js_repo_dependency_check():
@@ -32,6 +33,7 @@ def test_js_repo_dependency_check():
     assert dependencies["count"] == 37
     assert dependencies["js"]["count"] == 26
     assert dependencies["js.dev"]["count"] == 11
+    assert dependencies["pypi_all"]["count"] == 0
     assert dependencies["js.all"]["count"] == 12
     assert dependencies["pypi"]["count"] == 0
 
@@ -40,10 +42,10 @@ def test_python_repo_dependency_check():
     repo_path = get_repo_path('fake_repos/python_repo')
     dependencies = get_dependencies(repo_path)
 
-    assert 'django==2.2.20' in dependencies["pypi"]["list"]
+    assert 'django==2.2.20' in dependencies["pypi_all"]["list"]
     assert 'git+https://github.com/edx/credentials-themes.git@0.1.62#egg=edx_credentials_themes==0.1.62' \
            in dependencies["github"]["list"]
-    assert dependencies["pypi"]["count"] == 8
+    assert dependencies["pypi_all"]["count"] == 65
     assert dependencies["github"]["count"] == 1
-    assert dependencies["testing"]["count"] == 15
     assert dependencies["js"]["count"] == 0
+    assert dependencies["pypi"]["count"] == 8

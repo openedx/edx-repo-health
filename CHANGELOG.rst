@@ -13,6 +13,13 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
+[0.1.4] - 2021-05-18
+~~~~~~~~~~~~~~~~~~~~
+
+Refactor
++++++++
+* pypi_all will show all dependencies in requirements folder.
+* pypi will only show production or development related dependencies.
 
 [0.1.3] - 2021-05-18
 ~~~~~~~~~~~~~~~~~~~~

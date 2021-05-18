@@ -13,6 +13,14 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
+
+[0.1.5] - 2021-05-18
+~~~~~~~~~~~~~~~~~~~~
+
+Fixed
++++++++
+* Fixed package-lock.json not found error.
+
 [0.1.4] - 2021-05-18
 ~~~~~~~~~~~~~~~~~~~~
 

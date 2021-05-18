@@ -30,17 +30,16 @@ def test_js_repo_dependency_check():
     assert dependencies["count"] == 37
     assert dependencies["js"]["count"] == 26
     assert dependencies["js.dev"]["count"] == 11
-    assert dependencies["pypi"]["count"] == 0
+    assert dependencies["pypi_all"]["count"] == 0
 
 
 def test_python_repo_dependency_check():
     repo_path = get_repo_path('fake_repos/python_repo')
     dependencies = get_dependencies(repo_path)
 
-    assert 'django==2.2.20' in dependencies["pypi"]["list"]
+    assert 'django==2.2.20' in dependencies["pypi_all"]["list"]
     assert 'git+https://github.com/edx/credentials-themes.git@0.1.62#egg=edx_credentials_themes==0.1.62' \
            in dependencies["github"]["list"]
-    assert dependencies["pypi"]["count"] == 8
+    assert dependencies["pypi_all"]["count"] == 8
     assert dependencies["github"]["count"] == 1
-    assert dependencies["testing"]["count"] == 15
     assert dependencies["js"]["count"] == 0

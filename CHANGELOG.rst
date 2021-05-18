@@ -21,8 +21,12 @@ Refactor
 * pypi_all will show all dependencies in requirements folder.
 * pypi will only show production or development related dependencies.
 
-[0.1.3] - 2021-05-07
+[0.1.3] - 2021-05-18
 ~~~~~~~~~~~~~~~~~~~~
+
+Changed
++++++++
+* Added all JS dependencies from package-lock.json. Updated tests.
 
 Added
 +++++++

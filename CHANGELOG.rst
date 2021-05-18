@@ -19,14 +19,7 @@ Unreleased
 Refactor
 +++++++
 * pypi_all will show all dependencies in requirements folder.
-* pypi will only production or development related dependencies.
-
-[0.1.3] - 2021-05-07
-~~~~~~~~~~~~~~~~~~~~
-
-Added
-+++++++
-* Added new column for frontend repos to track what npm package name they publish.
+* pypi will only show production or development related dependencies.
 
 [0.1.3] - 2021-05-07
 ~~~~~~~~~~~~~~~~~~~~

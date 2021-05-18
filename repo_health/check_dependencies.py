@@ -11,7 +11,7 @@ from pathlib import Path
 
 from pytest_repo_health import health_metadata
 
-from repo_health import get_file_lines, get_file_content
+from repo_health import get_file_lines
 
 logger = logging.getLogger(__name__)
 

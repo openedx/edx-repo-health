@@ -38,6 +38,10 @@ default_output = {
     "js.dev": {
         "count": 0,
         "list": ""
+    },
+    "js.all": {
+        "count": 0,
+        "list": ""
     }
 }
 
@@ -67,6 +71,7 @@ class JavascriptDependencyReader(DependencyReader):
         super().__init__(repo_path)
         self.js_dependencies = None
         self.js_dev_dependencies = None
+        self.js_dependencies_all = dict()
         self.js_dependencies_count = 0
         self.js_dev_dependencies_count = 0
 
@@ -85,6 +90,11 @@ class JavascriptDependencyReader(DependencyReader):
         self.js_dependencies_count = len(self.js_dependencies)
         self.js_dev_dependencies_count = len(self.js_dev_dependencies)
 
+        package_lock_content = open(os.path.join(self._repo_path, "package-lock.json"), 'r').read()
+        package_lock_data = json.loads(package_lock_content)
+        for dependency, details in package_lock_data.get('dependencies', {}).items():
+            self.js_dependencies_all[dependency] = details["version"]
+
         return {
             "count": self.js_dependencies_count + self.js_dev_dependencies_count,
             "js": {
@@ -94,6 +104,10 @@ class JavascriptDependencyReader(DependencyReader):
             "js.dev": {
                 "count": self.js_dev_dependencies_count,
                 "list": json.dumps(self.js_dev_dependencies)
+            },
+            "js.all": {
+                "count": len(self.js_dependencies_all),
+                "list": json.dumps(self.js_dependencies_all)
             }
         }
 

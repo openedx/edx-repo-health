@@ -11,10 +11,9 @@ def get_repo_path(repo_name):
 def test_loading_docker_file_check():
     repo_path = get_repo_path('fake_repos/python_repo')
     dependencies = get_docker_file_content(repo_path)
-    assert 'apt-get install' in dependencies
-    assert 'apt-get update' in dependencies
-    assert 'python3-pip' in dependencies
     assert 'libssl-dev' in dependencies
+    for data in ['git-core', 'language-pack-en', 'python3.8', 'python3-pip', 'libssl-dev']:
+        assert data in dependencies
 
 
 def test_no_docker_file_check():
@@ -27,12 +26,9 @@ def test_empty_docker_file_check():
     assert get_docker_file_content(repo_path) is None
 
 
-def test_docker_new_format():
+def test_docker_different_format():
     repo_path = get_repo_path('fake_repos/python_js_repo')
     dependencies = get_docker_file_content(repo_path)
-    assert 'apt-get install' in dependencies
-    assert 'apt-get update' in dependencies
-    assert 'git-core' in dependencies
     assert 'curl' in dependencies
 
 

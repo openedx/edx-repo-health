@@ -32,20 +32,20 @@ def get_docker_file_content(repo_path):
     if not content:
         return None
 
-    value = []
+    lists = []
 
     for con in content:
         fir, sec = False, False
         if 'RUN apt-get update' in con.original:
-            value.append(clean_data(con.original))
+            lists.append(clean_data(con.original))
             fir = True
         if 'RUN apt-get install' in con.original:
-            value.append(clean_data(con.original))
+            lists.append(clean_data(con.original))
             sec = True
         if fir and sec:  # no need to iterate after getting req data.
             break
 
-    return " ".join(value)
+    return [item for sublist in lists for item in sublist]
 
 
 def get_apt_get_txt(repo_path):
@@ -67,10 +67,22 @@ def get_apt_get_txt(repo_path):
 
 def clean_data(content):
     """
+    different number of spaces appearing in the content.
+    Replace un-necessary information.
+
     :param content:
-    :return: different number of spaces appearing in the content. So simple clean it.
+    :return: list
     """
-    content = re.sub(r"\s+", ' ', content)
+
+    content = re.sub(r"\s+", ' ', content).strip()
+    replace = [
+        'RUN', 'apt-get update', 'apt-get install', '&&', '--yes', '-rf ', 'rm', '/var/lib/apt/lists/*',
+        '--no-install-recommends', '--es', '-qy', 'upgrade', 'apt-get'
+    ]
+    for con in replace:
+        content = content.replace(con, '')
+
+    content = content.strip().split()
     return content
 
 
@@ -78,6 +90,8 @@ def clean_data(content):
 def fixture_ubuntu_content(repo_path):
     """Fixture containing the text content of dockerfile"""
 
+    import pdb;
+    pdb.set_trace()
     return {
         'docker_packages': get_docker_file_content(repo_path),
         'apt_get_packages': get_apt_get_txt(repo_path)

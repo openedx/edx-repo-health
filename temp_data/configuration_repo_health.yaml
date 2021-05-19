@@ -1,0 +1,131 @@
+TIMESTAMP: 2021-05-20
+dependencies:
+    count: 2
+    github:
+        count: 0
+        list: '[]'
+    js:
+        count: 0
+        list: ''
+    js.dev:
+        count: 0
+        list: ''
+    pypi:
+        count: 0
+        list: '[]'
+    pypi_all:
+        count: 2
+        list: '["click==7.1.2", "pip-tools==5.5.0"]'
+docs:
+    build_badge: false
+    python_version: null
+exists:
+    .coveragerc: false
+    .editorconfig: true
+    .gitignore: true
+    .pii_annotations.yml: false
+    .travis.yml: false
+    CHANGELOG.rst: false
+    Makefile: true
+    README.rst: true
+    openedx.yaml: true
+    package.json: false
+    pylintrc: false
+    requirements: true
+    setup.cfg: false
+    setup.py: false
+    tox.ini: false
+github:
+    allows_merge_commit: true
+    allows_rebase_merge: true
+    allows_squash_merge: true
+    branch_count: 408
+    build_details: '{"total_duration": "1 minutes 49 seconds", "checks": [{"name":
+        "build (3.5)", "duration": "1 minutes 48 seconds"}, {"name": "build (3.5)",
+        "duration": "1 minutes 48 seconds"}, {"name": "build (3.8)", "duration": "1
+        minutes 47 seconds"}, {"name": "build (3.8)", "duration": "1 minutes 23 seconds"}]}'
+    code_of_conduct: Other
+    created_at: 2013-04-16 17:23:42
+    default_branch: master
+    description: A collection of edx configuration scripts and utilities that edx.org
+        uses to deploy openedx.
+    disk_usage_kb: 20342
+    fork_count: 956
+    has_issues: false
+    has_wiki: true
+    is_archived: false
+    is_disabled: false
+    is_fork: false
+    is_locked: false
+    is_private: false
+    last_push: 2021-05-20 07:47:54
+    license: GNU AGPLv3
+    pulls_count: 78
+github_actions: true
+language_bytes:
+    css: 0
+    dockerfile: 52415
+    html: 0
+    javascript: 42
+    makefile: 6404
+    python: 422691
+    shell: 115708
+makefile:
+    quality: false
+    quality-js: false
+    quality-python: false
+    test: false
+    test-js: false
+    test-python: false
+    upgrade: true
+npm_package: ''
+openedx_yaml:
+    obsolete_fields: nick
+    oep-18: true
+    oep-2: true
+    oep-30: false
+    oep-7: true
+    parsable: true
+    release: master
+    release-maybe: false
+org_name: edx
+readme:
+    bad_links: []
+    getting-help: false
+    good_links:
+    - https://github.com/jazzband/pip-tools
+    - https://kubernetes.io/
+    - https://www.terraform.io/
+    - https://edx-developer-guide.readthedocs.io/en/latest/process/overview.html
+    - https://open.edx.org/installation-options
+    - http://ansible.com/
+    - https://openedx.atlassian.net/wiki/display/OpenOPS/Open+edX+Operations+Home
+    - https://github.com/edx/configuration/blob/master/CHANGELOG.md
+    irc-missing: true
+    mailing-list-missing: true
+    security: false
+renovate:
+    configured: false
+    last_pr: null
+requires:
+    boto: true
+    django: false
+    nose: false
+    pytest: false
+setup_py:
+    py38_classifiers: false
+    python_versions: []
+tox_ini:
+    has_section:
+        testenv: false
+        testenv:quality: false
+        tox: false
+    uses_whitelist_externals: false
+travis_ci:
+    active: false
+    active_on_com: false
+    active_on_org: false
+travis_yml:
+    parsable: false
+    py38_tests: false
+    python_versions: []

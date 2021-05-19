@@ -14,9 +14,9 @@ module_dict_key = "ubuntu_packages"
 
 def get_docker_file_content(repo_path):
     """
-   entry point to read parse and read dependencies
+   entry point to parse docker file and do cleaning.
    @param repo_path:
-   @return: json data.
+   @return: json data
    """
     content = None
 
@@ -43,7 +43,7 @@ def get_docker_file_content(repo_path):
         if fir and sec:  # no need to iterate after getting req data.
             break
 
-    return {"docker": " ".join(value)}
+    return " ".join(value)
 
 
 def clean_data(content):

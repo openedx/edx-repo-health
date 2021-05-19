@@ -90,8 +90,6 @@ def clean_data(content):
 def fixture_ubuntu_content(repo_path):
     """Fixture containing the text content of dockerfile"""
 
-    import pdb;
-    pdb.set_trace()
     return {
         'docker_packages': get_docker_file_content(repo_path),
         'apt_get_packages': get_apt_get_txt(repo_path)

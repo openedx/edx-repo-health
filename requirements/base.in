@@ -5,3 +5,5 @@
 gspread                    # Access information from Google Sheets (the ownership spreadsheet)
 pyyaml                     # Read and write YAML files
 pytest-repo-health         # plugin used to run the checks in this repo
+dockerfile                 # wrapper around docker/docker's parser for dockerfiles.
+

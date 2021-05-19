@@ -14,6 +14,13 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[0.1.6] - 2021-05-19
+~~~~~~~~~~~~~~~~~~~~
+
+Added
++++++++
+* Added docker file parsing check. Picking apt-get install or update packages.
+
 [0.1.5] - 2021-05-18
 ~~~~~~~~~~~~~~~~~~~~
 

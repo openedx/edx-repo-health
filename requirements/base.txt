@@ -10,7 +10,7 @@ aiohttp==3.7.4.post0
     #   pytest-aiohttp
 async-timeout==3.0.1
     # via aiohttp
-attrs==21.1.0
+attrs==21.2.0
     # via
     #   aiohttp
     #   pytest
@@ -23,11 +23,13 @@ chardet==3.0.4
     #   -c requirements/constraints.txt
     #   aiohttp
     #   requests
+dockerfile==3.1.0
+    # via -r requirements/base.in
 gitdb==4.0.7
     # via gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140
     # via -r requirements/github.in
-gitpython==3.1.14
+gitpython==3.1.17
     # via pytest-repo-health
 google-auth-oauthlib==0.4.4
     # via gspread
@@ -37,18 +39,10 @@ google-auth==1.30.0
     #   gspread
 gspread==3.7.0
     # via -r requirements/base.in
-idna-ssl==1.1.0
-    # via aiohttp
 idna==2.10
     # via
-    #   idna-ssl
     #   requests
     #   yarl
-importlib-metadata==2.1.1
-    # via
-    #   -c requirements/constraints.txt
-    #   pluggy
-    #   pytest
 iniconfig==1.1.1
     # via pytest
 multidict==5.1.0
@@ -96,15 +90,11 @@ smmap==4.0.0
 toml==0.10.2
     # via pytest
 typing-extensions==3.10.0.0
-    # via
-    #   aiohttp
-    #   yarl
+    # via aiohttp
 urllib3==1.26.4
     # via requests
 yarl==1.6.3
     # via aiohttp
-zipp==3.4.1
-    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

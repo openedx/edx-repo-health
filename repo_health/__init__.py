@@ -9,7 +9,7 @@ import glob
 import pytest
 import dockerfile
 
-__version__ = "0.1.4"
+__version__ = "0.1.6"
 
 
 def parse_config_file(path):
@@ -74,19 +74,9 @@ def fixture_readme(repo_path):
 
 def read_docker_file(path):
     """
-    Get a list of files with given file_type in path's directory and its subdirectories
-    If the directory is large, this might take forever, so use with care
+    Read the docker file using dockerfile package.
     """
     if not os.path.exists(path):
         return None
 
     return dockerfile.parse_file(path)
-
-
-def read_docker_parse_string(search_string):
-    """
-    Get a list of files with given file_type in path's directory and its subdirectories
-    If the directory is large, this might take forever, so use with care
-    """
-    return dockerfile.parse_string(search_string)
-

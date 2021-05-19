@@ -87,10 +87,13 @@ def fixture_ubuntu_content(repo_path):
 @health_metadata(
     [module_dict_key],
     {
-        "ubuntu_packages": "content name published on ubuntu."
+        "docker_packages": "content name published on ubuntu.",
+        "apt_get_packages": "content name published on ubuntu."
     })
 def check_ubuntu_content(content, all_results):
     """
     Adding data into results.
     """
-    all_results[module_dict_key] = content
+    import pdb;
+    pdb.set_trace()
+    all_results.update(content)

@@ -94,6 +94,4 @@ def check_ubuntu_content(content, all_results):
     """
     Adding data into results.
     """
-    import pdb;
-    pdb.set_trace()
     all_results.update(content)

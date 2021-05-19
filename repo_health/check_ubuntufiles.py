@@ -1,16 +1,15 @@
 """
 Checks Dockerfile in the repo, and try to parse out packages installed via apt-get install and update.
+Also check the apt-packages.txt content.
 """
 import os
 import re
+from pathlib import Path
 
 import pytest
 from pytest_repo_health import health_metadata
 
-from repo_health import read_docker_file
-from pathlib import Path
-from repo_health import get_file_lines
-
+from repo_health import get_file_lines, read_docker_file
 
 module_dict_key = "ubuntu_packages"
 
@@ -51,7 +50,7 @@ def get_docker_file_content(repo_path):
 
 def get_apt_get_txt(repo_path):
     """
-   entry point to parse docker file and do cleaning.
+   entry point to parse apt-packages.txt.
    @param repo_path:
    @return: json data
    """

@@ -1,0 +1,12 @@
+python-software-properties
+pkg-config
+gfortran
+libatlas-dev
+libblas-dev
+liblapack-dev
+liblapack3gf
+curl
+git
+python-virtualenv
+python-scipy
+python-numpy

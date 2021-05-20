@@ -1,0 +1,109 @@
+"""
+Checks Dockerfile in the repo, and try to parse out packages installed via apt-get install and update.
+Also check the apt-packages.txt content.
+"""
+import os
+import re
+from pathlib import Path
+
+import pytest
+from pytest_repo_health import health_metadata
+
+from repo_health import get_file_lines, read_docker_file
+
+module_dict_key = "ubuntu_packages"
+
+
+def get_docker_file_content(repo_path):
+    """
+   entry point to parse docker file and do cleaning.
+   @param repo_path:
+   @return: json data
+   """
+    content = None
+
+    for file in ['Dockerfile', 'Dockerfile-testing', 'Dockerfile-3.8']:
+        full_path = os.path.join(repo_path, file)
+        if os.path.exists(full_path):
+            content = read_docker_file(full_path)
+            if content:
+                break
+
+    if not content:
+        return None
+
+    lists = []
+
+    for con in content:
+        fir, sec = False, False
+        if 'RUN apt-get update' in con.original:
+            lists.append(clean_data(con.original))
+            fir = True
+        if 'RUN apt-get install' in con.original:
+            lists.append(clean_data(con.original))
+            sec = True
+        if fir and sec:  # no need to iterate after getting req data.
+            break
+
+    return [item for sublist in lists for item in sublist]
+
+
+def get_apt_get_txt(repo_path):
+    """
+   entry point to parse apt-packages.txt.
+   @param repo_path:
+   @return: json data
+   """
+    full_path = os.path.join(repo_path, 'apt-packages.txt')
+    # check files on root or in requirements folder
+    content = get_file_lines(full_path)
+    if not content:
+        files = [str(file) for file in Path(os.path.join(repo_path, "requirements")).rglob('apt-packages.txt')]
+        if files:
+            content = get_file_lines(files[0])  # only one file will exists
+
+    return content
+
+
+def clean_data(content):
+    """
+    different number of spaces appearing in the content.
+    Replace un-necessary information.
+
+    :param content:
+    :return: list
+    """
+
+    content = re.sub(r"\s+", ' ', content).strip()
+    replace = [
+        'RUN', 'apt-get update', 'apt-get install', '&&', '--yes', '-rf ', 'rm', '/var/lib/apt/lists/*',
+        '--no-install-recommends', '--es', '-qy', 'upgrade', 'apt-get'
+    ]
+    for con in replace:
+        content = content.replace(con, '')
+
+    content = content.strip().split()
+    return content
+
+
+@pytest.fixture(name='content')
+def fixture_ubuntu_content(repo_path):
+    """Fixture containing the text content of dockerfile"""
+
+    return {
+        'docker_packages': get_docker_file_content(repo_path),
+        'apt_get_packages': get_apt_get_txt(repo_path)
+    }
+
+
+@health_metadata(
+    [module_dict_key],
+    {
+        "docker_packages": "content name published on ubuntu.",
+        "apt_get_packages": "content name published on ubuntu."
+    })
+def check_ubuntu_content(content, all_results):
+    """
+    Adding data into results.
+    """
+    all_results.update(content)

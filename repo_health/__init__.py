@@ -7,9 +7,9 @@ from configparser import ConfigParser
 from pathlib import Path
 import glob
 import pytest
+import dockerfile
 
-
-__version__ = "0.1.4"
+__version__ = "0.1.6"
 
 
 def parse_config_file(path):
@@ -70,3 +70,13 @@ def fixture_readme(repo_path):
 
     # There is no README at all, so nothing to check.
     return None
+
+
+def read_docker_file(path):
+    """
+    Read the docker file using dockerfile package.
+    """
+    if not os.path.exists(path):
+        return None
+
+    return dockerfile.parse_file(path)

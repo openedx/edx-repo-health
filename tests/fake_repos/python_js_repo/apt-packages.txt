@@ -1,0 +1,3 @@
+python-virtualenv
+python-scipy
+python-numpy

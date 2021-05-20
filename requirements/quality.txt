@@ -17,7 +17,7 @@ async-timeout==3.0.1
     # via
     #   -r requirements/test.txt
     #   aiohttp
-attrs==21.1.0
+attrs==21.2.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -40,16 +40,19 @@ click-log==0.3.2
     # via edx-lint
 click==7.1.2
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   click-log
     #   code-annotations
     #   edx-lint
 code-annotations==1.1.1
     # via edx-lint
-django==2.2.22
+django==2.2.23
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   code-annotations
     #   edx-lint
+dockerfile==3.1.0
+    # via -r requirements/test.txt
 edx-lint==5.0.0
     # via -r requirements/quality.in
 gitdb==4.0.7
@@ -58,7 +61,7 @@ gitdb==4.0.7
     #   gitpython
 git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140
     # via -r requirements/test.txt
-gitpython==3.1.14
+gitpython==3.1.17
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
@@ -73,23 +76,11 @@ google-auth==1.30.0
     #   gspread
 gspread==3.7.0
     # via -r requirements/test.txt
-idna-ssl==1.1.0
-    # via
-    #   -r requirements/test.txt
-    #   aiohttp
 idna==2.10
     # via
     #   -r requirements/test.txt
-    #   idna-ssl
     #   requests
     #   yarl
-importlib-metadata==2.1.1
-    # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/test.txt
-    #   pluggy
-    #   pytest
-    #   stevedore
 iniconfig==1.1.1
     # via
     #   -r requirements/test.txt
@@ -99,11 +90,15 @@ isort==5.8.0
     #   -r requirements/quality.in
     #   pylint
 jinja2==2.11.3
-    # via code-annotations
+    # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   code-annotations
 lazy-object-proxy==1.6.0
     # via astroid
 markupsafe==1.1.1
-    # via jinja2
+    # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   jinja2
 mccabe==0.6.1
     # via pylint
 multidict==5.1.0
@@ -140,7 +135,7 @@ pyasn1==0.4.8
     #   rsa
 pycodestyle==2.7.0
     # via -r requirements/quality.in
-pydocstyle==6.0.0
+pydocstyle==6.1.1
     # via -r requirements/quality.in
 pylint-celery==0.3
     # via edx-lint
@@ -218,13 +213,10 @@ toml==0.10.2
     #   -r requirements/test.txt
     #   pylint
     #   pytest
-typed-ast==1.4.3
-    # via astroid
 typing-extensions==3.10.0.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
-    #   yarl
 urllib3==1.26.4
     # via
     #   -r requirements/test.txt
@@ -236,10 +228,6 @@ yarl==1.6.3
     # via
     #   -r requirements/test.txt
     #   aiohttp
-zipp==3.4.1
-    # via
-    #   -r requirements/test.txt
-    #   importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

@@ -1,0 +1,19 @@
+---
+# Set the alternatives this way for blas and lapack to work correctly for the
+# MITx 6.341x course.
+- name: code sandbox | Check which `libblas` to use
+  stat:
+    path: /usr/lib/libblas/libblas.so.3gf
+  register: libblas_file
+
+- name: code sandbox | Install apparmor utils system pkg
+  apt:
+    name: apparmor-utils
+    state: present
+  tags:
+    - edxapp-sandbox
+
+- name: code sandbox | (bootstrap) put code sandbox into aa-enforce or aa-complain mode depending on EDXAPP_SANDBOX_ENFORCE
+  command: /usr/sbin/{{ edxapp_aa_command }} /etc/apparmor.d/code.sandbox
+  tags:
+    - edxapp-sandbox

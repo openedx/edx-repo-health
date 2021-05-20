@@ -2,16 +2,30 @@
 Checks Dockerfile in the repo, and try to parse out packages installed via apt-get install and update.
 Also check the apt-packages.txt content.
 """
+import glob
+import json
+import logging
 import os
 import re
 from pathlib import Path
 
 import pytest
+import yaml
+
 from pytest_repo_health import health_metadata
 
 from repo_health import get_file_lines, read_docker_file
 
+from repo_health.check_travis_integration import URL_PATTERN
+
 module_dict_key = "ubuntu_packages"
+
+logger = logging.getLogger(__name__)
+
+# pylint: disable=line-too-long
+# Pattern to extract variable names from anisble template variables
+VARIABLE_PATTERN = r"{{\s*?(?:[\"']\s?,[\"']\.join\(\s?)?(?P<var_name>[^\W0-9]\w*)\[?(?P<var1_index>[^\W0-9]\w*)?\]?\s?\)?\s*?(\s*\+\s*(?P<var2_name>[^\W0-9]\w*)(\[(?P<var2_index>[^\W0-9]\w*)\]?)?)?\s*}}"
+
 
 
 def get_docker_file_content(repo_path):
@@ -46,6 +60,192 @@ def get_docker_file_content(repo_path):
             break
 
     return [item for sublist in lists for item in sublist]
+
+
+class PlaybookAPTPackagesReader:
+    """
+    Class containing all the utilities to read/parse Ubuntu packages in ansible playbooks
+    """
+
+    def __init__(self, repo_path):
+        self.repo_path = repo_path
+        self.packages_from_playbooks = dict()
+        self.playbook_dirs = ["playbooks/roles"]
+        self._loop_keys = ["with_items", "with_list", "with_together", "with_flattened", "with_dict", "with_nested"]
+        self._apt_keys = ['name', 'pkg']
+        self.data_yml = None
+
+    def _get_dirs_from_source(self, source):
+        """
+        Gets all playbook directories from provided source directory
+        @param source: directory from which playbooks needs to be extracted
+        @return: list of playbooks extracted
+        """
+        full_path = os.path.join(self.repo_path, source)
+        return [name for name in os.listdir(full_path) if os.path.isdir(os.path.join(full_path, name))]
+
+    def _get_data_from_playbooks(self, pattern):
+        """
+        Return dict containing data from all the yml files in playbook other than tasks/main.yml
+        """
+        self.data_yml = dict()
+        for file in glob.glob(pattern, recursive=True):
+            with open(file) as infile:
+                yml = yaml.safe_load(infile)
+                if yml:
+                    try:
+                        self.data_yml.update(yml)
+                    except ValueError as exc:
+                        logger.exception("Failed to load %s with this error: %s ", file, exc)
+                        continue
+
+    def resolve_template_variable(self, node, apt_key, match):
+        """
+        Recursive function to replace template variables with their values
+        @param node: node of tasks.yml containing apt directive
+        @param apt_key: key present in current node from self._apt_keys
+        @param match: re.match object
+        @return: set of packages from data_yml
+        """
+
+        packages = set()
+        variables = [match['var_name'] if match else None, match['var2_name'] if match else None]
+        for var in variables:
+            if var not in self.data_yml or not self.data_yml[var]:
+                continue
+            # replace placeholder with value in original string
+            data = self.data_yml[var]
+            if isinstance(data, str):
+                _match = re.search(VARIABLE_PATTERN, data)
+                if _match:
+                    pkgs = self.resolve_template_variable(node, apt_key, _match)
+                    for pkg in pkgs:
+                        packages.add(re.sub(VARIABLE_PATTERN, pkg, match.string, count=1))
+                else:
+                    packages.add(re.sub(VARIABLE_PATTERN, data, match.string, count=1))
+            elif isinstance(data, list):
+                for item in data:
+                    _match = re.search(VARIABLE_PATTERN, item)
+                    if _match:
+                        pkgs = self.resolve_template_variable(node, apt_key, _match)
+                        for pkg in pkgs:
+                            packages.add(re.sub(VARIABLE_PATTERN, pkg, match.string, count=1))
+                    else:
+                        packages.add(re.sub(VARIABLE_PATTERN, item, match.string, count=1))
+            elif isinstance(data, set):
+                packages.update(data)
+        return packages
+
+    def _get_packages_from_data_yml(self, node, apt_key):
+        """
+        Retrieves package from self.data_yml dict when template variable is provided in apt directive
+        @param node: node of tasks.yml containing apt directive
+        @param apt_key: key present in current node from self._apt_keys
+        @return: set of packages from data_yml
+        """
+        key = next((key for key in self._loop_keys if key in node), None)
+        if key is None:
+            match = re.search(VARIABLE_PATTERN, node['apt'][apt_key])
+            return self.resolve_template_variable(node, apt_key, match)
+
+        if isinstance(node[key], str):
+            match = re.search(VARIABLE_PATTERN, node[key])
+            pkgs = self.resolve_template_variable(node, apt_key, match)
+            packages = set()
+            for pkg in pkgs:
+                packages.add(re.sub(VARIABLE_PATTERN, pkg, node['apt'][apt_key]))
+            return packages
+        elif isinstance(node[key], list):
+            packages = set()
+            for item in node[key]:
+                match = re.match(VARIABLE_PATTERN, item)
+                if match:
+                    pkgs = self.resolve_template_variable(node, apt_key, match)
+                    for pkg in pkgs:
+                        packages.add(re.sub(VARIABLE_PATTERN, pkg, node['apt'][apt_key]))
+                else:
+                    packages.add(item)
+            return packages
+
+        return set()
+
+    def _replace_variable_with_data(self, package):
+        """
+        Replace template variable in pakcage name with its value
+        @type package: package name to check if it has template variable
+
+        """
+        updated_package = ""
+        while updated_package != package:
+            updated_package = package
+            search = re.search(VARIABLE_PATTERN, package)
+            if search:
+                var_name = search['var_name']
+                if var_name in self.data_yml and self.data_yml[var_name]:
+                    try:
+                        package = re.sub(VARIABLE_PATTERN, self.data_yml[var_name], package, count=1)
+                    except TypeError:
+                        continue
+        return updated_package
+
+    def _prepare_data(self, packages):
+        """
+        Finalize the data and check if any template varaible still exists
+        @type packages: list of ubuntu packages
+        """
+        for idx, package in enumerate(packages):
+            packages[idx] = self._replace_variable_with_data(package)
+        return packages
+
+    def get_playbook_data(self, playbook_path):
+        """
+        Read Ubuntu packages from the provided playbook path
+        @type playbook_path: path of ansible playbook
+        """
+
+        try:  # pylint: disable=too-many-nested-blocks
+            # gather data from all yml files into one file"
+            self._get_data_from_playbooks(f'{playbook_path}/[!tasks]*/*.yml')
+            packages = set()
+
+            for file in glob.glob(f'{playbook_path}/tasks/*.yml', recursive=True):
+                full_path = os.path.join(playbook_path, file)
+                with open(full_path) as target_file:
+                    tasks_yml = yaml.safe_load(target_file)
+                if tasks_yml is None:
+                    continue
+
+                for node in tasks_yml:
+                    if "apt" in node:
+                        key = next((key for key in self._apt_keys if key in node['apt']), None)
+                        if key is None:
+                            continue
+                        try:
+                            if isinstance(node['apt'][key], list):
+                                packages |= set(node['apt'][key])
+                            elif re.search(VARIABLE_PATTERN, node['apt'][key]):
+                                items = self._get_packages_from_data_yml(node, key)
+                                packages |= items
+                            else:
+                                packages.add(node['apt'][key])
+                        except TypeError:
+                            continue
+            packages = self._prepare_data(list(packages))
+            return packages
+
+        except Exception as exc:  # pylint: disable=broad-except
+            logger.exception("Following error occurred while parsing yml playbook (%s) in configuration repo: %s",
+                             playbook_path, exc)
+            return list()
+
+    def update_packages_from_playbooks(self):
+        """
+        Read Ubuntu packages from the all playbook paths
+        """
+        for source_dir in self.playbook_dirs:
+            for playbook_dir in self._get_dirs_from_source(source_dir):
+                packages = self.get_playbook_data(os.path.join(self.repo_path, source_dir, playbook_dir))
+                self.packages_from_playbooks[playbook_dir] = packages
 
 
 def get_apt_get_txt(repo_path):
@@ -87,12 +287,21 @@ def clean_data(content):
 
 
 @pytest.fixture(name='content')
-def fixture_ubuntu_content(repo_path):
+def fixture_ubuntu_content(repo_path, git_origin_url):
     """Fixture containing the text content of dockerfile"""
+    config_yaml_data = []
+    match = re.search(URL_PATTERN, git_origin_url)
+
+    # Only run playbook Ubuntu packages check on configuration repo
+    if match['repo_name'] == 'configuration':
+        reader = PlaybookAPTPackagesReader(repo_path)
+        reader.update_packages_from_playbooks()
+        config_yaml_data = reader.packages_from_playbooks
 
     return {
         'docker_packages': get_docker_file_content(repo_path),
-        'apt_get_packages': get_apt_get_txt(repo_path)
+        'apt_get_packages': get_apt_get_txt(repo_path),
+        'yml_files': json.dumps(config_yaml_data),
     }
 
 
@@ -100,10 +309,12 @@ def fixture_ubuntu_content(repo_path):
     [module_dict_key],
     {
         "docker_packages": "content name published on ubuntu.",
-        "apt_get_packages": "content name published on ubuntu."
+        "apt_get_packages": "content name published on ubuntu.",
+        "yml_files": "content name published on ubuntu.",
     })
 def check_ubuntu_content(content, all_results):
     """
     Adding data into results.
     """
-    all_results.update(content)
+    for key, value in content.items():
+        all_results[module_dict_key][key] = value

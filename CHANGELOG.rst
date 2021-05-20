@@ -14,6 +14,13 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[0.1.7] - 2021-06-25
+~~~~~~~~~~~~~~~~~~~~
+
+Added
++++++++
+* Added check to parse ubuntu packages from anisble playbooks.
+
 [0.1.6] - 2021-05-19
 ~~~~~~~~~~~~~~~~~~~~
 

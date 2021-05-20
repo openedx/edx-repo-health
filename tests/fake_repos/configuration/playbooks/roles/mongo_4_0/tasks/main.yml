@@ -1,0 +1,50 @@
+---
+
+- name: Enable/start disable transparent huge pages service (http://docs.mongodb.org/manual/tutorial/transparent-huge-pages/)
+  service:
+    name: disable-transparent-hugepages
+    enabled: yes
+    state: started
+  tags:
+    - "hugepages"
+    - "manage"
+    - "manage:start"
+
+- name: install mongo server and recommends
+  apt:
+    pkg: "{{ item }}"
+    state: present
+    install_recommends: yes
+    force: yes
+    update_cache: yes
+  register: install_mongo_package
+  with_items: "{{ mongodb_debian_pkgs }}"
+  tags:
+    - "install"
+    - "install:app-requirements"
+    - "mongo_packages"
+
+- name: install logrotate configuration
+  template:
+    src: mongo_logrotate.j2
+    dest: /etc/logrotate.d/hourly/mongo
+  tags:
+    - "backup:mongo"
+    - "install"
+    - "install:app-configuration"
+    - "logrotate"
+
+- name: install prereqs for backup script
+  apt:
+    pkg: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - jq
+  when:
+    - is_backup_node
+  tags:
+    - "backup:mongo"
+    - "install"
+    - "install:app-requirements"
+    - "mongo_packages"

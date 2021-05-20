@@ -1,0 +1,12 @@
+
+MONGO_VERSION_MAJOR_MINOR: "4.0"
+MONGO_VERSION_PATCH: "22"
+PYMONGO_VERSION: "3.11.2"
+MONGO_VERSION: "{{ MONGO_VERSION_MAJOR_MINOR }}.{{ MONGO_VERSION_PATCH }}"
+
+mongodb_debian_pkgs:
+  - "mongodb-org={{ MONGO_VERSION }}"
+  - "mongodb-org-server={{ MONGO_VERSION }}"
+  - "mongodb-org-shell={{ MONGO_VERSION }}"
+  - "mongodb-org-mongos={{ MONGO_VERSION }}"
+  - "mongodb-org-tools={{ MONGO_VERSION }}"

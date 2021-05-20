@@ -1,0 +1,64 @@
+# requires:
+#  - group_vars/all
+#  - common/tasks/main.yml
+---
+- name: create application user
+  user:
+    name: "{{ edxapp_user }}"
+    home: "{{ edxapp_app_dir }}"
+    createhome: "{{ edxapp_user_createhome }}"
+    shell: "{{ edxapp_user_shell }}"
+  tags:
+    - install
+    - install:base
+
+- name: install system packages on which LMS and CMS rely
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_flattened:
+    - "{{ edxapp_debian_pkgs_default }}"
+    - "{{ edxapp_debian_pkgs_extra }}"
+  tags:
+    - install
+    - install:base
+
+- name: Install the gpg key for nodejs LTS
+  apt_key:
+    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+    state: present
+  tags:
+    - install
+    - install:base
+
+- name: Install the nodejs LTS repos
+  apt_repository:
+    repo: "deb https://deb.nodesource.com/node_{{ EDXAPP_NODE_VERSION }}.x {{ ansible_distribution_release }} main"
+    state: present
+    update_cache: yes
+  tags:
+    - install
+    - install:base
+
+- name: Install node
+  apt:
+    name: nodejs
+    state: present
+  tags:
+    - install
+    - install:base
+
+
+- name: add deadsnakes repo
+  apt_repository:
+      repo: ppa:deadsnakes/ppa
+
+- name: install python3.8
+  apt:
+    pkg:
+      - python3.8-dev
+      - python3.8-distutils
+  tags:
+    - install
+    - install:system-requirements

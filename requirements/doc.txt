@@ -73,26 +73,33 @@ google-auth==1.30.0
     #   gspread
 gspread==3.7.0
     # via -r requirements/test.txt
+idna-ssl==1.1.0
+    # via
+    #   -r requirements/test.txt
+    #   aiohttp
 idna==2.10
     # via
     #   -r requirements/test.txt
+    #   idna-ssl
     #   requests
     #   yarl
 imagesize==1.2.0
     # via sphinx
+importlib-metadata==2.1.1
+    # via
+    #   -c requirements/constraints.txt
+    #   -r requirements/test.txt
+    #   pluggy
+    #   pytest
+    #   stevedore
 iniconfig==1.1.1
     # via
     #   -r requirements/test.txt
     #   pytest
-jinja2==2.11.3
-    # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   sphinx
-markupsafe==1.1.1
-    # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   jinja2
-    #   sphinx
+jinja2==3.0.1
+    # via sphinx
+markupsafe==2.0.1
+    # via jinja2
 multidict==5.1.0
     # via
     #   -r requirements/test.txt
@@ -188,7 +195,7 @@ smmap==4.0.0
     #   gitdb
 snowballstemmer==2.1.0
     # via sphinx
-sphinx==4.0.1
+sphinx==4.0.2
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
@@ -214,6 +221,8 @@ typing-extensions==3.10.0.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
+    #   gitpython
+    #   yarl
 urllib3==1.26.4
     # via
     #   -r requirements/test.txt
@@ -225,6 +234,10 @@ yarl==1.6.3
     # via
     #   -r requirements/test.txt
     #   aiohttp
+zipp==3.4.1
+    # via
+    #   -r requirements/test.txt
+    #   importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

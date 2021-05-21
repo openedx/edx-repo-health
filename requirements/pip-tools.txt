@@ -4,16 +4,23 @@
 #
 #    make upgrade
 #
-click==7.1.2
+click==8.0.1
+    # via pip-tools
+importlib-metadata==2.1.1
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   pip-tools
+    #   -c requirements/constraints.txt
+    #   click
+    #   pep517
 pep517==0.10.0
     # via pip-tools
 pip-tools==6.1.0
     # via -r requirements/pip-tools.in
 toml==0.10.2
     # via pep517
+zipp==3.4.1
+    # via
+    #   importlib-metadata
+    #   pep517
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip

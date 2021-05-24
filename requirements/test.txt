@@ -32,6 +32,8 @@ chardet==3.0.4
     #   -r requirements/base.txt
     #   aiohttp
     #   requests
+coverage[toml]==5.5
+    # via pytest-cov
 dockerfile==3.1.0
     # via -r requirements/base.txt
 gitdb==4.0.7
@@ -55,11 +57,22 @@ google-auth==1.30.0
     #   gspread
 gspread==3.7.0
     # via -r requirements/base.txt
+idna-ssl==1.1.0
+    # via
+    #   -r requirements/base.txt
+    #   aiohttp
 idna==2.10
     # via
     #   -r requirements/base.txt
+    #   idna-ssl
     #   requests
     #   yarl
+importlib-metadata==2.1.1
+    # via
+    #   -c requirements/constraints.txt
+    #   -r requirements/base.txt
+    #   pluggy
+    #   pytest
 iniconfig==1.1.1
     # via
     #   -r requirements/base.txt
@@ -102,12 +115,15 @@ pytest-aiohttp==0.3.0
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
+pytest-cov==2.12.0
+    # via -r requirements/test.in
 pytest-repo-health==2.1.0
     # via -r requirements/base.txt
 pytest==6.2.4
     # via
     #   -r requirements/base.txt
     #   pytest-aiohttp
+    #   pytest-cov
     #   pytest-repo-health
 pyyaml==5.4.1
     # via
@@ -145,6 +161,8 @@ typing-extensions==3.10.0.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
+    #   gitpython
+    #   yarl
 urllib3==1.26.4
     # via
     #   -r requirements/base.txt
@@ -154,6 +172,10 @@ yarl==1.6.3
     # via
     #   -r requirements/base.txt
     #   aiohttp
+zipp==3.4.1
+    # via
+    #   -r requirements/base.txt
+    #   importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

@@ -26,4 +26,6 @@ venv/*
 
 docs/_build/*
 
+.coverage
+
 

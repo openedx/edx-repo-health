@@ -39,10 +39,18 @@ google-auth==1.30.0
     #   gspread
 gspread==3.7.0
     # via -r requirements/base.in
+idna-ssl==1.1.0
+    # via aiohttp
 idna==2.10
     # via
+    #   idna-ssl
     #   requests
     #   yarl
+importlib-metadata==2.1.1
+    # via
+    #   -c requirements/constraints.txt
+    #   pluggy
+    #   pytest
 iniconfig==1.1.1
     # via pytest
 multidict==5.1.0
@@ -90,11 +98,16 @@ smmap==4.0.0
 toml==0.10.2
     # via pytest
 typing-extensions==3.10.0.0
-    # via aiohttp
+    # via
+    #   aiohttp
+    #   gitpython
+    #   yarl
 urllib3==1.26.4
     # via requests
 yarl==1.6.3
     # via aiohttp
+zipp==3.4.1
+    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

@@ -1,0 +1,50 @@
+# variables common to the edxapp role, automatically loaded
+# when the role is included
+
+edxapp_requirements_with_github_urls:
+  - "{{ custom_requirements_file }}"
+  - "{{ base_requirements_file }}"
+  - "{{ sandbox_base_requirements }}"
+
+edxapp_debian_pkgs:
+  # for compiling the virtualenv
+  # (only needed if wheel files aren't available)
+  - s3cmd
+  - pkg-config
+  # for scipy, do not install
+  # libopenblas-base, it will cause
+  # problems for numpy
+  - g++
+  # apparmor
+  - apparmor-utils
+  # misc
+  - curl
+  - ntp
+  # matplotlib needs libfreetype6-dev
+  - libfreetype6-dev
+  # cffi needs libffi-dev
+  - libffi-dev
+  - python3-dev
+  - libsqlite3-dev
+
+edxapp_release_specific_debian_pkgs:
+  xenial:
+    - ipython
+    - python-dev
+  bionic:
+    - ipython
+    - python-dev
+  focal:
+    - ipython3
+
+edxapp_debian_pkgs_default: "{{ edxapp_debian_pkgs + edxapp_release_specific_debian_pkgs[ansible_distribution_release] }}"
+
+edxapp_debian_pkgs_extra: []
+
+# Deploy Specific Vars
+edxapp_lms_variant: lms
+edxapp_cms_variant: cms
+
+# Worker Settings
+worker_django_settings_module: '{{ EDXAPP_SETTINGS }}'
+EDXAPP_CELERY_HEARTBEAT_ENABLED: true

@@ -12,7 +12,6 @@ req_files = {
     "Makefile": "Make targets",
     "tox.ini": "Tox configuration",
     ".travis.yml": "Travis configuration",
-    "README.rst": "Basic level of documentation in the form of README.rst",
     "CHANGELOG.rst": "Change history",
     "pylintrc": "Pylint configuration",
     "setup.cfg": "Application setup configuration",
@@ -55,3 +54,16 @@ def check_dir_existence(repo_path, all_results):
         all_results[module_dict_key][dir_name] = dir_exists(
             repo_path, dir_name
         )
+
+
+@health_metadata(
+    [module_dict_key],
+    {"README": "Basic level of documentation in the form of README.rst or README.md"}
+)
+def check_readme_existence(repo_path, all_results):
+    """
+    Check if README exists in repository.
+    """
+    exists = any(file_exists(repo_path, file) for file in ['README.rst', 'README.md'])
+
+    all_results[module_dict_key]['README'] = exists

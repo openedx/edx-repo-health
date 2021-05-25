@@ -1,7 +1,14 @@
 import os
 import pytest
 
-from repo_health.check_existence import check_file_existence, check_dir_existence, req_dirs, req_files, module_dict_key
+from repo_health.check_existence import (
+    check_readme_existence,
+    check_dir_existence,
+    check_file_existence,
+    req_dirs,
+    req_files,
+    module_dict_key
+)
 
 
 def get_repo_path(repo_name):
@@ -77,3 +84,15 @@ def test_check_dir_existence(fake_repo, flag_list):
 
     for dir, desc in req_dirs.items():
         assert all_results[module_dict_key][dir] == flag_list[dir]
+
+
+@pytest.mark.parametrize("fake_repo, flag", [
+    ("docs_repo", True),
+    ("js_repo", True),
+    ("just_setup_cfg", False)])
+def test_readme_existence(fake_repo, flag):
+    repo_path = get_repo_path('fake_repos/' + fake_repo)
+    all_results = {module_dict_key: {}}
+    check_readme_existence(repo_path, all_results)
+
+    assert all_results[module_dict_key]['README'] == flag

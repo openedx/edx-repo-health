@@ -1,0 +1,99 @@
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "_links": {
+        "_self": "https://readthedocs.org/api/v3/projects/testing-demo/",
+        "builds": "https://readthedocs.org/api/v3/projects/testing-demo/builds/",
+        "environmentvariables": "https://readthedocs.org/api/v3/projects/testing-demo/environmentvariables/",
+        "redirects": "https://readthedocs.org/api/v3/projects/testing-demo/redirects/",
+        "subprojects": "https://readthedocs.org/api/v3/projects/testing-demo/subprojects/",
+        "superproject": "https://readthedocs.org/api/v3/projects/testing-demo/superproject/",
+        "translations": "https://readthedocs.org/api/v3/projects/testing-demo/translations/",
+        "versions": "https://readthedocs.org/api/v3/projects/testing-demo/versions/"
+      },
+      "created": "2021-04-15T09:17:31.286409Z",
+      "default_branch": "master",
+      "default_version": "latest",
+      "homepage": null,
+      "id": 888888,
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "modified": "2021-05-15T09:17:33.959913Z",
+      "name": "testing-demo",
+      "programming_language": {
+        "code": "words",
+        "name": "Only Words"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/readthedocs/readthedocs.git"
+      },
+      "slug": "testing-demo",
+      "subproject_of": null,
+      "tags": [],
+      "translation_of": null,
+      "urls": {
+        "builds": "https://readthedocs.org/projects/testing-demo/builds/",
+        "documentation": "https://testing-demo.readthedocs.io/en/latest/",
+        "home": "https://readthedocs.org/projects/testing-demo/",
+        "versions": "https://readthedocs.org/projects/testing-demo/versions/"
+      },
+      "users": [
+        {
+          "username": "testing"
+        }
+      ]
+    },
+    {
+      "_links": {
+        "_self": "https://readthedocs.org/api/v3/projects/test-it/",
+        "builds": "https://readthedocs.org/api/v3/projects/test-it/builds/",
+        "environmentvariables": "https://readthedocs.org/api/v3/projects/test-it/environmentvariables/",
+        "redirects": "https://readthedocs.org/api/v3/projects/test-it/redirects/",
+        "subprojects": "https://readthedocs.org/api/v3/projects/test-it/subprojects/",
+        "superproject": "https://readthedocs.org/api/v3/projects/test-it/superproject/",
+        "translations": "https://readthedocs.org/api/v3/projects/test-it/translations/",
+        "versions": "https://readthedocs.org/api/v3/projects/test-it/versions/"
+                                },
+      "created": "2021-05-04T15:07:27.329535Z",
+      "default_branch": "master",
+      "default_version": "latest",
+      "homepage": null,
+      "id": 777777,
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "modified": "2021-06-04T15:07:40.227130Z",
+      "name": "test it",
+      "programming_language": {
+        "code": "words",
+        "name": "Only Words"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/test/it-docs"
+      },
+      "slug": "test-it",
+      "subproject_of": null,
+      "tags": [],
+      "translation_of": null,
+      "urls": {
+        "builds": "https://readthedocs.org/projects/test-it/builds/",
+        "documentation": "https://test-it.readthedocs.io/en/latest/",
+        "home": "https://readthedocs.org/projects/test-it/",
+        "versions": "https://readthedocs.org/projects/test-it/versions/"
+      },
+      "users": [
+        {
+          "username": "testing"
+        }
+      ]
+    }
+  ]
+}

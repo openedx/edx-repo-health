@@ -27,7 +27,6 @@ logger = logging.getLogger(__name__)
 VARIABLE_PATTERN = r"{{\s*?(?:[\"']\s?,[\"']\.join\(\s?)?(?P<var_name>[^\W0-9]\w*)\[?(?P<var1_index>[^\W0-9]\w*)?\]?\s?\)?\s*?(\s*\+\s*(?P<var2_name>[^\W0-9]\w*)(\[(?P<var2_index>[^\W0-9]\w*)\]?)?)?\s*}}"
 
 
-
 def get_docker_file_content(repo_path):
     """
    entry point to parse docker file and do cleaning.
@@ -59,7 +58,8 @@ def get_docker_file_content(repo_path):
         if fir and sec:  # no need to iterate after getting req data.
             break
 
-    return [item for sublist in lists for item in sublist]
+    ignored_list = ['chmod',  '/usr/local/bin/gosu', '-qqy', '/usr/bin/python3', '/usr/bin/pip', 'then', '-sf']
+    return list({item for sublist in lists for item in sublist if item not in ignored_list and len(item) > 2})
 
 
 class PlaybookAPTPackagesReader:
@@ -277,7 +277,8 @@ def clean_data(content):
     content = re.sub(r"\s+", ' ', content).strip()
     replace = [
         'RUN', 'apt-get update', 'apt-get install', '&&', '--yes', '-rf ', 'rm', '/var/lib/apt/lists/*',
-        '--no-install-recommends', '--es', '-qy', 'upgrade', 'apt-get'
+        '--no-install-recommends', '--es', '-qy', 'upgrade', 'apt-get', '/usr/bin/pip',
+        '/usr/bin/python'
     ]
     for con in replace:
         content = content.replace(con, '')

@@ -1,0 +1,14 @@
+ Standard dependencies for Ansible runs
+
+ansible<2.9.0
+awscli
+boto
+boto3
+datadog==0.8.0
+docopt==0.6.2
+ecdsa==0.13.3
+Jinja2==2.8
+pycrypto==2.6.1
+pymongo==3.9.0                      # Needed for the mongo_* modules (playbooks/library/mongo_*)
+PyYAML
+requests

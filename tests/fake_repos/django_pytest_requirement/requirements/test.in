@@ -1,0 +1,13 @@
+
+-c constraints.txt
+
+black
+bok-choy
+ddt
+edx-lint
+factory-boy
+httpretty
+isort
+pytest
+testfixtures
+tox

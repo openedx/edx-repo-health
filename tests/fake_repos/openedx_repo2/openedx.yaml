@@ -1,0 +1,12 @@
+supporting-teams:
+    - platform-test
+nick: test-repo
+tags:
+    - tools
+oeps:
+    oep-2: true
+    oep-3: false
+    oep-5:
+        state: false
+        reason: Not a standalone service
+    oep-7: true

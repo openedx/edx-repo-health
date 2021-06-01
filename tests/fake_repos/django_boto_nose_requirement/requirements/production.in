@@ -1,0 +1,11 @@
+# Packages required in a production environment
+-r base.in
+
+django-ses
+gunicorn==19.7.1
+newrelic<5
+python-memcached==1.58
+PyYAML
+nodeenv==1.1.1
+redis
+nose

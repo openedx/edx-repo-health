@@ -28,7 +28,7 @@ cachetools==4.2.2
     # via
     #   -r requirements/test.txt
     #   google-auth
-certifi==2020.12.5
+certifi==2021.5.30
     # via
     #   -r requirements/test.txt
     #   requests
@@ -39,7 +39,7 @@ chardet==3.0.4
     #   aiohttp
     #   doc8
     #   requests
-coverage[toml]==5.5
+coverage==5.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -109,7 +109,7 @@ multidict==5.1.0
     #   -r requirements/test.txt
     #   aiohttp
     #   yarl
-oauthlib==3.1.0
+oauthlib==3.1.1
     # via
     #   -r requirements/test.txt
     #   requests-oauthlib
@@ -151,7 +151,7 @@ pytest-aiohttp==0.3.0
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-pytest-cov==2.12.0
+pytest-cov==2.12.1
     # via -r requirements/test.txt
 pytest-repo-health==2.1.0
     # via -r requirements/test.txt
@@ -223,8 +223,8 @@ stevedore==3.3.0
 toml==0.10.2
     # via
     #   -r requirements/test.txt
-    #   coverage
     #   pytest
+    #   pytest-cov
 typing-extensions==3.10.0.0
     # via
     #   -r requirements/test.txt

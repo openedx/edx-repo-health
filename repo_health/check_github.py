@@ -114,8 +114,14 @@ async def check_build_duration(all_results, github_repo):
 # unfortunatly, some repositories don't set their license in a way that does not work in licensee.
 # repo_license_exemtions is used to fill in license info for these repositories
 # it documents: (repo name, license name, link to more info to reupdate list in the future, org (owner) name)
-repo_license_exemptions = {"gocd-vault-secret-plugin": {'license':"Apache License 2.0", "more_info":"https://github.com/edx/gocd-vault-secret-plugin/blob/aaa5de944c599a0df7469b731e7fe1feb1451636/.idea/copyright/Apache_2_0.xml", "owner": "edx"},
-                               }
+repo_license_exemptions = {
+    "gocd-vault-secret-plugin": {
+        "license": "Apache License 2.0",
+        "more_info": "https://github.com/edx/gocd-vault-secret-plugin/blob/aaa5de944c599a0df7469b731e7fe1feb1451636/.idea/copyright/Apache_2_0.xml",
+        "owner": "edx",
+    },
+}
+
 
 @health_metadata(
     [MODULE_DICT_KEY],
@@ -174,8 +180,12 @@ async def check_settings(all_results, github_repo):
     results["last_push"] = github_repo.pushed_at
     repo_license = github_repo.license
     if repo_license is None:
-        if github_repo.name in repo_license_exemptions and github_repo.owner.login == repo_license_exemptions[github_repo.name]["owner"]:
-            results["license"] = repo_license_exemptions[github_repo.name]['license']
+        if (
+            github_repo.name in repo_license_exemptions
+            and github_repo.owner.login
+            == repo_license_exemptions[github_repo.name]["owner"]
+        ):
+            results["license"] = repo_license_exemptions[github_repo.name]["license"]
         else:
             results["license"] = None
     else:

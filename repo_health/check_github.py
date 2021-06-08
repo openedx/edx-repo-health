@@ -113,7 +113,7 @@ async def check_build_duration(all_results, github_repo):
 # GitHub uses https://licensee.github.io/licensee/ to figure out the license of a git repository.
 # Unfortunately, some repositories set their license in a way that does not work with `licensee`.
 # repo_license_exemptions is used to fill in license info for these repositories.
-# it documents: (repo name, license name, link to more info to reupdate list in the future, org (owner) name)
+# it documents: (repo name, license name, more info (link to license), owner (repo org))
 repo_license_exemptions = {
     "gocd-vault-secret-plugin": {
         "license": "Apache License 2.0",

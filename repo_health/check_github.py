@@ -182,8 +182,7 @@ async def check_settings(all_results, github_repo):
     if repo_license is None:
         if (
             github_repo.name in repo_license_exemptions
-            and github_repo.owner.login
-            == repo_license_exemptions[github_repo.name]["owner"]
+            and github_repo.owner.login == repo_license_exemptions[github_repo.name]["owner"]
         ):
             results["license"] = repo_license_exemptions[github_repo.name]["license"]
         else:

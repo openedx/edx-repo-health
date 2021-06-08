@@ -11,7 +11,7 @@ from repo_health.check_github import (
 from unittest.mock import Mock
 
 
-def test_check_settings_license_exemption_present():
+async def test_check_settings_license_exemption_present():
     """Test to make sure having an exemption in repo_license_exemptions results in change of license in all_results dict"""
     all_results = {MODULE_DICT_KEY: {}}
     github_repo_mock = Mock()
@@ -27,7 +27,8 @@ def test_check_settings_license_exemption_present():
     github_repo_mock.object.name = test_repo
     github_repo_mock.object.owner.login = test_org
     github_repo_mock.object.license = None
-    asyncio.run(check_settings(all_results, github_repo_mock))
+
+    await check_settings(all_results, github_repo_mock)
 
     # clean up changes made to repo_license_exemption
     del repo_license_exemptions[test_repo]
@@ -35,7 +36,7 @@ def test_check_settings_license_exemption_present():
     assert all_results["github"]["license"] == test_license
 
 
-def test_check_settings_no_license_exemption_present():
+async def test_check_settings_no_license_exemption_present():
     """Test to make sure exemptions code does not make any changes when no exemption is present."""
     all_results = {MODULE_DICT_KEY: {}}
     github_repo_mock = Mock()
@@ -48,7 +49,8 @@ def test_check_settings_no_license_exemption_present():
     assert test_repo not in repo_license_exemptions
 
     github_repo_mock.object.license = None
-    asyncio.run(check_settings(all_results, github_repo_mock))
+
+    await check_settings(all_results, github_repo_mock)
 
     assert "license" in all_results["github"]
     assert all_results["github"]["license"] == None

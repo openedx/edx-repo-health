@@ -110,6 +110,20 @@ async def check_build_duration(all_results, github_repo):
         'checks': checks_list
     })
 
+# GitHub uses https://licensee.github.io/licensee/ to figure out the license of a git repository.
+# Unfortunately, some repositories set their license in a way that does not work with `licensee`.
+# repo_license_exemptions is used to fill in license info for these repositories.
+# it documents: (repo name, license name, more info (link to license), owner (repo org))
+# Since edx/edx-repo-health is a public repository,
+# info about private repositories should not be added here without some deliberation
+repo_license_exemptions = {
+    "gocd-vault-secret-plugin": {
+        "license": "Apache License 2.0",
+        "more_info": "https://github.com/edx/gocd-vault-secret-plugin/blob/v1.2.0-66-exp/.idea/copyright/Apache_2_0.xml",  # pylint: disable=line-too-long
+        "owner": "edx",
+    },
+}
+
 
 @health_metadata(
     [MODULE_DICT_KEY],
@@ -168,7 +182,13 @@ async def check_settings(all_results, github_repo):
     results["last_push"] = github_repo.pushed_at
     repo_license = github_repo.license
     if repo_license is None:
-        results["license"] = None
+        if (
+            github_repo.name in repo_license_exemptions
+            and github_repo.owner.login == repo_license_exemptions[github_repo.name]["owner"]
+        ):
+            results["license"] = repo_license_exemptions[github_repo.name]["license"]
+        else:
+            results["license"] = None
     else:
         results["license"] = repo_license.nickname or repo_license.name
 

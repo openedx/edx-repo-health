@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
+"""Testing functions in repo_health/check_github.py"""
 
-import pytest
-import asyncio
+from unittest.mock import Mock
 
 from repo_health.check_github import (
     check_settings,
     MODULE_DICT_KEY,
     repo_license_exemptions,
 )
-from unittest.mock import Mock
 
 
 async def test_check_settings_license_exemption_present():
-    """Test to make sure having an exemption in repo_license_exemptions results in change of license in all_results dict"""
+    """
+    Test to make sure having an exemption in repo_license_exemptions results in change of license in all_results dict
+    """
     all_results = {MODULE_DICT_KEY: {}}
     github_repo_mock = Mock()
     test_repo = "test_repo"
@@ -37,12 +38,12 @@ async def test_check_settings_license_exemption_present():
 
 
 async def test_check_settings_no_license_exemption_present():
-    """Test to make sure exemptions code does not make any changes when no exemption is present."""
+    """
+    Test to make sure exemptions code does not make any changes when no exemption is present.
+    """
     all_results = {MODULE_DICT_KEY: {}}
     github_repo_mock = Mock()
     test_repo = "test_repo"
-    test_org = "test_org"
-    test_license = "test_license"
 
     # make sure test_repo is not in repo_license_exemption,
     # if it is, you might want to change name of test_repo
@@ -53,4 +54,4 @@ async def test_check_settings_no_license_exemption_present():
     await check_settings(all_results, github_repo_mock)
 
     assert "license" in all_results["github"]
-    assert all_results["github"]["license"] == None
+    assert all_results["github"]["license"] is None

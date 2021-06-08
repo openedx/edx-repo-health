@@ -114,11 +114,12 @@ async def check_build_duration(all_results, github_repo):
 # Unfortunately, some repositories set their license in a way that does not work with `licensee`.
 # repo_license_exemptions is used to fill in license info for these repositories.
 # it documents: (repo name, license name, more info (link to license), owner (repo org))
-# Since edx/edx-repo-health is a public repository, info about private repositories should not be added here without some deliberation
+# Since edx/edx-repo-health is a public repository,
+# info about private repositories should not be added here without some deliberation
 repo_license_exemptions = {
     "gocd-vault-secret-plugin": {
         "license": "Apache License 2.0",
-        "more_info": "https://github.com/edx/gocd-vault-secret-plugin/blob/v1.2.0-66-exp/.idea/copyright/Apache_2_0.xml",
+        "more_info": "https://github.com/edx/gocd-vault-secret-plugin/blob/v1.2.0-66-exp/.idea/copyright/Apache_2_0.xml",  # pylint: disable=line-too-long
         "owner": "edx",
     },
 }

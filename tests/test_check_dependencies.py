@@ -42,7 +42,7 @@ def test_python_repo_dependency_check():
     repo_path = get_repo_path('fake_repos/python_repo')
     dependencies = get_dependencies(repo_path)
 
-    assert 'django==2.2.20' in dependencies["pypi_all"]["list"]
+    assert 'django==2.2.24' in dependencies["pypi_all"]["list"]
     assert 'git+https://github.com/edx/credentials-themes.git@0.1.62#egg=edx_credentials_themes==0.1.62' \
            in dependencies["github"]["list"]
     assert dependencies["pypi_all"]["count"] == 65

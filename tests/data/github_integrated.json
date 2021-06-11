@@ -1,0 +1,41 @@
+{
+    "total_count": 3,
+    "workflows": [
+        {
+            "id": 36515,
+            "node_id": "MDg6V29ya2Zsb3czNjUx",
+            "name": "Playbook Test",
+            "path": ".github/workflows/playbook-test.yml",
+            "state": "active",
+            "created_at": "2020-11-23T01:03:34.000+05:00",
+            "updated_at": "2020-11-23T01:03:34.000+05:00",
+            "url": "https://api.github.com/repos/edx/integrated/actions/workflows/36515",
+            "html_url": "https://github.com/edx/integrated/blob/master/.github/workflows/playbook-test.yml",
+            "badge_url": "https://github.com/edx/integrated/workflows/Playbook%20Test/badge.svg"
+        },
+        {
+            "id": 92125,
+            "node_id": "MDg6V29ya2Zsb3c5MjEy",
+            "name": "automerge BTR open-release PRs",
+            "path": ".github/workflows/pr-automerge-open-release.yml",
+            "state": "active",
+            "created_at": "2021-05-27T06:59:09.000+05:00",
+            "updated_at": "2021-05-27T06:59:09.000+05:00",
+            "url": "https://api.github.com/repos/edx/integrated/actions/workflows/92125",
+            "html_url": "https://github.com/edx/integrated/blob/master/.github/workflows/pr-automerge-open-release.yml",
+            "badge_url": "https://github.com/edx/integrated/workflows/automerge%20BTR%20open-release%20PRs/badge.svg"
+        },
+        {
+            "id": 36515,
+            "node_id": "MDg6V29ya2Zsb3czNjUx",
+            "name": "Syntax Test",
+            "path": ".github/workflows/syntax-test.yml",
+            "state": "active",
+            "created_at": "2020-11-28T01:03:34.000+05:00",
+            "updated_at": "2020-11-28T01:03:34.000+05:00",
+            "url": "https://api.github.com/repos/edx/integrated/actions/workflows/36515",
+            "html_url": "https://github.com/edx/integrated/blob/master/.github/workflows/syntax-test.yml",
+            "badge_url": "https://github.com/edx/integrated/workflows/Syntax%20Test/badge.svg"
+        }
+    ]
+}

@@ -5,10 +5,8 @@ And gathers info
 import os
 import pytest
 import yaml
-
 from pytest_repo_health import add_key_to_metadata
 from repo_health import get_file_content
-
 
 module_dict_key = "travis_yml"
 
@@ -54,6 +52,10 @@ def fixture_python_version(parsed_data_travis):
     python_versions = set()
     if "python" in parsed_data_travis.keys():
         py_versions = parsed_data_travis["python"]
+
+        for i in enumerate(py_versions):
+            py_versions[i[0]] = float(py_versions[i[0]])
+
         python_versions = set([py_versions] if isinstance(py_versions, float) else py_versions)
 
     if "matrix" in parsed_data_travis.keys():

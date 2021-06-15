@@ -1,0 +1,82 @@
+{
+  "count": 3,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "_links": {
+        "_self": "https://readthedocs.org/api/v3/projects/testing-demo/builds/12345678/",
+        "project": "https://readthedocs.org/api/v3/projects/testing-demo/",
+        "version": "https://readthedocs.org/api/v3/projects/testing-demo/versions/latest/"
+      },
+      "commit": "291411eea8a27880e6f4040b9409ff3a4ef74f36",
+      "created": "2021-06-11T12:31:31.357860Z",
+      "duration": 37,
+      "error": "",
+      "finished": "2021-06-11T12:32:03.357860Z",
+      "id": 12345678,
+      "project": "testing-demo",
+      "state": {
+        "code": "finished",
+        "name": "Finished"
+      },
+      "success": true,
+      "urls": {
+        "build": "https://readthedocs.org/projects/testing-demo/builds/12345678/",
+        "project": "https://readthedocs.org/projects/testing-demo/",
+        "version": "https://readthedocs.org/dashboard/testing-demo/version/latest/edit/"
+      },
+      "version": "latest"
+    },
+    {
+      "_links": {
+        "_self": "https://readthedocs.org/api/v3/projects/testing-demo/builds/12345677/",
+                                    "project": "https://readthedocs.org/api/v3/projects/testing-demo/",
+        "version": "https://readthedocs.org/api/v3/projects/testing-demo/versions/latest/"
+      },
+      "commit": "291410eea8e27880e6d4040b94090e3a4e074e36",
+      "created": "2021-03-12T20:36:20.239344Z",
+      "duration": 35,
+      "error": "",
+      "finished": "2021-03-12T20:36:52.239344Z",
+      "id": 12345677,
+      "project": "testing-demo",
+      "state": {
+        "code": "finished",
+        "name": "Finished"
+      },
+      "success": true,
+      "urls": {
+        "build": "https://readthedocs.org/projects/testing-demo/builds/12345677/",
+        "project": "https://readthedocs.org/projects/testing-demo/",
+        "version": "https://readthedocs.org/dashboard/testing-demo/version/latest/edit/"
+      },
+      "version": "latest"
+    },
+    {
+      "_links": {
+        "_self": "https://readthedocs.org/api/v3/projects/testing-demo/builds/12345676/",
+        "project": "https://readthedocs.org/api/v3/projects/testing-demo/",
+        "version": "https://readthedocs.org/api/v3/projects/testing-demo/versions/latest/"
+      },
+      "commit": "291410eea8e27880e6d4040b94090e3a4e074e36",
+      "created": "2021-02-18T09:17:31.334838Z",
+      "duration": 33,
+      "error": "",
+      "finished": "2021-02-18T09:18:04.334838Z",
+      "id": 12345676,
+      "project": "testing-demo",
+      "state": {
+        "code": "finished",
+        "name": "Finished"
+      },
+      "success": true,
+      "urls": {
+        "build": "https://readthedocs.org/projects/testing-demo/builds/12345676/",
+        "project": "https://readthedocs.org/projects/testing-demo/",
+        "version": "https://readthedocs.org/dashboard/testing-demo/version/latest/edit/"
+      },
+      "version": "latest"
+    }
+  ]
+}

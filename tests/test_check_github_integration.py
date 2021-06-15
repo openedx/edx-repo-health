@@ -1,6 +1,6 @@
 import os
-import pdb
-from repo_health.check_github_integration import check_github_actions_integration, module_dict_key, GitHubIntegrationHandler
+
+from repo_health.check_github_integration import check_github_actions_integration, module_dict_key, get_githubworkflow_api_response
 from unittest import mock, TestCase
 
 
@@ -27,16 +27,20 @@ def mocked_responses(*args, **kwargs):
 
 class GithubIntegrationTest(TestCase):
 
-    @mock.patch('requests.get', side_effect=mocked_responses)
+    @mock.patch('repo_health.check_github_integration.get_githubworkflow_api_response')
     def test_check_github_integration_true(self, mock_get):
+        mock_get.return_value = mocked_responses(url='https://api.github.com/repos/edx/integrated/actions/workflows')
+
         all_results = {module_dict_key: {}}
         check_github_actions_integration(all_results, git_origin_url=f"github.com/edx/integrated.git")
 
         assert all_results[module_dict_key] == True
         assert all_results["org_name"] == 'edx'
 
-    @mock.patch('requests.get', side_effect=mocked_responses)
+    @mock.patch('repo_health.check_github_integration.get_githubworkflow_api_response')
     def test_check_github_integration_false(self, mock_get):
+        mock_get.return_value = mocked_responses(url='https://api.github.com/repos/edx/not_integrated/actions/workflows')
+
         all_results = {module_dict_key: {}}
         check_github_actions_integration(all_results, git_origin_url=f"github.com/edx/not_integrated.git")
 

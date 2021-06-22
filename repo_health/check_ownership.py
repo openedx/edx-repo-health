@@ -40,7 +40,8 @@ def find_worksheet(google_creds_file, spreadsheet_url, worksheet_id):
     matching = list(filter(lambda w: w.id == worksheet_id, all_worksheets))
     if not matching:
         raise KnownError(f"Cannot find a worksheet with ID {worksheet_id}")
-    return matching[0]
+    worksheet = matching[0]
+    return worksheet.get_all_records()
 
 
 @health_metadata(
@@ -73,8 +74,8 @@ def check_ownership(all_results, git_origin_url):
     repo_name = match.group("repo_name")
     repo_url = f"https://github.com/{org_name}/{repo_name}"
     results = all_results[MODULE_DICT_KEY]
-    worksheet = find_worksheet(google_creds_file, spreadsheet_url, worksheet_id)
-    for row in worksheet.get_all_records():
+    records = find_worksheet(google_creds_file, spreadsheet_url, worksheet_id)
+    for row in records:
         if row["repo url"] != repo_url:
             continue
         results["theme"] = row["owner.theme"]

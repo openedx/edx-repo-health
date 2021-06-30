@@ -73,7 +73,7 @@ class GitHubIntegrationHandler:
 
 
 @add_key_to_metadata((module_dict_key,))
-def check_githuba_actions_integration(all_results, git_origin_url):
+def check_github_actions_integration(all_results, git_origin_url):
     """
     Checks repository integrated with github actions workflow
     """

@@ -38,7 +38,7 @@ jobs:
     - name: Run Tests
       env:
         TOXENV: ${{ matrix.toxenv }}
-        GITHUB_TOKEN: ${{ secrets.REQUIREMENTS_BOT_GITHUB_TOKEN }}
+        GITHUB_TOKEN: 'token'
       run: tox
 
     - name: Run Coverage

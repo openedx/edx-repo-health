@@ -1,18 +1,19 @@
 import os
 
-from repo_health.check_github_integration import check_github_actions_integration, module_dict_key, get_githubworkflow_api_response
-from unittest import mock, TestCase
+from repo_health.check_github_integration import check_github_actions_integration, module_dict_key
+from unittest import mock
+
+
+class MockResponse:
+    def __init__(self, content, status_code):
+        self.content = content
+        self.status_code = status_code
+
+    def json(self):
+        return self.content
 
 
 def mocked_responses(*args, **kwargs):
-    class MockResponse:
-        def __init__(self, content, status_code):
-            self.content = content
-            self.status_code = status_code
-
-        def json(self):
-            return self.content
-
     current_dir = os.path.dirname(__file__)
 
     if kwargs['url'] == 'https://api.github.com/repos/edx/integrated/actions/workflows':

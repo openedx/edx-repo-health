@@ -82,7 +82,9 @@ class JavascriptDependencyReader(DependencyReader):
         """
         method processing javascript dependencies file
         """
-        package_json_content = open(os.path.join(self._repo_path, "package.json"), 'r').read()
+        package_json_content = open(  # pylint: disable=consider-using-with
+            os.path.join(self._repo_path, "package.json"), 'r'
+        ).read()
         package_json_data = json.loads(package_json_content)
 
         self.js_dependencies = package_json_data.get('dependencies', {})

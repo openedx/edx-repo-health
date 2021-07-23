@@ -119,7 +119,7 @@ async def check_build_duration(all_results, github_repo):
 repo_license_exemptions = {
     "gocd-vault-secret-plugin": {
         "license": "Apache License 2.0",
-        "more_info": "https://github.com/edx/gocd-vault-secret-plugin/blob/v1.2.0-66-exp/.idea/copyright/Apache_2_0.xml",  # pylint: disable=line-too-long
+        "more_info": "https://github.com/edx/gocd-vault-secret-plugin/blob/v1.2.0-66-exp/.idea/copyright/Apache_2_0.xml",  # pylint: disable=line-too-long, useless-suppression
         "owner": "edx",
     },
 }

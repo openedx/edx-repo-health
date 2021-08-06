@@ -31,7 +31,7 @@ chardet==3.0.4
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
     #   aiohttp
-charset-normalizer==2.0.3
+charset-normalizer==2.0.4
     # via
     #   -r requirements/base.txt
     #   requests
@@ -58,7 +58,7 @@ google-auth-oauthlib==0.4.5
     # via
     #   -r requirements/base.txt
     #   gspread
-gspread==3.7.0
+gspread==4.0.0
     # via -r requirements/base.txt
 idna==3.2
     # via

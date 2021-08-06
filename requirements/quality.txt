@@ -9,7 +9,7 @@ aiohttp==3.7.4.post0
     #   -r requirements/test.txt
     #   github.py
     #   pytest-aiohttp
-astroid==2.6.5
+astroid==2.6.6
     # via
     #   pylint
     #   pylint-celery
@@ -35,7 +35,7 @@ chardet==3.0.4
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   aiohttp
-charset-normalizer==2.0.3
+charset-normalizer==2.0.4
     # via
     #   -r requirements/test.txt
     #   requests
@@ -79,7 +79,7 @@ google-auth-oauthlib==0.4.5
     # via
     #   -r requirements/test.txt
     #   gspread
-gspread==3.7.0
+gspread==4.0.0
     # via -r requirements/test.txt
 idna==3.2
     # via

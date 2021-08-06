@@ -9,7 +9,7 @@ aiohttp==3.7.4.post0
     #   -r requirements/quality.txt
     #   github.py
     #   pytest-aiohttp
-astroid==2.6.5
+astroid==2.6.6
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -41,7 +41,7 @@ chardet==3.0.4
     #   -c requirements/constraints.txt
     #   -r requirements/quality.txt
     #   aiohttp
-charset-normalizer==2.0.3
+charset-normalizer==2.0.4
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -62,7 +62,7 @@ code-annotations==1.2.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-codecov==2.1.11
+codecov==2.1.12
     # via -r requirements/ci.txt
 coverage==5.5
     # via
@@ -111,7 +111,7 @@ google-auth-oauthlib==0.4.5
     # via
     #   -r requirements/quality.txt
     #   gspread
-gspread==3.7.0
+gspread==4.0.0
     # via -r requirements/quality.txt
 idna==3.2
     # via
@@ -138,7 +138,7 @@ importlib-metadata==2.1.1
     #   stevedore
     #   tox
     #   virtualenv
-importlib-resources==5.2.1
+importlib-resources==5.2.2
     # via
     #   -r requirements/ci.txt
     #   virtualenv
@@ -335,11 +335,11 @@ toml==0.10.2
     #   pytest
     #   pytest-cov
     #   tox
-tomli==1.1.0
+tomli==1.2.1
     # via
     #   -r requirements/pip-tools.txt
     #   pep517
-tox==3.24.0
+tox==3.24.1
     # via
     #   -r requirements/ci.txt
     #   tox-battery
@@ -362,7 +362,7 @@ urllib3==1.26.6
     #   -r requirements/quality.txt
     #   requests
     #   responses
-virtualenv==20.6.0
+virtualenv==20.7.0
     # via
     #   -r requirements/ci.txt
     #   tox

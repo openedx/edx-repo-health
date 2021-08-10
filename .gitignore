@@ -28,4 +28,6 @@ docs/_build/*
 
 .coverage
 
+*_repo_health.yaml
+
 

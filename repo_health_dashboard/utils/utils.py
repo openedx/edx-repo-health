@@ -201,23 +201,24 @@ def write_squashed_metadata_to_html(metadata_by_repo=None, filename="dashboard.h
         f.write("</body></html>\n")
 
 
-IDA_LIST = [
-    "edx-platform",
-    "ecommerce",
-    "ecommerce-worker",
-    "credentials",
-    "registrar",
-    "course-discovery",
-    "enterprise-catalog",
-    "demographics",
-    "blockstore",
-    "portal-designer",
-    "edx-analytics-dashboard",
-    "edx-analytics-data-api",
-    "license-manager",
-    "xqueue",
-    "edx-notes-api",
-    "openedxstats",
-    "taxonomy-connector",
-    "video-encode-manager"
-]
+def get_edx_ida_list():
+    return [
+        "edx-platform",
+        "ecommerce",
+        "ecommerce-worker",
+        "credentials",
+        "registrar",
+        "course-discovery",
+        "enterprise-catalog",
+        "demographics",
+        "blockstore",
+        "portal-designer",
+        "edx-analytics-dashboard",
+        "edx-analytics-data-api",
+        "license-manager",
+        "xqueue",
+        "edx-notes-api",
+        "openedxstats",
+        "taxonomy-connector",
+        "video-encode-manager"
+    ]

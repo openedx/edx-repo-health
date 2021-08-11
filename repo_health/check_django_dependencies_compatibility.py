@@ -9,7 +9,7 @@ from pathlib import Path
 
 from pytest_repo_health import health_metadata
 
-from repo_health_dashboard.utils.utils import IDA_LIST, get_django_dependency_sheet
+from repo_health_dashboard.utils.utils import get_edx_ida_list, get_django_dependency_sheet
 from repo_health import get_file_lines
 
 logger = logging.getLogger(__name__)
@@ -117,7 +117,7 @@ def check_django_dependencies_status(repo_path, all_results):
     Test to find the django dependencies compatibility
     """
     repo_name = repo_path.split('/')[-1]
-    if repo_name in IDA_LIST:
+    if repo_name in get_edx_ida_list():
         total_django_deps, total_django32_deps = get_upgraded_dependencies_count(repo_path)
         upgrade_status = f"{total_django32_deps}/{total_django_deps} Upgraded"
         all_results[MODULE_DICT_KEY] = {

@@ -1,0 +1,4 @@
+,Django Package Name,edX Owned?,Python 3.9,Django 3.0,Django 3.1,Django 3.2,Last Checked,Ticket URL,Notes,openedxstats
+37,edx-django-sites-extensions,yes,-,3.1.0,3.1.0,3.1.0,"Jul 28, 2021",BOM-2681,,
+40,edx-opaque-keys,yes,-,2.2.0,2.2.0,-,"Feb 1, 2021",,,
+103,django-storages,,1.11,1.8,1.1,-,"Jun 21, 2021",https://github.com/edx/upgrades/issues/44,,

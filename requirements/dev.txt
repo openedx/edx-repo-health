@@ -102,7 +102,7 @@ gitpython==3.1.18
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==1.34.0
+google-auth==2.0.1
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
@@ -227,7 +227,7 @@ pycodestyle==2.7.0
     # via -r requirements/quality.txt
 pydocstyle==6.1.1
     # via -r requirements/quality.txt
-pygments==2.9.0
+pygments==2.10.0
     # via diff-cover
 pylint==2.9.6
     # via
@@ -303,7 +303,6 @@ six==1.16.0
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   edx-lint
-    #   google-auth
     #   responses
     #   tox
     #   virtualenv
@@ -319,7 +318,7 @@ sqlparse==0.4.1
     # via
     #   -r requirements/quality.txt
     #   django
-stevedore==3.3.0
+stevedore==3.4.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -339,7 +338,7 @@ tomli==1.2.1
     # via
     #   -r requirements/pip-tools.txt
     #   pep517
-tox==3.24.1
+tox==3.24.2
     # via
     #   -r requirements/ci.txt
     #   tox-battery

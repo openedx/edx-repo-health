@@ -67,7 +67,7 @@ gitpython==3.1.18
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==1.34.0
+google-auth==2.0.1
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -139,7 +139,7 @@ pyasn1-modules==0.2.8
     # via
     #   -r requirements/test.txt
     #   google-auth
-pygments==2.9.0
+pygments==2.10.0
     # via
     #   doc8
     #   readme-renderer
@@ -193,7 +193,6 @@ six==1.16.0
     #   -r requirements/test.txt
     #   bleach
     #   edx-sphinx-theme
-    #   google-auth
     #   readme-renderer
     #   responses
 smmap==4.0.0
@@ -218,7 +217,7 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-stevedore==3.3.0
+stevedore==3.4.0
     # via doc8
 toml==0.10.2
     # via

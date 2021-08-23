@@ -9,7 +9,7 @@ aiohttp==3.7.4.post0
     #   -r requirements/quality.txt
     #   github.py
     #   pytest-aiohttp
-astroid==2.6.6
+astroid==2.7.2
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -200,6 +200,8 @@ pip-tools==6.2.0
 platformdirs==2.2.0
     # via
     #   -r requirements/ci.txt
+    #   -r requirements/quality.txt
+    #   pylint
     #   virtualenv
 pluggy==0.13.1
     # via
@@ -229,7 +231,7 @@ pydocstyle==6.1.1
     # via -r requirements/quality.txt
 pygments==2.10.0
     # via diff-cover
-pylint==2.9.6
+pylint==2.10.2
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -338,7 +340,7 @@ tomli==1.2.1
     # via
     #   -r requirements/pip-tools.txt
     #   pep517
-tox==3.24.2
+tox==3.24.3
     # via
     #   -r requirements/ci.txt
     #   tox-battery

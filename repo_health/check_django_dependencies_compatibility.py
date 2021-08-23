@@ -66,7 +66,7 @@ class DjangoDependencyReader:
         pypi_dependency = "".join(pypi_dependency.split())
         splitter = [symbol for symbol in ['>', '<', '=='] if symbol in pypi_dependency]
         if splitter:
-            return pypi_dependency.split(splitter[0])[0].strip()
+            return pypi_dependency.split(splitter[0], maxsplit=1)[0]
 
         return pypi_dependency
 

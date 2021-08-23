@@ -219,6 +219,5 @@ def get_edx_ida_list():
         "xqueue",
         "edx-notes-api",
         "openedxstats",
-        "taxonomy-connector",
         "video-encode-manager"
     ]

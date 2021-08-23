@@ -2,6 +2,7 @@
  contains check that reads/parses dependencies of a repo
 """
 import csv
+import json
 import logging
 import os
 import re
@@ -10,12 +11,11 @@ from pathlib import Path
 from pytest_repo_health import health_metadata
 
 from repo_health_dashboard.utils.utils import get_edx_ida_list, get_django_dependency_sheet
-from repo_health import get_file_lines
+from repo_health import get_file_lines, GITHUB_URL_PATTERN
 
 logger = logging.getLogger(__name__)
 
 MODULE_DICT_KEY = "django_related_dependencies"
-URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).*#egg=(?P<package>[^\/]+).*"
 
 
 class DjangoDependencyReader:
@@ -25,7 +25,7 @@ class DjangoDependencyReader:
 
     def __init__(self, repo_path):
         self.repo_path = repo_path
-        self.dependencies = None
+        self.dependencies = set()
 
     def _is_python_repo(self) -> bool:
         return os.path.exists(os.path.join(self.repo_path, "requirements"))
@@ -36,7 +36,7 @@ class DjangoDependencyReader:
         """
         dependencies = []
 
-        requirement_files = [str(file) for file in Path(os.path.join(self.repo_path, "requirements")).rglob('*.in')]
+        requirement_files = [str(file) for file in Path(os.path.join(self.repo_path, "requirements")).rglob('*.txt')]
 
         for file_path in requirement_files:
             lines = get_file_lines(file_path)
@@ -47,14 +47,14 @@ class DjangoDependencyReader:
 
             dependencies.extend(github_deps+pypi_deps)
 
-        self.dependencies = dependencies
+        self.dependencies = set(dependencies)
 
     @staticmethod
     def extract(github_dep):
         """
         Extracts the package name from Github URL
         """
-        match = re.search(URL_PATTERN, github_dep)
+        match = re.search(GITHUB_URL_PATTERN, github_dep)
 
         return match.group("package") if match else ''
 
@@ -63,18 +63,19 @@ class DjangoDependencyReader:
         """
         Sanitizes the package name from any version constraint and extra spaces
         """
-        splitter = [symbol for symbol in [' ', '>', '<', '=='] if symbol in pypi_dependency]
+        pypi_dependency = "".join(pypi_dependency.split())
+        splitter = [symbol for symbol in ['>', '<', '=='] if symbol in pypi_dependency]
         if splitter:
             return pypi_dependency.split(splitter[0])[0].strip()
 
         return pypi_dependency
 
-    def read(self) -> dict:
+    def read(self) -> set:
         """
         Entry method for reading data
         """
         if not self._is_python_repo():
-            return {}
+            return set()
         self._read_dependencies()
 
         return self.dependencies
@@ -86,23 +87,24 @@ def get_upgraded_dependencies_count(repo_path) -> tuple:
     @param repo_path:
     @return: dependencies_output
     """
-
     reader_instance = DjangoDependencyReader(repo_path)
     deps = reader_instance.read()
-    total_django_deps = 0
-    total_django32_deps = 0
+    django_deps = list()
+    deps_support_django32 = list()
 
     csv_path = get_django_dependency_sheet()
     with open(csv_path) as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',', quotechar='"')
-
+        csv_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
         for line in csv_reader:
-            if line[1] in deps:
-                total_django_deps += 1
-                if line[6] and line[6] != '-':
-                    total_django32_deps += 1
+            if line["Django Package Name"] in deps:
+                django_deps.append(line["Django Package Name"])
+                if line["Django 3.2"] and line["Django 3.2"] != '-':
+                    deps_support_django32.append(line["Django Package Name"])
 
-    return total_django_deps, total_django32_deps
+    django_deps = list(set(django_deps))
+    deps_support_django32 = list(set(deps_support_django32))
+
+    return django_deps, deps_support_django32
 
 
 @health_metadata(
@@ -118,10 +120,14 @@ def check_django_dependencies_status(repo_path, all_results):
     """
     repo_name = repo_path.split('/')[-1]
     if repo_name in get_edx_ida_list():
-        total_django_deps, total_django32_deps = get_upgraded_dependencies_count(repo_path)
-        upgrade_status = f"{total_django32_deps}/{total_django_deps} Upgraded"
+        django_deps, support_django32_deps = get_upgraded_dependencies_count(repo_path)
         all_results[MODULE_DICT_KEY] = {
-            'total_count': total_django_deps,
-            'support_django_32': total_django32_deps,
-            'status': upgrade_status
+            'total_dependencies': {
+                'count': len(django_deps),
+                'list': json.dumps(django_deps),
+            },
+            'support_django_32': {
+                'count': len(support_django32_deps),
+                'list': json.dumps(support_django32_deps)
+            }
         }

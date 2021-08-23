@@ -12,6 +12,9 @@ import dockerfile
 __version__ = "0.1.6"
 
 
+GITHUB_URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).*#egg=(?P<package>[^\/]+).*"
+
+
 def parse_config_file(path):
     """
     Get the parsed content of an INI-style config file (using ConfigParser).

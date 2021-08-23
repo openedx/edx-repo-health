@@ -110,8 +110,8 @@ def get_upgraded_dependencies_count(repo_path) -> tuple:
 @health_metadata(
     [MODULE_DICT_KEY],
     {
-        "total_count": "Count for total dependencies that depend on django",
-        "support_django_32": "Count for total dependencies that support django 3.2",
+        "total_dependencies": "Dependencies that depend on Django",
+        "support_django_32": "Dependencies that support Django 3.2",
     },
 )
 def check_django_dependencies_status(repo_path, all_results):

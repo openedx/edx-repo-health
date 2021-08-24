@@ -62,7 +62,7 @@ async def fetch_languages(repo):
     """
     client = repo.http
     kwargs = {"repository_id": repo.id}
-    edges = list()
+    edges = []
 
     cursor = None
     has_next_page = True

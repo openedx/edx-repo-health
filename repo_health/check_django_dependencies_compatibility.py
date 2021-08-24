@@ -89,11 +89,11 @@ def get_upgraded_dependencies_count(repo_path) -> tuple:
     """
     reader_instance = DjangoDependencyReader(repo_path)
     deps = reader_instance.read()
-    django_deps = list()
-    deps_support_django32 = list()
+    django_deps = []
+    deps_support_django32 = []
 
     csv_path = get_django_dependency_sheet()
-    with open(csv_path) as csv_file:
+    with open(csv_path, encoding="utf8") as csv_file:
         csv_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
         for line in csv_reader:
             if line["Django Package Name"] in deps:

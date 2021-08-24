@@ -23,7 +23,7 @@ def parse_build_duration_response(json_response):
     """
     This function is responsible for parsing Github GraphQL API response and calculating build duration
     """
-    build_checks = list()
+    build_checks = []
     first_started_at = None
     last_completed_at = None
     total_duration = ''

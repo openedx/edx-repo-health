@@ -18,7 +18,7 @@ def get_django_dependency_sheet():
     """
     res = requests.get(DJANGO_DEPS_SHEET_URL)
     if res.status_code == 200:
-        with open(Path(__file__).with_name('django_dependencies_sheet.csv'), 'w') as fp:
+        with open(Path(__file__).with_name('django_dependencies_sheet.csv'), 'w', encoding="utf8") as fp:
             fp.write(res.text)
 
     return Path(__file__).with_name('django_dependencies_sheet.csv')
@@ -124,7 +124,7 @@ def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration):
         else:
             sorted_aliased_keys.append(key)
 
-    with open(filename + ".csv", "w") as csvfile:
+    with open(filename + ".csv", "w", encoding="utf8") as csvfile:
         writer = csv.writer(csvfile)
         csv_header = ["repo_name"] + sorted_aliased_keys
         writer.writerow(csv_header)
@@ -144,7 +144,7 @@ def write_squashed_metadata_to_html(metadata_by_repo=None, filename="dashboard.h
         metadata_by_repo = {}
     sorted_key_tuples = sorted(list(get_superset_of_keys(metadata_by_repo)))
 
-    with open(filename + ".html", "w") as f:
+    with open(filename + ".html", "w", encoding="utf8") as f:
         f.write(
             """<!DOCTYPE html>
 <html lang="en">

@@ -69,7 +69,7 @@ class PlaybookAPTPackagesReader:
 
     def __init__(self, repo_path):
         self.repo_path = repo_path
-        self.packages_from_playbooks = dict()
+        self.packages_from_playbooks = {}
         self.playbook_dirs = ["playbooks/roles"]
         self._loop_keys = ["with_items", "with_list", "with_together", "with_flattened", "with_dict", "with_nested"]
         self._apt_keys = ['name', 'pkg']
@@ -88,9 +88,9 @@ class PlaybookAPTPackagesReader:
         """
         Return dict containing data from all the yml files in playbook other than tasks/main.yml
         """
-        self.data_yml = dict()
+        self.data_yml = {}
         for file in glob.glob(pattern, recursive=True):
-            with open(file) as infile:
+            with open(file, encoding="utf8") as infile:
                 yml = yaml.safe_load(infile)
                 if yml:
                     try:
@@ -210,7 +210,7 @@ class PlaybookAPTPackagesReader:
 
             for file in glob.glob(f'{playbook_path}/tasks/*.yml', recursive=True):
                 full_path = os.path.join(playbook_path, file)
-                with open(full_path) as target_file:
+                with open(full_path, encoding="utf8") as target_file:
                     tasks_yml = yaml.safe_load(target_file)
                 if tasks_yml is None:
                     continue
@@ -236,7 +236,7 @@ class PlaybookAPTPackagesReader:
         except Exception as exc:  # pylint: disable=broad-except
             logger.exception("Following error occurred while parsing yml playbook (%s) in configuration repo: %s",
                              playbook_path, exc)
-            return list()
+            return []
 
     def update_packages_from_playbooks(self):
         """

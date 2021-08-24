@@ -71,7 +71,7 @@ class JavascriptDependencyReader(DependencyReader):
         super().__init__(repo_path)
         self.js_dependencies = None
         self.js_dev_dependencies = None
-        self.js_dependencies_all = dict()
+        self.js_dependencies_all = {}
         self.js_dependencies_count = 0
         self.js_dev_dependencies_count = 0
 
@@ -83,7 +83,7 @@ class JavascriptDependencyReader(DependencyReader):
         method processing javascript dependencies file
         """
         package_json_content = open(  # pylint: disable=consider-using-with
-            os.path.join(self._repo_path, "package.json"), 'r'
+            os.path.join(self._repo_path, "package.json"), 'r', encoding="utf8"
         ).read()
         package_json_data = json.loads(package_json_content)
 

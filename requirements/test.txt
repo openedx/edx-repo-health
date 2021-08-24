@@ -148,7 +148,9 @@ rsa==4.7.2
     #   -r requirements/base.txt
     #   google-auth
 six==1.16.0
-    # via responses
+    # via
+    #   -r requirements/base.txt
+    #   responses
 smmap==4.0.0
     # via
     #   -r requirements/base.txt

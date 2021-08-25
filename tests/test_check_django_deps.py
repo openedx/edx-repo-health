@@ -13,13 +13,11 @@ def get_repo_path(repo_name):
     return f"{tests_directory}/fake_repos/{repo_name}"
 
 
-@mock.patch('repo_health.check_django_dependencies_compatibility.get_edx_ida_list',
-            return_value=['python_repo'])
 @mock.patch('repo_health.check_django_dependencies_compatibility.get_django_dependency_sheet',
             return_value=os.path.join(os.path.dirname(__file__), 'data/mock_django_dependencies_sheet.csv'))
 @pytest.mark.parametrize("repo_path", [
     get_repo_path("python_repo")])
-def test_django_deps_upgrade(mock_ida_list, mock_get_sheet, repo_path):
+def test_django_deps_upgrade(mock_get_sheet, repo_path):
     all_results = {MODULE_DICT_KEY: {}}
     check_django_dependencies_status(repo_path, all_results)
 

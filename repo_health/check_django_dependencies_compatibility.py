@@ -10,7 +10,7 @@ from pathlib import Path
 
 from pytest_repo_health import health_metadata
 
-from repo_health_dashboard.utils.utils import get_edx_ida_list, get_django_dependency_sheet
+from repo_health_dashboard.utils.utils import get_django_dependency_sheet
 from repo_health import get_file_lines, GITHUB_URL_PATTERN
 
 logger = logging.getLogger(__name__)
@@ -118,16 +118,14 @@ def check_django_dependencies_status(repo_path, all_results):
     """
     Test to find the django dependencies compatibility
     """
-    repo_name = repo_path.split('/')[-1]
-    if repo_name in get_edx_ida_list():
-        django_deps, support_django32_deps = get_upgraded_dependencies_count(repo_path)
-        all_results[MODULE_DICT_KEY] = {
-            'total_dependencies': {
-                'count': len(django_deps),
-                'list': json.dumps(django_deps),
-            },
-            'support_django_32': {
-                'count': len(support_django32_deps),
-                'list': json.dumps(support_django32_deps)
-            }
+    django_deps, support_django32_deps = get_upgraded_dependencies_count(repo_path)
+    all_results[MODULE_DICT_KEY] = {
+        'total_dependencies': {
+            'count': len(django_deps),
+            'list': json.dumps(django_deps),
+        },
+        'support_django_32': {
+            'count': len(support_django32_deps),
+            'list': json.dumps(support_django32_deps)
         }
+    }

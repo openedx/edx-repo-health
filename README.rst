@@ -1,6 +1,6 @@
-==================
+===============
 edx-repo-health
-==================
+===============
 
 edx-repo-health is a set of checks of the health of repositories.  They are written similar to pytest tests, and run in pytest using a customized pytest plugin (`pytest-repo-health`_).
 
@@ -18,19 +18,20 @@ Installation
 
    $ git clone git@github.com:edx/edx-repo-health.git
 
-2. run `make requirements` to install reqs for this repo
-3. run `pip install -e .` to install this project
+2. run ``make requirements`` to install reqs for this repo
+3. run ``pip install -e .`` to install this project
 
 Usage
 -----
 
 - Follow Installation steps above
 - cd into the directory you wish to run checks on
-- Run the `run_checks` command
+- Export ``GITHUB_TOKEN`` into environment, containing Github personal API token with read access to edx org
+- Run the ``run_checks`` command
 
-  `run_checks` is a CLI wrapper around pytest and pytest-repo-health_. Running `run_checks` will run all checks located in edx-repo-health repo on the directory you are currently cd'd into.
+  ``run_checks`` is a CLI wrapper around pytest and pytest-repo-health_. Running ``run_checks`` will run all checks located in edx-repo-health repo on the directory you are currently cd'd into.
 
-  If you would like to add further flags to the pytest call, you can add the flags after `run_checks` command and they will be passed on the pytest automatically. Find out about additional options at pytest-repo-health_ or run `pytest --help` command.
+  If you would like to add further flags to the pytest call, you can add the flags after ``run_checks`` command and they will be passed on the pytest automatically. Find out about additional options at pytest-repo-health_ or run ``pytest --help`` command.
 
 Design
 ------

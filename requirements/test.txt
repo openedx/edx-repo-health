@@ -49,12 +49,12 @@ gitpython==3.1.18
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.0.1
+google-auth==2.0.2
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
     #   gspread
-google-auth-oauthlib==0.4.5
+google-auth-oauthlib==0.4.6
     # via
     #   -r requirements/base.txt
     #   gspread
@@ -93,7 +93,7 @@ packaging==21.0
     # via
     #   -r requirements/base.txt
     #   pytest
-pluggy==0.13.1
+pluggy==1.0.0
     # via
     #   -r requirements/base.txt
     #   pytest
@@ -114,7 +114,7 @@ pyparsing==2.4.7
     # via
     #   -r requirements/base.txt
     #   packaging
-pytest==6.2.4
+pytest==6.2.5
     # via
     #   -r requirements/base.txt
     #   pytest-aiohttp
@@ -160,7 +160,7 @@ toml==0.10.2
     #   -r requirements/base.txt
     #   pytest
     #   pytest-cov
-typing-extensions==3.10.0.0
+typing-extensions==3.10.0.2
     # via
     #   -r requirements/base.txt
     #   aiohttp

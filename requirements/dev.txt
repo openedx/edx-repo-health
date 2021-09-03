@@ -9,7 +9,7 @@ aiohttp==3.7.4.post0
     #   -r requirements/quality.txt
     #   github.py
     #   pytest-aiohttp
-astroid==2.7.2
+astroid==2.7.3
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -78,14 +78,9 @@ distlib==0.3.2
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==2.2.24
-    # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   -r requirements/quality.txt
-    #   edx-lint
 dockerfile==3.1.0
     # via -r requirements/quality.txt
-edx-lint==5.0.0
+edx-lint==5.1.0
     # via -r requirements/quality.txt
 filelock==3.0.12
     # via
@@ -102,12 +97,12 @@ gitpython==3.1.18
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.0.1
+google-auth==2.0.2
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
     #   gspread
-google-auth-oauthlib==0.4.5
+google-auth-oauthlib==0.4.6
     # via
     #   -r requirements/quality.txt
     #   gspread
@@ -197,13 +192,13 @@ pep517==0.11.0
     #   pip-tools
 pip-tools==6.2.0
     # via -r requirements/pip-tools.txt
-platformdirs==2.2.0
+platformdirs==2.3.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   pylint
     #   virtualenv
-pluggy==0.13.1
+pluggy==1.0.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -256,7 +251,7 @@ pyparsing==2.4.7
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   packaging
-pytest==6.2.4
+pytest==6.2.5
     # via
     #   -r requirements/quality.txt
     #   pytest-aiohttp
@@ -274,10 +269,6 @@ python-slugify==5.0.2
     # via
     #   -r requirements/quality.txt
     #   code-annotations
-pytz==2021.1
-    # via
-    #   -r requirements/quality.txt
-    #   django
 pyyaml==5.4.1
     # via
     #   -r requirements/quality.txt
@@ -316,10 +307,6 @@ snowballstemmer==2.1.0
     # via
     #   -r requirements/quality.txt
     #   pydocstyle
-sqlparse==0.4.1
-    # via
-    #   -r requirements/quality.txt
-    #   django
 stevedore==3.4.0
     # via
     #   -r requirements/quality.txt
@@ -350,7 +337,7 @@ typed-ast==1.4.3
     # via
     #   -r requirements/quality.txt
     #   astroid
-typing-extensions==3.10.0.0
+typing-extensions==3.10.0.2
     # via
     #   -r requirements/quality.txt
     #   aiohttp

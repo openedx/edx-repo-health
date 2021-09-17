@@ -50,7 +50,7 @@ VERSION = "0.1.6"
 
 if sys.argv[-1] == "tag":
     print("Tagging the version on github:")
-    os.system("git tag -a %s -m 'version %s'" % (VERSION, VERSION))
+    os.system("git tag -a %s -m 'version %s'" % (VERSION, VERSION))  # pylint: disable=consider-using-f-string
     os.system("git push --tags")
     sys.exit()
 

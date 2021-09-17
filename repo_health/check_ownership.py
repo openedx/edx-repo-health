@@ -64,7 +64,7 @@ def check_ownership(all_results, git_origin_url):
         spreadsheet_url = os.environ[REPO_HEALTH_SHEET_URL]
         worksheet_id = int(os.environ[REPO_HEALTH_WORKSHEET])
     except KeyError:
-        logger.error("At least one of the following REPO_HEALTH_* environment variables is missing\n {} \n {} \n {}"
+        logger.error("At least one of the following REPO_HEALTH_* environment variables is missing\n {} \n {} \n {}"  # pylint: disable=consider-using-f-string
                      .format(GOOGLE_CREDENTIALS, REPO_HEALTH_SHEET_URL, REPO_HEALTH_WORKSHEET))
         pytest.skip("At least one of the REPO_HEALTH_* environment variables is missing")
 

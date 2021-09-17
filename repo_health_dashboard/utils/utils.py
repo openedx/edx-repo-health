@@ -165,7 +165,7 @@ def write_squashed_metadata_to_html(metadata_by_repo=None, filename="dashboard.h
         f.write("""  <tr>\n""")
         f.write("""    <th scope="col">Repository</th>\n""")
         for k in sorted_key_tuples:
-            f.write("""    <th scope="col">%s</th>\n""" % html.escape(k))
+            f.write("""    <th scope="col">%s</th>\n""" % html.escape(k))  # pylint: disable=consider-using-f-string
         f.write("  </tr>\n")
         f.write("</thead>\n")
 
@@ -173,9 +173,9 @@ def write_squashed_metadata_to_html(metadata_by_repo=None, filename="dashboard.h
         # TODO(timmc): Sort rows by repo name
         for dict_name, item in metadata_by_repo.items():
             f.write("  <tr>\n")
-            f.write("""    <th scope="row">%s</th>\n""" % html.escape(dict_name))
+            f.write("""    <th scope="row">%s</th>\n""" % html.escape(dict_name))  # pylint: disable=consider-using-f-string
             for k in sorted_key_tuples:
-                f.write("""    <td><pre>%s</pre></td>\n""" % html.escape(str(item[k])))
+                f.write("""    <td><pre>%s</pre></td>\n""" % html.escape(str(item[k])))  # pylint: disable=consider-using-f-string
             f.write("  </tr>\n")
         f.write("</tbody>\n")
         f.write("</table>\n")

@@ -140,7 +140,7 @@ def get_upgraded_dependencies_count(repo_path, django_dependency_sheet) -> tuple
         csv_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
         for line in csv_reader:
             package_name = line["Django Package Name"]
-            if package_name in deps.keys():
+            if package_name in deps.keys():  # pylint: disable=consider-iterating-dictionary
                 django_deps.append(package_name)
 
                 if line["Django 3.2"] and line["Django 3.2"] != '-':

@@ -22,9 +22,9 @@ chardet==3.0.4
     # via
     #   -c requirements/constraints.txt
     #   aiohttp
-charset-normalizer==2.0.4
+charset-normalizer==2.0.5
     # via requests
-dockerfile==3.1.0
+dockerfile==3.2.0
     # via -r requirements/base.in
 gitdb==4.0.7
     # via gitpython
@@ -32,7 +32,7 @@ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3
     # via -r requirements/github.in
 gitpython==3.1.18
     # via pytest-repo-health
-google-auth==2.0.2
+google-auth==2.1.0
     # via
     #   google-auth-oauthlib
     #   gspread

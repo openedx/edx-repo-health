@@ -22,7 +22,7 @@ chardet==3.0.4
     # via
     #   -c requirements/constraints.txt
     #   aiohttp
-charset-normalizer==2.0.5
+charset-normalizer==2.0.6
     # via requests
 dockerfile==3.2.0
     # via -r requirements/base.in
@@ -101,7 +101,7 @@ typing-extensions==3.10.0.2
     #   aiohttp
     #   gitpython
     #   yarl
-urllib3==1.26.6
+urllib3==1.26.7
     # via requests
 yarl==1.6.3
     # via aiohttp

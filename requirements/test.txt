@@ -31,7 +31,7 @@ chardet==3.0.4
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
     #   aiohttp
-charset-normalizer==2.0.5
+charset-normalizer==2.0.6
     # via
     #   -r requirements/base.txt
     #   requests
@@ -164,7 +164,7 @@ typing-extensions==3.10.0.2
     #   aiohttp
     #   gitpython
     #   yarl
-urllib3==1.26.6
+urllib3==1.26.7
     # via
     #   -r requirements/base.txt
     #   requests

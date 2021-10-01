@@ -22,7 +22,7 @@ attrs==21.2.0
     #   -r requirements/test.txt
     #   aiohttp
     #   pytest
-cachetools==4.2.2
+cachetools==4.2.4
     # via
     #   -r requirements/test.txt
     #   google-auth
@@ -58,19 +58,19 @@ django==2.2.24
     #   -r requirements/quality.in
 dockerfile==3.2.0
     # via -r requirements/test.txt
-edx-lint==5.1.0
+edx-lint==5.2.0
     # via -r requirements/quality.in
 gitdb==4.0.7
     # via
     #   -r requirements/test.txt
     #   gitpython
-git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140
+github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/test.txt
 gitpython==3.1.18
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.1.0
+google-auth==2.2.1
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -130,7 +130,7 @@ packaging==21.0
     #   pytest
 pbr==5.6.0
     # via stevedore
-platformdirs==2.3.0
+platformdirs==2.4.0
     # via pylint
 pluggy==1.0.0
     # via
@@ -253,7 +253,7 @@ yarl==1.6.3
     # via
     #   -r requirements/test.txt
     #   aiohttp
-zipp==3.5.0
+zipp==3.6.0
     # via
     #   -r requirements/test.txt
     #   importlib-metadata

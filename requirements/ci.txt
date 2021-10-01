@@ -16,7 +16,7 @@ coverage==5.5
     # via codecov
 distlib==0.3.3
     # via virtualenv
-filelock==3.0.12
+filelock==3.2.0
     # via
     #   tox
     #   virtualenv
@@ -33,7 +33,7 @@ importlib-resources==5.2.2
     # via virtualenv
 packaging==21.0
     # via tox
-platformdirs==2.3.0
+platformdirs==2.4.0
     # via virtualenv
 pluggy==1.0.0
     # via tox
@@ -53,9 +53,9 @@ tox==3.24.4
     # via -r requirements/ci.in
 urllib3==1.26.7
     # via requests
-virtualenv==20.8.0
+virtualenv==20.8.1
     # via tox
-zipp==3.5.0
+zipp==3.6.0
     # via
     #   importlib-metadata
     #   importlib-resources

@@ -18,7 +18,7 @@ attrs==21.2.0
     #   -r requirements/base.txt
     #   aiohttp
     #   pytest
-cachetools==4.2.2
+cachetools==4.2.4
     # via
     #   -r requirements/base.txt
     #   google-auth
@@ -43,13 +43,13 @@ gitdb==4.0.7
     # via
     #   -r requirements/base.txt
     #   gitpython
-git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140
+github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/base.txt
 gitpython==3.1.18
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.1.0
+google-auth==2.2.1
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -173,7 +173,7 @@ yarl==1.6.3
     # via
     #   -r requirements/base.txt
     #   aiohttp
-zipp==3.5.0
+zipp==3.6.0
     # via
     #   -r requirements/base.txt
     #   importlib-metadata

@@ -24,7 +24,7 @@ babel==2.9.1
     # via sphinx
 bleach==4.1.0
     # via readme-renderer
-cachetools==4.2.2
+cachetools==4.2.4
     # via
     #   -r requirements/test.txt
     #   google-auth
@@ -45,7 +45,7 @@ coverage==5.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-doc8==0.9.0
+doc8==0.9.1
     # via -r requirements/doc.in
 dockerfile==3.2.0
     # via -r requirements/test.txt
@@ -61,13 +61,13 @@ gitdb==4.0.7
     # via
     #   -r requirements/test.txt
     #   gitpython
-git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140
+github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/test.txt
 gitpython==3.1.18
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.1.0
+google-auth==2.2.1
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -168,7 +168,7 @@ pyyaml==5.4.1
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-readme-renderer==29.0
+readme-renderer==30.0
     # via -r requirements/doc.in
 requests==2.26.0
     # via
@@ -193,7 +193,6 @@ six==1.16.0
     #   -r requirements/test.txt
     #   bleach
     #   edx-sphinx-theme
-    #   readme-renderer
     #   responses
 smmap==4.0.0
     # via
@@ -241,7 +240,7 @@ yarl==1.6.3
     # via
     #   -r requirements/test.txt
     #   aiohttp
-zipp==3.5.0
+zipp==3.6.0
     # via
     #   -r requirements/test.txt
     #   importlib-metadata

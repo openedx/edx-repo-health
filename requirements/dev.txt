@@ -27,7 +27,7 @@ backports.entry-points-selectable==1.1.0
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-cachetools==4.2.2
+cachetools==4.2.4
     # via
     #   -r requirements/quality.txt
     #   google-auth
@@ -84,9 +84,9 @@ django==2.2.24
     #   -r requirements/quality.txt
 dockerfile==3.2.0
     # via -r requirements/quality.txt
-edx-lint==5.1.0
+edx-lint==5.2.0
     # via -r requirements/quality.txt
-filelock==3.0.12
+filelock==3.2.0
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -95,13 +95,13 @@ gitdb==4.0.7
     # via
     #   -r requirements/quality.txt
     #   gitpython
-git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6#egg=github.py==1.0.0a495+g8e35140
+github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/quality.txt
 gitpython==3.1.18
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.1.0
+google-auth==2.2.1
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
@@ -196,7 +196,7 @@ pep517==0.11.0
     #   pip-tools
 pip-tools==6.3.0
     # via -r requirements/pip-tools.txt
-platformdirs==2.3.0
+platformdirs==2.4.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -363,7 +363,7 @@ urllib3==1.26.7
     #   -r requirements/quality.txt
     #   requests
     #   responses
-virtualenv==20.8.0
+virtualenv==20.8.1
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -379,7 +379,7 @@ yarl==1.6.3
     # via
     #   -r requirements/quality.txt
     #   aiohttp
-zipp==3.5.0
+zipp==3.6.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt

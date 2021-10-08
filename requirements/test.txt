@@ -35,7 +35,7 @@ charset-normalizer==2.0.6
     # via
     #   -r requirements/base.txt
     #   requests
-coverage==5.5
+coverage[toml]==6.0.1
     # via pytest-cov
 dockerfile==3.2.0
     # via -r requirements/base.txt
@@ -49,7 +49,7 @@ gitpython==3.1.18
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.2.1
+google-auth==2.3.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -80,7 +80,7 @@ iniconfig==1.1.1
     # via
     #   -r requirements/base.txt
     #   pytest
-multidict==5.1.0
+multidict==5.2.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -124,7 +124,7 @@ pytest-aiohttp==0.3.0
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-pytest-cov==2.12.1
+pytest-cov==3.0.0
     # via -r requirements/test.in
 pytest-repo-health==2.1.0
     # via -r requirements/base.txt
@@ -157,7 +157,8 @@ toml==0.10.2
     # via
     #   -r requirements/base.txt
     #   pytest
-    #   pytest-cov
+tomli==1.2.1
+    # via coverage
 typing-extensions==3.10.0.2
     # via
     #   -r requirements/base.txt
@@ -169,7 +170,7 @@ urllib3==1.26.7
     #   -r requirements/base.txt
     #   requests
     #   responses
-yarl==1.6.3
+yarl==1.7.0
     # via
     #   -r requirements/base.txt
     #   aiohttp

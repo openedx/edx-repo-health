@@ -16,13 +16,13 @@ attrs==21.2.0
     #   pytest
 cachetools==4.2.4
     # via google-auth
-certifi==2021.5.30
+certifi==2021.10.8
     # via requests
 chardet==3.0.4
     # via
     #   -c requirements/constraints.txt
     #   aiohttp
-charset-normalizer==2.0.6
+charset-normalizer==2.0.7
     # via requests
 dockerfile==3.2.0
     # via -r requirements/base.in
@@ -40,7 +40,7 @@ google-auth-oauthlib==0.4.6
     # via gspread
 gspread==4.0.1
     # via -r requirements/base.in
-idna==3.2
+idna==3.3
     # via
     #   idna-ssl
     #   requests
@@ -82,7 +82,7 @@ pytest-aiohttp==0.3.0
     # via pytest-repo-health
 pytest-repo-health==2.1.0
     # via -r requirements/base.in
-pyyaml==5.4.1
+pyyaml==6.0
     # via
     #   -r requirements/base.in
     #   pytest-repo-health

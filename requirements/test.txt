@@ -22,7 +22,7 @@ cachetools==4.2.4
     # via
     #   -r requirements/base.txt
     #   google-auth
-certifi==2021.5.30
+certifi==2021.10.8
     # via
     #   -r requirements/base.txt
     #   requests
@@ -31,11 +31,11 @@ chardet==3.0.4
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
     #   aiohttp
-charset-normalizer==2.0.6
+charset-normalizer==2.0.7
     # via
     #   -r requirements/base.txt
     #   requests
-coverage[toml]==6.0.1
+coverage[toml]==6.0.2
     # via pytest-cov
 dockerfile==3.2.0
     # via -r requirements/base.txt
@@ -60,7 +60,7 @@ google-auth-oauthlib==0.4.6
     #   gspread
 gspread==4.0.1
     # via -r requirements/base.txt
-idna==3.2
+idna==3.3
     # via
     #   -r requirements/base.txt
     #   idna-ssl
@@ -128,7 +128,7 @@ pytest-cov==3.0.0
     # via -r requirements/test.in
 pytest-repo-health==2.1.0
     # via -r requirements/base.txt
-pyyaml==5.4.1
+pyyaml==6.0
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health

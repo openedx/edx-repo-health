@@ -22,3 +22,6 @@ chardet<4.0
 
 # diff-cover==4.2.0 requires chardet==4.0.0 which is pinned due to aiohttp issue
 diff-cover<4.2.0
+
+# gitpython>3.1.18 requires Python>=3.7 but we still want to support Python 3.6
+gitpython==3.1.18

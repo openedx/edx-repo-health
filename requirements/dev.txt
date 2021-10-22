@@ -9,7 +9,7 @@ aiohttp==3.7.4.post0
     #   -r requirements/quality.txt
     #   github.py
     #   pytest-aiohttp
-astroid==2.8.2
+astroid==2.8.3
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -86,7 +86,7 @@ dockerfile==3.2.0
     # via -r requirements/quality.txt
 edx-lint==5.2.0
     # via -r requirements/quality.txt
-filelock==3.3.0
+filelock==3.3.1
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -99,6 +99,7 @@ github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f
     # via -r requirements/quality.txt
 gitpython==3.1.18
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/quality.txt
     #   pytest-repo-health
 google-auth==2.3.0
@@ -137,7 +138,7 @@ importlib-metadata==2.1.1
     #   stevedore
     #   tox
     #   virtualenv
-importlib-resources==5.2.2
+importlib-resources==5.3.0
     # via
     #   -r requirements/ci.txt
     #   virtualenv
@@ -190,7 +191,7 @@ pbr==5.6.0
     # via
     #   -r requirements/quality.txt
     #   stevedore
-pep517==0.11.0
+pep517==0.12.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
@@ -319,7 +320,7 @@ sqlparse==0.4.2
     # via
     #   -r requirements/quality.txt
     #   django
-stevedore==3.4.0
+stevedore==3.5.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -372,7 +373,7 @@ wheel==0.37.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
-wrapt==1.12.1
+wrapt==1.13.2
     # via
     #   -r requirements/quality.txt
     #   astroid

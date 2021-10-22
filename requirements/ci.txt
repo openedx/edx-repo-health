@@ -16,7 +16,7 @@ coverage==6.0.2
     # via codecov
 distlib==0.3.3
     # via virtualenv
-filelock==3.3.0
+filelock==3.3.1
     # via
     #   tox
     #   virtualenv
@@ -29,7 +29,7 @@ importlib-metadata==2.1.1
     #   pluggy
     #   tox
     #   virtualenv
-importlib-resources==5.2.2
+importlib-resources==5.3.0
     # via virtualenv
 packaging==21.0
     # via tox

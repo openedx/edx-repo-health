@@ -46,7 +46,7 @@ def is_requirement(line):
     return line and not line.startswith(("-r", "#", "-e", "git+", "-c"))
 
 
-VERSION = "0.1.6"
+VERSION = "0.1.8"
 
 if sys.argv[-1] == "tag":
     print("Tagging the version on github:")

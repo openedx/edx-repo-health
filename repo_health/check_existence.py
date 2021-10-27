@@ -1,12 +1,14 @@
 """
 Functions to check the existence of files.
 """
+
 from pytest_repo_health import health_metadata
 
 from .utils import dir_exists, file_exists
 
 
 module_dict_key = "exists"
+
 req_files = {
     "openedx.yaml": "openedx.yaml contains repository metadata as outlined in OEP-2",
     "Makefile": "Make targets",
@@ -27,6 +29,10 @@ req_dirs = {
     "requirements": "separate folder for requirement files",
 }
 
+req_paths = [
+    # Tuple is path-to-file, key-name, description.
+    (".github/workflows/commitlint.yml", "commitlint.yml", "GitHub Action to check conventional commits"),
+]
 
 @health_metadata(
     [module_dict_key],
@@ -54,6 +60,19 @@ def check_dir_existence(repo_path, all_results):
         all_results[module_dict_key][dir_name] = dir_exists(
             repo_path, dir_name
         )
+
+
+@health_metadata(
+    [module_dict_key],
+    { key: desc for _, key, desc in req_paths },
+)
+def check_path_existence(repo_path, all_results):
+    """
+    Checks whether the repo contains required files at deep levels.
+    """
+    for file_path, key, _ in req_paths:
+        exists = file_exists(repo_path, file_path)
+        all_results[module_dict_key][key] = exists
 
 
 @health_metadata(

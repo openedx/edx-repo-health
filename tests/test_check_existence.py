@@ -5,8 +5,10 @@ from repo_health.check_existence import (
     check_readme_existence,
     check_dir_existence,
     check_file_existence,
+    check_path_existence,
     req_dirs,
     req_files,
+    req_paths,
     module_dict_key
 )
 
@@ -86,6 +88,23 @@ def test_check_dir_existence(fake_repo, flag_list):
 
     for dir in req_dirs.keys():
         assert all_results[module_dict_key][dir] == flag_list[dir]
+
+
+@pytest.mark.parametrize("fake_repo, flag_list", [
+    ("just_setup_cfg", {
+        "commitlint.yml": False,
+    }),
+    ("python_repo", {
+        "commitlint.yml": True,
+    }),
+])
+def test_check_path_existence(fake_repo, flag_list):
+    repo_path = get_repo_path(f'fake_repos/{fake_repo}')
+    all_results = {module_dict_key: {}}
+    check_path_existence(repo_path, all_results)
+
+    for _, key, _ in req_paths:
+        assert all_results[module_dict_key][key] == flag_list[key]
 
 
 @pytest.mark.parametrize("fake_repo, flag", [

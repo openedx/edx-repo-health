@@ -8,7 +8,7 @@ import glob
 import pytest
 import dockerfile
 
-__version__ = "0.1.6"
+__version__ = "0.1.8"
 
 
 GITHUB_URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).*#egg=(?P<package>[^\/]+).*"

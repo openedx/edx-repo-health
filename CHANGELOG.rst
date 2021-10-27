@@ -14,6 +14,12 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[0.1.8] - 2021-10-27
+~~~~~~~~~~~~~~~~~~~~
+
+* Added a check for commitlint.yaml, the GitHub Action check for conformance to
+  conventional commits.
+
 [0.1.7] - 2021-06-25
 ~~~~~~~~~~~~~~~~~~~~
 

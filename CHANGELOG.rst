@@ -18,28 +18,32 @@ Unreleased
 ~~~~~~~~~~~~~~~~~~~~
 
 Added
-+++++++
++++++
+
 * Added check to parse ubuntu packages from anisble playbooks.
 
 [0.1.6] - 2021-05-19
 ~~~~~~~~~~~~~~~~~~~~
 
 Added
-+++++++
++++++
+
 * Added docker file parsing check. Picking apt-get install or update packages.
 
 [0.1.5] - 2021-05-18
 ~~~~~~~~~~~~~~~~~~~~
 
 Fixed
-+++++++
++++++
+
 * Fixed package-lock.json not found error.
 
 [0.1.4] - 2021-05-18
 ~~~~~~~~~~~~~~~~~~~~
 
 Refactor
-+++++++
+++++++++
+
 * pypi_all will show all dependencies in requirements folder.
 * pypi will only show production or development related dependencies.
 
@@ -48,31 +52,31 @@ Refactor
 
 Changed
 +++++++
+
 * Added all JS dependencies from package-lock.json. Updated tests.
 
 Added
-+++++++
++++++
+
 * Added new column for frontend repos to track what npm package name they publish.
 
 [0.1.2] - 2021-05-05
 ~~~~~~~~~~~~~~~~~~~~
 
-changed
+Changed
 +++++++
+
 * Added development.txt and dev.txt for picking dependencies. Updated tests.
 
 [0.1.1] - 2021-05-04
 ~~~~~~~~~~~~~~~~~~~~
 
 Added
-+++++++
++++++
 
 * Added testing dependencies as separate column.
 
 [0.1.0] - 2020-03-16
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
-Added
-_____
-
-*
+First release.

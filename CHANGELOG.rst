@@ -14,6 +14,8 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+* Modified Readme: Added more details about how edx-repo-health is used at edX
+
 [0.1.8] - 2021-10-27
 ~~~~~~~~~~~~~~~~~~~~
 

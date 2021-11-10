@@ -5,3 +5,4 @@ include requirements/base.in
 recursive-include repo_health *.html *.png *.gif *.js *.css *.jpg *.jpeg *.svg *.py
 recursive-include repo_health_dashboard *.html *.png *.gif *.js *.css *.jpg *.jpeg *.svg *.py
 recursive-include scripts *.py
+include requirements/constraints.txt

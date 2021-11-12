@@ -88,7 +88,7 @@ def is_requirement(line):
     return line and line.strip() and not line.startswith(('-r', '#', '-e', 'git+', '-c'))
 
 
-VERSION = "0.1.8"
+VERSION = "0.2.0"
 
 if sys.argv[-1] == "tag":
     print("Tagging the version on github:")
@@ -109,7 +109,7 @@ setup(
     include_package_data=True,
     install_requires=load_requirements("requirements/base.in"),
     packages=["repo_health_dashboard", "repo_health_dashboard.utils"],
-    python_requires=">=3.5",
+    python_requires=">=3.8",
     license="Apache Software License 2.0",
     zip_safe=False,
     keywords="Django edx",
@@ -119,8 +119,6 @@ setup(
         "License :: OSI Approved :: Apache Software License",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
     ],
     entry_points={

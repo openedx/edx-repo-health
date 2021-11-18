@@ -9,11 +9,11 @@ import sys
 from setuptools import setup
 
 
-def get_version(*file_paths):
+def get_version(file_path):
     """
     Extract the version string from the file at the given relative path fragments.
     """
-    filename = os.path.join(os.path.dirname(__file__), *file_paths)
+    filename = os.path.join(os.path.dirname(__file__), file_path)
     version_file = open(filename, encoding="utf8").read()  # pylint: disable=consider-using-with
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
     if version_match:
@@ -88,7 +88,7 @@ def is_requirement(line):
     return line and line.strip() and not line.startswith(('-r', '#', '-e', 'git+', '-c'))
 
 
-VERSION = "0.2.0"
+VERSION = get_version("repo_health/__init__.py")
 
 if sys.argv[-1] == "tag":
     print("Tagging the version on github:")

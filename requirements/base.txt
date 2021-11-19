@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohttp==3.8.0
+aiohttp==3.8.1
     # via
     #   github.py
     #   pytest-aiohttp
@@ -56,7 +56,7 @@ multidict==5.2.0
     #   yarl
 oauthlib==3.1.1
     # via requests-oauthlib
-packaging==21.2
+packaging==21.3
     # via pytest
 pluggy==1.0.0
     # via pytest
@@ -68,7 +68,7 @@ pyasn1==0.4.8
     #   rsa
 pyasn1-modules==0.2.8
     # via google-auth
-pyparsing==2.4.7
+pyparsing==3.0.6
     # via packaging
 pytest==6.2.5
     # via
@@ -94,7 +94,7 @@ smmap==5.0.0
     # via gitdb
 toml==0.10.2
     # via pytest
-typing-extensions==3.10.0.2
+typing-extensions==4.0.0
     # via
     #   async-timeout
     #   gitpython

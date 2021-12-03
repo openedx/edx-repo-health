@@ -68,7 +68,7 @@ code-annotations==1.2.0
     #   edx-lint
 codecov==2.1.12
     # via -r requirements/ci.txt
-coverage[toml]==6.1.2
+coverage[toml]==6.2
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -119,7 +119,7 @@ google-auth-oauthlib==0.4.6
     # via
     #   -r requirements/quality.txt
     #   gspread
-gspread==4.0.1
+gspread==5.0.0
     # via -r requirements/quality.txt
 idna==3.3
     # via
@@ -333,7 +333,7 @@ tox==3.24.4
     #   tox-battery
 tox-battery==0.6.1
     # via -r requirements/dev.in
-typing-extensions==4.0.0
+typing-extensions==4.0.1
     # via
     #   -r requirements/quality.txt
     #   astroid

@@ -36,7 +36,7 @@ certifi==2021.10.8
     # via
     #   -r requirements/test.txt
     #   requests
-charset-normalizer==2.0.8
+charset-normalizer==2.0.9
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -161,7 +161,7 @@ pyyaml==6.0
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-readme-renderer==30.0
+readme-renderer==31.0
     # via -r requirements/doc.in
 requests==2.26.0
     # via

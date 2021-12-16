@@ -153,7 +153,7 @@ pytest-aiohttp==0.3.0
     #   pytest-repo-health
 pytest-cov==3.0.0
     # via -r requirements/test.txt
-pytest-repo-health==2.2.3
+pytest-repo-health==2.2.4
     # via -r requirements/test.txt
 pytz==2021.3
     # via babel
@@ -161,7 +161,7 @@ pyyaml==6.0
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-readme-renderer==31.0
+readme-renderer==32.0
     # via -r requirements/doc.in
 requests==2.26.0
     # via
@@ -216,7 +216,7 @@ toml==0.10.2
     # via
     #   -r requirements/test.txt
     #   pytest
-tomli==1.2.2
+tomli==2.0.0
     # via
     #   -r requirements/test.txt
     #   coverage

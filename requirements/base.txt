@@ -76,7 +76,7 @@ pytest==6.2.5
     #   pytest-repo-health
 pytest-aiohttp==0.3.0
     # via pytest-repo-health
-pytest-repo-health==2.2.3
+pytest-repo-health==2.2.4
     # via -r requirements/base.in
 pyyaml==6.0
     # via

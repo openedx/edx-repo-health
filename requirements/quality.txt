@@ -19,7 +19,7 @@ astroid==2.9.0
     # via
     #   pylint
     #   pylint-celery
-async-timeout==4.0.1
+async-timeout==4.0.2
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -86,7 +86,7 @@ google-auth-oauthlib==0.4.6
     # via
     #   -r requirements/test.txt
     #   gspread
-gspread==5.0.0
+gspread==5.1.1
     # via -r requirements/test.txt
 idna==3.3
     # via
@@ -234,7 +234,6 @@ typing-extensions==4.0.1
     # via
     #   -r requirements/test.txt
     #   astroid
-    #   async-timeout
     #   gitpython
     #   pylint
 urllib3==1.26.7

@@ -13,7 +13,7 @@ aiosignal==1.2.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
-async-timeout==4.0.1
+async-timeout==4.0.2
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -63,7 +63,7 @@ google-auth-oauthlib==0.4.6
     # via
     #   -r requirements/base.txt
     #   gspread
-gspread==5.0.0
+gspread==5.1.1
     # via -r requirements/base.txt
 idna==3.3
     # via
@@ -159,7 +159,6 @@ tomli==2.0.0
 typing-extensions==4.0.1
     # via
     #   -r requirements/base.txt
-    #   async-timeout
     #   gitpython
 urllib3==1.26.7
     # via

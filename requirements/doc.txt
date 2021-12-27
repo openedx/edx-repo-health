@@ -15,7 +15,7 @@ aiosignal==1.2.0
     #   aiohttp
 alabaster==0.7.12
     # via sphinx
-async-timeout==4.0.1
+async-timeout==4.0.2
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -81,7 +81,7 @@ google-auth-oauthlib==0.4.6
     # via
     #   -r requirements/test.txt
     #   gspread
-gspread==5.0.0
+gspread==5.1.1
     # via -r requirements/test.txt
 idna==3.3
     # via
@@ -194,7 +194,7 @@ smmap==5.0.0
     #   gitdb
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==4.3.1
+sphinx==4.3.2
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
@@ -223,7 +223,6 @@ tomli==2.0.0
 typing-extensions==4.0.1
     # via
     #   -r requirements/test.txt
-    #   async-timeout
     #   gitpython
 urllib3==1.26.7
     # via

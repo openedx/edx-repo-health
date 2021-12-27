@@ -10,7 +10,7 @@ aiohttp==3.8.1
     #   pytest-aiohttp
 aiosignal==1.2.0
     # via aiohttp
-async-timeout==4.0.1
+async-timeout==4.0.2
     # via aiohttp
 attrs==21.2.0
     # via
@@ -42,7 +42,7 @@ google-auth==2.3.3
     #   gspread
 google-auth-oauthlib==0.4.6
     # via gspread
-gspread==5.0.0
+gspread==5.1.1
     # via -r requirements/base.in
 idna==3.3
     # via
@@ -95,9 +95,7 @@ smmap==5.0.0
 toml==0.10.2
     # via pytest
 typing-extensions==4.0.1
-    # via
-    #   async-timeout
-    #   gitpython
+    # via gitpython
 urllib3==1.26.7
     # via requests
 yarl==1.7.2

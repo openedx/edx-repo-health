@@ -12,7 +12,7 @@ aiosignal==1.2.0
     # via aiohttp
 async-timeout==4.0.2
     # via aiohttp
-attrs==21.2.0
+attrs==21.4.0
     # via
     #   aiohttp
     #   pytest

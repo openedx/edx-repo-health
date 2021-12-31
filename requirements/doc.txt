@@ -19,7 +19,7 @@ async-timeout==4.0.2
     # via
     #   -r requirements/test.txt
     #   aiohttp
-attrs==21.2.0
+attrs==21.4.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -132,7 +132,7 @@ pyasn1-modules==0.2.8
     # via
     #   -r requirements/test.txt
     #   google-auth
-pygments==2.10.0
+pygments==2.11.0
     # via
     #   doc8
     #   readme-renderer

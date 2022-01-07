@@ -20,7 +20,7 @@ cachetools==4.2.4
     # via google-auth
 certifi==2021.10.8
     # via requests
-charset-normalizer==2.0.9
+charset-normalizer==2.0.10
     # via
     #   aiohttp
     #   requests
@@ -82,7 +82,7 @@ pyyaml==6.0
     # via
     #   -r requirements/base.in
     #   pytest-repo-health
-requests==2.26.0
+requests==2.27.1
     # via requests-oauthlib
 requests-oauthlib==1.3.0
     # via google-auth-oauthlib

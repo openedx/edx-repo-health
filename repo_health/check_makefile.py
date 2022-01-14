@@ -18,7 +18,7 @@ output_keys = {
     "quality-js": "target that runs javascript code quality checks",
     "test-python": "target that runs python unit tests",
     "quality-python": "target that runs python code quality checks",
-    }
+}
 
 
 @pytest.fixture(name='makefile')

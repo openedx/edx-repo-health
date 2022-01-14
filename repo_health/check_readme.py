@@ -124,7 +124,7 @@ def check_readme_links(readme, all_results):
             continue
         try:
             resp = requests.head(url, allow_redirects=True)
-        except requests.ConnectionError as e:
+        except requests.RequestException as e:
             bad.append(f"{url}: {e}")
             continue
 

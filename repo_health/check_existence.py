@@ -34,6 +34,7 @@ req_paths = [
     (".github/workflows/commitlint.yml", "commitlint.yml", "GitHub Action to check conventional commits"),
 ]
 
+
 @health_metadata(
     [module_dict_key],
     req_files
@@ -64,7 +65,7 @@ def check_dir_existence(repo_path, all_results):
 
 @health_metadata(
     [module_dict_key],
-    { key: desc for _, key, desc in req_paths },
+    {key: desc for _, key, desc in req_paths},
 )
 def check_path_existence(repo_path, all_results):
     """

@@ -84,6 +84,7 @@ EXAMPLE_DOMAINS = {
 # If a URL has any weird meta-characters, it's not a real URL.
 METACHARACTERS = r"[\[\]]"
 
+
 def is_example_url(url):
     """
     Is this URL just an example, no need to check it?
@@ -97,6 +98,7 @@ def is_example_url(url):
         if domain.startswith(".") and parts.hostname.endswith(domain):
             return True
     return False
+
 
 @health_metadata(
     [module_dict_key],

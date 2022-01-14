@@ -57,7 +57,7 @@ def main():
     files = glob.glob(os.path.join(data_dir, "*.yaml"), recursive=False)
     data = {}
     for file_path in files:
-        file_name = file_path[file_path.rfind("/") + 1 :]
+        file_name = file_path[file_path.rfind("/") + 1:]
         repo_name = file_name.replace("_repo_health.yaml", "")
         # TODO(jinder): maybe add a try block here
         with codecs.open(file_path, "r", "utf-8") as f:

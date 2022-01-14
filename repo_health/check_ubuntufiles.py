@@ -58,7 +58,7 @@ def get_docker_file_content(repo_path):
         if fir and sec:  # no need to iterate after getting req data.
             break
 
-    ignored_list = ['chmod',  '/usr/local/bin/gosu', '-qqy', '/usr/bin/python3', '/usr/bin/pip', 'then', '-sf']
+    ignored_list = ['chmod', '/usr/local/bin/gosu', '-qqy', '/usr/bin/python3', '/usr/bin/pip', 'then', '-sf']
     return list({item for sublist in lists for item in sublist if item not in ignored_list and len(item) > 2})
 
 

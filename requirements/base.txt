@@ -16,7 +16,7 @@ attrs==21.4.0
     # via
     #   aiohttp
     #   pytest
-cachetools==4.2.4
+cachetools==5.0.0
     # via google-auth
 certifi==2021.10.8
     # via requests
@@ -36,7 +36,7 @@ github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f
     # via -r requirements/github.in
 gitpython==3.1.26
     # via pytest-repo-health
-google-auth==2.3.3
+google-auth==2.5.0
     # via
     #   google-auth-oauthlib
     #   gspread
@@ -50,7 +50,7 @@ idna==3.3
     #   yarl
 iniconfig==1.1.1
     # via pytest
-multidict==5.2.0
+multidict==6.0.2
     # via
     #   aiohttp
     #   yarl
@@ -101,6 +101,3 @@ urllib3==1.26.8
     # via requests
 yarl==1.7.2
     # via aiohttp
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools

@@ -77,7 +77,7 @@ pytest==7.0.0
     #   pytest-repo-health
 pytest-aiohttp==1.0.3
     # via pytest-repo-health
-pytest-asyncio==0.18.0
+pytest-asyncio==0.18.1
     # via pytest-aiohttp
 pytest-repo-health==2.2.4
     # via -r requirements/base.in
@@ -95,7 +95,7 @@ six==1.16.0
     # via google-auth
 smmap==5.0.0
     # via gitdb
-tomli==2.0.0
+tomli==2.0.1
     # via pytest
 urllib3==1.26.8
     # via requests

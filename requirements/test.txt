@@ -7,7 +7,7 @@
 aiohttp==3.8.1
     # via
     #   -r requirements/base.txt
-    #   github.py
+    #   github-py
     #   pytest-aiohttp
 aiosignal==1.2.0
     # via
@@ -30,7 +30,7 @@ certifi==2021.10.8
     # via
     #   -r requirements/base.txt
     #   requests
-charset-normalizer==2.0.11
+charset-normalizer==2.0.12
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -108,14 +108,14 @@ pyparsing==3.0.7
     # via
     #   -r requirements/base.txt
     #   packaging
-pytest==7.0.0
+pytest==7.0.1
     # via
     #   -r requirements/base.txt
     #   pytest-aiohttp
     #   pytest-asyncio
     #   pytest-cov
     #   pytest-repo-health
-pytest-aiohttp==1.0.3
+pytest-aiohttp==1.0.4
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health

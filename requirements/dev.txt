@@ -7,7 +7,7 @@
 aiohttp==3.8.1
     # via
     #   -r requirements/quality.txt
-    #   github.py
+    #   github-py
     #   pytest-aiohttp
 aiosignal==1.2.0
     # via
@@ -42,7 +42,7 @@ certifi==2021.10.8
     #   requests
 chardet==4.0.0
     # via diff-cover
-charset-normalizer==2.0.11
+charset-normalizer==2.0.12
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -86,7 +86,7 @@ dockerfile==3.2.0
     # via -r requirements/quality.txt
 edx-lint==5.2.1
     # via -r requirements/quality.txt
-filelock==3.4.2
+filelock==3.6.0
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -218,7 +218,7 @@ pylint-celery==0.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-pylint-django==2.5.0
+pylint-django==2.5.1
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -232,14 +232,14 @@ pyparsing==3.0.7
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   packaging
-pytest==7.0.0
+pytest==7.0.1
     # via
     #   -r requirements/quality.txt
     #   pytest-aiohttp
     #   pytest-asyncio
     #   pytest-cov
     #   pytest-repo-health
-pytest-aiohttp==1.0.3
+pytest-aiohttp==1.0.4
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
@@ -251,7 +251,7 @@ pytest-cov==3.0.0
     # via -r requirements/quality.txt
 pytest-repo-health==2.2.4
     # via -r requirements/quality.txt
-python-slugify==5.0.2
+python-slugify==6.0.1
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -328,7 +328,7 @@ tox==3.24.5
     #   tox-battery
 tox-battery==0.6.1
     # via -r requirements/dev.in
-typing-extensions==4.0.1
+typing-extensions==4.1.1
     # via
     #   -r requirements/quality.txt
     #   astroid

@@ -103,7 +103,10 @@ async def check_build_duration(all_results, github_repo):
     }
 
     data = await client.request(json=_json)
-    total_duration, checks_list = parse_build_duration_response(data)
+    parsed = parse_build_duration_response(data)
+    if parsed is None:  # uninitialized repo
+        return
+    total_duration, checks_list = parsed
 
     all_results[MODULE_DICT_KEY]['build_details'] = json.dumps({
         'total_duration': total_duration,

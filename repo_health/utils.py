@@ -37,7 +37,7 @@ def parse_build_duration_response(json_response):
     except TypeError:
         return None
 
-    if latest_commits is None or len(latest_commits) == 0:
+    if not latest_commits:
         return None
     else:
         latest_commit = latest_commits[0]

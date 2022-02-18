@@ -21,15 +21,26 @@ def dir_exists(repo_path, dir_name):
 
 def parse_build_duration_response(json_response):
     """
-    This function is responsible for parsing Github GraphQL API response and calculating build duration
+    This function is responsible for parsing Github GraphQL API response and calculating build duration.
+
+    Returns None when repo is uninitialized.
     """
     build_checks = []
     first_started_at = None
     last_completed_at = None
     total_duration = ''
 
-    latest_commit = functools.reduce(
-        operator.getitem, ["node", "defaultBranchRef", "target", "history", "edges"], json_response)[0]
+    # Handle uninitialized repos (missing default branch, or no commits on branch)
+    try:
+        latest_commits = functools.reduce(
+            operator.getitem, ["node", "defaultBranchRef", "target", "history", "edges"], json_response)
+    except TypeError:
+        return None
+
+    if latest_commits is None or len(latest_commits) == 0:
+        return None
+    else:
+        latest_commit = latest_commits[0]
 
     for check_suite in functools.reduce(operator.getitem, ['node', 'checkSuites', 'edges'], latest_commit):
 

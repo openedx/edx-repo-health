@@ -6,7 +6,7 @@
 #
 aiohttp==3.8.1
     # via
-    #   github.py
+    #   github-py
     #   pytest-aiohttp
 aiosignal==1.2.0
     # via aiohttp
@@ -20,7 +20,7 @@ cachetools==5.0.0
     # via google-auth
 certifi==2021.10.8
     # via requests
-charset-normalizer==2.0.11
+charset-normalizer==2.0.12
     # via
     #   aiohttp
     #   requests
@@ -70,12 +70,12 @@ pyasn1-modules==0.2.8
     # via google-auth
 pyparsing==3.0.7
     # via packaging
-pytest==7.0.0
+pytest==7.0.1
     # via
     #   pytest-aiohttp
     #   pytest-asyncio
     #   pytest-repo-health
-pytest-aiohttp==1.0.3
+pytest-aiohttp==1.0.4
     # via pytest-repo-health
 pytest-asyncio==0.18.1
     # via pytest-aiohttp

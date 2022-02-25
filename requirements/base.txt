@@ -34,13 +34,13 @@ gitdb==4.0.9
     # via gitpython
 github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/github.in
-gitpython==3.1.26
+gitpython==3.1.27
     # via pytest-repo-health
 google-auth==2.6.0
     # via
     #   google-auth-oauthlib
     #   gspread
-google-auth-oauthlib==0.4.6
+google-auth-oauthlib==0.5.0
     # via gspread
 gspread==5.1.1
     # via -r requirements/base.in

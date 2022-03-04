@@ -115,7 +115,7 @@ google-auth-oauthlib==0.5.0
     # via
     #   -r requirements/quality.txt
     #   gspread
-gspread==5.1.1
+gspread==5.2.0
     # via -r requirements/quality.txt
 idna==3.3
     # via
@@ -243,7 +243,7 @@ pytest-aiohttp==1.0.4
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-pytest-asyncio==0.18.1
+pytest-asyncio==0.18.2
     # via
     #   -r requirements/quality.txt
     #   pytest-aiohttp
@@ -251,7 +251,7 @@ pytest-cov==3.0.0
     # via -r requirements/quality.txt
 pytest-repo-health==2.2.4
     # via -r requirements/quality.txt
-python-slugify==6.1.0
+python-slugify==6.1.1
     # via
     #   -r requirements/quality.txt
     #   code-annotations

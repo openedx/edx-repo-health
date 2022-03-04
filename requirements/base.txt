@@ -42,7 +42,7 @@ google-auth==2.6.0
     #   gspread
 google-auth-oauthlib==0.5.0
     # via gspread
-gspread==5.1.1
+gspread==5.2.0
     # via -r requirements/base.in
 idna==3.3
     # via
@@ -77,7 +77,7 @@ pytest==7.0.1
     #   pytest-repo-health
 pytest-aiohttp==1.0.4
     # via pytest-repo-health
-pytest-asyncio==0.18.1
+pytest-asyncio==0.18.2
     # via pytest-aiohttp
 pytest-repo-health==2.2.4
     # via -r requirements/base.in

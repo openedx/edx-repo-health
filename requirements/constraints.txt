@@ -11,3 +11,10 @@
 
 # This file contains all common constraints for edx-repos
 -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+
+# gspread 5.2.0 introduced a backward-incompatible change related to a sheet with
+# extra columns with blank headers. For details of the bug, see
+# https://github.com/burnash/gspread/issues/1007. We can upgrade once the issue is resolved,
+# or if we delete these extra columns. Note: For edX specific ownership spreadsheet, this
+# sheet currently contains a pivot table that would need to be moved elsewhere.
+gspread<5.2.0

@@ -14,10 +14,29 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
-* Modified Readme: Added more details about how edx-repo-health is used at edX
+[0.2.1] - 2022-03-07
+~~~~~~~~~~~~~~~~~~~~
+
+Fixed
++++++
+
+* Fix to not have checks blow up on an uninitialized repo.
+* Temporary fix for check_ownership by constraining gspread<5.2.0. See constraints.txt for details, and information on how this constraint could be removed.
+
+[0.2.0] - 2021-11-19
+~~~~~~~~~~~~~~~~~~~~
+
+Fixed
++++++
+
+* Fixed code for defining version.
+
 
 [0.1.8] - 2021-10-27
 ~~~~~~~~~~~~~~~~~~~~
+
+Added
++++++
 
 * Added a check for commitlint.yaml, the GitHub Action check for conformance to
   conventional commits.

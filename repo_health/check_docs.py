@@ -1,5 +1,5 @@
 """
-Check some details in the readme file.
+Check some details of Read The Docs integration.
 """
 import json
 import logging
@@ -27,7 +27,7 @@ module_dict_key = "docs"
 )
 def check_build_bagde(readme, all_results):
     """
-    Check that the README file has docs build badge.
+    Check that the README file has a docs build badge.
     """
     if readme is None:
         return
@@ -40,7 +40,7 @@ def check_build_bagde(readme, all_results):
 
 class ReadTheDocsChecker:
     """
-    Handles all the operations related to Read the Docs checks
+    Handles all the operations related to Read the Docs checks.
     """
 
     def __init__(self, repo_path=None, git_origin_url=None, token=None):
@@ -61,7 +61,7 @@ class ReadTheDocsChecker:
 
     def _parse_readthedocs_yml_file(self):
         """
-            Pareses the .readthdocs.yml file and returns parsed data
+        Parses the .readthdocs.yml file and returns parsed data.
         """
         readthedocs_yml = self._read_readthedocs_yml_file()
         try:
@@ -73,7 +73,7 @@ class ReadTheDocsChecker:
 
     def _get_projects(self):
         """
-            Lists all the projects related to the provided token
+        Lists all the projects related to the provided token.
         """
         if self._projects is not None:
             return self._projects
@@ -83,7 +83,7 @@ class ReadTheDocsChecker:
 
     def _get_all_builds(self, slug):
         """
-            Returns all builds details for the project whose slug is provided
+        Returns all build details for the project whose slug is provided.
         """
         build_url = f"https://readthedocs.org/api/v3/projects/{slug}/builds/"
         response = requests.get(build_url, headers=self._headers)
@@ -92,7 +92,7 @@ class ReadTheDocsChecker:
 
     def get_python_version(self):
         """
-            Returns the version of python mentioned in .readthedocs.yml
+        Returns the version of Python mentioned in .readthedocs.yml file.
         """
         parsed_data = self._parse_readthedocs_yml_file()
         if "python" in parsed_data.keys():
@@ -102,7 +102,7 @@ class ReadTheDocsChecker:
 
     def update_build_details(self):
         """
-            Updates the status of latest Read the Docs build and when last built ran
+        Updates the status of latest Read the Docs build and when last build ran.
         """
         self.build_details = []
 
@@ -122,12 +122,12 @@ class ReadTheDocsChecker:
 @health_metadata(
     [module_dict_key],
     {
-        "python_version": "The version of python mentioned in .readthedocs.yml file"
+        "python_version": "The version of Python mentioned in .readthedocs.yml file"
     }
 )
 def check_python_version(repo_path, all_results):
     """
-    Check that the Python version mentioned in .readthedocs.yml file.
+    Check the Python version mentioned in .readthedocs.yml file.
     """
     rtd_checker = ReadTheDocsChecker(repo_path=repo_path)
     all_results[module_dict_key]["python_version"] = rtd_checker.get_python_version()
@@ -136,12 +136,12 @@ def check_python_version(repo_path, all_results):
 @health_metadata(
     [module_dict_key],
     {
-        "build_details": "This contains the build details of all Read the Docs projects connected with that repo",
+        "build_details": "This contains the build details of all Read the Docs projects connected with the repo",
     }
 )
 def check_readthedocs_build(all_results, git_origin_url):
     """
-    Checks Read the Docs build status and when last built ran
+    Checks the Read the Docs build status and when last build ran.
     """
     try:
         token = os.environ["READTHEDOCS_API_KEY"]

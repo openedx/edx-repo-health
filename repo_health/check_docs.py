@@ -43,15 +43,16 @@ class ReadTheDocsChecker:
     Handles all the operations related to Read the Docs checks.
     """
 
+    PROJECTS_URL = 'https://readthedocs.org/api/v3/projects/?limit=100'
+    _projects = None
+
     def __init__(self, repo_path=None, git_origin_url=None, token=None):
         self._yml_file_name = ".readthedocs.yml"
         self.repo_path = repo_path
         self.git_origin_url = git_origin_url
 
-        self.project_url = 'https://readthedocs.org/api/v3/projects/?limit=100'
         self._token = token
         self._headers = {'Authorization': f'token {self._token}'}
-        self._projects = None
 
         self.build_details = []
 
@@ -71,15 +72,17 @@ class ReadTheDocsChecker:
         except yaml.YAMLError:
             return {}
 
-    def _get_projects(self):
+    @classmethod
+    def _get_projects(cls, headers):
         """
         Lists all the projects related to the provided token.
         """
-        if self._projects is not None:
-            return self._projects
-        response = requests.get(self.project_url, headers=self._headers)
-        self._projects = response.json()['results']
-        return self._projects
+        if cls._projects is not None:
+            return cls._projects
+        response = requests.get(cls.PROJECTS_URL, headers=headers)
+        response.raise_for_status()
+        cls._projects = response.json()['results']
+        return cls._projects
 
     def _get_all_builds(self, slug):
         """
@@ -87,6 +90,7 @@ class ReadTheDocsChecker:
         """
         build_url = f"https://readthedocs.org/api/v3/projects/{slug}/builds/"
         response = requests.get(build_url, headers=self._headers)
+        response.raise_for_status()
         _json = response.json()
         return _json['results']
 
@@ -106,7 +110,7 @@ class ReadTheDocsChecker:
         """
         self.build_details = []
 
-        for item in self._get_projects():
+        for item in self._get_projects(self._headers):      # pylint: disable=not-an-iterable
             if item['repository']['url'] == self.git_origin_url:
                 all_builds = self._get_all_builds(item['slug'])
                 last_build = all_builds[0]

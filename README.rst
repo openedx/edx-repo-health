@@ -25,11 +25,18 @@ Usage
 -----
 
 - Follow Installation steps above
+
 - cd into the directory you wish to run checks on
-- Export ``GITHUB_TOKEN`` into environment, containing Github personal API token with read access to edx org
+
+- Set credentials:
+
+  - Export ``GITHUB_TOKEN`` into environment, containing GitHub personal API token with read access to edx org.
+  - Export ``READTHEDOCS_API_KEY`` into the environment, with a Read The Docs API token.
+  - Note: a ~/.netrc file will override these settings and may interfere. You can use ``NETRC=/dev/null`` to hide the file if needed.
+
 - Run the ``run_checks`` command
 
-  ``run_checks`` is a CLI wrapper around pytest and pytest-repo-health_. Running ``run_checks`` will run all checks located in edx-repo-health repo on the directory you are currently cd'd into.
+  ``run_checks`` is a CLI wrapper around pytest and pytest-repo-health_. Running ``run_checks`` will run all checks located in edx-repo-health repo on the directory you are currently cd'd into.  The results will be written into a repo_health.yaml file.
 
   If you would like to add further flags to the pytest call, you can add the flags after ``run_checks`` command and they will be passed on the pytest automatically. Find out about additional options at pytest-repo-health_ or run ``pytest --help`` command.
 

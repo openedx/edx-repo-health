@@ -34,8 +34,7 @@ req_paths = [
     # Tuple is path-to-file, key-name, description.
     (
         ".github/workflows/commitlint.yml", "commitlint.yml",
-        "GitHub Action to check conventional commits", ".tx/"
-     ),
+        "GitHub Action to check conventional commits", ".tx/"),
 ]
 
 

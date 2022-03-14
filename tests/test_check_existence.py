@@ -66,6 +66,7 @@ def get_repo_path(repo_name):
         ".pii_annotations.yml": False,
         ".gitignore": False,
         "package.json": False,
+        "config": False,
     })
 ])
 def test_check_file_existence(fake_repo, flag_list):

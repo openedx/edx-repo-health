@@ -33,7 +33,6 @@ req_dirs = {
 req_paths = [
     # Tuple is path-to-file, key-name, description.
     (".github/workflows/commitlint.yml", "commitlint.yml", "GitHub Action to check conventional commits"),
-    (".tx/config", "config", "transifex config file"),
 ]
 
 
@@ -89,3 +88,17 @@ def check_readme_existence(repo_path, all_results):
     exists = any(file_exists(repo_path, file) for file in ['README.rst', 'README.md'])
 
     all_results[module_dict_key]['README'] = exists
+
+
+@health_metadata(
+    [module_dict_key],
+    {"config": "transifex config file"}
+)
+def check_transifex_config_existence(repo_path, all_results):
+    """
+    Check if transifex config exists in repository.
+    """
+    import pdb;
+    pdb.set_trace()
+    exists = file_exists(repo_path, './tx/config')
+    all_results[module_dict_key]['.tx/config'] = exists

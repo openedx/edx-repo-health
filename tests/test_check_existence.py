@@ -51,7 +51,7 @@ def get_repo_path(repo_name):
         ".pii_annotations.yml": False,
         ".gitignore": False,
         "package.json": True,
-        "config": True,
+        "config": False,
     }),
     ("just_setup_py", {
         "openedx.yaml": False,
@@ -105,7 +105,6 @@ def test_check_path_existence(fake_repo, flag_list):
     repo_path = get_repo_path(f'fake_repos/{fake_repo}')
     all_results = {module_dict_key: {}}
     check_path_existence(repo_path, all_results)
-
     for _, key, _ in req_paths:
         assert all_results[module_dict_key][key] == flag_list[key]
 

@@ -9,7 +9,8 @@ from repo_health.check_existence import (
     req_dirs,
     req_files,
     req_paths,
-    module_dict_key
+    module_dict_key,
+    check_transifex_config_existence
 )
 
 
@@ -34,7 +35,7 @@ def get_repo_path(repo_name):
         ".pii_annotations.yml": False,
         ".gitignore": False,
         "package.json": False,
-        "config": False,
+        "transifex_config": False,
     }),
     ("python_js_repo", {
         "openedx.yaml": False,
@@ -51,7 +52,7 @@ def get_repo_path(repo_name):
         ".pii_annotations.yml": False,
         ".gitignore": False,
         "package.json": True,
-        "config": False,
+        "transifex_config": False,
     }),
     ("just_setup_py", {
         "openedx.yaml": False,
@@ -68,7 +69,7 @@ def get_repo_path(repo_name):
         ".pii_annotations.yml": False,
         ".gitignore": False,
         "package.json": False,
-        "config": False,
+        "transifex_config": False,
     })
 ])
 def test_check_file_existence(fake_repo, flag_list):
@@ -120,3 +121,13 @@ def test_readme_existence(fake_repo, flag):
     check_readme_existence(repo_path, all_results)
 
     assert all_results[module_dict_key]['README'] == flag
+
+
+@pytest.mark.parametrize("fake_repo, flag", [
+    ("python_repo", True),
+])
+def test_transifex_config_existence(fake_repo, flag):
+    repo_path = get_repo_path(f'fake_repos/{fake_repo}')
+    all_results = {module_dict_key: {}}
+    check_transifex_config_existence(repo_path, all_results)
+    assert all_results[module_dict_key]['transifex_config'] == flag

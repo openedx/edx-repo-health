@@ -34,6 +34,7 @@ def get_repo_path(repo_name):
         ".pii_annotations.yml": False,
         ".gitignore": False,
         "package.json": False,
+        "config": False,
     }),
     ("python_js_repo", {
         "openedx.yaml": False,
@@ -50,6 +51,7 @@ def get_repo_path(repo_name):
         ".pii_annotations.yml": False,
         ".gitignore": False,
         "package.json": True,
+        "config": True,
     }),
     ("just_setup_py", {
         "openedx.yaml": False,

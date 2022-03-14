@@ -23,7 +23,7 @@ req_files = {
     ".pii_annotations.yml": "PII annotations as outline in OEP-0030",
     ".gitignore": "git ignore configuration",
     "package.json": "packages managed by npm",
-    "config": "transifex config file",
+    "config": "transifex config file"
 }
 
 req_dirs = {
@@ -32,9 +32,8 @@ req_dirs = {
 
 req_paths = [
     # Tuple is path-to-file, key-name, description.
-    (
-        ".github/workflows/commitlint.yml", "commitlint.yml",
-        "GitHub Action to check conventional commits", ".tx/"),
+    (".github/workflows/commitlint.yml", "commitlint.yml", "GitHub Action to check conventional commits"),
+    (".tx/config", "config", "transifex config file"),
 ]
 
 

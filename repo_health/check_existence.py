@@ -23,6 +23,7 @@ req_files = {
     ".pii_annotations.yml": "PII annotations as outline in OEP-0030",
     ".gitignore": "git ignore configuration",
     "package.json": "packages managed by npm",
+    "transifex_config": "transifex config file"
 }
 
 req_dirs = {
@@ -87,3 +88,15 @@ def check_readme_existence(repo_path, all_results):
     exists = any(file_exists(repo_path, file) for file in ['README.rst', 'README.md'])
 
     all_results[module_dict_key]['README'] = exists
+
+
+@health_metadata(
+    [module_dict_key],
+    {"transifex_config": "transifex config file"}
+)
+def check_transifex_config_existence(repo_path, all_results):
+    """
+    Check if transifex config exists in repository.
+    """
+    exists = file_exists(repo_path, '.tx/config')
+    all_results[module_dict_key]['transifex_config'] = exists

@@ -79,7 +79,7 @@ gitpython==3.1.27
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.6.2
+google-auth==2.6.3
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -151,7 +151,7 @@ pycodestyle==2.8.0
     # via -r requirements/quality.in
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.13.4
+pylint==2.13.5
     # via
     #   edx-lint
     #   pylint-celery

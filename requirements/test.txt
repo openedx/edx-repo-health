@@ -63,10 +63,8 @@ google-auth-oauthlib==0.5.1
     # via
     #   -r requirements/base.txt
     #   gspread
-gspread==5.1.1
-    # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/base.txt
+gspread==5.3.2
+    # via -r requirements/base.txt
 idna==3.3
     # via
     #   -r requirements/base.txt
@@ -106,7 +104,7 @@ pyasn1-modules==0.2.8
     # via
     #   -r requirements/base.txt
     #   google-auth
-pyparsing==3.0.7
+pyparsing==3.0.8
     # via
     #   -r requirements/base.txt
     #   packaging

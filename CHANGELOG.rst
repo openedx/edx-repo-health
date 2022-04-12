@@ -14,7 +14,15 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
-0.2.2 - 2022-03-11
+[0.2.3] - 2022-04-12
+~~~~~~~~~~~~~~~~~~~~
+
+Changed
++++++++
+
+* Removed gspread constraint to pick up fix in gspread 5.2.3.
+
+[0.2.2] - 2022-03-11
 ~~~~~~~~~~~~~~~~~~
 
 Fixed

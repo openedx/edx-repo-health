@@ -41,7 +41,8 @@ def find_worksheet(google_creds_file, spreadsheet_url, worksheet_id):
     if not matching:
         raise KnownError(f"Cannot find a worksheet with ID {worksheet_id}")
     worksheet = matching[0]
-    return worksheet.get_all_records()
+    expected_headers = ["repo url", "owner.theme", "owner.squad", "owner.priority"]
+    return worksheet.get_all_records(expected_headers=expected_headers)
 
 
 @health_metadata(

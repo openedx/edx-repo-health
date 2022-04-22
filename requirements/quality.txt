@@ -15,7 +15,7 @@ aiosignal==1.2.0
     #   aiohttp
 asgiref==3.5.0
     # via django
-astroid==2.11.2
+astroid==2.11.3
     # via
     #   pylint
     #   pylint-celery
@@ -79,7 +79,7 @@ gitpython==3.1.27
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.6.5
+google-auth==2.6.6
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -126,7 +126,7 @@ packaging==21.3
     #   pytest
 pbr==5.8.1
     # via stevedore
-platformdirs==2.5.1
+platformdirs==2.5.2
     # via pylint
 pluggy==1.0.0
     # via
@@ -149,7 +149,7 @@ pycodestyle==2.8.0
     # via -r requirements/quality.in
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.13.5
+pylint==2.13.7
     # via
     #   edx-lint
     #   pylint-celery
@@ -233,7 +233,7 @@ tomli==2.0.1
     #   coverage
     #   pylint
     #   pytest
-typing-extensions==4.1.1
+typing-extensions==4.2.0
     # via
     #   astroid
     #   pylint

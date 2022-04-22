@@ -17,7 +17,7 @@ asgiref==3.5.0
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==2.11.2
+astroid==2.11.3
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -72,7 +72,7 @@ coverage[toml]==6.3.2
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-diff-cover==6.4.5
+diff-cover==6.5.0
     # via -r requirements/dev.in
 dill==0.3.4
     # via
@@ -110,7 +110,7 @@ gitpython==3.1.27
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.6.5
+google-auth==2.6.6
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
@@ -177,7 +177,7 @@ pep517==0.12.0
     #   pip-tools
 pip-tools==6.6.0
     # via -r requirements/pip-tools.txt
-platformdirs==2.5.1
+platformdirs==2.5.2
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -211,7 +211,7 @@ pydocstyle==6.1.1
     # via -r requirements/quality.txt
 pygments==2.11.2
     # via diff-cover
-pylint==2.13.5
+pylint==2.13.7
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -331,7 +331,7 @@ tox==3.25.0
     #   tox-battery
 tox-battery==0.6.1
     # via -r requirements/dev.in
-typing-extensions==4.1.1
+typing-extensions==4.2.0
     # via
     #   -r requirements/quality.txt
     #   astroid

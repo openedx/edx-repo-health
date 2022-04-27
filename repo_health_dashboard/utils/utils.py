@@ -3,6 +3,7 @@ utils used to create dashboard
 """
 import csv
 import html
+import os
 
 
 def squash_dict(input_dict, delimiter="."):
@@ -85,7 +86,7 @@ def get_sheets(parsed_yaml_file, sheet_name):
     return sheet_configuration
 
 
-def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration):
+def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration, append):
     """
     Assume all the metadata_by_repo have the same keys
     """
@@ -105,10 +106,13 @@ def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration):
         else:
             sorted_aliased_keys.append(key)
 
-    with open(filename + ".csv", "w", encoding="utf8") as csvfile:
+    mode = 'a' if append else 'w'
+    with open(filename + ".csv", mode, encoding="utf8") as csvfile:
         writer = csv.writer(csvfile)
-        csv_header = ["repo_name"] + sorted_aliased_keys
-        writer.writerow(csv_header)
+        # In case of appending an empty file, we still need headers
+        if not append or os.path.getsize(filename + ".csv") == 0:
+            csv_header = ["repo_name"] + sorted_aliased_keys
+            writer.writerow(csv_header)
 
         # TODO(jinder): order repos based on configuration["repo_name_order"]
         for repo_name, item in metadata_by_repo.items():

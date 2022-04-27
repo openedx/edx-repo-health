@@ -40,6 +40,11 @@ def main():
         help="days: how many days before individual data yaml files are outdated",
         default=1,
     )
+    parser.add_argument(
+        "--append",
+        help="whether to append existing dashboard file",
+        action="store_true",
+    )
     args = parser.parse_args()
     # collect configurations if they were input
     configurations = {
@@ -66,7 +71,7 @@ def main():
             date_of_collection = parsed_file_data["TIMESTAMP"]
             today_date = datetime.datetime.now().date()
             days_since_collection = abs((today_date - date_of_collection).days)
-            if days_since_collection > args.data_life_time:
+            if days_since_collection > int(args.data_life_time):
                 continue
 
             org_name = f'{parsed_file_data["org_name"]}/' if "org_name" in parsed_file_data else ''
@@ -76,7 +81,7 @@ def main():
     output = utils.squash_and_standardize_metadata_by_repo(data)
     for key, configuration in configurations.items():
         utils.write_squashed_metadata_to_csv(
-            output, args.output_csv + "_" + key, configuration
+            output, args.output_csv + "_" + key, configuration, args.append
         )
 
 

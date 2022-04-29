@@ -70,7 +70,7 @@ pyasn1-modules==0.2.8
     # via google-auth
 pyparsing==3.0.8
     # via packaging
-pytest==7.1.1
+pytest==7.1.2
     # via
     #   pytest-aiohttp
     #   pytest-asyncio

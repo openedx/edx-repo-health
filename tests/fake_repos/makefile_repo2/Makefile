@@ -18,7 +18,10 @@ piptools:
 
 export CUSTOM_COMPILE_COMMAND = make upgrade
 upgrade: piptools ## update the requirements/*.txt files with the latest packages satisfying requirements/*.in
-	pip-compile --rebuild --upgrade -o requirements/pip_tools.txt requirements/pip_tools.in
+	pip-compile --rebuild --upgrade -o requirements/pip-tools.txt requirements/pip-tools.in
+	pip-compile --allow-unsafe --rebuild --upgrade -o requirements/pip.txt requirements/pip.in
+	pip install -qr requirements/pip.txt
+	pip install -qr requirements/pip-tools.txt
 	pip-compile --rebuild --upgrade -o requirements/base.txt requirements/base.in
 	pip-compile --rebuild --upgrade -o requirements/test.txt requirements/test.in
 	pip-compile --rebuild --upgrade -o requirements/docs.txt requirements/docs.in

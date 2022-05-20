@@ -14,6 +14,14 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[0.2.4] - 2022-05-23
+~~~~~~~~~~~~~~~~~~~~
+
+Added
++++++++
+
+* Added a check to validate that pip.txt requirements are installed immediately after upgrading pip.txt in Makefile's upgrade target
+
 [0.2.3] - 2022-04-12
 ~~~~~~~~~~~~~~~~~~~~
 

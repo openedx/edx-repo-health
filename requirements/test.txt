@@ -22,11 +22,11 @@ attrs==21.4.0
     #   -r requirements/base.txt
     #   aiohttp
     #   pytest
-cachetools==5.0.0
+cachetools==5.1.0
     # via
     #   -r requirements/base.txt
     #   google-auth
-certifi==2021.10.8
+certifi==2022.5.18.1
     # via
     #   -r requirements/base.txt
     #   requests
@@ -35,7 +35,7 @@ charset-normalizer==2.0.12
     #   -r requirements/base.txt
     #   aiohttp
     #   requests
-coverage[toml]==6.3.3
+coverage[toml]==6.4
     # via pytest-cov
 dockerfile==3.2.0
     # via -r requirements/base.txt

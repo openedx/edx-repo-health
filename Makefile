@@ -52,7 +52,7 @@ requirements: ## install development environment requirements
 	pip-sync requirements/dev.txt requirements/private.*
 
 test: clean ## run tests in the current virtualenv
-	pytest
+	tox
 
 diff_cover: test ## find diff lines that need test coverage
 	diff-cover coverage.xml

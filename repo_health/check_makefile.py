@@ -42,3 +42,29 @@ def check_has_make_target(makefile, all_results):
         match = re.search(regex_pattern, makefile, re.MULTILINE)
         if match:
             all_results[module_dict_key][target] = True
+
+@health_metadata(
+    [module_dict_key],
+    {
+        "pip-installed": "check if pip.txt was installed immediately after upgrade"
+    }
+)
+def check_upgrade_script(makefile, all_results):
+    """
+    Checks if pip installed after upgrading pip.txt
+    """
+    upgrade_targets = re.finditer("^upgrade:", makefile, re.MULTILINE)
+
+    for i in upgrade_targets:
+        content = makefile[i.end():]
+        upgrade_script = content[:re.search("^[a-zA-Z_]+: ", content, re.MULTILINE).start()]
+        update_commands = (r"(\n\t(\$\(PIP_COMPILE\)|pip-compile)(.*?)((requirements/pip\.txt requirements/pip\.in)"
+                           r"|(requirements/pip-tools\.txt requirements/pip-tools\.in))){2}")
+        install_commands = r"(\n\t(pip install)(.*?)(requirements/pip.txt|requirements/pip-tools.txt)){2}"
+        regex_pattern = "".join([update_commands, install_commands])
+        match = re.search(regex_pattern, upgrade_script, re.MULTILINE)
+        if match:
+            all_results[module_dict_key]["pip-installed"] = True
+            return
+
+    all_results[module_dict_key]["pip-installed"] = False

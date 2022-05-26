@@ -56,8 +56,10 @@ def check_upgrade_script(makefile, all_results):
     upgrade_targets = re.finditer("^upgrade:", makefile, re.MULTILINE)
 
     for i in upgrade_targets:
-        content = makefile[i.end():]
-        upgrade_script = content[:re.search("^[a-zA-Z_]+: ", content, re.MULTILINE).start()]
+        upgrade_script = makefile[i.end():]
+        next_target = re.search("^[a-zA-Z_]+:", upgrade_script, re.MULTILINE)
+        if next_target is not None:
+            upgrade_script = upgrade_script[:next_target.start()]
         update_commands = (r"(\n\t(\$\(PIP_COMPILE\)|pip-compile)(.*?)((requirements/pip\.txt requirements/pip\.in)"
                            r"|(requirements/pip-tools\.txt requirements/pip-tools\.in))){2}")
         install_commands = r"(\n\t(pip install)(.*?)(requirements/pip.txt|requirements/pip-tools.txt)){2}"

@@ -16,7 +16,7 @@ attrs==21.4.0
     # via
     #   aiohttp
     #   pytest
-cachetools==5.1.0
+cachetools==5.2.0
     # via google-auth
 certifi==2022.5.18.1
     # via requests
@@ -42,7 +42,7 @@ google-auth==2.6.6
     #   gspread
 google-auth-oauthlib==0.5.1
     # via gspread
-gspread==5.3.2
+gspread==5.4.0
     # via -r requirements/base.in
 idna==3.3
     # via

@@ -22,7 +22,7 @@ attrs==21.4.0
     #   -r requirements/base.txt
     #   aiohttp
     #   pytest
-cachetools==5.1.0
+cachetools==5.2.0
     # via
     #   -r requirements/base.txt
     #   google-auth
@@ -35,7 +35,7 @@ charset-normalizer==2.0.12
     #   -r requirements/base.txt
     #   aiohttp
     #   requests
-coverage[toml]==6.4
+coverage[toml]==6.4.1
     # via pytest-cov
 dockerfile==3.2.0
     # via -r requirements/base.txt
@@ -63,7 +63,7 @@ google-auth-oauthlib==0.5.1
     # via
     #   -r requirements/base.txt
     #   gspread
-gspread==5.3.2
+gspread==5.4.0
     # via -r requirements/base.txt
 idna==3.3
     # via

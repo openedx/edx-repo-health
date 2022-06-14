@@ -1,3 +1,4 @@
+# pylint: disable=django-not-configured
 """
 This package contains checks for edx repo standards
 """

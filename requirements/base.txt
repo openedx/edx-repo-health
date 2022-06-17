@@ -18,7 +18,7 @@ attrs==21.4.0
     #   pytest
 cachetools==5.2.0
     # via google-auth
-certifi==2022.5.18.1
+certifi==2022.6.15
     # via requests
 charset-normalizer==2.0.12
     # via
@@ -36,7 +36,7 @@ github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f
     # via -r requirements/github.in
 gitpython==3.1.27
     # via pytest-repo-health
-google-auth==2.7.0
+google-auth==2.8.0
     # via
     #   google-auth-oauthlib
     #   gspread

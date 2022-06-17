@@ -24,7 +24,7 @@ attrs==21.4.0
     #   -r requirements/test.txt
     #   aiohttp
     #   pytest
-babel==2.10.1
+babel==2.10.3
     # via sphinx
 bleach==5.0.0
     # via readme-renderer
@@ -32,7 +32,7 @@ cachetools==5.2.0
     # via
     #   -r requirements/test.txt
     #   google-auth
-certifi==2022.5.18.1
+certifi==2022.6.15
     # via
     #   -r requirements/test.txt
     #   requests
@@ -72,7 +72,7 @@ gitpython==3.1.27
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.7.0
+google-auth==2.8.0
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -199,7 +199,7 @@ smmap==5.0.0
     #   gitdb
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==5.0.1
+sphinx==5.0.2
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme

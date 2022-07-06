@@ -97,9 +97,11 @@ def test_check_dir_existence(fake_repo, flag_list):
 @pytest.mark.parametrize("fake_repo, flag_list", [
     ("just_setup_cfg", {
         "commitlint.yml": False,
+        "dependabot.yml": False,
     }),
     ("python_repo", {
         "commitlint.yml": True,
+        "dependabot.yml": True,
     }),
 ])
 def test_check_path_existence(fake_repo, flag_list):

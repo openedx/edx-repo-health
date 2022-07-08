@@ -97,7 +97,7 @@ smmap==5.0.0
     # via gitdb
 tomli==2.0.1
     # via pytest
-urllib3==1.26.9
+urllib3==1.26.10
     # via requests
 yarl==1.7.2
     # via aiohttp

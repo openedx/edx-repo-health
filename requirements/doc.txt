@@ -153,7 +153,7 @@ pytest-aiohttp==1.0.4
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-pytest-asyncio==0.18.3
+pytest-asyncio==0.19.0
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp
@@ -183,7 +183,7 @@ responses==0.21.0
     # via -r requirements/test.txt
 restructuredtext-lint==1.4.0
     # via doc8
-rsa==4.8
+rsa==4.9
     # via
     #   -r requirements/test.txt
     #   google-auth

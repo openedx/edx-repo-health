@@ -19,7 +19,7 @@ async-timeout==4.0.2
     # via
     #   -r requirements/test.txt
     #   aiohttp
-attrs==21.4.0
+attrs==22.1.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -45,11 +45,11 @@ coverage[toml]==6.4.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-doc8==0.11.2
+doc8==1.0.0
     # via -r requirements/doc.in
 dockerfile==3.2.0
     # via -r requirements/test.txt
-docutils==0.18.1
+docutils==0.19
     # via
     #   doc8
     #   readme-renderer
@@ -199,7 +199,7 @@ smmap==5.0.0
     #   gitdb
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==5.0.2
+sphinx==5.1.1
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
@@ -221,8 +221,9 @@ tomli==2.0.1
     # via
     #   -r requirements/test.txt
     #   coverage
+    #   doc8
     #   pytest
-urllib3==1.26.10
+urllib3==1.26.11
     # via
     #   -r requirements/test.txt
     #   requests

@@ -20,7 +20,7 @@ cachetools==5.2.0
     # via google-auth
 certifi==2022.6.15
     # via requests
-charset-normalizer==2.1.0
+charset-normalizer==2.1.1
     # via
     #   aiohttp
     #   requests
@@ -36,7 +36,7 @@ github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f
     # via -r requirements/github.in
 gitpython==3.1.27
     # via pytest-repo-health
-google-auth==2.10.0
+google-auth==2.11.0
     # via
     #   google-auth-oauthlib
     #   gspread
@@ -97,7 +97,7 @@ smmap==5.0.0
     # via gitdb
 tomli==2.0.1
     # via pytest
-urllib3==1.26.11
+urllib3==1.26.12
     # via requests
 yarl==1.8.1
     # via aiohttp

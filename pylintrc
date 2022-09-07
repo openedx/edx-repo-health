@@ -286,7 +286,9 @@ disable =
 	illegal-waffle-usage,
 	
 	logging-fstring-interpolation,
-	django-not-available
+	django-not-available,
+	c-extension-no-member,
+	missing-timeout
 
 [REPORTS]
 output-format = text
@@ -383,4 +385,4 @@ int-import-graph =
 [EXCEPTIONS]
 overgeneral-exceptions = Exception
 
-# c9f9a31220bc87d773b8b4dfa3fb46dcaadbefaf
+# f5d8c06e7a606a11668da756684acf8604e60631

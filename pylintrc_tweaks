@@ -4,4 +4,7 @@ ignore+ = ,.git,.tox
 
 [MESSAGES CONTROL]
 disable+ = 
-	django-not-available	
+	django-not-available,
+	c-extension-no-member,
+	missing-timeout
+

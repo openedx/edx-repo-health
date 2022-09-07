@@ -63,7 +63,7 @@ google-auth-oauthlib==0.5.2
     # via
     #   -r requirements/base.txt
     #   gspread
-gspread==5.4.0
+gspread==5.5.0
     # via -r requirements/base.txt
 idna==3.3
     # via

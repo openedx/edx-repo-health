@@ -6,8 +6,8 @@ The `repo_health_dashboard`_ script is meant to aggregate data from runs of `pyt
 repos. It aggregates the data from yaml outputs, flattens it, and outputs it in csv form.
 
 
-.. _repo_health_dashboard: https://github.com/edx/edx-repo-health/blob/master/repo_health_dashboard/repo_health_dashboard.py
-.. _pytest-repo-health: https://github.com/edx/pytest-repo-health
+.. _repo_health_dashboard: https://github.com/openedx/edx-repo-health/blob/master/repo_health_dashboard/repo_health_dashboard.py
+.. _pytest-repo-health: https://github.com/openedx/pytest-repo-health
 
 How to use
 ----------
@@ -31,5 +31,5 @@ Options:
 
 see example: `configuration.yaml`_
 
-.. _configuration.yaml: https://github.com/edx/edx-repo-health/blob/master/repo_health_dashboard/configuration.yaml
+.. _configuration.yaml: https://github.com/openedx/edx-repo-health/blob/master/repo_health_dashboard/configuration.yaml
 

@@ -68,8 +68,8 @@ The following describes the repo health pipeline that currently uses ``edx-repo-
 
 .. _org-repo-health-report: https://tools-edx-jenkins.edx.org/job/RepoHealth/job/org-repo-health-report/
 .. _org-repo-health-report job definition: https://github.com/edx/jenkins-job-dsl-internal/blob/master/jobs/tools-edx-jenkins.edx.org/createRepoHealthJobs.groovy
-.. _repo_health_dashboard script: https://github.com/edx/edx-repo-health/blob/master/repo_health_dashboard/repo_health_dashboard.py
-.. _repo-health-data: https://github.com/edx/repo-health-data
+.. _repo_health_dashboard script: https://github.com/openedx/edx-repo-health/blob/master/repo_health_dashboard/repo_health_dashboard.py
+.. _repo-health-data: https://github.com/openedx/repo-health-data
 .. _Repo Health Dashboard: https://docs.google.com/spreadsheets/d/1VCxNVq-niT-uv5BFmsYPF21r6I2-IQ-GJbidF0zUPBc/edit#gid=921158295
 
 
@@ -115,8 +115,8 @@ Have a question about this repository, or about Open edX in general?  Please
 refer to this `list of resources`_ if you need any assistance.
 
 .. _list of resources: https://open.edx.org/getting-help
-.. _pytest-repo-health: https://github.com/edx/pytest-repo-health
-.. _how_tos: https://github.com/edx/edx-repo-health/blob/master/docs/how_tos/add_checks.rst
-.. _`file an issue`: https://github.com/edx/edx-repo-health/issues
+.. _pytest-repo-health: https://github.com/openedx/pytest-repo-health
+.. _how_tos: https://github.com/openedx/edx-repo-health/blob/master/docs/how_tos/add_checks.rst
+.. _`file an issue`: https://github.com/openedx/edx-repo-health/issues
 .. _`pytest`: https://github.com/pytest-dev/pytest
 .. _`tox`: https://tox.readthedocs.io/en/latest/

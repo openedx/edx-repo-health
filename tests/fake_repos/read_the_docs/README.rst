@@ -2,8 +2,8 @@
     :target: https://pypi.python.org/pypi/read_the_docs/
     :alt: PyPI
 
-.. image:: https://github.com/edx/read_the_docs/workflows/Python%20CI/badge.svg?branch=master
-    :target: https://github.com/edx/read_the_docs/actions?query=workflow%3A%22Python+CI%22
+.. image:: https://github.com/openedx/read_the_docs/workflows/Python%20CI/badge.svg?branch=master
+    :target: https://github.com/openedx/read_the_docs/actions?query=workflow%3A%22Python+CI%22
     :alt: CI
 
 .. image:: https://readthedocs.org/projects/read_the_docs/badge/?version=latest

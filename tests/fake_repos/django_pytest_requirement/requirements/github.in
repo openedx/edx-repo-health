@@ -1,2 +1,2 @@
 
-git+https://github.com/edx/django-ratelimit-backend.git@v2.0.1a5#egg=django-ratelimit-backend==2.0.1a5
+git+https://github.com/openedx-unsupported/django-ratelimit-backend.git@v2.0.1a5#egg=django-ratelimit-backend==2.0.1a5

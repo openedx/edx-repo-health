@@ -6,7 +6,7 @@ This document explains how to add checks to edx-repo-health.
 
 To get a better understanding of how check functions work, read the `Check Functions`__ doc.
 
-__ https://github.com/edx/edx-repo-health/blob/master/docs/check_function.rst
+__ https://github.com/openedx/edx-repo-health/blob/master/docs/check_function.rst
 
 Steps to adding a check:
 ------------------------
@@ -70,4 +70,4 @@ Installing this repo (with ``make requirements``) will also install the
 pytest-repo-health tools. See the `pytest-repo-health`_ repo for details on
 using pytest to run the checks.
 
-.. _pytest-repo-health: https://github.com/edx/pytest-repo-health
+.. _pytest-repo-health: https://github.com/openedx/pytest-repo-health

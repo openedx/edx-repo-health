@@ -34,6 +34,6 @@ To add new checks, read `add_checks`_.
 To get an understanding of how the dashboard csv is made, read `dashboard`_.
 
 
-.. _check_function: https://github.com/edx/edx-repo-health/blob/master/docs/check_function.rst
-.. _add_checks: https://github.com/edx/edx-repo-health/blob/master/docs/how_tos/add_checks.rst
-.. _dashboard: https://github.com/edx/edx-repo-health/blob/master/docs/csv_dashboard.rst
+.. _check_function: https://github.com/openedx/edx-repo-health/blob/master/docs/check_function.rst
+.. _add_checks: https://github.com/openedx/edx-repo-health/blob/master/docs/how_tos/add_checks.rst
+.. _dashboard: https://github.com/openedx/edx-repo-health/blob/master/docs/csv_dashboard.rst

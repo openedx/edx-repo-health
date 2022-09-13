@@ -66,7 +66,7 @@ These are the two main fixtures.
 
 The complete set of fixtures is available in the `pytest-repo-health/fixtures`__ directory.
 
-__ https://github.com/edx/pytest-repo-health/tree/master/pytest_repo_health/fixtures
+__ https://github.com/openedx/pytest-repo-health/tree/master/pytest_repo_health/fixtures
 
 
 Running checks
@@ -74,4 +74,4 @@ Running checks
 
 Installing this repo (with ``make requirements``) will install the pytest-repo-health tools.  See the `pytest-repo-health`_ repo for details on using pytest to run the checks.
 
-.. _pytest-repo-health: https://github.com/edx/pytest-repo-health
+.. _pytest-repo-health: https://github.com/openedx/pytest-repo-health

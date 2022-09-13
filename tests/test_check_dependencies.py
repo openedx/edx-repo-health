@@ -14,9 +14,9 @@ def test_python_js_repo_dependency_check():
 
     assert 'fs==2.0.18' in dependencies["pypi_all"]["list"]
     assert "react-redux" in dependencies["js"]["list"]
-    assert dependencies["count"] == 350
+    assert dependencies["count"] == 351
     assert dependencies["pypi_all"]["count"] == 299
-    assert dependencies["github"]["count"] == 14
+    assert dependencies["github"]["count"] == 15
     assert dependencies["js.all"]["count"] == 10
     assert dependencies["js"]["count"] == 26
     assert dependencies["pypi"]["count"] == 225
@@ -43,7 +43,7 @@ def test_python_repo_dependency_check():
     dependencies = get_dependencies(repo_path)
 
     assert 'django==2.2.24' in dependencies["pypi_all"]["list"]
-    assert 'git+https://github.com/edx/credentials-themes.git@0.1.62#egg=edx_credentials_themes==0.1.62' \
+    assert 'git+https://github.com/openedx/credentials-themes.git@0.1.62#egg=edx_credentials_themes==0.1.62' \
            in dependencies["github"]["list"]
     assert dependencies["pypi_all"]["count"] == 65
     assert dependencies["github"]["count"] == 1

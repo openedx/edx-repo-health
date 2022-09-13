@@ -27,4 +27,4 @@ pytz==2021.1
 sqlparse==0.4.1
     # via django
 
-git+https://github.com/edx/credentials-themes.git@0.1.62#egg=edx_credentials_themes==0.1.62
+git+https://github.com/openedx/credentials-themes.git@0.1.62#egg=edx_credentials_themes==0.1.62

@@ -105,7 +105,7 @@ setup(
     long_description=README,
     author="edX",
     author_email="oscm@edx.org",
-    url="https://github.com/edx/edx-repo-health",
+    url="https://github.com/openedx/edx-repo-health",
     include_package_data=True,
     install_requires=load_requirements("requirements/base.in"),
     packages=["repo_health_dashboard", "repo_health_dashboard.utils"],

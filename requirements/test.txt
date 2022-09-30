@@ -26,7 +26,7 @@ cachetools==5.2.0
     # via
     #   -r requirements/base.txt
     #   google-auth
-certifi==2022.9.14
+certifi==2022.9.24
     # via
     #   -r requirements/base.txt
     #   requests
@@ -35,7 +35,7 @@ charset-normalizer==2.1.1
     #   -r requirements/base.txt
     #   aiohttp
     #   requests
-coverage[toml]==6.4.4
+coverage[toml]==6.5.0
     # via pytest-cov
 dockerfile==3.2.0
     # via -r requirements/base.txt
@@ -54,7 +54,7 @@ gitpython==3.1.27
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.11.1
+google-auth==2.12.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -123,7 +123,7 @@ pytest-asyncio==0.19.0
     # via
     #   -r requirements/base.txt
     #   pytest-aiohttp
-pytest-cov==3.0.0
+pytest-cov==4.0.0
     # via -r requirements/test.in
 pytest-repo-health==2.2.4
     # via -r requirements/base.txt

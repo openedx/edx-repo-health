@@ -32,7 +32,7 @@ cachetools==5.2.0
     # via
     #   -r requirements/test.txt
     #   google-auth
-certifi==2022.9.14
+certifi==2022.9.24
     # via
     #   -r requirements/test.txt
     #   requests
@@ -41,7 +41,7 @@ charset-normalizer==2.1.1
     #   -r requirements/test.txt
     #   aiohttp
     #   requests
-coverage[toml]==6.4.4
+coverage[toml]==6.5.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -72,7 +72,7 @@ gitpython==3.1.27
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.11.1
+google-auth==2.12.0
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -90,7 +90,7 @@ idna==3.4
     #   yarl
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==4.12.0
+importlib-metadata==5.0.0
     # via sphinx
 iniconfig==1.1.1
     # via
@@ -157,17 +157,17 @@ pytest-asyncio==0.19.0
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp
-pytest-cov==3.0.0
+pytest-cov==4.0.0
     # via -r requirements/test.txt
 pytest-repo-health==2.2.4
     # via -r requirements/test.txt
-pytz==2022.2.1
+pytz==2022.4
     # via babel
 pyyaml==6.0
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-readme-renderer==37.1
+readme-renderer==37.2
     # via -r requirements/doc.in
 requests==2.28.1
     # via
@@ -199,7 +199,7 @@ smmap==5.0.0
     #   gitdb
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==5.1.1
+sphinx==5.2.3
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme

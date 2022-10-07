@@ -39,7 +39,7 @@ cachetools==5.2.0
     # via
     #   -r requirements/quality.txt
     #   google-auth
-certifi==2022.9.14
+certifi==2022.9.24
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -70,7 +70,7 @@ code-annotations==1.3.0
     #   edx-lint
 codecov==2.1.12
     # via -r requirements/ci.txt
-coverage[toml]==6.4.4
+coverage[toml]==6.5.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -86,7 +86,7 @@ distlib==0.3.6
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==3.2.15
+django==3.2.16
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -114,7 +114,7 @@ gitpython==3.1.27
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.11.1
+google-auth==2.12.0
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
@@ -181,7 +181,7 @@ pep517==0.13.0
     # via
     #   -r requirements/pip-tools.txt
     #   build
-pip-tools==6.8.0
+pip-tools==6.9.0
     # via -r requirements/pip-tools.txt
 platformdirs==2.5.2
     # via
@@ -258,7 +258,7 @@ pytest-asyncio==0.19.0
     # via
     #   -r requirements/quality.txt
     #   pytest-aiohttp
-pytest-cov==3.0.0
+pytest-cov==4.0.0
     # via -r requirements/quality.txt
 pytest-repo-health==2.2.4
     # via -r requirements/quality.txt
@@ -266,7 +266,7 @@ python-slugify==6.1.2
     # via
     #   -r requirements/quality.txt
     #   code-annotations
-pytz==2022.2.1
+pytz==2022.4
     # via
     #   -r requirements/quality.txt
     #   django
@@ -307,7 +307,7 @@ snowballstemmer==2.2.0
     # via
     #   -r requirements/quality.txt
     #   pydocstyle
-sqlparse==0.4.2
+sqlparse==0.4.3
     # via
     #   -r requirements/quality.txt
     #   django
@@ -330,7 +330,7 @@ tomli==2.0.1
     #   pylint
     #   pytest
     #   tox
-tomlkit==0.11.4
+tomlkit==0.11.5
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -340,7 +340,7 @@ tox==3.26.0
     #   tox-battery
 tox-battery==0.6.1
     # via -r requirements/dev.in
-typing-extensions==4.3.0
+typing-extensions==4.4.0
     # via
     #   -r requirements/quality.txt
     #   astroid

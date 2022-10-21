@@ -26,7 +26,7 @@ cachetools==5.2.0
     # via
     #   -r requirements/base.txt
     #   google-auth
-certifi==2022.9.14
+certifi==2022.9.24
     # via
     #   -r requirements/base.txt
     #   requests
@@ -35,7 +35,7 @@ charset-normalizer==2.1.1
     #   -r requirements/base.txt
     #   aiohttp
     #   requests
-coverage[toml]==6.4.4
+coverage[toml]==6.5.0
     # via pytest-cov
 dockerfile==3.2.0
     # via -r requirements/base.txt
@@ -50,11 +50,11 @@ gitdb==4.0.9
     #   gitpython
 github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/base.txt
-gitpython==3.1.27
+gitpython==3.1.29
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.11.1
+google-auth==2.13.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -63,7 +63,7 @@ google-auth-oauthlib==0.5.3
     # via
     #   -r requirements/base.txt
     #   gspread
-gspread==5.5.0
+gspread==5.6.0
     # via -r requirements/base.txt
 idna==3.4
     # via
@@ -79,7 +79,7 @@ multidict==6.0.2
     #   -r requirements/base.txt
     #   aiohttp
     #   yarl
-oauthlib==3.2.1
+oauthlib==3.2.2
     # via
     #   -r requirements/base.txt
     #   requests-oauthlib
@@ -123,7 +123,7 @@ pytest-asyncio==0.19.0
     # via
     #   -r requirements/base.txt
     #   pytest-aiohttp
-pytest-cov==3.0.0
+pytest-cov==4.0.0
     # via -r requirements/test.in
 pytest-repo-health==2.2.4
     # via -r requirements/base.txt
@@ -140,7 +140,7 @@ requests-oauthlib==1.3.1
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
-responses==0.21.0
+responses==0.22.0
     # via -r requirements/test.in
 rsa==4.9
     # via
@@ -154,10 +154,14 @@ smmap==5.0.0
     # via
     #   -r requirements/base.txt
     #   gitdb
+toml==0.10.2
+    # via responses
 tomli==2.0.1
     # via
     #   -r requirements/base.txt
     #   pytest
+types-toml==0.10.8
+    # via responses
 urllib3==1.26.12
     # via
     #   -r requirements/base.txt

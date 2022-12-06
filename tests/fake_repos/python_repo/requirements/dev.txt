@@ -258,7 +258,7 @@ tox==3.23.0
     #   -r requirements/ci.txt
     #   tox-battery
     #   tox-travis
-urllib3==1.26.4
+urllib3==1.26.5
     # via
     #   -r requirements/ci.txt
     #   requests

@@ -187,7 +187,7 @@ pep517==0.13.0
     #   build
 pip-tools==6.11.0
     # via -r requirements/pip-tools.txt
-platformdirs==2.5.4
+platformdirs==2.6.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt

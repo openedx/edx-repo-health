@@ -26,7 +26,7 @@ cachetools==5.2.0
     # via
     #   -r requirements/base.txt
     #   google-auth
-certifi==2022.9.24
+certifi==2022.12.7
     # via
     #   -r requirements/base.txt
     #   requests
@@ -87,7 +87,7 @@ oauthlib==3.2.2
     # via
     #   -r requirements/base.txt
     #   requests-oauthlib
-packaging==21.3
+packaging==22.0
     # via
     #   -r requirements/base.txt
     #   pytest
@@ -104,10 +104,6 @@ pyasn1-modules==0.2.8
     # via
     #   -r requirements/base.txt
     #   google-auth
-pyparsing==3.0.9
-    # via
-    #   -r requirements/base.txt
-    #   packaging
 pytest==7.2.0
     # via
     #   -r requirements/base.txt

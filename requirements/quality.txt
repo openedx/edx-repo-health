@@ -32,7 +32,7 @@ cachetools==5.2.0
     # via
     #   -r requirements/test.txt
     #   google-auth
-certifi==2022.9.24
+certifi==2022.12.7
     # via
     #   -r requirements/test.txt
     #   requests
@@ -124,7 +124,7 @@ oauthlib==3.2.2
     # via
     #   -r requirements/test.txt
     #   requests-oauthlib
-packaging==21.3
+packaging==22.0
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -163,10 +163,6 @@ pylint-plugin-utils==0.7
     # via
     #   pylint-celery
     #   pylint-django
-pyparsing==3.0.9
-    # via
-    #   -r requirements/test.txt
-    #   packaging
 pytest==7.2.0
     # via
     #   -r requirements/test.txt
@@ -178,7 +174,7 @@ pytest-aiohttp==1.0.4
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-pytest-asyncio==0.20.2
+pytest-asyncio==0.20.3
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp

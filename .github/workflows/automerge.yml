@@ -2,7 +2,7 @@ name: automerge
 
 on:
   check_suite:
-    types: [completed]
+    conclusion: success
 
 jobs:
   automerge:

@@ -1,20 +1,8 @@
 name: automerge
 
-# Only trigger, when the Python CI workflow succeeded
 on:
-  pull_request_review:
-    types:
-      - submitted
-  # check_suite:
-  #   types:
-  #     - completed
-  # status: {}
-  workflow_run:
-    # using specific workflow to be completed and it review should be submitted
-    # CI pipeline contains the unit tests verification
-    workflows: ["Python CI"]
-    types:
-      - completed
+  check_suite:
+    types: [completed]
 
 jobs:
   automerge:

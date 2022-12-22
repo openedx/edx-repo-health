@@ -13,10 +13,12 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
+[1.0.0] - 2023-01-02
 
 Added
-+++++
++++++++
 
+* Added code to generate sqlite database for repo health data.
 * Added a check for the url= and project_urls= settings in setup.py and setup.cfg.
 
 [0.2.4] - 2022-05-23

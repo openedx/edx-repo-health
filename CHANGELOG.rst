@@ -14,11 +14,16 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+Added
++++++
+
+* Added a check for the url= and project_urls= settings in setup.py and setup.cfg.
+
 [0.2.4] - 2022-05-23
 ~~~~~~~~~~~~~~~~~~~~
 
 Added
-+++++++
++++++
 
 * Added a check to validate that pip.txt requirements are installed immediately after upgrading pip.txt in Makefile's upgrade target
 

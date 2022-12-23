@@ -67,3 +67,30 @@ def check_pypi_name(setup_py, setup_cfg, all_results):
     if names:
         assert len(names) == 1
         all_results[module_dict_key]["pypi_name"] = names[0]
+
+
+@add_key_to_metadata((module_dict_key, "repo_url"))
+def check_repo_url(setup_py, setup_cfg, all_results):
+    """
+    Get the repo URL.
+    """
+    py_urls = re.findall(r"""(?m)^\s*url\s*=\s*['"]([^'"]+)['"]""", setup_py)
+    cfg_urls = re.findall(r"""(?m)^url\s*=\s*(\S+)""", setup_cfg)
+    urls = py_urls + cfg_urls
+    if urls:
+        assert len(urls) == 1
+        all_results[module_dict_key]["repo_url"] = urls[0]
+
+
+@add_key_to_metadata((module_dict_key, "project_urls"))
+def check_project_urls(setup_py, setup_cfg, all_results):
+    """
+    Get the additional project URLs.
+    TODO: This captures the multi-line junk without parsing them out individually.
+    """
+    py_urls = re.findall(r"""(?ms)^\s*project_urls\s*=\s*({[^}]+})""", setup_py)
+    cfg_urls = re.findall(r"""(?ms)^project_urls\s*=\s*(.*?)(?:^\S|^$)""", setup_cfg)
+    urls = py_urls + cfg_urls
+    if urls:
+        assert len(urls) == 1
+        all_results[module_dict_key]["project_urls"] = urls[0]

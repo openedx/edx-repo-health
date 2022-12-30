@@ -17,7 +17,7 @@ async-timeout==4.0.2
     # via
     #   -r requirements/base.txt
     #   aiohttp
-attrs==22.1.0
+attrs==22.2.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -26,7 +26,7 @@ cachetools==5.2.0
     # via
     #   -r requirements/base.txt
     #   google-auth
-certifi==2022.9.24
+certifi==2022.12.7
     # via
     #   -r requirements/base.txt
     #   requests
@@ -35,11 +35,11 @@ charset-normalizer==2.1.1
     #   -r requirements/base.txt
     #   aiohttp
     #   requests
-coverage[toml]==6.5.0
+coverage[toml]==7.0.1
     # via pytest-cov
 dockerfile==3.2.0
     # via -r requirements/base.txt
-exceptiongroup==1.0.4
+exceptiongroup==1.1.0
     # via
     #   -r requirements/base.txt
     #   pytest
@@ -54,7 +54,7 @@ gitdb==4.0.10
     #   gitpython
 github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/base.txt
-gitpython==3.1.29
+gitpython==3.1.30
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
@@ -63,7 +63,7 @@ google-auth==2.15.0
     #   -r requirements/base.txt
     #   google-auth-oauthlib
     #   gspread
-google-auth-oauthlib==0.7.1
+google-auth-oauthlib==0.8.0
     # via
     #   -r requirements/base.txt
     #   gspread
@@ -78,7 +78,7 @@ iniconfig==1.1.1
     # via
     #   -r requirements/base.txt
     #   pytest
-multidict==6.0.3
+multidict==6.0.4
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -87,7 +87,7 @@ oauthlib==3.2.2
     # via
     #   -r requirements/base.txt
     #   requests-oauthlib
-packaging==21.3
+packaging==22.0
     # via
     #   -r requirements/base.txt
     #   pytest
@@ -104,10 +104,6 @@ pyasn1-modules==0.2.8
     # via
     #   -r requirements/base.txt
     #   google-auth
-pyparsing==3.0.9
-    # via
-    #   -r requirements/base.txt
-    #   packaging
 pytest==7.2.0
     # via
     #   -r requirements/base.txt
@@ -119,7 +115,7 @@ pytest-aiohttp==1.0.4
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-pytest-asyncio==0.20.2
+pytest-asyncio==0.20.3
     # via
     #   -r requirements/base.txt
     #   pytest-aiohttp

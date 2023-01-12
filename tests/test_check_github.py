@@ -1,7 +1,8 @@
-#!/usr/bin/env python3
 """Testing functions in repo_health/check_github.py"""
 
 from unittest.mock import Mock
+
+import pytest
 
 from repo_health.check_github import (
     check_settings,
@@ -10,6 +11,7 @@ from repo_health.check_github import (
 )
 
 
+@pytest.mark.asyncio
 async def test_check_settings_license_exemption_present():
     """
     Test to make sure having an exemption in repo_license_exemptions results in change of license in all_results dict
@@ -37,6 +39,7 @@ async def test_check_settings_license_exemption_present():
     assert all_results["github"]["license"] == test_license
 
 
+@pytest.mark.asyncio
 async def test_check_settings_no_license_exemption_present():
     """
     Test to make sure exemptions code does not make any changes when no exemption is present.

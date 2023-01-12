@@ -2,17 +2,18 @@ import os
 import pytest
 
 from repo_health.check_openedx_yaml import (
-    check_oeps,
     check_obsolete_fields,
+    check_oeps,
     check_release_maybe,
+    check_release_org_compliance,
     check_release_ref,
     check_yaml_parsable,
-    module_dict_key,
-    fixture_openedx_yaml,
     fixture_oeps,
+    fixture_openedx_yaml,
     fixture_parsed_data,
-    output_keys,
+    module_dict_key,
     obsolete_fields,
+    output_keys,
 )
 
 
@@ -41,6 +42,17 @@ def test_check_release_maybe(parsed_data, result):
     check_release_maybe(parsed_data, all_results)
 
     assert all_results[module_dict_key]['release-maybe'] == result
+
+
+@pytest.mark.parametrize("repo_path, git_origin_url, result", [
+    (get_repo_path("openedx_repo1"), "https://github.com/openedx/openedx_repo1.git", True),
+    (get_repo_path("openedx_repo2"), "https://github.com/openedx/openedx_repo2.git", True),
+    (get_repo_path("openedx_repo3"), "https://github.com/edx/openedx_repo3.git", False),
+])
+def test_check_release_org_compliance(parsed_data, git_origin_url, result):
+    all_results = {module_dict_key:{}}
+    check_release_org_compliance(parsed_data, git_origin_url, all_results)
+    assert all_results[module_dict_key]["release-org-compliance"] == result
 
 
 @pytest.mark.parametrize("repo_path, result", [

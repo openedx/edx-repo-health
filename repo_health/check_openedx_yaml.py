@@ -2,11 +2,15 @@
 Checks to see if openedx.yaml follows minimum standards
 And gathers info
 """
+
 import os
+import re
+
 import pytest
 import yaml
 
 from pytest_repo_health import add_key_to_metadata, health_metadata
+from pytest_repo_health.fixtures.github import URL_PATTERN
 
 from repo_health import get_file_content
 
@@ -103,7 +107,25 @@ def check_release_ref(parsed_data, all_results):
 @add_key_to_metadata((module_dict_key, "release-maybe"))
 def check_release_maybe(parsed_data, all_results):
     """
-    Does this repo still have "maybe" for openedx releases?
+    Does this repo still have "maybe" for openedx-release? True is bad.
     """
     maybe = parsed_data.get("openedx-release", {}).get("maybe", False)
     all_results[module_dict_key]["release-maybe"] = maybe
+
+
+@add_key_to_metadata((module_dict_key, "release-org-compliance"))
+def check_release_org_compliance(parsed_data, git_origin_url, all_results):
+    """
+    Does this repo comply with the rule that Open edX components must be in the
+    openedx GitHub org? False is bad.
+    """
+    maybe = parsed_data.get("openedx-release", {}).get("maybe", False)
+    ref = parsed_data.get("openedx-release", {}).get("ref", "")
+    if ref and not maybe:
+        match = re.search(URL_PATTERN, git_origin_url)
+        assert match is not None
+        org = match.group("org_name")
+        good_org = (org == "openedx")
+    else:
+        good_org = True
+    all_results[module_dict_key]["release-org-compliance"] = good_org

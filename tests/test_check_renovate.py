@@ -1,10 +1,12 @@
 import os
+from unittest import mock, TestCase
+
+import pytest
 
 from repo_health.check_renovate import (
     check_renovate,
     MODULE_DICT_KEY,
 )
-from unittest import mock, TestCase
 
 def get_repo_path(repo_name):
     tests_directory = os.path.dirname(__file__)
@@ -16,6 +18,7 @@ async def mocked_responses(*args, **kwargs):
 
 
 @mock.patch('repo_health.check_renovate.get_last_pull_date')
+@pytest.mark.asyncio
 async def test_check_renovate_true(mock_get):
     mock_get.return_value = await mocked_responses()
     all_results = {MODULE_DICT_KEY: {}}
@@ -24,6 +27,7 @@ async def test_check_renovate_true(mock_get):
     assert all_results[MODULE_DICT_KEY]['configured'] == True
 
 @mock.patch('repo_health.check_renovate.get_last_pull_date')
+@pytest.mark.asyncio
 async def test_check_renovate_false(mock_get):
     mock_get.return_value = await mocked_responses()
     all_results = {MODULE_DICT_KEY: {}}

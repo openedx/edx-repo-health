@@ -3,7 +3,6 @@ Checks repository is on travis.org or .com
 """
 import json
 import logging
-import re
 
 import pytest
 import requests
@@ -11,13 +10,13 @@ from pytest_repo_health import add_key_to_metadata
 
 from repo_health_dashboard.utils.utils import squash_dict
 
+from .utils import github_org_repo
+
 logger = logging.getLogger(__name__)
 
 module_dict_key = "travis_ci"
 
 TRAVIS_API_URL = "https://api.travis-ci.com/repo/edx%2F"
-
-URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).git"
 
 
 def log_travis_api_failure(response):
@@ -82,8 +81,7 @@ def check_travis_integration(all_results, git_origin_url):
     """
 
     if squash_dict(all_results)['exists..travis.yml']:
-        match = re.search(URL_PATTERN, git_origin_url)
-        repo_name = match.group("repo_name")
+        _, repo_name = github_org_repo(git_origin_url)
         travis_integration_handler = TravisIntegrationHandler(repo_name)
         travis_integration_handler.handle()
 

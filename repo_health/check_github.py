@@ -13,12 +13,11 @@ import requests
 from pytest_repo_health import add_key_to_metadata, health_metadata
 
 from .queries import FETCH_BUILD_CHECK_RUNS
-from .utils import parse_build_duration_response
+from .utils import github_org_repo, parse_build_duration_response
 
 logger = logging.getLogger(__name__)
 
 MODULE_DICT_KEY = "github"
-URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).git"
 
 FETCH_REPOSITORY_LANGUAGES = """
 query fetch_repository_languages ($repository_id: ID!, $cursor: String=null) {
@@ -237,8 +236,7 @@ def check_branch_and_pr_count(all_results, git_origin_url):
     """
     Checks repository integrated with github actions workflow
     """
-    match = re.search(URL_PATTERN, git_origin_url)
-    repo_name = match.group("repo_name")
+    _, repo_name = github_org_repo(git_origin_url)
     all_results[MODULE_DICT_KEY]['branch_count'] = get_branch_or_pr_count(repo_name, 'branches')
     all_results[MODULE_DICT_KEY]['pulls_count'] = get_branch_or_pr_count(repo_name, 'pulls')
 

@@ -4,6 +4,8 @@ Utility Functions
 import functools
 import operator
 import os
+import re
+
 from datetime import datetime
 
 GITHUB_DATETIME_FMT = "%Y-%m-%dT%H:%M:%SZ"
@@ -81,3 +83,12 @@ def parse_build_duration_response(json_response):
         total_duration = f'{int(minutes)} minutes {int(remaining_seconds)} seconds'
 
     return total_duration, build_checks
+
+
+URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).git"
+
+def github_org_repo(git_origin_url):
+    """Return the org and repo from a GitHub URL."""
+    match = re.search(URL_PATTERN, git_origin_url)
+    assert match is not None
+    return match.groups()

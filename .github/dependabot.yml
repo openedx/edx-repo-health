@@ -1,6 +1,16 @@
+# In this repo, we want to keep dependabot from finding tests/fake_repos.
+# So we direct it to particular subdirectories.
+
 version: 2
 updates:
-  - package-ecosystem: "github-actions" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "github-actions"
+    # We don't want test-repo actions to be updated, but "/" will make this
+    # look only in .github anyway.
+    # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#directory
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "pip"
+    directory: "requirements"
     schedule:
       interval: "weekly"

@@ -18,6 +18,7 @@ Added
 +++++
 
 * Added a check for the url= and project_urls= settings in setup.py and setup.cfg.
+* Read yaml files for both orgs while creating dashboard
 
 [0.2.4] - 2022-05-23
 ~~~~~~~~~~~~~~~~~~~~

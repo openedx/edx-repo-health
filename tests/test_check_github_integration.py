@@ -1,7 +1,7 @@
 import os
+from unittest import mock
 
 from repo_health.check_github_integration import check_github_actions_integration, module_dict_key
-from unittest import mock
 
 
 class MockResponse:

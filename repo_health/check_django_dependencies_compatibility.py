@@ -8,13 +8,14 @@ import os
 import re
 import tempfile
 from pathlib import Path
-from packaging.version import parse
 
 import pytest
 import requests
+from packaging.version import parse
 from pytest_repo_health import health_metadata
 
-from repo_health import get_file_lines, DJANGO_DEPS_SHEET_URL, GITHUB_URL_PATTERN, PYPI_PACKAGE_PATTERN
+from repo_health import DJANGO_DEPS_SHEET_URL, GITHUB_URL_PATTERN, PYPI_PACKAGE_PATTERN, get_file_lines
+
 logger = logging.getLogger(__name__)
 
 MODULE_DICT_KEY = "django_packages"

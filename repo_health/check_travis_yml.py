@@ -4,11 +4,12 @@ And gathers info
 """
 import os
 from collections.abc import Iterable
+
 import pytest
 import yaml
 from pytest_repo_health import add_key_to_metadata
-from repo_health import get_file_content
 
+from repo_health import get_file_content
 
 module_dict_key = "travis_yml"
 

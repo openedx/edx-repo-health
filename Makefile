@@ -45,7 +45,8 @@ upgrade: ## update the requirements/*.txt files with the latest packages satisfy
 
 quality: ## check coding style with pycodestyle and pylint
 	tox -e quality
-
+	isort --atomic .
+	
 requirements: ## install development environment requirements
 	pip install -qr requirements/pip.txt
 	pip install -qr requirements/pip-tools.txt

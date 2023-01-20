@@ -1,9 +1,10 @@
+import json
 import os
+
 import pytest
 import responses
-import json
 
-from repo_health.check_docs import check_build_bagde, check_python_version, module_dict_key, ReadTheDocsChecker
+from repo_health.check_docs import ReadTheDocsChecker, check_build_bagde, check_python_version, module_dict_key
 
 
 def get_repo_path(repo_name):

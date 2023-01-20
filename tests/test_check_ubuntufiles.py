@@ -3,7 +3,7 @@ import re
 
 import pytest
 
-from repo_health.check_ubuntufiles import PlaybookAPTPackagesReader, VARIABLE_PATTERN
+from repo_health.check_ubuntufiles import VARIABLE_PATTERN, PlaybookAPTPackagesReader
 
 
 def get_repo_path(repo_name):

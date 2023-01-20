@@ -8,7 +8,6 @@ import re
 
 import pytest
 import yaml
-
 from pytest_repo_health import add_key_to_metadata, health_metadata
 from pytest_repo_health.fixtures.github import URL_PATTERN
 

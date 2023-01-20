@@ -6,7 +6,6 @@ from pytest_repo_health import health_metadata
 
 from .utils import dir_exists, file_exists
 
-
 module_dict_key = "exists"
 
 req_files = {

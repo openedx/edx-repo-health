@@ -11,11 +11,9 @@ from pathlib import Path
 
 import pytest
 import yaml
-
 from pytest_repo_health import health_metadata
 
 from repo_health import get_file_lines, read_docker_file
-
 from repo_health.check_travis_integration import URL_PATTERN
 
 module_dict_key = "ubuntu_packages"

@@ -2,11 +2,11 @@
 repo-health-dashboard CLI
 """
 
-import os
 import argparse
-import glob
 import codecs
 import datetime
+import glob
+import os
 
 import yaml
 

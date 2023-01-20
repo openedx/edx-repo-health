@@ -3,9 +3,7 @@ from pathlib import Path
 import pytest
 
 from repo_health import get_file_content
-from repo_health.check_setup_py import (
-    check_project_urls, check_pypi_name, check_repo_url, module_dict_key,
-)
+from repo_health.check_setup_py import check_project_urls, check_pypi_name, check_repo_url, module_dict_key
 
 FAKE_REPO_ROOT = Path(__file__).parent / "fake_repos"
 

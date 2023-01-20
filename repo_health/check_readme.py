@@ -6,8 +6,8 @@ import re
 import urllib.parse
 
 import requests
-
 from pytest_repo_health import health_metadata
+
 from repo_health import fixture_readme  # pylint:disable=unused-import
 
 module_dict_key = "readme"

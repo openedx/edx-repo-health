@@ -2,8 +2,8 @@
 Checks to fetch repository ownership information from the Google Sheets speadsheet.
 """
 import logging
-import re
 import os
+import re
 
 import gspread
 import pytest

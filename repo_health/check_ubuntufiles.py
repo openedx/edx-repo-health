@@ -14,7 +14,8 @@ import yaml
 from pytest_repo_health import health_metadata
 
 from repo_health import get_file_lines, read_docker_file
-from repo_health.check_travis_integration import URL_PATTERN
+
+from .utils import github_org_repo
 
 module_dict_key = "ubuntu_packages"
 
@@ -289,10 +290,10 @@ def clean_data(content):
 def fixture_ubuntu_content(repo_path, git_origin_url):
     """Fixture containing the text content of dockerfile"""
     config_yaml_data = []
-    match = re.search(URL_PATTERN, git_origin_url)
+    _, repo_name = github_org_repo(git_origin_url)
 
     # Only run playbook Ubuntu packages check on configuration repo
-    if match['repo_name'] == 'configuration':
+    if repo_name == 'configuration':
         reader = PlaybookAPTPackagesReader(repo_path)
         reader.update_packages_from_playbooks()
         config_yaml_data = reader.packages_from_playbooks

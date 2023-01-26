@@ -4,17 +4,16 @@ Checks repository is on github actions workflow and tests are enabled.
 import json
 import logging
 import os
-import re
 
 import requests
 from pytest_repo_health import add_key_to_metadata
+
+from .utils import github_org_repo
 
 
 logger = logging.getLogger(__name__)
 
 module_dict_key = "github_actions"
-
-URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).git"
 
 
 def get_githubworkflow_api_response(repo_name):
@@ -77,9 +76,8 @@ def check_github_actions_integration(all_results, git_origin_url):
     """
     Checks repository integrated with github actions workflow
     """
-    match = re.search(URL_PATTERN, git_origin_url)
-    repo_name = match.group("repo_name")
+    org_name, repo_name = github_org_repo(git_origin_url)
     integration_handler = GitHubIntegrationHandler(repo_name)
     integration_handler.handle()
     all_results[module_dict_key] = bool(integration_handler.github_actions)
-    all_results['org_name'] = match.group("org_name")
+    all_results['org_name'] = org_name

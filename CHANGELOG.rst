@@ -20,6 +20,9 @@ Added
 
 * Added code to generate sqlite database for repo health data.
 * Added a check for the url= and project_urls= settings in setup.py and setup.cfg.
+* Read yaml files for both orgs while creating dashboard
+
+* Added a check for repos that indicate inclusion in Open edX in their openedx.yaml file, but aren't in the openedx GitHub organization.
 
 [0.2.4] - 2022-05-23
 ~~~~~~~~~~~~~~~~~~~~

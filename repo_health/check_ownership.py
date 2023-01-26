@@ -2,13 +2,13 @@
 Checks to fetch repository ownership information from the Google Sheets speadsheet.
 """
 import logging
-import re
 import os
 
 import gspread
 import pytest
 from pytest_repo_health import health_metadata
-from pytest_repo_health.fixtures.github import URL_PATTERN
+
+from .utils import github_org_repo
 
 logger = logging.getLogger(__name__)
 
@@ -71,10 +71,7 @@ def check_ownership(all_results, git_origin_url):
         )
         pytest.skip("At least one of the REPO_HEALTH_* environment variables is missing")
 
-    match = re.search(URL_PATTERN, git_origin_url)
-    assert match is not None
-    org_name = match.group("org_name")
-    repo_name = match.group("repo_name")
+    org_name, repo_name = github_org_repo(git_origin_url)
     repo_url = f"https://github.com/{org_name}/{repo_name}"
     results = all_results[MODULE_DICT_KEY]
     records = find_worksheet(google_creds_file, spreadsheet_url, worksheet_id)

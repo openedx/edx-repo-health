@@ -65,7 +65,7 @@ def main():
                 configurations[sheet] = utils.get_sheets(parsed_file_data, sheet)
 
     data_dir = os.path.abspath(args.data_dir)
-    files = glob.glob(os.path.join(data_dir, "*.yaml"), recursive=False)
+    files = glob.glob(os.path.join(data_dir, "*/*.yaml"), recursive=False)
     data = {}
     for file_path in files:
         file_name = file_path[file_path.rfind("/") + 1:]

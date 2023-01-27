@@ -10,10 +10,10 @@ import os
 
 from configparser import ConfigParser
 
-import pytest
 import dockerfile
+import pytest
 
-__version__ = "0.2.4"
+__version__ = "1.0.0"
 
 
 def parse_config_file(path):

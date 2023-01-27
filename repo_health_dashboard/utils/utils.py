@@ -4,6 +4,8 @@ utils used to create dashboard
 import csv
 import html
 import os
+import re
+import sqlite3
 
 
 def squash_dict(input_dict, delimiter="."):
@@ -86,25 +88,51 @@ def get_sheets(parsed_yaml_file, sheet_name):
     return sheet_configuration
 
 
-def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration, append):
+def get_sorted_keys(metadata_by_repo, configuration):
     """
-    Assume all the metadata_by_repo have the same keys
+    Return a list of keys for the metadata_by_repo, sorted by the check_order
     """
+    # Get a superset of all keys in the metadata_by_repo dictionaries
     superset_keys = get_superset_of_keys(metadata_by_repo)
+
+    # Discard keys that are not in the configuration check order
     for key in configuration["check_order"]:
         superset_keys.discard(key)
+
+    # Determine the sorted keys to use based on the configuration
     if configuration.get("subset", False):
         sorted_keys = configuration["check_order"]
     else:
         sorted_keys = configuration["check_order"] + list(sorted(superset_keys))
 
-    # change key names to its alias for display(csv header row)
+    return sorted_keys
+
+
+def get_sorted_aliased_keys(metadata_by_repo, configuration):
+    """
+    Return a list of aliased keys for the metadata_by_repo, sorted by the check_order
+    """
+    sorted_keys = get_sorted_keys(metadata_by_repo, configuration)
+
+    # Change key names to their aliases for display
     sorted_aliased_keys = []
     for key in sorted_keys:
         if key in configuration["key_aliases"]:
             sorted_aliased_keys.append(configuration["key_aliases"][key])
         else:
             sorted_aliased_keys.append(key)
+
+    return sorted_aliased_keys
+
+
+def write_squashed_metadata_to_csv(metadata_by_repo, filename, configuration, append):
+    """
+    Assume all the metadata_by_repo have the same keys
+    """
+    sorted_keys = get_sorted_keys(metadata_by_repo, configuration)
+
+    # change key names to its alias for display(csv header row)
+    sorted_aliased_keys = get_sorted_aliased_keys(metadata_by_repo, configuration)
 
     mode = 'a' if append else 'w'
     with open(filename + ".csv", mode, encoding="utf8") as csvfile:
@@ -184,3 +212,54 @@ def write_squashed_metadata_to_html(metadata_by_repo=None, filename="dashboard.h
         f.write("</tbody>\n")
         f.write("</table>\n")
         f.write("</body></html>\n")
+
+
+def write_squashed_metadata_to_sqlite(metadata_by_repo, table_name, configuration, sqlite_output):
+    """
+    Assume all the metadata_by_repo have the same keys
+    """
+    # Get a superset of all keys in the metadata_by_repo dictionaries
+    sorted_keys = get_sorted_keys(metadata_by_repo, configuration)
+
+    # Change key names to their aliases for display
+    sorted_aliased_keys = get_sorted_aliased_keys(metadata_by_repo, configuration)
+
+    # Connect to the SQLite database file
+    conn = sqlite3.connect(f"{sqlite_output}.sqlite3")
+    c = conn.cursor()
+
+    columns = ["repo_name"] + sorted_aliased_keys
+
+    # Replace '.', '-', ':' with _ in the column names because sqlite doesn't accept those tokens in column names
+    columns = [re.sub(r"[\.\-\:]", "_", column) for column in columns]
+    sqlite_columns = []
+    # Get first row of the data and infer types of the columns from it
+    repo_name, item = next(iter(metadata_by_repo.items()))
+    data_column = [repo_name] + [item[k] if k in item else None for k in sorted_keys]
+
+    for index, value in enumerate(data_column):
+        if isinstance(value, int):
+            sqlite_columns.append(f'{columns[index]} integer')
+        elif isinstance(value, float):
+            sqlite_columns.append(f'{columns[index]} real')
+        elif isinstance(value, bool):
+            sqlite_columns.append(f'{columns[index]} boolean')
+        else:
+            sqlite_columns.append(f'{columns[index]} text')
+
+    query = f"CREATE TABLE IF NOT EXISTS {table_name} ({', '.join(sqlite_columns)})"
+    c.execute(query)
+
+    # Iterate through the data and insert in database
+    for repo_name, item in metadata_by_repo.items():
+        values = [repo_name] + [str(item[k]) if not isinstance(item[k], (int, float, bool))
+                                else item[k] if k in item else None for k in sorted_keys]
+        c.execute(f'''INSERT INTO {table_name} VALUES (?, {', '.join(['?' for key in sorted_keys])})''',
+                  values)
+
+    # Save the changes to the database and close the connection
+    conn.commit()
+    with open(sqlite_output + '.sql', 'w') as f:
+        for line in conn.iterdump():
+            f.write('%s\n' % line)
+    conn.close()

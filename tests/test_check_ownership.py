@@ -1,8 +1,8 @@
 import csv
 import os
+from unittest import TestCase, mock
 
-from repo_health.check_ownership import check_ownership, MODULE_DICT_KEY
-from unittest import mock, TestCase
+from repo_health.check_ownership import MODULE_DICT_KEY, check_ownership
 
 
 def mocked_responses(*args, **kwargs):

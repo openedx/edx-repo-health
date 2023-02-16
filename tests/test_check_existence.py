@@ -1,17 +1,10 @@
 import os
+
 import pytest
 
-from repo_health.check_existence import (
-    check_readme_existence,
-    check_dir_existence,
-    check_file_existence,
-    check_path_existence,
-    req_dirs,
-    req_files,
-    req_paths,
-    module_dict_key,
-    check_transifex_config_existence
-)
+from repo_health.check_existence import (check_dir_existence, check_file_existence, check_path_existence,
+                                         check_readme_existence, check_transifex_config_existence, module_dict_key,
+                                         req_dirs, req_files, req_paths)
 
 
 def get_repo_path(repo_name):

@@ -11,7 +11,6 @@ from pathlib import Path
 
 import pytest
 import yaml
-
 from pytest_repo_health import health_metadata
 
 from repo_health import get_file_lines, read_docker_file

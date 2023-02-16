@@ -1,12 +1,13 @@
 """
  Checks whether repo requires some libraries
 """
-import re
 import glob
 import os
+import re
 
 import pytest
 from pytest_repo_health import health_metadata
+
 from repo_health import get_file_lines
 
 module_dict_key = "requires"

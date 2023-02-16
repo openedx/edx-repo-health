@@ -1,12 +1,8 @@
 import os
+
 import pytest
 
-from repo_health.check_tox_ini import (
-    module_dict_key,
-    check_has_sections,
-    check_whitelist_externals,
-    fixture_tox_ini,
-)
+from repo_health.check_tox_ini import check_has_sections, check_whitelist_externals, fixture_tox_ini, module_dict_key
 
 
 def get_repo_path(repo_name):

@@ -1,13 +1,13 @@
 """
 Checks to see if Makefile follows standards
 """
-import re
 import os
+import re
 
 import pytest
 from pytest_repo_health import health_metadata
-from repo_health import get_file_content
 
+from repo_health import get_file_content
 
 module_dict_key = "makefile"
 output_keys = {

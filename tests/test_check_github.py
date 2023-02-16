@@ -4,11 +4,7 @@ from unittest.mock import Mock
 
 import pytest
 
-from repo_health.check_github import (
-    check_settings,
-    MODULE_DICT_KEY,
-    repo_license_exemptions,
-)
+from repo_health.check_github import MODULE_DICT_KEY, check_settings, repo_license_exemptions
 
 
 @pytest.mark.asyncio

@@ -7,7 +7,6 @@ This package contains checks for edx repo standards
 import codecs
 import glob
 import os
-
 from configparser import ConfigParser
 
 import dockerfile

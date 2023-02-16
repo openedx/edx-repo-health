@@ -1,12 +1,10 @@
 import os
-from unittest import mock, TestCase
+from unittest import TestCase, mock
 
 import pytest
 
-from repo_health.check_renovate import (
-    check_renovate,
-    MODULE_DICT_KEY,
-)
+from repo_health.check_renovate import MODULE_DICT_KEY, check_renovate
+
 
 def get_repo_path(repo_name):
     tests_directory = os.path.dirname(__file__)

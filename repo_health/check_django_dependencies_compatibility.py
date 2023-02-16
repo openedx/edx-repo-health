@@ -9,10 +9,10 @@ import os
 import re
 import tempfile
 from pathlib import Path
-from packaging.version import parse
 
 import pytest
 import requests
+from packaging.version import parse
 from pytest_repo_health import health_metadata
 
 from repo_health import get_file_lines

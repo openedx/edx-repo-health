@@ -5,7 +5,6 @@ import functools
 import operator
 import os
 import re
-
 from datetime import datetime
 
 GITHUB_DATETIME_FMT = "%Y-%m-%dT%H:%M:%SZ"

@@ -1,20 +1,11 @@
 import os
+
 import pytest
 
-from repo_health.check_openedx_yaml import (
-    check_obsolete_fields,
-    check_oeps,
-    check_release_maybe,
-    check_release_org_compliance,
-    check_release_ref,
-    check_yaml_parsable,
-    fixture_oeps,
-    fixture_openedx_yaml,
-    fixture_parsed_data,
-    module_dict_key,
-    obsolete_fields,
-    output_keys,
-)
+from repo_health.check_openedx_yaml import (check_obsolete_fields, check_oeps, check_release_maybe,
+                                            check_release_org_compliance, check_release_ref, check_yaml_parsable,
+                                            fixture_oeps, fixture_openedx_yaml, fixture_parsed_data, module_dict_key,
+                                            obsolete_fields, output_keys)
 
 
 def get_repo_path(repo_name):

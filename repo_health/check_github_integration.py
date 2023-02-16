@@ -10,7 +10,6 @@ from pytest_repo_health import add_key_to_metadata
 
 from .utils import github_org_repo
 
-
 logger = logging.getLogger(__name__)
 
 module_dict_key = "github_actions"

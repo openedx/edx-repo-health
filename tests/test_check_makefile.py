@@ -1,12 +1,8 @@
 import os
+
 import pytest
 
-from repo_health.check_makefile import (
-    module_dict_key,
-    check_has_make_target,
-    check_upgrade_script,
-    output_keys,
-)
+from repo_health.check_makefile import check_has_make_target, check_upgrade_script, module_dict_key, output_keys
 
 
 def get_repo_path(repo_name):

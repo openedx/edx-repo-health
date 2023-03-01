@@ -9,7 +9,6 @@ import re
 import pytest
 import requests
 import yaml
-
 from pytest_repo_health import health_metadata
 
 from repo_health import fixture_readme, get_file_content  # pylint: disable=unused-import

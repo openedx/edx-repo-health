@@ -3,11 +3,12 @@ Checks to see if setup.py follows minimum standards
 And gathers info
 """
 
-import re
 import os
+import re
 
 import pytest
 from pytest_repo_health import add_key_to_metadata
+
 from repo_health import get_file_content
 
 module_dict_key = "setup_py"

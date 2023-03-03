@@ -8,7 +8,7 @@ export LANG=C.UTF-8
 WORKSPACE=$PWD
 
 # If the REPORT_DATE variable is set and not an empty string parse the date to standardize it.
-if [[ ! -z $REPORT_DATE ]]; then 
+if [[ -n $REPORT_DATE ]]; then 
     REPORT_DATE=$(date '+%Y-%m-%d' -d "$REPORT_DATE")
 fi
 
@@ -18,9 +18,9 @@ fi
 
 pip-sync -q repo_tools/requirements/base.txt
 pip install -q -e repo_tools
-cd $WORKSPACE
+cd "$WORKSPACE"
 touch "repositories.txt"
-for ORG_NAME in ${ORG_NAMES[@]}; do
+for ORG_NAME in "${ORG_NAMES[@]}"; do
     get_org_repo_urls "${ORG_NAME}" --url_type https --forks --add_archived \
         --output_file "repositories.txt" --username "${GITHUB_USER_EMAIL}" \
         --token "${GITHUB_TOKEN}" --ignore-repo "${REPOS_TO_IGNORE}"
@@ -44,9 +44,8 @@ OUTPUT_FILE_POSTFIX="_repo_health.yaml"
 
 # Git clone each repo in org and run checks on it
 input="repositories.txt"
-COUNTER=0
 while IFS= read -r line; do
-    cd $WORKSPACE
+    cd "$WORKSPACE"
     if [[ "${line}" =~ ^(git@github\.com:|https://github\.com/)([a-zA-Z0-9_.-]+?)/([a-zA-Z0-9_.-]+?)\.git$ ]]; then
         ORG_NAME="${BASH_REMATCH[2]}"
         REPO_NAME="${BASH_REMATCH[3]}"
@@ -79,11 +78,11 @@ while IFS= read -r line; do
     echo "Stepping into target-repo"
 
     # If the REPORT_DATE variable is set and not an empty string.
-    if [[ ! -z $REPORT_DATE ]]; then
+    if [[ -n $REPORT_DATE ]]; then
         # If a specific date is given for report
         FIRST_COMMIT=$(git log --reverse --format="format:%ci" | sed -n 1p)
         if [[ $REPORT_DATE > ${FIRST_COMMIT:0:10} ]]; then
-            git checkout `git rev-list -n 1 --before="${REPORT_DATE} 00:00" master`
+            git checkout "$(git rev-list -n 1 --before="${REPORT_DATE} 00:00" master)"
         else
             echo "${REPO_NAME} doesn't have any commits prior to ${REPORT_DATE}"
             failed_repos+=("$FULL_NAME")
@@ -98,8 +97,8 @@ while IFS= read -r line; do
     OUTPUT_FILE_NAME=${REPO_NAME}${OUTPUT_FILE_POSTFIX}
     REPO_HEALTH_COMMAND() {
         pytest --repo-health \
-            --repo-health-path ${WORKSPACE}/edx-repo-health \
-            --repo-path ${WORKSPACE}/target-repo \
+            --repo-health-path "${WORKSPACE}/edx-repo-health" \
+            --repo-path "${WORKSPACE}/target-repo" \
             --repo-health-metadata "${METADATA_FILE_DIST}" \
             --output-path "${ORG_DATA_DIR}/${OUTPUT_FILE_NAME}" \
             -o log_cli=true --exitfirst --noconftest -v -c /dev/null
@@ -123,8 +122,8 @@ done < "$input"
 
 # Go into data repo, recalculate aggregate data, and push a PR
 IFS=,
-failed_repo_names=$(echo "${failed_repos[*]}")
-for ORG_NAME in ${ORG_NAMES[@]}; do
+failed_repo_names="${failed_repos[*]}"
+for ORG_NAME in "${ORG_NAMES[@]}"; do
     echo "Pushing data for org ${ORG_NAME}"
     cd "${WORKSPACE}/repo-health-data/individual_repo_data/${ORG_NAME}"
     repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/repo_health_dashboard/configuration.yaml" \
@@ -161,8 +160,8 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
         git add --all
         git status
         git config --global user.name "Repo Health BOT"
-        git config --global user.email ${GITHUB_USER_EMAIL}
-        git commit -m ${commit_message}
+        git config --global user.email "${GITHUB_USER_EMAIL}"
+        git commit -m "${commit_message}"
         git push origin master
     fi
 fi

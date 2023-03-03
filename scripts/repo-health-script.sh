@@ -8,7 +8,9 @@ export LANG=C.UTF-8
 WORKSPACE=$PWD
 
 # If the REPORT_DATE variable is set and not an empty string parse the date to standardize it.
-if [[ ! -z $REPORT_DATE ]]; then REPORT_DATE=$(date '+%Y-%m-%d' -d "$REPORT_DATE"); fi
+if [[ ! -z $REPORT_DATE ]]; then 
+    REPORT_DATE=$(date '+%Y-%m-%d' -d "$REPORT_DATE")
+fi
 
 ##########################################
 # Get list of repos in given organizations
@@ -67,10 +69,11 @@ while IFS= read -r line; do
     echo "Processing repo: ${FULL_NAME}"
 
     rm -rf target-repo
-    git clone -- "${line/https:\/\//https:\/\/$GITHUB_TOKEN@}" target-repo || {
+    if ! git clone -- "${line/https:\/\//https:\/\/$GITHUB_TOKEN@}" target-repo; then
         failed_repos+=("$FULL_NAME")
         continue
-    }
+    fi
+
     echo "Cloned repo: ${FULL_NAME}"
     cd target-repo
     echo "Stepping into target-repo"
@@ -94,21 +97,22 @@ while IFS= read -r line; do
 
     OUTPUT_FILE_NAME=${REPO_NAME}${OUTPUT_FILE_POSTFIX}
     REPO_HEALTH_COMMAND() {
-      pytest --repo-health \
-          --repo-health-path ${WORKSPACE}/edx-repo-health \
-          --repo-path ${WORKSPACE}/target-repo \
-          --repo-health-metadata "${METADATA_FILE_DIST}" \
-          --output-path "${ORG_DATA_DIR}/${OUTPUT_FILE_NAME}" \
-          -o log_cli=true --exitfirst --noconftest -v -c /dev/null
+        pytest --repo-health \
+            --repo-health-path ${WORKSPACE}/edx-repo-health \
+            --repo-path ${WORKSPACE}/target-repo \
+            --repo-health-metadata "${METADATA_FILE_DIST}" \
+            --output-path "${ORG_DATA_DIR}/${OUTPUT_FILE_NAME}" \
+            -o log_cli=true --exitfirst --noconftest -v -c /dev/null
     }
     
     if REPO_HEALTH_COMMAND; then
         true
     elif REPO_HEALTH_COMMAND; then
-    # rerun the same command if it fails once
+        # rerun the same command if it fails once
         true
     else
-        failed_repos+=("$FULL_NAME") && continue
+        failed_repos+=("$FULL_NAME")
+        continue
     fi
 
 done < "$input"
@@ -138,7 +142,7 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
 
     cd "${WORKSPACE}/repo-health-data"
 
-    if [[ ! "${failed_repos}" ]]; then
+    if [[ ${#failed_repos[@]} -ne 0 ]]; then
         commit_message+="\nFollowing repos failed repo health checks\n ${failed_repo_names}"
 
         for full_name in "${failed_repos[@]}"; do
@@ -149,12 +153,18 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
     fi
 
     git checkout master
-    git add --all
-    git status
-    git config --global user.name "Repo Health BOT"
-    git config --global user.email ${GITHUB_USER_EMAIL}
-    git diff-index --quiet HEAD || git commit -m ${commit_message}
-    git push origin master
+    if git diff-index --quiet HEAD; then
+        # No changes found in the working directory
+        echo "No changes to commit"
+    else
+        # Changes found in the working directory
+        git add --all
+        git status
+        git config --global user.name "Repo Health BOT"
+        git config --global user.email ${GITHUB_USER_EMAIL}
+        git commit -m ${commit_message}
+        git push origin master
+    fi
 fi
 
 if [[ ${#failed_repos[@]} -ne 0 ]]; then

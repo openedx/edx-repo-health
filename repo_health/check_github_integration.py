@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 module_dict_key = "github_actions"
 
 
-def get_githubworkflow_api_response(repo_name):
+def get_githubworkflow_api_response(org_name, repo_name):
     """
     get the workflows information using api.
     """
@@ -24,7 +24,7 @@ def get_githubworkflow_api_response(repo_name):
     # https://developer.github.com/v3/#rate-limiting
 
     return requests.get(
-        url=f'https://api.github.com/repos/edx/{repo_name}/actions/workflows',
+        url=f'https://api.github.com/repos/{org_name}/{repo_name}/actions/workflows',
         headers={'Authorization': f'Bearer {os.environ["GITHUB_TOKEN"]}'}
     )
 
@@ -34,14 +34,15 @@ class GitHubIntegrationHandler:
     sets up the operations and required  github actions workflow CI integration information on instance
     """
 
-    def __init__(self, repo_name):
+    def __init__(self, org_name, repo_name):
+        self.org_name = org_name
         self.repo_name = repo_name
         self.api_data = None
         self.github_actions = False
         self._set_github_actions_integration_data()
 
     def _set_github_actions_integration_data(self):
-        self.api_response = get_githubworkflow_api_response(self.repo_name)
+        self.api_response = get_githubworkflow_api_response(self.org_name, self.repo_name)
 
     def handle(self):
         """
@@ -76,7 +77,7 @@ def check_github_actions_integration(all_results, git_origin_url):
     Checks repository integrated with github actions workflow
     """
     org_name, repo_name = github_org_repo(git_origin_url)
-    integration_handler = GitHubIntegrationHandler(repo_name)
+    integration_handler = GitHubIntegrationHandler(org_name, repo_name)
     integration_handler.handle()
     all_results[module_dict_key] = bool(integration_handler.github_actions)
     all_results['org_name'] = org_name

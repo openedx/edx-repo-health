@@ -88,10 +88,12 @@ async def fetch_languages(repo):
 
 
 @add_key_to_metadata((MODULE_DICT_KEY, "build_details"))
+@pytest.mark.asyncio
 async def check_build_duration(all_results, github_repo):
     """
     Fetches the builds details from Github and calculates the duration of each build
     """
+    github_repo = await github_repo
     repo = github_repo.object
     client = repo.http
     kwargs = {"repository_id": repo.id}
@@ -149,10 +151,12 @@ repo_license_exemptions = {
         "license": "The name of the repository's software license",
     },
 )
+@pytest.mark.asyncio
 async def check_settings(all_results, github_repo):
     """
     Get all the fields of interest from the GitHub repository object itself.
     """
+    github_repo = await github_repo
     message = github_repo.message
     github_repo = github_repo.object
 
@@ -213,10 +217,12 @@ async def check_settings(all_results, github_repo):
         "shell": "The number of bytes of shell scripts in the repository",
     }
 )
+@pytest.mark.asyncio
 async def check_languages(all_results, github_repo):
     """
     Get the number of bytes of each programming language in the repository.
     """
+    github_repo = await github_repo
     message = github_repo.message
     github_repo = github_repo.object
     if github_repo is None:

@@ -14,6 +14,12 @@ Change Log
 Unreleased
 **********
 
+Fixed
+=====
+
+* Use repo's actual org name in GitHub calls, rather than hardcoded "edx"
+
+
 [1.0.0] - 2023-01-02
 ********************
 

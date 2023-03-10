@@ -79,7 +79,7 @@ def test_check_oeps(oeps, result_list):
     all_results = {module_dict_key:{}}
     check_oeps(oeps, all_results)
 
-    for key, _desc in output_keys.items():
+    for key in output_keys.keys():  # pylint: disable=consider-iterating-dictionary
         assert all_results[module_dict_key][key] == result_list[key]
 
 

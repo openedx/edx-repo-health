@@ -35,7 +35,7 @@ def mock_migrated_repo_response():
 
 
 @patch('repo_health.check_travis_integration.get_travis_api_response', return_value=mock_non_existent_repo_response())
-def test_integration_non_existent_repo(_mock_non_existent_repo_response):
+def test_integration_non_existent_repo(_mock_get_response):
     travis_integration_handler = TravisIntegrationHandler("edx-platform")
     travis_integration_handler.handle()
 
@@ -45,7 +45,7 @@ def test_integration_non_existent_repo(_mock_non_existent_repo_response):
 
 
 @patch('repo_health.check_travis_integration.get_travis_api_response', return_value=mock_on_com_repo_response())
-def test_integration_active_on_com_repo(_mock_on_com_repo_response):
+def test_integration_active_on_com_repo(_mock_get_response):
     travis_integration_handler = TravisIntegrationHandler("edx-cookiecutters")
     travis_integration_handler.handle()
 
@@ -55,7 +55,7 @@ def test_integration_active_on_com_repo(_mock_on_com_repo_response):
 
 
 @patch('repo_health.check_travis_integration.get_travis_api_response', return_value=mock_migrated_repo_response())
-def test_integration_migrated_repo(_mock_migrated_repo_response):
+def test_integration_migrated_repo(_mock_get_response):
     travis_integration_handler = TravisIntegrationHandler("ecommerce")
     travis_integration_handler.handle()
 

@@ -1,7 +1,10 @@
+"""Test checks on tox config."""
+
 import os
 
 import pytest
 
+# Because of fixtures: pylint: disable=unused-import
 from repo_health.check_tox_ini import check_has_sections, check_whitelist_externals, fixture_tox_ini, module_dict_key
 
 

@@ -1,5 +1,7 @@
+"""Tests for Renovate checks."""
+
 import os
-from unittest import TestCase, mock
+from unittest import mock
 
 import pytest
 
@@ -22,7 +24,7 @@ async def test_check_renovate_true(mock_get):
     all_results = {MODULE_DICT_KEY: {}}
     await check_renovate(all_results, repo_path=get_repo_path('renovate_repo1'), github_repo=None)
 
-    assert all_results[MODULE_DICT_KEY]['configured'] == True
+    assert all_results[MODULE_DICT_KEY]['configured'] is True
 
 @mock.patch('repo_health.check_renovate.get_last_pull_date')
 @pytest.mark.asyncio
@@ -31,4 +33,4 @@ async def test_check_renovate_false(mock_get):
     all_results = {MODULE_DICT_KEY: {}}
     await check_renovate(all_results, repo_path=get_repo_path('js_repo'), github_repo=None)
 
-    assert all_results[MODULE_DICT_KEY]['configured'] == False
+    assert all_results[MODULE_DICT_KEY]['configured'] is False

@@ -1,10 +1,12 @@
+"""Test checks of docs."""
+
 import json
 import os
 
 import pytest
 import responses
 
-from repo_health.check_docs import ReadTheDocsChecker, check_build_bagde, check_python_version, module_dict_key
+from repo_health.check_docs import ReadTheDocsChecker, check_build_badge, check_python_version, module_dict_key
 
 
 def get_repo_path(repo_name):
@@ -19,8 +21,8 @@ def get_repo_path(repo_name):
 def test_check_build_badge(fake_repo, expected_result):
     repo_path = get_repo_path('fake_repos/'+ fake_repo)
     all_results = {module_dict_key:{}}
-    file = open(repo_path+'/README.rst','r')
-    check_build_bagde(file.read(), all_results)
+    with open(repo_path+'/README.rst','r') as file:
+        check_build_badge(file.read(), all_results)
 
     assert all_results[module_dict_key]["build_badge"] == expected_result
 
@@ -41,13 +43,13 @@ def test_check_python_version(fake_repo, expected_result):
 def test_check_readthedocs_build_success():
 
     current_dir = os.path.dirname(__file__)
-    projects_data = open(os.path.join(current_dir, 'data/readthedocs_projects.json'), 'r')
-    responses.add(responses.GET, 'https://readthedocs.org/api/v3/projects/?limit=100',
-                  json= json.load(projects_data))
+    with open(os.path.join(current_dir, 'data/readthedocs_projects.json'), 'r') as f:
+        responses.add(responses.GET, 'https://readthedocs.org/api/v3/projects/?limit=100',
+                      json=json.load(f))
 
-    builds_data = open(os.path.join(current_dir, 'data/readthedocs_builds_success.json'),'r')
-    responses.add(responses.GET, "https://readthedocs.org/api/v3/projects/testing-demo/builds/",
-                  json= json.load(builds_data))
+    with open(os.path.join(current_dir, 'data/readthedocs_builds_success.json'),'r') as f:
+        responses.add(responses.GET, "https://readthedocs.org/api/v3/projects/testing-demo/builds/",
+                      json=json.load(f))
 
     checker = ReadTheDocsChecker(git_origin_url="https://github.com/readthedocs/readthedocs.git", token='token')
     checker.update_build_details()
@@ -55,20 +57,23 @@ def test_check_readthedocs_build_success():
     all_results = {module_dict_key: {}}
     all_results[module_dict_key]["build_details"] = json.dumps(checker.build_details)
 
-    assert all_results[module_dict_key]["build_details"] == '[{"project": "testing-demo", "last_build_status": "success", "last_build_time": "2021-06-11T12:31:31.357860Z", "last_good_build_time": "2021-06-11T12:31:31.357860Z"}]'
+    assert all_results[module_dict_key]["build_details"] == (
+        '[{"project": "testing-demo", "last_build_status": "success", "last_build_time": '
+        '"2021-06-11T12:31:31.357860Z", "last_good_build_time": "2021-06-11T12:31:31.357860Z"}]'
+    )
 
 @responses.activate
 
 def test_check_readthedocs_build_failure():
 
     current_dir = os.path.dirname(__file__)
-    projects_data = open(os.path.join(current_dir, 'data/readthedocs_projects.json'), 'r')
-    responses.add(responses.GET, 'https://readthedocs.org/api/v3/projects/?limit=100',
-                  json= json.load(projects_data))
+    with open(os.path.join(current_dir, 'data/readthedocs_projects.json'), 'r') as f:
+        responses.add(responses.GET, 'https://readthedocs.org/api/v3/projects/?limit=100',
+                      json=json.load(f))
 
-    builds_data = open(os.path.join(current_dir, 'data/readthedocs_builds_failure.json'),'r')
-    responses.add(responses.GET, "https://readthedocs.org/api/v3/projects/testing-demo/builds/",
-                  json= json.load(builds_data))
+    with open(os.path.join(current_dir, 'data/readthedocs_builds_failure.json'),'r') as f:
+        responses.add(responses.GET, "https://readthedocs.org/api/v3/projects/testing-demo/builds/",
+                      json=json.load(f))
 
     checker = ReadTheDocsChecker(git_origin_url="https://github.com/readthedocs/readthedocs.git", token='token')
     checker.update_build_details()
@@ -76,4 +81,7 @@ def test_check_readthedocs_build_failure():
     all_results = {module_dict_key: {}}
     all_results[module_dict_key]["build_details"] = json.dumps(checker.build_details)
 
-    assert all_results[module_dict_key]["build_details"] == '[{"project": "testing-demo", "last_build_status": "failure", "last_build_time": "2021-06-11T12:31:31.357860Z", "last_good_build_time": "2021-03-12T20:36:20.239344Z"}]'
+    assert all_results[module_dict_key]["build_details"] == (
+        '[{"project": "testing-demo", "last_build_status": "failure", "last_build_time": '
+        '"2021-06-11T12:31:31.357860Z", "last_good_build_time": "2021-03-12T20:36:20.239344Z"}]'
+    )

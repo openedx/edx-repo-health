@@ -24,7 +24,7 @@ module_dict_key = "docs"
         "build_badge": "Check that the README file has docs build badge"
     }
 )
-def check_build_bagde(readme, all_results):
+def check_build_badge(readme, all_results):
     """
     Check that the README file has a docs build badge.
     """

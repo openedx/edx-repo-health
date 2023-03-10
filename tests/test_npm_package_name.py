@@ -1,3 +1,5 @@
+"""Test checks of npm package name."""
+
 import os
 
 from repo_health.check_npm_package import check_npm_package, get_dependencies, module_dict_key

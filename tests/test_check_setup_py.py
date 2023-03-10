@@ -1,3 +1,5 @@
+"""Test checks of setup.py."""
+
 from pathlib import Path
 
 import pytest

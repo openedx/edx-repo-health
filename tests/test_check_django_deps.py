@@ -1,3 +1,5 @@
+"""Tests checks on Django (and related) package versions."""
+
 import os
 
 import pytest

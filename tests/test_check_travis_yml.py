@@ -1,10 +1,13 @@
+"""Test checks for travis.yml."""
+
 import os
 
 import pytest
 
+# Because of fixtures: pylint: disable=unused-import
 from repo_health.check_travis_yml import (check_has_tests_with_py38, check_travis_python_versions, check_yaml_parsable,
-                                          fixture_parsed_data, fixture_python_version, fixture_travis_yaml,
-                                          module_dict_key)
+                                          fixture_parsed_data_travis, fixture_python_versions_in_travis,
+                                          fixture_travis_yml, module_dict_key)
 
 
 def get_repo_path(repo_name):

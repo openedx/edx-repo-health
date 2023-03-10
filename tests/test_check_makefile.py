@@ -1,3 +1,5 @@
+"""Test checks of Makefile."""
+
 import os
 
 import pytest
@@ -33,10 +35,10 @@ def get_repo_path(repo_name):
 def test_check_file_existence(fake_repo, flag_list):
     repo_path = get_repo_path('fake_repos/'+ fake_repo)
     all_results = {module_dict_key:{}}
-    file = open(repo_path+'/Makefile', 'r')
-    check_has_make_target(file.read(), all_results)
+    with open(repo_path+'/Makefile', 'r') as f:
+        check_has_make_target(f.read(), all_results)
 
-    for key, desc in output_keys.items():
+    for key in output_keys.keys():  # pylint: disable=consider-iterating-dictionary
         assert all_results[module_dict_key][key] == flag_list[key]
 
 
@@ -50,6 +52,6 @@ def test_check_file_existence(fake_repo, flag_list):
 def test_check_upgrade_script(fake_repo, flag):
     repo_path = get_repo_path('fake_repos/' + fake_repo)
     all_results = {module_dict_key: {}}
-    file = open(repo_path + '/Makefile', 'r')
-    check_upgrade_script(file.read(), all_results)
+    with open(repo_path + '/Makefile', 'r') as f:
+        check_upgrade_script(f.read(), all_results)
     assert all_results[module_dict_key]["pip-installed"] == flag["pip-installed"]

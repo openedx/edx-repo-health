@@ -1,3 +1,5 @@
+"""Tests for Dockerfile package checks."""
+
 import os
 import re
 

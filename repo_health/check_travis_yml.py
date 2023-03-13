@@ -15,14 +15,14 @@ module_dict_key = "travis_yml"
 
 
 @pytest.fixture(name="travis_yml")
-def fixture_travis_yaml(repo_path):
+def fixture_travis_yml(repo_path):
     """Fixture containing the text content of travis.yml"""
     full_path = os.path.join(repo_path, ".travis.yml")
     return get_file_content(full_path)
 
 
 @pytest.fixture(name="parsed_data_travis")
-def fixture_parsed_data(travis_yml):
+def fixture_parsed_data_travis(travis_yml):
     """
     Parses travis.yml returns resulting dict.
     """
@@ -61,7 +61,7 @@ def get_python_versions(travis_python_versions):
 
 
 @pytest.fixture(name="python_versions_in_travis")
-def fixture_python_version(parsed_data_travis):
+def fixture_python_versions_in_travis(parsed_data_travis):
     """
     The list of python versions in travis tests
     """

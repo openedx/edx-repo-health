@@ -1,3 +1,5 @@
+"""Tests for checks of existence of common repo files."""
+
 import os
 
 import pytest
@@ -70,7 +72,7 @@ def test_check_file_existence(fake_repo, flag_list):
     all_results = {module_dict_key: {}}
     check_file_existence(repo_path, all_results)
 
-    for file in req_files.keys():
+    for file in req_files.keys():  # pylint: disable=consider-iterating-dictionary
         assert all_results[module_dict_key][file] == flag_list[file]
 
 
@@ -83,8 +85,8 @@ def test_check_dir_existence(fake_repo, flag_list):
     all_results = {module_dict_key: {}}
     check_dir_existence(repo_path, all_results)
 
-    for dir in req_dirs.keys():
-        assert all_results[module_dict_key][dir] == flag_list[dir]
+    for path in req_dirs.keys():  # pylint: disable=consider-iterating-dictionary
+        assert all_results[module_dict_key][path] == flag_list[path]
 
 
 @pytest.mark.parametrize("fake_repo, flag_list", [

@@ -1,3 +1,5 @@
+"""Test checks of Python dependencies."""
+
 import os
 
 from repo_health.check_dependencies import get_dependencies

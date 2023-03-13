@@ -1,7 +1,10 @@
+"""Test checks of requirements files."""
+
 import os
 
 import pytest
 
+# Because of fixtures: pylint: disable=unused-import
 from repo_health.check_requirements import check_requires, fixture_req_lines, module_dict_key
 
 

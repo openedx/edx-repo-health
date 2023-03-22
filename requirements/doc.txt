@@ -115,6 +115,7 @@ oauthlib==3.2.2
     #   requests-oauthlib
 packaging==21.3
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   pytest
     #   sphinx
@@ -138,6 +139,10 @@ pygments==2.14.0
     #   doc8
     #   readme-renderer
     #   sphinx
+pyparsing==3.0.9
+    # via
+    #   -r requirements/test.txt
+    #   packaging
 pytest==7.2.2
     # via
     #   -r requirements/test.txt

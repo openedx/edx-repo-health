@@ -59,7 +59,9 @@ multidict==6.0.4
 oauthlib==3.2.2
     # via requests-oauthlib
 packaging==21.3
-    # via pytest
+    # via
+    #   -c requirements/constraints.txt
+    #   pytest
 pluggy==1.0.0
     # via pytest
 pyasn1==0.4.8
@@ -68,6 +70,8 @@ pyasn1==0.4.8
     #   rsa
 pyasn1-modules==0.2.8
     # via google-auth
+pyparsing==3.0.9
+    # via packaging
 pytest==7.2.2
     # via
     #   pytest-aiohttp

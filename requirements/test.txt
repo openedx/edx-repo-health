@@ -89,6 +89,7 @@ oauthlib==3.2.2
     #   requests-oauthlib
 packaging==21.3
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/base.txt
     #   pytest
 pluggy==1.0.0
@@ -104,6 +105,10 @@ pyasn1-modules==0.2.8
     # via
     #   -r requirements/base.txt
     #   google-auth
+pyparsing==3.0.9
+    # via
+    #   -r requirements/base.txt
+    #   packaging
 pytest==7.2.2
     # via
     #   -r requirements/base.txt

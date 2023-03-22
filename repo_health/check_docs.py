@@ -109,7 +109,7 @@ class ReadTheDocsChecker:
         """
         self.build_details = []
 
-        for item in self._get_projects(self._headers):      # pylint: disable=not-an-iterable
+        for item in self._get_projects(self._headers):
             if item['repository']['url'] == self.git_origin_url:
                 all_builds = self._get_all_builds(item['slug'])
                 last_build = all_builds[0]

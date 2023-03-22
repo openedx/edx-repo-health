@@ -122,7 +122,7 @@ def check_release_org_compliance(parsed_data, git_origin_url, all_results):
     ref = parsed_data.get("openedx-release", {}).get("ref", "")
     if ref and not maybe:
         org_name, _ = github_org_repo(git_origin_url)
-        good_org = (org_name == "openedx")
+        good_org = (org_name == "openedx")  # pylint: disable=[superfluous-parens]
     else:
         good_org = True
     all_results[module_dict_key]["release-org-compliance"] = good_org

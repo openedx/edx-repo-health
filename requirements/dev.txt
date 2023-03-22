@@ -171,6 +171,7 @@ oauthlib==3.2.2
     #   requests-oauthlib
 packaging==21.3
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -235,6 +236,12 @@ pylint-plugin-utils==0.7
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
+pyparsing==3.0.9
+    # via
+    #   -r requirements/ci.txt
+    #   -r requirements/pip-tools.txt
+    #   -r requirements/quality.txt
+    #   packaging
 pyproject-hooks==1.0.0
     # via
     #   -r requirements/pip-tools.txt

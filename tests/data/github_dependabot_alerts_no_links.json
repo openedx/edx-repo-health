@@ -1,0 +1,19 @@
+{
+  "content": [
+    {
+      "number": 6,
+      "state": "open",
+      "security_vulnerability": {
+        "severity": "critical"
+      }
+    },
+    {
+      "number": 5,
+      "state": "open",
+      "security_vulnerability": {
+        "severity": "high"
+      }
+    }
+  ],
+  "links": {}
+}

@@ -19,6 +19,11 @@ Fixed
 
 * Use repo's actual org name in GitHub calls, rather than hardcoded "edx"
 
+Added
+=====
+
+* Added a check to determine the amount of dependabot alerts per repo
+
 
 [1.0.0] - 2023-01-02
 ********************

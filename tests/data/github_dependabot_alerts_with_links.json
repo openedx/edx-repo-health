@@ -1,0 +1,35 @@
+{
+  "content": [
+    {
+      "number": 6,
+      "state": "open",
+      "security_vulnerability": {
+        "severity": "critical"
+      }
+    },
+    {
+      "number": 5,
+      "state": "open",
+      "security_vulnerability": {
+        "severity": "low"
+      }
+    },
+    {
+      "number": 13,
+      "state": "open",
+      "security_vulnerability": {
+        "severity": "medium"
+      }
+    }
+  ],
+  "links": {
+    "next": {
+      "url":"https://api.github.com/repo/openedx/dependabot-test/dependabot/alerts?state=open&per_page=10&page=2",
+      "rel": "next"
+    },
+    "last": {
+      "url":"https://api.github.com/repo/openedx/dependabot-test/dependabot/alerts?state=open&per_page=10&page=9",
+      "rel": "last"
+    }
+  }
+}

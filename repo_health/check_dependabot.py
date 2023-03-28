@@ -4,7 +4,7 @@ Checks to make suree dependabot files are there and they have enough ecosystems
 from ruamel.yaml import YAML
 
 import pytest
-from pytest_repo_health import add_key_to_metadata
+from pytest_repo_health import add_key_to_metadata, health_metadata
 from repo_health import get_file_content
 
 module_dict_key = "dependabot"
@@ -25,12 +25,20 @@ def check_dependabot_exists(dependabot_yml, all_results):
     all_results[module_dict_key]["exists"] = bool(dependabot_yml)
 
 
-@add_key_to_metadata((module_dict_key, "github_action_ecosystem_exists"))
-def check_github_action_ecosystem_exists(dependabot_yml, all_results):
+@health_metadata(
+    [module_dict_key, "has_ecosystem"],
+    {
+        "github_action": "ecosystem to check github actions version upgrades",
+        "pip": "ecosystem to check pip package version upgrades",
+        "npm": "ecosystem to check node package version upgrades"
+    },
+)
+def check_has_ecosystems(dependabot_yml, all_results):
     """
-    Is dependabot.yml has github_action ecosystem
+    Is dependabot.yml has github_action, pip, npm ecosystems/sections
     """
-    all_results[module_dict_key]["github_action_ecosystem_exists"] = False
+    ecosystems = ["pip", "npm", "github-actions"]
+    all_results[module_dict_key]["has_ecosystem"] = {}
     if dependabot_yml:
         dependabot_elements = []
         yml_instance = YAML()
@@ -40,7 +48,11 @@ def check_github_action_ecosystem_exists(dependabot_yml, all_results):
         with open(dependabot_path) as file_stream:
             dependabot_elements = yml_instance.load(file_stream)
         dependabot_elements['updates'] = dependabot_elements.get('updates') or []
-        for index in dependabot_elements['updates']:
-            if "github-actions" == index.get('package-ecosystem'):
-                all_results[module_dict_key]["github_action_ecosystem_exists"] = True
-                break
+
+        for ecosystem in ecosystems:
+            found = False
+            for index in dependabot_elements['updates']:
+                if ecosystem == index.get('package-ecosystem'):
+                    found = True
+            all_results[module_dict_key]["has_ecosystem"][ecosystem] = found
+

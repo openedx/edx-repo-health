@@ -17,7 +17,7 @@ asgiref==3.6.0
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==2.15.0
+astroid==2.15.1
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -98,7 +98,7 @@ exceptiongroup==1.1.1
     # via
     #   -r requirements/quality.txt
     #   pytest
-filelock==3.10.0
+filelock==3.10.7
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -118,7 +118,7 @@ gitpython==3.1.31
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.16.2
+google-auth==2.17.0
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
@@ -184,7 +184,7 @@ pbr==5.11.1
     #   stevedore
 pip-tools==6.12.3
     # via -r requirements/pip-tools.txt
-platformdirs==3.1.1
+platformdirs==3.2.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -216,7 +216,7 @@ pydocstyle==6.3.0
     # via -r requirements/quality.txt
 pygments==2.14.0
     # via diff-cover
-pylint==2.17.0
+pylint==2.17.1
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -269,7 +269,7 @@ python-slugify==8.0.1
     # via
     #   -r requirements/quality.txt
     #   code-annotations
-pytz==2022.7.1
+pytz==2023.3
     # via
     #   -r requirements/quality.txt
     #   django
@@ -334,7 +334,7 @@ tomli==2.0.1
     #   pyproject-hooks
     #   pytest
     #   tox
-tomlkit==0.11.6
+tomlkit==0.11.7
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -345,7 +345,7 @@ tox==3.28.0
     #   tox-battery
 tox-battery==0.6.1
     # via -r requirements/dev.in
-types-pyyaml==6.0.12.8
+types-pyyaml==6.0.12.9
     # via
     #   -r requirements/quality.txt
     #   responses

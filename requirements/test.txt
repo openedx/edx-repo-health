@@ -58,7 +58,7 @@ gitpython==3.1.31
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.16.2
+google-auth==2.17.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -160,7 +160,7 @@ tomli==2.0.1
     # via
     #   -r requirements/base.txt
     #   pytest
-types-pyyaml==6.0.12.8
+types-pyyaml==6.0.12.9
     # via responses
 urllib3==1.26.15
     # via

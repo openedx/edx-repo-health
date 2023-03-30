@@ -1,5 +1,5 @@
 """
-Checks to make suree dependabot files are there and they have enough ecosystems
+Checks to identify whether the Dependabot file exists and which ecosystems are covered under Dependabot
 """
 from ruamel.yaml import YAML
 
@@ -39,14 +39,11 @@ def check_has_ecosystems(dependabot_yml, all_results):
     """
     ecosystems = ["pip", "npm", "github-actions"]
     all_results[module_dict_key]["has_ecosystem"] = {}
+    yml_instance = YAML()
     for ecosystem in ecosystems:
         found = False
         if dependabot_yml:
             dependabot_elements = []
-            yml_instance = YAML()
-            yml_instance.preserve_quotes = True
-            yml_instance.default_flow_style = None
-            yml_instance.indent(mapping=2, sequence=2, offset=0)
             with open(dependabot_path) as file_stream:
                 dependabot_elements = yml_instance.load(file_stream)
             dependabot_elements['updates'] = dependabot_elements.get('updates') or []

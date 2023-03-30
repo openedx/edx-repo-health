@@ -4,6 +4,7 @@ Checks to identify whether the Dependabot file exists and which ecosystems are c
 from collections import OrderedDict
 import yaml
 import pytest
+
 from pytest_repo_health import add_key_to_metadata, health_metadata
 from repo_health import get_file_content
 

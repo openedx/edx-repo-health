@@ -53,3 +53,4 @@ def check_has_ecosystems(dependabot_yml, all_results):
                 if ecosystem == index.get('package-ecosystem'):
                     found = True
         all_results[module_dict_key]["has_ecosystem"][ecosystem] = found
+

@@ -2,10 +2,11 @@
 Checks to identify whether the Dependabot file exists and which ecosystems are covered under Dependabot
 """
 from collections import OrderedDict
-import yaml
-import pytest
 
+import pytest
+import yaml
 from pytest_repo_health import add_key_to_metadata, health_metadata
+
 from repo_health import get_file_content
 
 module_dict_key = "dependabot"

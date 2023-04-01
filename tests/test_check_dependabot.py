@@ -1,13 +1,9 @@
 """Test suite for dependabot check"""
 
 import pytest
-from repo_health import get_file_content
 
-from repo_health.check_dependabot import (
-    check_dependabot_exists,
-    check_has_ecosystems,
-    module_dict_key
-)
+from repo_health import get_file_content
+from repo_health.check_dependabot import check_dependabot_exists, check_has_ecosystems, module_dict_key
 
 dependabot_exists_path = "tests/fake_repos/dependabot_exists_repo/.github/dependabot.yml"
 dependabot_doesnot_exists_path = "tests/fake_repos/not_python/.github/dependabot.yml"

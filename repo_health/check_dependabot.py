@@ -29,7 +29,7 @@ def check_dependabot_exists(dependabot_yml, all_results):
 @health_metadata(
     [module_dict_key, "has_ecosystem"],
     {
-        "github_action": "ecosystem to check github actions version upgrades",
+        "github_action": "ecosystem to check github actions version upgrades ",
         "pip": "ecosystem to check pip package version upgrades",
         "npm": "ecosystem to check node package version upgrades"
     },
@@ -53,4 +53,3 @@ def check_has_ecosystems(dependabot_yml, all_results):
                 if ecosystem == index.get('package-ecosystem'):
                     found = True
         all_results[module_dict_key]["has_ecosystem"][ecosystem] = found
-

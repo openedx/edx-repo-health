@@ -1,8 +1,8 @@
 """
 Checks to identify whether the Dependabot file exists and which ecosystems are covered under Dependabot
 """
-from collections import OrderedDict
 import os
+from collections import OrderedDict
 
 import pytest
 import yaml

@@ -1,6 +1,7 @@
 """Test suite for dependabot check"""
 
 import os
+
 import pytest
 
 from repo_health import get_file_content

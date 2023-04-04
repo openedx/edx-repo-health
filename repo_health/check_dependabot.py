@@ -46,11 +46,7 @@ def check_has_ecosystems(dependabot_yml, all_results):
     for ecosystem in ecosystems:
         found = False
         if dependabot_yml:
-            dependabot_elements = []
-            with open(dependabot_path) as file_stream:
-                dependabot_elements = OrderedDict(
-                    yaml.safe_load(file_stream.read())
-                )
+            dependabot_elements = OrderedDict(yaml.safe_load(dependabot_yml))
             dependabot_elements['updates'] = dependabot_elements.get('updates') or []
             for index in dependabot_elements['updates']:
                 if ecosystem == index.get('package-ecosystem'):

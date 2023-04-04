@@ -1,5 +1,6 @@
 """Test suite for dependabot check"""
 
+import os
 import pytest
 
 from repo_health import get_file_content
@@ -11,9 +12,10 @@ dependabot_doesnot_exists_path = "tests/fake_repos/not_python/.github/dependabot
 
 
 @pytest.fixture(name="dependabot_yml_exists")
-def fixture_dependabot_yml_exists():
+def fixture_dependabot_yml_exists(repo_path):
     """Fixture containing the text content of dependabot.yml"""
-    return get_file_content(dependabot_exists_path)
+    full_path = os.path.join(repo_path, dependabot_exists_path)
+    return get_file_content(full_path)
 
 
 @pytest.fixture(name="dependabot_yml_doesnot_exist")

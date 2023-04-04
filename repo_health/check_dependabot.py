@@ -2,6 +2,7 @@
 Checks to identify whether the Dependabot file exists and which ecosystems are covered under Dependabot
 """
 from collections import OrderedDict
+import os
 
 import pytest
 import yaml
@@ -14,9 +15,10 @@ dependabot_path=".github/dependabot.yml"
 
 
 @pytest.fixture(name="dependabot_yml")
-def fixture_dependabot_yml():
+def fixture_dependabot_yml(repo_path):
     """Fixture containing the text content of dependabot.yml"""
-    return get_file_content(dependabot_path)
+    full_path = os.path.join(repo_path, dependabot_path)
+    return get_file_content(full_path)
 
 
 @add_key_to_metadata((module_dict_key, "exists"))

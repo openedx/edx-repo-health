@@ -20,9 +20,10 @@ def fixture_dependabot_yml_exists(repo_path):
 
 
 @pytest.fixture(name="dependabot_yml_doesnot_exist")
-def fixture_dependabot_yml():
+def fixture_dependabot_yml(repo_path):
     """Fixture fetching non-existing dependabot.yml"""
-    return get_file_content(dependabot_doesnot_exists_path)
+    full_path = os.path.join(repo_path, dependabot_doesnot_exists_path)
+    return get_file_content(full_path)
 
 
 def test_check_dependabot_exists(dependabot_yml_exists):

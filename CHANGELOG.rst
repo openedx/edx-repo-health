@@ -14,9 +14,15 @@ Change Log
 Unreleased
 **********
 
+Fixed
+=====
+
+* Use repo's actual org name in GitHub calls, rather than hardcoded "edx"
+
 Added
 =====
 
+* Added a check to determine the amount of dependabot alerts per repo
 * Added a check to determine is dependabot.yml exists in repo
 * Added a check to determine is github-action, pip and npm ecosystem exists in dependabot.yml
 

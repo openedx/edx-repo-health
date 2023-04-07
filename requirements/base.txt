@@ -38,13 +38,13 @@ github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f
     # via -r requirements/github.in
 gitpython==3.1.31
     # via pytest-repo-health
-google-auth==2.17.0
+google-auth==2.17.2
     # via
     #   google-auth-oauthlib
     #   gspread
 google-auth-oauthlib==1.0.0
     # via gspread
-gspread==5.7.2
+gspread==5.8.0
     # via -r requirements/base.in
 idna==3.4
     # via

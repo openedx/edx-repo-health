@@ -35,7 +35,7 @@ charset-normalizer==3.1.0
     #   -r requirements/base.txt
     #   aiohttp
     #   requests
-coverage[toml]==7.2.2
+coverage[toml]==7.2.3
     # via pytest-cov
 dockerfile==3.2.0
     # via -r requirements/base.txt
@@ -58,7 +58,7 @@ gitpython==3.1.31
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.17.0
+google-auth==2.17.2
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -67,7 +67,7 @@ google-auth-oauthlib==1.0.0
     # via
     #   -r requirements/base.txt
     #   gspread
-gspread==5.7.2
+gspread==5.8.0
     # via -r requirements/base.txt
 idna==3.4
     # via

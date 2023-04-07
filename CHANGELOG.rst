@@ -23,6 +23,8 @@ Added
 =====
 
 * Added a check to determine the amount of dependabot alerts per repo
+* Added a check to determine is dependabot.yml exists in repo
+* Added a check to determine is github-action, pip and npm ecosystem exists in dependabot.yml
 
 
 [1.0.0] - 2023-01-02

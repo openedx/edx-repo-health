@@ -12,7 +12,7 @@ packaging==21.3
     # via
     #   -c requirements/constraints.txt
     #   build
-pip-tools==6.12.3
+pip-tools==6.13.0
     # via -r requirements/pip-tools.in
 pyparsing==3.0.9
     # via packaging

@@ -23,7 +23,6 @@ attrs==22.2.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
-    #   pytest
 babel==2.12.1
     # via sphinx
 bleach==6.0.0
@@ -41,7 +40,7 @@ charset-normalizer==3.1.0
     #   -r requirements/test.txt
     #   aiohttp
     #   requests
-coverage[toml]==7.2.2
+coverage[toml]==7.2.3
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -76,7 +75,7 @@ gitpython==3.1.31
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.17.0
+google-auth==2.17.3
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -85,7 +84,7 @@ google-auth-oauthlib==1.0.0
     # via
     #   -r requirements/test.txt
     #   gspread
-gspread==5.7.2
+gspread==5.8.0
     # via -r requirements/test.txt
 idna==3.4
     # via
@@ -94,7 +93,7 @@ idna==3.4
     #   yarl
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==6.1.0
+importlib-metadata==6.3.0
     # via sphinx
 iniconfig==2.0.0
     # via
@@ -134,7 +133,7 @@ pyasn1-modules==0.2.8
     # via
     #   -r requirements/test.txt
     #   google-auth
-pygments==2.14.0
+pygments==2.15.0
     # via
     #   doc8
     #   readme-renderer
@@ -143,7 +142,7 @@ pyparsing==3.0.9
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==7.2.2
+pytest==7.3.0
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp

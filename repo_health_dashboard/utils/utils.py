@@ -252,8 +252,18 @@ def write_squashed_metadata_to_sqlite(metadata_by_repo, table_name, configuratio
 
     # Iterate through the data and insert in database
     for repo_name, item in metadata_by_repo.items():
-        values = [repo_name] + [str(item[k]) if not isinstance(item[k], (int, float, bool))
-                                else item[k] if k in item else None for k in sorted_keys]
+        values = [repo_name]
+        for k in sorted_keys:
+            if k not in item:
+                values.append(None)
+                continue
+            value = item[k]
+            if value is None:
+                values.append(None)
+            elif isinstance(value, (bool, float, int)):
+                values.append(value)
+            else:
+                values.append(str(value))
         c.execute(f'''INSERT INTO {table_name} VALUES (?, {', '.join(['?' for key in sorted_keys])})''',
                   values)
 

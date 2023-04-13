@@ -1,0 +1,44 @@
+---
+# Default configuration for scripts/console_dashboard.py.
+
+# The list of tables to include in the console dashboard
+tables:
+- title: Still Use codecov PyPI Package
+  sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE dependencies_pypi_all_list LIKE '%codecov==%'
+  description: This has been deprecated and removed from PyPI, CI builds will fail until it is removed from the requirements files.  Just make sure that the CodeCov GitHub App is enabled for the repository to keep the service working.
+
+- title: Have Dependabot Warnings
+  sql: SELECT repo_name, ownership_squad, dependabot_alerts_critical_severity, dependabot_alerts_high_severity, dependabot_alerts_medium_severity, dependabot_alerts_low_severity, dependabot_alerts_total_count, dependabot_alerts_incomplete_results FROM dashboard_main WHERE dependabot_alerts_total_count > 0
+  description: These warnings reflect likely security risks, and should be reviewed promptly in the Security tab on GitHub.  They can often be resolved by upgrading one or more dependencies.
+
+- title: Still Use boto
+  sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE dependencies_pypi_all_list LIKE '%boto==%'
+  description: AWS deprecated the boto package years ago, and parts of it have started to suddenly break without warning.  This has already caused at least one CAT-1 incident, please prioritize replacing with boto3 accordingly.
+
+- title: Install packages from GitHub
+  sql: SELECT repo_name, ownership_squad, dependencies_github_list FROM dashboard_main WHERE dependencies_github_count > 0
+  description: Installing Python packages directly from GitHub significantly slows down installation of dependencies and prevents auto-detection of new package versions which may have security patches and other valuable improvements.  Switch these to install from PyPI if at all possible.  For more details, see the second part of https://docs.openedx.org/projects/openedx-proposals/en/latest/best-practices/oep-0018-bp-python-dependencies.html#rationale
+
+- title: Still Have Travis CI Configuration
+  sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE exists__travis_yml = 1
+  description: We no longer use this service, the .travis.yml file can be safely deleted.  If the repo was recently added (perhaps a fork) and actually uses Travis CI, please switch it to use GitHub Actions instead; Travis CI is poorly maintained and has had multiple security incidents leaking private credentials.
+
+- title: Still Use nose       
+  sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE requires_nose = 1
+  description: This test runner was abandoned several years ago, it should be replaced with pytest.
+
+- title: Missing Python 3.8 Classifier
+  sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE setup_py_pypi_name IS NOT NULL AND setup_py_pypi_name != '' AND setup_py_py38_classifiers = 0
+  description: All our packages should work with Python 3.8, and setup.py should declare this explicitly when true to inform users and aid in future upgrades.
+
+# Use shorter and/or more readable column titles for these check names
+aliases:
+  dependabot_alerts_critical_severity": Critical
+  dependabot_alerts_high_severity": High
+  dependabot_alerts_medium_severity": Medium
+  dependabot_alerts_low_severity": Low
+  dependabot_alerts_total_count": Total
+  dependabot_alerts_incomplete_results": Incomplete?
+  dependencies_github_list": List of packages
+  repo_name: Repository
+  ownership_squad: Squad

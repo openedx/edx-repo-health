@@ -12,7 +12,7 @@ from configparser import ConfigParser
 import dockerfile
 import pytest
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 
 def parse_config_file(path):

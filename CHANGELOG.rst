@@ -14,11 +14,17 @@ Change Log
 Unreleased
 **********
 
+
+[1.1.0] - 2023-04-14
+********************
+
 Fixed
 =====
 
 * Use repo's actual org name in GitHub calls, rather than hardcoded "edx"
 * Remove codecov dependency.
+* Use NULL for empty values in SQLite, not the string "None"
+* Annotate async checks so that they aren't skipped any more
 
 Added
 =====
@@ -26,7 +32,8 @@ Added
 * Added a check to determine the amount of dependabot alerts per repo
 * Added a check to determine is dependabot.yml exists in repo
 * Added a check to determine is github-action, pip and npm ecosystem exists in dependabot.yml
-* Annotate async checks so that they aren't skipped any more
+* Added scripts/console_dashboard.py to display a selection of recommended maintenance tasks on the console in rough order of estimated priority
+* Added scripts/streamlit_dashboard.py as a tool for exploring the generated SQLite file content (and experiment to explore suitability as another dashboard option)
 
 [1.0.0] - 2023-01-02
 ********************

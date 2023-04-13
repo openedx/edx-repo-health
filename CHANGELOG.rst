@@ -18,6 +18,7 @@ Fixed
 =====
 
 * Use repo's actual org name in GitHub calls, rather than hardcoded "edx"
+* Remove codecov dependency.
 
 Added
 =====

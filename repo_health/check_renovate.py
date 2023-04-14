@@ -4,6 +4,7 @@ Checks for renovate configuration
 import json
 import os
 
+import pytest
 from pytest_repo_health import health_metadata
 
 from . import get_file_content
@@ -39,6 +40,7 @@ async def get_last_pull_date(github_repo):
     """
     Fetches the last pull request made by renovate
     """
+    github_repo = await github_repo
     repo = github_repo.object
     client = repo.http
     kwargs = {
@@ -61,6 +63,7 @@ async def get_last_pull_date(github_repo):
         "last_pr": "Date of last Pull Request made by renovate",
     }
 )
+@pytest.mark.asyncio
 async def check_renovate(all_results, repo_path, github_repo):
     """
     Checks whether repository contains configuration for renovate and is making PR

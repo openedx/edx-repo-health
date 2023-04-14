@@ -33,12 +33,12 @@ tables:
 
 # Use shorter and/or more readable column titles for these check names
 aliases:
-  dependabot_alerts_critical_severity": Critical
-  dependabot_alerts_high_severity": High
-  dependabot_alerts_medium_severity": Medium
-  dependabot_alerts_low_severity": Low
-  dependabot_alerts_total_count": Total
-  dependabot_alerts_incomplete_results": Incomplete?
-  dependencies_github_list": List of packages
+  dependabot_alerts_critical_severity: Critical
+  dependabot_alerts_high_severity: High
+  dependabot_alerts_medium_severity: Medium
+  dependabot_alerts_low_severity: Low
+  dependabot_alerts_total_count: Total
+  dependabot_alerts_incomplete_results: Incomplete?
+  dependencies_github_list: List of packages
   repo_name: Repository
   ownership_squad: Squad

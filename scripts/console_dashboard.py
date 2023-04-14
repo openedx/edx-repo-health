@@ -63,7 +63,6 @@ def print_dashboard(config_path: str, data_file: str, squads: "list[str]") -> No
     conn = sqlite3.connect(data_file)
     with open(config_path, "r") as f:
         config = yaml.safe_load(f)
-        print(repr(config))
     tables = config["tables"]
     aliases = config.get("aliases", [])
     for table in tables:

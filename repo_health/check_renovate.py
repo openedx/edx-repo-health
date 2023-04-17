@@ -66,6 +66,7 @@ async def check_renovate(all_results, repo_path, github_repo):
     """
     Checks whether repository contains configuration for renovate and is making PR
     """
+    1/0
     config_exists = any(file_exists(repo_path, path) for path in POSSIBLE_CONFIG_PATHS)
     if not config_exists and file_exists(repo_path, 'package.json'):
         content = get_file_content(os.path.join(repo_path, 'package.json'))

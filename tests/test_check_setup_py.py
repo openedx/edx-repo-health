@@ -9,6 +9,7 @@ from repo_health.check_setup_py import check_project_urls, check_pypi_name, chec
 
 FAKE_REPO_ROOT = Path(__file__).parent / "fake_repos"
 
+
 @pytest.mark.parametrize("fake_repo, pypi_name", [
     ("kodegail", "kodegail"),
     ("just_setup_py", "some_other_pypi_name"),
@@ -25,6 +26,7 @@ def test_check_pypi_name(fake_repo, pypi_name):
     else:
         assert "pypi_name" not in all_results[module_dict_key]
 
+
 @pytest.mark.parametrize("fake_repo, repo_url", [
     ("just_setup_py", "https://github.com/openedx/just_setup_py"),
     ("just_setup_cfg", "https://github.com/openedx/just_setup_cfg"),
@@ -40,6 +42,7 @@ def test_check_repo_url(fake_repo, repo_url):
         assert all_results[module_dict_key]["repo_url"] == repo_url
     else:
         assert "repo_url" not in all_results[module_dict_key]
+
 
 @pytest.mark.parametrize("fake_repo, project_urls", [
     (

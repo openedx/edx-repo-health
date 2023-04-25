@@ -65,8 +65,8 @@ def check_pypi_name(setup_py, setup_cfg, all_results):
     cfg_names = re.findall(r"""(?m)^name\s?=\s?([\w-]+)""", setup_cfg)
 
     names = py_names + cfg_names
-    if names:
-        assert len(names) == 1
+    # If the name doesn't match the expected format, don't fill it into the results.
+    if names and len(names) == 1:
         all_results[module_dict_key]["pypi_name"] = names[0]
 
 

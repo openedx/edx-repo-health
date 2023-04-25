@@ -19,6 +19,7 @@ Fixed
 
 * Use repo's actual org name in GitHub calls, rather than hardcoded "edx"
 * Remove codecov dependency.
+* Check for PyPI name will no longer fail if it finds too many or too few names.
 
 Added
 =====

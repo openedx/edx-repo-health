@@ -19,7 +19,7 @@ async-timeout==4.0.2
     # via
     #   -r requirements/test.txt
     #   aiohttp
-attrs==22.2.0
+attrs==23.1.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -93,7 +93,7 @@ idna==3.4
     #   yarl
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==6.3.0
+importlib-metadata==6.6.0
     # via sphinx
 iniconfig==2.0.0
     # via
@@ -124,16 +124,16 @@ pluggy==1.0.0
     # via
     #   -r requirements/test.txt
     #   pytest
-pyasn1==0.4.8
+pyasn1==0.5.0
     # via
     #   -r requirements/test.txt
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.2.8
+pyasn1-modules==0.3.0
     # via
     #   -r requirements/test.txt
     #   google-auth
-pygments==2.15.0
+pygments==2.15.1
     # via
     #   doc8
     #   readme-renderer
@@ -142,7 +142,7 @@ pyparsing==3.0.9
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==7.3.0
+pytest==7.3.1
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp
@@ -159,7 +159,7 @@ pytest-asyncio==0.21.0
     #   pytest-aiohttp
 pytest-cov==4.0.0
     # via -r requirements/test.txt
-pytest-repo-health==2.2.4
+pytest-repo-health==3.0.2
     # via -r requirements/test.txt
 pytz==2023.3
     # via babel
@@ -170,7 +170,7 @@ pyyaml==6.0
     #   responses
 readme-renderer==37.3
     # via -r requirements/doc.in
-requests==2.28.2
+requests==2.29.0
     # via
     #   -r requirements/test.txt
     #   requests-oauthlib
@@ -236,7 +236,7 @@ urllib3==1.26.15
     #   responses
 webencodings==0.5.1
     # via bleach
-yarl==1.8.2
+yarl==1.9.2
     # via
     #   -r requirements/test.txt
     #   aiohttp

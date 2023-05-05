@@ -23,6 +23,7 @@ Fixed
 
 * Use repo's actual org name in GitHub calls, rather than hardcoded "edx"
 * Remove codecov dependency.
+* Check for PyPI name will no longer fail if it finds too many or too few names.
 * Use NULL for empty values in SQLite, not the string "None"
 * Annotate async checks so that they aren't skipped any more
 

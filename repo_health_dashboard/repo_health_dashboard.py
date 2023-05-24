@@ -89,8 +89,10 @@ def main():
         utils.write_squashed_metadata_to_csv(
             output, args.output_csv + "_" + key, configuration, args.append
         )
-        utils.write_squashed_metadata_to_sqlite(
-            output, f"dashboard_{key}", configuration, args.output_sqlite)
+        # This will be uncommented once sqlite db issue gets resolved in
+        # https://github.com/openedx/edx-repo-health/issues/405
+        # utils.write_squashed_metadata_to_sqlite(
+        #     output, f"dashboard_{key}", configuration, args.output_sqlite)
 
 
 if __name__ == "__main__":

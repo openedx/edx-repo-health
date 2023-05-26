@@ -19,7 +19,7 @@ async-timeout==4.0.2
     # via
     #   -r requirements/test.txt
     #   aiohttp
-attrs==22.2.0
+attrs==23.1.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -31,7 +31,7 @@ cachetools==5.3.0
     # via
     #   -r requirements/test.txt
     #   google-auth
-certifi==2022.12.7
+certifi==2023.5.7
     # via
     #   -r requirements/test.txt
     #   requests
@@ -40,7 +40,7 @@ charset-normalizer==3.1.0
     #   -r requirements/test.txt
     #   aiohttp
     #   requests
-coverage[toml]==7.2.3
+coverage[toml]==7.2.6
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -75,7 +75,7 @@ gitpython==3.1.31
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.17.3
+google-auth==2.18.1
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -84,7 +84,7 @@ google-auth-oauthlib==1.0.0
     # via
     #   -r requirements/test.txt
     #   gspread
-gspread==5.8.0
+gspread==5.9.0
     # via -r requirements/test.txt
 idna==3.4
     # via
@@ -93,7 +93,7 @@ idna==3.4
     #   yarl
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==6.3.0
+importlib-metadata==6.6.0
     # via sphinx
 iniconfig==2.0.0
     # via
@@ -124,16 +124,16 @@ pluggy==1.0.0
     # via
     #   -r requirements/test.txt
     #   pytest
-pyasn1==0.4.8
+pyasn1==0.5.0
     # via
     #   -r requirements/test.txt
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.2.8
+pyasn1-modules==0.3.0
     # via
     #   -r requirements/test.txt
     #   google-auth
-pygments==2.15.0
+pygments==2.15.1
     # via
     #   doc8
     #   readme-renderer
@@ -142,7 +142,7 @@ pyparsing==3.0.9
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==7.3.0
+pytest==7.3.1
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp
@@ -157,9 +157,9 @@ pytest-asyncio==0.21.0
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp
-pytest-cov==4.0.0
+pytest-cov==4.1.0
     # via -r requirements/test.txt
-pytest-repo-health==2.2.4
+pytest-repo-health==3.0.2
     # via -r requirements/test.txt
 pytz==2023.3
     # via babel
@@ -170,7 +170,7 @@ pyyaml==6.0
     #   responses
 readme-renderer==37.3
     # via -r requirements/doc.in
-requests==2.28.2
+requests==2.31.0
     # via
     #   -r requirements/test.txt
     #   requests-oauthlib
@@ -217,7 +217,7 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-stevedore==5.0.0
+stevedore==5.1.0
     # via doc8
 tomli==2.0.1
     # via
@@ -225,18 +225,19 @@ tomli==2.0.1
     #   coverage
     #   doc8
     #   pytest
-types-pyyaml==6.0.12.9
+types-pyyaml==6.0.12.10
     # via
     #   -r requirements/test.txt
     #   responses
-urllib3==1.26.15
+urllib3==1.26.16
     # via
     #   -r requirements/test.txt
+    #   google-auth
     #   requests
     #   responses
 webencodings==0.5.1
     # via bleach
-yarl==1.8.2
+yarl==1.9.2
     # via
     #   -r requirements/test.txt
     #   aiohttp

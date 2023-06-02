@@ -17,15 +17,15 @@ async-timeout==4.0.2
     # via
     #   -r requirements/base.txt
     #   aiohttp
-attrs==22.2.0
+attrs==23.1.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
-cachetools==5.3.0
+cachetools==5.3.1
     # via
     #   -r requirements/base.txt
     #   google-auth
-certifi==2022.12.7
+certifi==2023.5.7
     # via
     #   -r requirements/base.txt
     #   requests
@@ -34,7 +34,7 @@ charset-normalizer==3.1.0
     #   -r requirements/base.txt
     #   aiohttp
     #   requests
-coverage[toml]==7.2.3
+coverage[toml]==7.2.7
     # via pytest-cov
 dockerfile==3.2.0
     # via -r requirements/base.txt
@@ -57,7 +57,7 @@ gitpython==3.1.31
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.17.3
+google-auth==2.19.1
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -66,7 +66,7 @@ google-auth-oauthlib==1.0.0
     # via
     #   -r requirements/base.txt
     #   gspread
-gspread==5.8.0
+gspread==5.9.0
     # via -r requirements/base.txt
 idna==3.4
     # via
@@ -95,12 +95,12 @@ pluggy==1.0.0
     # via
     #   -r requirements/base.txt
     #   pytest
-pyasn1==0.4.8
+pyasn1==0.5.0
     # via
     #   -r requirements/base.txt
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.2.8
+pyasn1-modules==0.3.0
     # via
     #   -r requirements/base.txt
     #   google-auth
@@ -108,7 +108,7 @@ pyparsing==3.0.9
     # via
     #   -r requirements/base.txt
     #   packaging
-pytest==7.3.0
+pytest==7.3.1
     # via
     #   -r requirements/base.txt
     #   pytest-aiohttp
@@ -123,16 +123,16 @@ pytest-asyncio==0.21.0
     # via
     #   -r requirements/base.txt
     #   pytest-aiohttp
-pytest-cov==4.0.0
+pytest-cov==4.1.0
     # via -r requirements/test.in
-pytest-repo-health==2.2.4
+pytest-repo-health==3.0.2
     # via -r requirements/base.txt
 pyyaml==6.0
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
     #   responses
-requests==2.28.2
+requests==2.31.0
     # via
     #   -r requirements/base.txt
     #   requests-oauthlib
@@ -159,14 +159,15 @@ tomli==2.0.1
     # via
     #   -r requirements/base.txt
     #   pytest
-types-pyyaml==6.0.12.9
+types-pyyaml==6.0.12.10
     # via responses
-urllib3==1.26.15
+urllib3==1.26.16
     # via
     #   -r requirements/base.txt
+    #   google-auth
     #   requests
     #   responses
-yarl==1.8.2
+yarl==1.9.2
     # via
     #   -r requirements/base.txt
     #   aiohttp

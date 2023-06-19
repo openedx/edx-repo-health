@@ -126,7 +126,7 @@ edx-rbac==1.4.2           # via -r requirements/edx/testing.txt, edx-enterprise
 edx-rest-api-client==5.3.0  # via -r requirements/edx/testing.txt, edx-enterprise, edx-proctoring
 edx-search==3.0.0         # via -r requirements/edx/testing.txt
 edx-sga==0.16.0           # via -r requirements/edx/testing.txt
-edx-sphinx-theme==2.1.0   # via -r requirements/edx/development.in
+sphinx-book-theme==1.0.1  # via -r requirements/edx/development.in
 edx-submissions==3.2.4    # via -r requirements/edx/testing.txt, ora2
 edx-tincan-py35==1.0.0    # via -r requirements/edx/testing.txt, edx-enterprise
 edx-toggles==4.1.0        # via -r requirements/edx/testing.txt, edx-completion, edx-event-routing-backends, edxval, ora2
@@ -270,7 +270,7 @@ semantic-version==2.8.5   # via -r requirements/edx/testing.txt, edx-drf-extensi
 shapely==1.7.1            # via -r requirements/edx/testing.txt
 simplejson==3.17.2        # via -r requirements/edx/testing.txt, sailthru-client, super-csv, xblock-utils
 singledispatch==3.6.1     # via -r requirements/edx/testing.txt
-six==1.15.0               # via -r requirements/edx/pip-tools.txt, -r requirements/edx/testing.txt, analytics-python, bleach, bok-choy, chem, codejail, crowdsourcehinter-xblock, cryptography, django-countries, django-simple-history, edx-ace, edx-bulk-grades, edx-ccx-keys, edx-django-release-util, edx-drf-extensions, edx-enterprise, edx-i18n-tools, edx-lint, edx-milestones, edx-rbac, edx-sphinx-theme, event-tracking, freezegun, fs, fs-s3fs, html5lib, httpretty, isodate, jsonschema, libsass, paver, pip-tools, pycontracts, pyjwkest, python-dateutil, python-memcached, python-swiftclient, singledispatch, social-auth-app-django, social-auth-core, sphinxcontrib-httpdomain, stevedore, tox, transifex-client, virtualenv, xblock
+six==1.15.0               # via -r requirements/edx/pip-tools.txt, -r requirements/edx/testing.txt, analytics-python, bleach, bok-choy, chem, codejail, crowdsourcehinter-xblock, cryptography, django-countries, django-simple-history, edx-ace, edx-bulk-grades, edx-ccx-keys, edx-django-release-util, edx-drf-extensions, edx-enterprise, edx-i18n-tools, edx-lint, edx-milestones, edx-rbac, event-tracking, freezegun, fs, fs-s3fs, html5lib, httpretty, isodate, jsonschema, libsass, paver, pip-tools, pycontracts, pyjwkest, python-dateutil, python-memcached, python-swiftclient, singledispatch, social-auth-app-django, social-auth-core, sphinxcontrib-httpdomain, stevedore, tox, transifex-client, virtualenv, xblock
 slumber==0.7.1            # via -r requirements/edx/testing.txt, edx-bulk-grades, edx-enterprise, edx-rest-api-client
 smmap==4.0.0              # via -r requirements/edx/testing.txt, gitdb
 snowballstemmer==2.1.0    # via sphinx
@@ -279,7 +279,7 @@ social-auth-core==4.0.2   # via -c https://raw.githubusercontent.com/edx/edx-lin
 sorl-thumbnail==12.7.0    # via -r requirements/edx/testing.txt, django-wiki
 sortedcontainers==2.3.0   # via -r requirements/edx/testing.txt
 soupsieve==2.2.1          # via -r requirements/edx/testing.txt, beautifulsoup4
-sphinx==3.3.0             # via -c requirements/edx/../constraints.txt, edx-sphinx-theme, sphinxcontrib-httpdomain
+sphinx==3.3.0             # via -c requirements/edx/../constraints.txt, sphinx-book-theme, sphinxcontrib-httpdomain
 sphinxcontrib-applehelp==1.0.2  # via sphinx
 sphinxcontrib-devhelp==1.0.2  # via sphinx
 sphinxcontrib-htmlhelp==1.0.3  # via sphinx

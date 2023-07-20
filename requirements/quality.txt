@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohttp==3.8.4
+aiohttp==3.8.5
     # via
     #   -r requirements/test.txt
     #   github-py
@@ -40,7 +40,7 @@ charset-normalizer==3.2.0
     #   -r requirements/test.txt
     #   aiohttp
     #   requests
-click==8.1.5
+click==8.1.6
     # via
     #   click-log
     #   code-annotations
@@ -130,7 +130,7 @@ packaging==21.3
     #   pytest
 pbr==5.11.1
     # via stevedore
-platformdirs==3.8.1
+platformdirs==3.9.1
     # via pylint
 pluggy==1.2.0
     # via
@@ -190,7 +190,7 @@ python-slugify==8.0.1
     # via code-annotations
 pytz==2023.3
     # via django
-pyyaml==6.0
+pyyaml==6.0.1
     # via
     #   -r requirements/test.txt
     #   code-annotations

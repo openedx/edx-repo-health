@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohttp==3.8.4
+aiohttp==3.8.5
     # via
     #   github-py
     #   pytest-aiohttp
@@ -83,7 +83,7 @@ pytest-asyncio==0.21.1
     #   pytest-aiohttp
 pytest-repo-health==3.0.2
     # via -r requirements/base.in
-pyyaml==6.0
+pyyaml==6.0.1
     # via
     #   -r requirements/base.in
     #   pytest-repo-health

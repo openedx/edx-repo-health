@@ -32,7 +32,7 @@ frozenlist==1.4.0
     #   aiosignal
 gitdb==4.0.10
     # via gitpython
-github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
+github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/github.in
 gitpython==3.1.32
     # via pytest-repo-health

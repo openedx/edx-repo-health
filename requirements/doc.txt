@@ -74,7 +74,7 @@ gitdb==4.0.10
     # via
     #   -r requirements/test.txt
     #   gitpython
-github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
+github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/test.txt
 gitpython==3.1.32
     # via
@@ -238,7 +238,7 @@ tomli==2.0.1
     #   coverage
     #   doc8
     #   pytest
-types-pyyaml==6.0.12.10
+types-pyyaml==6.0.12.11
     # via
     #   -r requirements/test.txt
     #   responses

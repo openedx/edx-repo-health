@@ -20,7 +20,9 @@ pip-sync -q repo_tools/requirements/base.txt
 pip install -q -e repo_tools
 cd "$WORKSPACE"
 touch "repositories.txt"
-for ORG_NAME in "${ORG_NAMES[@]}"; do
+org_list=($ORG_NAMES)
+for ORG_NAME in "${org_list[@]}"; do
+    echo "Getting repo urls for org: ${ORG_NAME}"
     get_org_repo_urls "${ORG_NAME}" --url_type https --forks --add_archived \
         --output_file "repositories.txt" --username "${GITHUB_USER_EMAIL}" \
         --token "${GITHUB_TOKEN}" --ignore-repo "${REPOS_TO_IGNORE}"
@@ -36,7 +38,7 @@ pip install -q -e edx-repo-health
 
 # data destination folder setup
 
-METADATA_FILE_DIST="${WORKSPACE}/repo-health-data/docs/checks_metadata.yaml"
+METADATA_FILE_DIST="docs/checks_metadata.yaml"
 
 failed_repos=()
 
@@ -76,7 +78,6 @@ while IFS= read -r line; do
     echo "Cloned repo: ${FULL_NAME}"
     cd target-repo
     echo "Stepping into target-repo"
-
     # If the REPORT_DATE variable is set and not an empty string.
     if [[ -n $REPORT_DATE ]]; then
         # If a specific date is given for report
@@ -90,15 +91,17 @@ while IFS= read -r line; do
         fi
     fi
 
-    ORG_DATA_DIR="${WORKSPACE}/repo-health-data/individual_repo_data/${ORG_NAME}"
+    cd "$WORKSPACE"
+    ORG_DATA_DIR="individual_repo_data/${ORG_NAME}"
     # make sure destination folder exists
     mkdir -p "$ORG_DATA_DIR"
 
-    OUTPUT_FILE_NAME=${REPO_NAME}${OUTPUT_FILE_POSTFIX}
+    OUTPUT_FILE_NAME="${REPO_NAME}${OUTPUT_FILE_POSTFIX}"
+
     REPO_HEALTH_COMMAND() {
         pytest --repo-health \
-            --repo-health-path "${WORKSPACE}/edx-repo-health" \
-            --repo-path "${WORKSPACE}/target-repo" \
+            --repo-health-path "edx-repo-health" \
+            --repo-path "target-repo" \
             --repo-health-metadata "${METADATA_FILE_DIST}" \
             --output-path "${ORG_DATA_DIR}/${OUTPUT_FILE_NAME}" \
             -o log_cli=true --exitfirst --noconftest -v -c /dev/null
@@ -122,14 +125,18 @@ done < "$input"
 
 # Go into data repo, recalculate aggregate data, and push a PR
 IFS=,
-failed_repo_names="${failed_repos[*]}"
-for ORG_NAME in "${ORG_NAMES[@]}"; do
-    echo "Pushing data for org ${ORG_NAME}"
-    cd "${WORKSPACE}/repo-health-data/individual_repo_data/${ORG_NAME}"
-    repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/repo_health_dashboard/configuration.yaml" \
-        --output-csv "${WORKSPACE}/repo-health-data/dashboards/dashboard"
-done
+failed_repo_names=$(echo "${failed_repos[*]}")
 
+echo "Pushing data"
+cd "${WORKSPACE}/individual_repo_data"
+repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/repo_health_dashboard/configuration.yaml" \
+    --output-csv "${WORKSPACE}/dashboards/dashboard"
+# Once the sqlite issue https://github.com/openedx/edx-repo-health/issues/405 gets resolved, 
+# we can append following to above command to generate sqlite db if needed
+#  --output-sqlite "${WORKSAPCE}/dashboards/dashboard"
+
+
+cd "${WORKSPACE}"
 # Only commit the data if running with master and no REPORT_DATE is set.
 if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
     ###########################################
@@ -137,9 +144,9 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
     ###########################################
     echo "Commit new files and push to master..."
 
-    commit_message="Update repo health data"
+    commit_message="chore: Update repo health data files"
 
-    cd "${WORKSPACE}/repo-health-data"
+    cd "${WORKSPACE}"
 
     if [[ ${#failed_repos[@]} -ne 0 ]]; then
         commit_message+="\nFollowing repos failed repo health checks\n ${failed_repo_names}"
@@ -157,9 +164,9 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
         echo "No changes to commit"
     else
         # Changes found in the working directory
-        git add --all
-        git status
-        git config --global user.name "Repo Health BOT"
+        git add dashboards
+        git add individual_repo_data
+        git config --global user.name "Repo Health Bot"
         git config --global user.email "${GITHUB_USER_EMAIL}"
         git commit -m "${commit_message}"
         git push origin master

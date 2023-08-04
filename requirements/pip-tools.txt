@@ -12,9 +12,9 @@ packaging==21.3
     # via
     #   -c requirements/constraints.txt
     #   build
-pip-tools==7.1.0
+pip-tools==7.2.0
     # via -r requirements/pip-tools.in
-pyparsing==3.1.0
+pyparsing==3.1.1
     # via packaging
 pyproject-hooks==1.0.0
     # via build

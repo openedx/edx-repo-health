@@ -22,7 +22,7 @@ astroid==2.15.6
     #   -r requirements/quality.txt
     #   pylint
     #   pylint-celery
-async-timeout==4.0.2
+async-timeout==4.0.3
     # via
     #   -r requirements/quality.txt
     #   aiohttp
@@ -178,7 +178,7 @@ pbr==5.11.1
     # via
     #   -r requirements/quality.txt
     #   stevedore
-pip-tools==7.2.0
+pip-tools==7.3.0
     # via -r requirements/pip-tools.txt
 platformdirs==3.10.0
     # via
@@ -210,7 +210,7 @@ pycodestyle==2.11.0
     # via -r requirements/quality.txt
 pydocstyle==6.3.0
     # via -r requirements/quality.txt
-pygments==2.15.1
+pygments==2.16.1
     # via
     #   diff-cover
     #   rich
@@ -365,7 +365,7 @@ virtualenv==20.24.2
     # via
     #   -r requirements/ci.txt
     #   tox
-wheel==0.41.0
+wheel==0.41.1
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools

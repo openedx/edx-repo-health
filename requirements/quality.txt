@@ -19,7 +19,7 @@ astroid==2.15.6
     # via
     #   pylint
     #   pylint-celery
-async-timeout==4.0.2
+async-timeout==4.0.3
     # via
     #   -r requirements/test.txt
     #   aiohttp

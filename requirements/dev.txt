@@ -365,7 +365,7 @@ virtualenv==20.24.3
     # via
     #   -r requirements/ci.txt
     #   tox
-wheel==0.41.1
+wheel==0.41.2
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools

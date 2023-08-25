@@ -178,7 +178,7 @@ pyyaml==6.0.1
     #   -r requirements/test.txt
     #   pytest-repo-health
     #   responses
-readme-renderer==40.0
+readme-renderer==41.0
     # via -r requirements/doc.in
 requests==2.31.0
     # via

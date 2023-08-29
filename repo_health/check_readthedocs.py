@@ -34,46 +34,24 @@ def fixture_readthedocs_yaml(repo_path):
 
 
 @add_key_to_metadata((module_dict_key, "exists"))
-def check_readthedocs_yml_exists(readthedocs_yaml, all_results):
+def check_readthedocs_file_exists(readthedocs_yaml, readthedocs_yml, all_results):
     """
-    Is .readthedocs.yml file exists
+    Check to see which file is there .readthedocs.yml or .readthedocs.yaml or Not found
     """
-    all_results[module_dict_key]["readthedocs_yml"] = {}
-    all_results[module_dict_key]["readthedocs_yml"]["exists"] = bool(readthedocs_yaml)
-
-
-@add_key_to_metadata((module_dict_key, "exists"))
-def check_readthedocs_yaml_exists(readthedocs_yaml, all_results):
-    """
-    Is .readthedocs.yaml file exists
-    """
-    all_results[module_dict_key]["readthedocs_yaml"] = {}
-    all_results[module_dict_key]["readthedocs_yaml"]["exists"] = bool(readthedocs_yaml)
-
-
-@add_key_to_metadata((module_dict_key, "readthedocs_yaml_version"))
-def check_readthedocs_yaml_version(readthedocs_yaml, all_results):
-    """
-    Is .readthedocs.yaml has version v2 or v1
-    """
+    all_results[module_dict_key]["exists"] = False
     if readthedocs_yaml:
-        all_results[module_dict_key]["readthedocs_yaml"] = {}
-        readthedocs_yaml_elements = OrderedDict(yaml.safe_load(readthedocs_yaml))
-        if readthedocs_yaml_elements['version'] == 1:
-            all_results[module_dict_key]["readthedocs_yaml"]["version"] = "V1"
-        elif readthedocs_yaml_elements['version'] == 2:
-            all_results[module_dict_key]["readthedocs_yaml"]["version"] = "V2"
+        all_results[module_dict_key]["exists"] = "readthedocs.yaml"
+    elif readthedocs_yml:
+        all_results[module_dict_key]["exists"] = "readthedocs.yml"
+ 
 
-
-@add_key_to_metadata((module_dict_key, "readthedocs_yml_version"))
-def check_readthedocs_yml_version(readthedocs_yml, all_results):
+@add_key_to_metadata((module_dict_key, "version"))
+def check_readthedocs_file_version(readthedocs_yaml, readthedocs_yml, all_results):
     """
-    Is .readthedocs.yml has version v2 or v1
+    Check to see if any of the readthedocs file exits then
+    check its version and save into file
     """
-    if readthedocs_yml:
-        all_results[module_dict_key]["readthedocs_yml"] = {}
-        readthedocs_yml_elements = OrderedDict(yaml.safe_load(readthedocs_yml))
-        if readthedocs_yml_elements['version'] == 1:
-            all_results[module_dict_key]["readthedocs_yml"]["version"] = "V1"
-        elif readthedocs_yml_elements['version'] == 2:
-            all_results[module_dict_key]["readthedocs_yml"]["version"] = "V2"
+    if readthedocs_yaml or readthedocs_yml:
+        content_to_parse = readthedocs_yaml if readthedocs_yaml else readthedocs_yml 
+        readthedocs_elements = OrderedDict(yaml.safe_load(content_to_parse))
+        all_results[module_dict_key]["version"] = readthedocs_elements['version']

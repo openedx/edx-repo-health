@@ -1,13 +1,8 @@
 """Test suite for dependabot check"""
 
 from repo_health import get_file_content
-from repo_health.check_readthedocs_config import (
-    check_readthedocs_file_exists,
-    check_readthedocs_file_version,
-    check_readthedocs_file_name,
-    module_dict_key
-)
-
+from repo_health.check_readthedocs_config import (check_readthedocs_file_exists, check_readthedocs_file_name,
+                                                  check_readthedocs_file_version, module_dict_key)
 
 
 def test_check_readthedocs_yml_exists():

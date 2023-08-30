@@ -43,15 +43,17 @@ def check_readthedocs_file_exists(readthedocs_config_details, all_results):
     """
     Check to see readthedocs exits
     """
-    all_results[module_dict_key]["exists"] = True if readthedocs_config_details else False
- 
+    all_results[module_dict_key]["exists"] = bool(readthedocs_config_details)
+
 
 @add_key_to_metadata((module_dict_key, "file_name"))
 def check_readthedocs_file_name(readthedocs_config_details, all_results):
     """
     Check to set the readthedocs file name
     """
-    all_results[module_dict_key]["file_name"] = readthedocs_config_details["file_name"] if readthedocs_config_details else ""
+    all_results[module_dict_key]["file_name"] = ""
+    if readthedocs_config_details:
+        all_results[module_dict_key]["file_name"] = readthedocs_config_details["file_name"]
 
 
 @add_key_to_metadata((module_dict_key, "version"))

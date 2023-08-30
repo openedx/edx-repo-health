@@ -1,9 +1,5 @@
 """Test suite for dependabot check"""
 
-import os
-
-import pytest
-
 from repo_health import get_file_content
 from repo_health.check_readthedocs_config import (
     check_readthedocs_file_exists,
@@ -22,7 +18,7 @@ def test_check_readthedocs_yml_exists():
     check_readthedocs_file_exists(
         {
             "file_name": "readthedocs.yml",
-            "file_content": get_file_content(f"tests/fake_repos/readthedocs_samples/readthedocs.yml")
+            "file_content": get_file_content("tests/fake_repos/readthedocs_samples/readthedocs.yml")
         },
         all_results
     )
@@ -38,7 +34,7 @@ def test_check_dot_readthedocs_yml_exists():
     check_readthedocs_file_exists(
         {
             "file_name": ".readthedocs.yml",
-            "file_content": get_file_content(f"tests/fake_repos/readthedocs_samples/.readthedocs.yml")
+            "file_content": get_file_content("tests/fake_repos/readthedocs_samples/.readthedocs.yml")
         },
         all_results
     )
@@ -54,7 +50,7 @@ def test_check_readthedocs_yaml_exists():
     check_readthedocs_file_exists(
         {
             "file_name": "readthedocs.yaml",
-            "file_content": get_file_content(f"tests/fake_repos/readthedocs_samples/readthedocs.yaml")
+            "file_content": get_file_content("tests/fake_repos/readthedocs_samples/readthedocs.yaml")
         },
         all_results
     )
@@ -70,7 +66,7 @@ def test_check_dot_readthedocs_yaml_exists():
     check_readthedocs_file_exists(
         {
             "file_name": ".readthedocs.yaml",
-            "file_content": get_file_content(f"tests/fake_repos/readthedocs_samples/.readthedocs.yaml")
+            "file_content": get_file_content("tests/fake_repos/readthedocs_samples/.readthedocs.yaml")
         },
         all_results
     )
@@ -146,7 +142,7 @@ def test_check_readthedocs_yml_version_is_1_or_2():
     check_readthedocs_file_version(
         {
             "file_name": "readthedocs.yml",
-            "file_content": get_file_content(f"tests/fake_repos/readthedocs_samples/readthedocs.yml")
+            "file_content": get_file_content("tests/fake_repos/readthedocs_samples/readthedocs.yml")
         },
         all_results
     )
@@ -162,7 +158,7 @@ def test_check_dot_readthedocs_yml_version_is_1_or_2():
     check_readthedocs_file_version(
         {
             "file_name": ".readthedocs.yml",
-            "file_content": get_file_content(f"tests/fake_repos/readthedocs_samples/.readthedocs.yml")
+            "file_content": get_file_content("tests/fake_repos/readthedocs_samples/.readthedocs.yml")
         },
         all_results
     )
@@ -178,7 +174,7 @@ def test_check_readthedocs_yaml_version_is_1_or_2():
     check_readthedocs_file_version(
         {
             "file_name": "readthedocs.yaml",
-            "file_content": get_file_content(f"tests/fake_repos/readthedocs_samples/readthedocs.yaml")
+            "file_content": get_file_content("tests/fake_repos/readthedocs_samples/readthedocs.yaml")
         },
         all_results
     )
@@ -194,9 +190,9 @@ def test_check_dot_readthedocs_yaml_version_is_1_or_2():
     check_readthedocs_file_version(
         {
             "file_name": ".readthedocs.yaml",
-            "file_content": get_file_content(f"tests/fake_repos/readthedocs_samples/.readthedocs.yaml")
+            "file_content": get_file_content("tests/fake_repos/readthedocs_samples/.readthedocs.yaml")
         },
         all_results
     )
-
+    
     assert all_results[module_dict_key]['version'] in [1,2]

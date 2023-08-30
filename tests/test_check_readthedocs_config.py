@@ -194,5 +194,5 @@ def test_check_dot_readthedocs_yaml_version_is_1_or_2():
         },
         all_results
     )
-    
+
     assert all_results[module_dict_key]['version'] in [1,2]

@@ -126,7 +126,7 @@ packaging==21.3
     #   sphinx
 pbr==5.11.1
     # via stevedore
-pluggy==1.2.0
+pluggy==1.3.0
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -178,7 +178,7 @@ pyyaml==6.0.1
     #   -r requirements/test.txt
     #   pytest-repo-health
     #   responses
-readme-renderer==40.0
+readme-renderer==41.0
     # via -r requirements/doc.in
 requests==2.31.0
     # via

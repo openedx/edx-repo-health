@@ -132,7 +132,7 @@ pbr==5.11.1
     # via stevedore
 platformdirs==3.10.0
     # via pylint
-pluggy==1.2.0
+pluggy==1.3.0
     # via
     #   -r requirements/test.txt
     #   pytest

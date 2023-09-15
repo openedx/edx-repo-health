@@ -78,16 +78,16 @@ gitdb==4.0.10
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/test.txt
-gitpython==3.1.35
+gitpython==3.1.36
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.22.0
+google-auth==2.23.0
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
     #   gspread
-google-auth-oauthlib==1.0.0
+google-auth-oauthlib==1.1.0
     # via
     #   -r requirements/test.txt
     #   gspread
@@ -212,10 +212,7 @@ rsa==4.9
     #   -r requirements/test.txt
     #   google-auth
 six==1.16.0
-    # via
-    #   -r requirements/test.txt
-    #   edx-lint
-    #   google-auth
+    # via edx-lint
 smmap==5.0.0
     # via
     #   -r requirements/test.txt

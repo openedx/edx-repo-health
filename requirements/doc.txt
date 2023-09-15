@@ -31,8 +31,6 @@ babel==2.12.1
     #   sphinx
 beautifulsoup4==4.12.2
     # via pydata-sphinx-theme
-bleach==6.0.0
-    # via readme-renderer
 cachetools==5.3.1
     # via
     #   -r requirements/test.txt
@@ -76,16 +74,16 @@ gitdb==4.0.10
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/test.txt
-gitpython==3.1.35
+gitpython==3.1.36
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.22.0
+google-auth==2.23.0
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
     #   gspread
-google-auth-oauthlib==1.0.0
+google-auth-oauthlib==1.1.0
     # via
     #   -r requirements/test.txt
     #   gspread
@@ -113,6 +111,8 @@ multidict==6.0.4
     #   -r requirements/test.txt
     #   aiohttp
     #   yarl
+nh3==0.2.14
+    # via readme-renderer
 oauthlib==3.2.2
     # via
     #   -r requirements/test.txt
@@ -178,7 +178,7 @@ pyyaml==6.0.1
     #   -r requirements/test.txt
     #   pytest-repo-health
     #   responses
-readme-renderer==41.0
+readme-renderer==42.0
     # via -r requirements/doc.in
 requests==2.31.0
     # via
@@ -197,11 +197,6 @@ restructuredtext-lint==1.4.0
 rsa==4.9
     # via
     #   -r requirements/test.txt
-    #   google-auth
-six==1.16.0
-    # via
-    #   -r requirements/test.txt
-    #   bleach
     #   google-auth
 smmap==5.0.0
     # via
@@ -250,8 +245,6 @@ urllib3==1.26.16
     #   google-auth
     #   requests
     #   responses
-webencodings==0.5.1
-    # via bleach
 yarl==1.9.2
     # via
     #   -r requirements/test.txt

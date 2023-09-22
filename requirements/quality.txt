@@ -91,7 +91,7 @@ google-auth-oauthlib==1.1.0
     # via
     #   -r requirements/test.txt
     #   gspread
-gspread==5.11.1
+gspread==5.11.2
     # via -r requirements/test.txt
 idna==3.4
     # via
@@ -213,7 +213,7 @@ rsa==4.9
     #   google-auth
 six==1.16.0
     # via edx-lint
-smmap==5.0.0
+smmap==5.0.1
     # via
     #   -r requirements/test.txt
     #   gitdb
@@ -237,7 +237,7 @@ types-pyyaml==6.0.12.11
     # via
     #   -r requirements/test.txt
     #   responses
-typing-extensions==4.7.1
+typing-extensions==4.8.0
     # via
     #   asgiref
     #   astroid

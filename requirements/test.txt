@@ -66,7 +66,7 @@ google-auth-oauthlib==1.1.0
     # via
     #   -r requirements/base.txt
     #   gspread
-gspread==5.11.1
+gspread==5.11.2
     # via -r requirements/base.txt
 idna==3.4
     # via
@@ -147,7 +147,7 @@ rsa==4.9
     # via
     #   -r requirements/base.txt
     #   google-auth
-smmap==5.0.0
+smmap==5.0.1
     # via
     #   -r requirements/base.txt
     #   gitdb

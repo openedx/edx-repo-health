@@ -87,7 +87,7 @@ google-auth-oauthlib==1.1.0
     # via
     #   -r requirements/test.txt
     #   gspread
-gspread==5.11.1
+gspread==5.11.2
     # via -r requirements/test.txt
 idna==3.4
     # via
@@ -139,7 +139,7 @@ pyasn1-modules==0.3.0
     # via
     #   -r requirements/test.txt
     #   google-auth
-pydata-sphinx-theme==0.13.3
+pydata-sphinx-theme==0.14.1
     # via sphinx-book-theme
 pygments==2.16.1
     # via
@@ -198,7 +198,7 @@ rsa==4.9
     # via
     #   -r requirements/test.txt
     #   google-auth
-smmap==5.0.0
+smmap==5.0.1
     # via
     #   -r requirements/test.txt
     #   gitdb
@@ -237,7 +237,7 @@ types-pyyaml==6.0.12.11
     # via
     #   -r requirements/test.txt
     #   responses
-typing-extensions==4.7.1
+typing-extensions==4.8.0
     # via pydata-sphinx-theme
 urllib3==1.26.16
     # via
@@ -249,5 +249,5 @@ yarl==1.9.2
     # via
     #   -r requirements/test.txt
     #   aiohttp
-zipp==3.16.2
+zipp==3.17.0
     # via importlib-metadata

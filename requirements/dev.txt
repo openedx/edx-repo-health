@@ -17,7 +17,7 @@ asgiref==3.7.2
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==2.15.6
+astroid==2.15.8
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -107,11 +107,11 @@ gitdb==4.0.10
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/quality.txt
-gitpython==3.1.36
+gitpython==3.1.37
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.23.0
+google-auth==2.23.2
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
@@ -218,7 +218,7 @@ pygments==2.16.1
     # via
     #   diff-cover
     #   rich
-pylint==2.17.5
+pylint==2.17.6
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -347,7 +347,7 @@ tox==3.28.0
     #   tox-battery
 tox-battery==0.6.2
     # via -r requirements/dev.in
-types-pyyaml==6.0.12.11
+types-pyyaml==6.0.12.12
     # via
     #   -r requirements/quality.txt
     #   responses
@@ -358,10 +358,9 @@ typing-extensions==4.8.0
     #   astroid
     #   pylint
     #   rich
-urllib3==1.26.16
+urllib3==2.0.5
     # via
     #   -r requirements/quality.txt
-    #   google-auth
     #   requests
     #   responses
 virtualenv==20.24.5

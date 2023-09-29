@@ -53,11 +53,11 @@ gitdb==4.0.10
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/base.txt
-gitpython==3.1.36
+gitpython==3.1.37
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.23.0
+google-auth==2.23.2
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -156,12 +156,11 @@ tomli==2.0.1
     #   -r requirements/base.txt
     #   coverage
     #   pytest
-types-pyyaml==6.0.12.11
+types-pyyaml==6.0.12.12
     # via responses
-urllib3==1.26.16
+urllib3==2.0.5
     # via
     #   -r requirements/base.txt
-    #   google-auth
     #   requests
     #   responses
 yarl==1.9.2

@@ -55,12 +55,32 @@ async def get_last_pull_date(github_repo):
     if len(data['search']['nodes']):
         return data['search']['nodes'][0]['createdAt'][:10]
 
+async def get_total_pull_requests(github_repo):
+    """
+    Fetches the total number of pull request made by renovate
+    """
+    github_repo = await github_repo
+    repo = github_repo.object
+    client = repo.http
+    kwargs = {
+        "filter": f"repo:edx/{repo.name} type:pr author:app/renovate"
+    }
+
+    _json = {
+        "query": LAST_PR_QUERY,
+        "variables": kwargs,
+    }
+    data = await client.request(json=_json)
+    if len(data['search']['nodes']):
+        return len(data['search']['nodes'])
+
 
 @health_metadata(
     [MODULE_DICT_KEY],
     {
         "configured": "Flag for existence of renovate configuration",
         "last_pr": "Date of last Pull Request made by renovate",
+        "total_prs": "Number of Total Pull Request made by renovate",
     }
 )
 @pytest.mark.asyncio
@@ -75,5 +95,6 @@ async def check_renovate(all_results, repo_path, github_repo):
 
     all_results[MODULE_DICT_KEY] = {
         'configured': config_exists,
-        'last_pr': await get_last_pull_date(github_repo) if config_exists else None
+        'last_pr': await get_last_pull_date(github_repo) if config_exists else None,
+        'total_prs': await get_total_pull_requests(github_repo) if config_exists else None
     }

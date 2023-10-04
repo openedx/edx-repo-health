@@ -18,7 +18,8 @@ async def mocked_responses(*args, **kwargs):
 
 
 @mock.patch('repo_health.check_renovate.get_last_pull_date')
-@mock.patch('repo_health.check_renovate.get_total_pull_requests')
+@mock.patch('repo_health.check_renovate.get_total_renovate_pull_requests')
+@mock.patch('repo_health.check_renovate.get_oldest_renovate_pr_creation_date')
 @pytest.mark.asyncio
 async def test_check_renovate_true(mock_get):
     mock_get.return_value = await mocked_responses()
@@ -28,7 +29,8 @@ async def test_check_renovate_true(mock_get):
     assert all_results[MODULE_DICT_KEY]['configured'] is True
 
 @mock.patch('repo_health.check_renovate.get_last_pull_date')
-@mock.patch('repo_health.check_renovate.get_total_pull_requests')
+@mock.patch('repo_health.check_renovate.get_total_renovate_pull_requests')
+@mock.patch('repo_health.check_renovate.get_oldest_renovate_pr_creation_date')
 @pytest.mark.asyncio
 async def test_check_renovate_false(mock_get):
     mock_get.return_value = await mocked_responses()

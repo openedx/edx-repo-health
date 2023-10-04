@@ -3,6 +3,7 @@ Checks for renovate configuration
 """
 import json
 import os
+import requests
 
 import pytest
 from pytest_repo_health import health_metadata
@@ -55,12 +56,11 @@ async def get_last_pull_date(github_repo):
     if len(data['search']['nodes']):
         return data['search']['nodes'][0]['createdAt'][:10]
 
-async def get_total_pull_requests(github_repo):
+async def get_total_renovate_pull_requests(github_repo):
     """
-    Fetches the total number of pull request made by renovate
+    Fetches the total number of pull requests made by Renovate.
     """
-    github_repo = await github_repo
-    repo = github_repo.object
+    repo = await github_repo.object
     client = repo.http
     kwargs = {
         "filter": f"repo:edx/{repo.name} type:pr author:app/renovate"
@@ -70,9 +70,12 @@ async def get_total_pull_requests(github_repo):
         "query": LAST_PR_QUERY,
         "variables": kwargs,
     }
-    data = await client.request(json=_json)
-    if len(data['search']['nodes']):
-        return len(data['search']['nodes'])
+
+    try:
+        data = await client.request(json=_json)
+        return data['search']['count']
+    except (KeyError, TypeError):
+        return 0
 
 
 @health_metadata(

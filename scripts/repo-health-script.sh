@@ -138,7 +138,7 @@ repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health
 
 cd "${WORKSPACE}"
 # Only commit the data if running with master and no REPORT_DATE is set.
-if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
+if [[ ${EDX_REPO_HEALTH_BRANCH} == 'Ali-Abbas/update-renovate-check' && -z ${REPORT_DATE} ]]; then
     ###########################################
     # Commit files and push to repo-health-data
     ###########################################
@@ -158,7 +158,7 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
         done
     fi
 
-    git checkout master
+    git checkout test-renovate-check
     if git diff-index --quiet HEAD; then
         # No changes found in the working directory
         echo "No changes to commit"
@@ -169,7 +169,7 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
         git config --global user.name "Repo Health Bot"
         git config --global user.email "${GITHUB_USER_EMAIL}"
         git commit -m "${commit_message}"
-        git push origin master
+        git push origin test-renovate-check
     fi
 fi
 

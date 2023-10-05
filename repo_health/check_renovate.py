@@ -3,12 +3,15 @@ Checks for renovate configuration
 """
 import json
 import os
-import requests
+
 import pytest
 from pytest_repo_health import health_metadata
+
 from . import get_file_content
 from .utils import file_exists
+
 MODULE_DICT_KEY = "renovate"
+
 LAST_PR_QUERY = """
 query searchRepos($filter: String!) {
   search(query: $filter, type: ISSUE, last: 1) {

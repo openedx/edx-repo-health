@@ -3,7 +3,6 @@ Checks for renovate configuration
 """
 import json
 import os
-import requests
 
 import pytest
 from pytest_repo_health import health_metadata

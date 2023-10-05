@@ -25,18 +25,6 @@ query searchRepos($filter: String!) {
 }
 """
 
-OLDEST_RENOVATE_PR_QUERY = """
-query ($filter: String!) {
-  search(first: 1, query: $filter, type: ISSUE) {
-    nodes {
-      ... on PullRequest {
-        createdAt
-      }
-    }
-  }
-}
-"""
-
 POSSIBLE_CONFIG_PATHS = [
     ".github/renovate.json",
     ".github/renovate.json5",
@@ -89,28 +77,6 @@ async def get_total_renovate_pull_requests(github_repo):
     except (KeyError, TypeError):
         return 0
 
-async def get_oldest_renovate_pr_creation_date(github_repo):
-    """
-    Fetches the creation date of the oldest still-open Renovate PR.
-    """
-    repo = await github_repo.object
-    client = repo.http
-    kwargs = {
-        "filter": f"repo:edx/{repo.name} type:pr author:app/renovate is:open"
-    }
-
-    _json = {
-        "query": OLDEST_RENOVATE_PR_QUERY,
-        "variables": kwargs,
-    }
-
-    try:
-        data = await client.request(json=_json)
-        oldest_pr_date = data['search']['nodes'][0]['createdAt']
-        return oldest_pr_date
-    except (KeyError, TypeError, IndexError):
-        return None
-
 
 @health_metadata(
     [MODULE_DICT_KEY],
@@ -118,7 +84,6 @@ async def get_oldest_renovate_pr_creation_date(github_repo):
         "configured": "Flag for existence of renovate configuration",
         "last_pr": "Date of last Pull Request made by renovate",
         "total_renovate_prs": "Number of Total Pull Request made by renovate",
-        "oldest_renovate_pr_date": "Creation date of oldest renovate PR",
     }
 )
 @pytest.mark.asyncio
@@ -135,5 +100,4 @@ async def check_renovate(all_results, repo_path, github_repo):
         'configured': config_exists,
         'last_pr': await get_last_pull_date(github_repo) if config_exists else None,
         'total_renovate_prs': await get_total_renovate_pull_requests(github_repo) if config_exists else None,
-        'oldest_renovate_pr': await get_oldest_renovate_pr_creation_date(github_repo) if config_exists else None
     }

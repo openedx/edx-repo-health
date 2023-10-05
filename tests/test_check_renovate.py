@@ -21,8 +21,14 @@ async def mocked_responses(*args, **kwargs):
 @mock.patch('repo_health.check_renovate.get_total_renovate_pull_requests')
 @mock.patch('repo_health.check_renovate.get_oldest_renovate_pr_creation_date')
 @pytest.mark.asyncio
-async def test_check_renovate_true(mock_get):
-    mock_get.return_value = await mocked_responses()
+async def test_check_renovate_true(
+    mock_get_last_pull_date,
+    mock_get_total_renovate_pull_requests,
+    mock_get_oldest_renovate_pr_creation_date,
+  ):
+    mock_get_last_pull_date.return_value = await mocked_responses()
+    mock_get_total_renovate_pull_requests.return_value = await mocked_responses()
+    mock_get_oldest_renovate_pr_creation_date.return_value = await mocked_responses()
     all_results = {MODULE_DICT_KEY: {}}
     await check_renovate(all_results, repo_path=get_repo_path('renovate_repo1'), github_repo=None)
 
@@ -32,8 +38,14 @@ async def test_check_renovate_true(mock_get):
 @mock.patch('repo_health.check_renovate.get_total_renovate_pull_requests')
 @mock.patch('repo_health.check_renovate.get_oldest_renovate_pr_creation_date')
 @pytest.mark.asyncio
-async def test_check_renovate_false(mock_get):
-    mock_get.return_value = await mocked_responses()
+async def test_check_renovate_false(
+    mock_get_last_pull_date,
+    mock_get_total_renovate_pull_requests,
+    mock_get_oldest_renovate_pr_creation_date,
+  ):
+    mock_get_last_pull_date.return_value = await mocked_responses()
+    mock_get_total_renovate_pull_requests.return_value = await mocked_responses()
+    mock_get_oldest_renovate_pr_creation_date.return_value = await mocked_responses()
     all_results = {MODULE_DICT_KEY: {}}
     await check_renovate(all_results, repo_path=get_repo_path('js_repo'), github_repo=None)
 

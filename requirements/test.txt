@@ -29,12 +29,12 @@ certifi==2023.7.22
     # via
     #   -r requirements/base.txt
     #   requests
-charset-normalizer==3.2.0
+charset-normalizer==3.3.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
     #   requests
-coverage[toml]==7.3.1
+coverage[toml]==7.3.2
     # via pytest-cov
 dockerfile==3.3.1
     # via -r requirements/base.txt
@@ -53,11 +53,11 @@ gitdb==4.0.10
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/base.txt
-gitpython==3.1.36
+gitpython==3.1.37
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.23.0
+google-auth==2.23.2
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -66,7 +66,7 @@ google-auth-oauthlib==1.1.0
     # via
     #   -r requirements/base.txt
     #   gspread
-gspread==5.11.2
+gspread==5.11.3
     # via -r requirements/base.txt
 idna==3.4
     # via
@@ -156,12 +156,11 @@ tomli==2.0.1
     #   -r requirements/base.txt
     #   coverage
     #   pytest
-types-pyyaml==6.0.12.11
+types-pyyaml==6.0.12.12
     # via responses
-urllib3==1.26.16
+urllib3==2.0.6
     # via
     #   -r requirements/base.txt
-    #   google-auth
     #   requests
     #   responses
 yarl==1.9.2

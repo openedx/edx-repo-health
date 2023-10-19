@@ -54,15 +54,25 @@ async def get_last_pull_date(github_repo):
     """
     repo = github_repo.object
     client = repo.http
-    kwargs = {
+    kwargs_edx = {
         "filter": f"repo:edx/{repo.name} type:pr author:app/renovate"
+    }
+    kwargs_open_edx = {
+        "filter": f"repo:openedx/{repo.name} type:pr author:app/renovate"
     }
 
     _json = {
         "query": LAST_PR_QUERY,
-        "variables": kwargs,
+        "variables": kwargs_edx,
     }
     data = await client.request(json=_json)
+
+    if not data['search']['nodes']:
+      data = await client.request(json={
+        "query": LAST_PR_QUERY,
+        "variables": kwargs_open_edx
+      })
+
     if len(data['search']['nodes']):
         return data['search']['nodes'][0]['createdAt'][:10]
 
@@ -72,17 +82,26 @@ async def get_total_and_oldest_renovate_pull_requests(github_repo):
     """
     repo = github_repo.object
     client = repo.http
-    kwargs = {
+    kwargs_edx = {
+        "filter": f"repo:edx/{repo.name} type:pr author:app/renovate is:open"
+    }
+    kwargs_open_edx = {
         "filter": f"repo:openedx/{repo.name} type:pr author:app/renovate is:open"
     }
 
     _json = {
         "query": TOTAL_PR_QUERY,
-        "variables": kwargs,
+        "variables": kwargs_open_edx,
     }
 
     try:
         data = await client.request(json=_json)
+
+        if not data['search']['nodes']:
+          data = await client.request(json={
+            "query": TOTAL_PR_QUERY,
+            "variables": kwargs_edx
+          })
 
         total_open_prs = len(data['search']['nodes'])
         oldest_pr_date = None

@@ -34,7 +34,7 @@ gitdb==4.0.10
     # via gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/github.in
-gitpython==3.1.37
+gitpython==3.1.40
     # via pytest-repo-health
 google-auth==2.23.3
     # via
@@ -97,7 +97,7 @@ smmap==5.0.1
     # via gitdb
 tomli==2.0.1
     # via pytest
-urllib3==2.0.6
+urllib3==2.0.7
     # via requests
 yarl==1.9.2
     # via aiohttp

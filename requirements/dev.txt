@@ -68,8 +68,9 @@ code-annotations==1.5.0
 coverage[toml]==7.3.2
     # via
     #   -r requirements/quality.txt
+    #   coverage
     #   pytest-cov
-diff-cover==7.7.0
+diff-cover==8.0.0
     # via -r requirements/dev.in
 dill==0.3.7
     # via
@@ -107,7 +108,7 @@ gitdb==4.0.10
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/quality.txt
-gitpython==3.1.37
+gitpython==3.1.40
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
@@ -358,7 +359,7 @@ typing-extensions==4.8.0
     #   astroid
     #   pylint
     #   rich
-urllib3==2.0.6
+urllib3==2.0.7
     # via
     #   -r requirements/quality.txt
     #   requests

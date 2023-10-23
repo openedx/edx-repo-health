@@ -130,11 +130,7 @@ failed_repo_names=$(echo "${failed_repos[*]}")
 echo "Pushing data"
 cd "${WORKSPACE}/individual_repo_data"
 repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/repo_health_dashboard/configuration.yaml" \
-    --output-csv "${WORKSPACE}/dashboards/dashboard"
-# Once the sqlite issue https://github.com/openedx/edx-repo-health/issues/405 gets resolved, 
-# we can append following to above command to generate sqlite db if needed
-#  --output-sqlite "${WORKSAPCE}/dashboards/dashboard"
-
+    --output-csv "${WORKSPACE}/dashboards/dashboard" --output-sqlite "${WORKSPACE}/dashboards/dashboard"
 
 cd "${WORKSPACE}"
 # Only commit the data if running with master and no REPORT_DATE is set.

@@ -6,7 +6,6 @@ export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 
 WORKSPACE=$PWD
-
 # If the REPORT_DATE variable is set and not an empty string parse the date to standardize it.
 if [[ -n $REPORT_DATE ]]; then 
     REPORT_DATE=$(date '+%Y-%m-%d' -d "$REPORT_DATE")
@@ -129,7 +128,7 @@ failed_repo_names=$(echo "${failed_repos[*]}")
 echo "Pushing data"
 cd "${WORKSPACE}/individual_repo_data"
 repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/repo_health_dashboard/configuration.yaml" \
-    --output-csv "${WORKSPACE}/dashboards/dashboard" --output-sqlite "${WORKSPACE}/dashboards/dashboard"
+    --output-csv "${WORKSPACE}/dashboards/dashboard"
 
 cd "${WORKSPACE}"
 # Only commit the data if running with master and no REPORT_DATE is set.

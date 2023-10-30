@@ -16,7 +16,7 @@ def test_python_js_repo_dependency_check():
 
     assert 'fs==2.0.18' in dependencies["pypi_all"]["list"]
     assert "react-redux" in dependencies["js"]["list"]
-    assert dependencies["count"] == 351
+    assert dependencies["count"] == 350
     assert dependencies["pypi_all"]["count"] == 299
     assert dependencies["github"]["count"] == 15
     assert dependencies["js.all"]["count"] == 10

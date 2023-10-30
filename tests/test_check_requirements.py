@@ -1,11 +1,11 @@
+"""Test checks of requirements files."""
+
 import os
+
 import pytest
-import pdb
-from repo_health.check_requirements import (
-    fixture_req_lines,
-    module_dict_key,
-    check_requires,
-)
+
+# Because of fixtures: pylint: disable=unused-import
+from repo_health.check_requirements import check_requires, fixture_req_lines, module_dict_key
 
 
 def get_repo_path(repo_name):

@@ -1,9 +1,12 @@
+"""Tests for CI duration checks."""
+
 import json
 
 from repo_health.check_github import parse_build_duration_response
 
 
 class TestCIDurationChecks:
+    """Tests for CI duration checks."""
 
     @staticmethod
     def read_json_data(file_path):

@@ -4,15 +4,14 @@ And gathers info
 """
 
 import os
-import re
 
 import pytest
 import yaml
-
 from pytest_repo_health import add_key_to_metadata, health_metadata
-from pytest_repo_health.fixtures.github import URL_PATTERN
 
 from repo_health import get_file_content
+
+from .utils import github_org_repo
 
 # Decision: require openedx.yaml to be parsable
 
@@ -122,10 +121,8 @@ def check_release_org_compliance(parsed_data, git_origin_url, all_results):
     maybe = parsed_data.get("openedx-release", {}).get("maybe", False)
     ref = parsed_data.get("openedx-release", {}).get("ref", "")
     if ref and not maybe:
-        match = re.search(URL_PATTERN, git_origin_url)
-        assert match is not None
-        org = match.group("org_name")
-        good_org = (org == "openedx")
+        org_name, _ = github_org_repo(git_origin_url)
+        good_org = (org_name == "openedx")  # pylint: disable=[superfluous-parens]
     else:
         good_org = True
     all_results[module_dict_key]["release-org-compliance"] = good_org

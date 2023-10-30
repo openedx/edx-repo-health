@@ -1,11 +1,11 @@
+"""Tests checks on Django (and related) package versions."""
+
 import os
+
 import pytest
 
-from repo_health.check_django_dependencies_compatibility import (
-    DjangoDependencyReader,
-    MODULE_DICT_KEY,
-    check_django_dependencies_status,
-)
+from repo_health.check_django_dependencies_compatibility import (MODULE_DICT_KEY, DjangoDependencyReader,
+                                                                 check_django_dependencies_status)
 
 TEST_CSV_PATH = os.path.join(os.path.dirname(__file__), 'data/mock_django_dependencies_sheet.csv')
 

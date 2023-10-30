@@ -1,20 +1,14 @@
+"""Tests for openedx.yaml checks."""
+
 import os
+
 import pytest
 
-from repo_health.check_openedx_yaml import (
-    check_obsolete_fields,
-    check_oeps,
-    check_release_maybe,
-    check_release_org_compliance,
-    check_release_ref,
-    check_yaml_parsable,
-    fixture_oeps,
-    fixture_openedx_yaml,
-    fixture_parsed_data,
-    module_dict_key,
-    obsolete_fields,
-    output_keys,
-)
+# Because of fixtures: pylint: disable=unused-import
+from repo_health.check_openedx_yaml import (check_obsolete_fields, check_oeps, check_release_maybe,
+                                            check_release_org_compliance, check_release_ref, check_yaml_parsable,
+                                            fixture_oeps, fixture_openedx_yaml, fixture_parsed_data, module_dict_key,
+                                            output_keys)
 
 
 def get_repo_path(repo_name):
@@ -85,7 +79,7 @@ def test_check_oeps(oeps, result_list):
     all_results = {module_dict_key:{}}
     check_oeps(oeps, all_results)
 
-    for key, desc in output_keys.items():
+    for key in output_keys.keys():  # pylint: disable=consider-iterating-dictionary
         assert all_results[module_dict_key][key] == result_list[key]
 
 

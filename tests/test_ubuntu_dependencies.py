@@ -1,3 +1,5 @@
+"""Test checks of Ubuntu package dependencies."""
+
 import os
 
 from repo_health.check_ubuntufiles import get_apt_get_txt, get_docker_file_content

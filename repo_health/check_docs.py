@@ -9,7 +9,6 @@ import re
 import pytest
 import requests
 import yaml
-
 from pytest_repo_health import health_metadata
 
 from repo_health import fixture_readme, get_file_content  # pylint: disable=unused-import
@@ -25,7 +24,7 @@ module_dict_key = "docs"
         "build_badge": "Check that the README file has docs build badge"
     }
 )
-def check_build_bagde(readme, all_results):
+def check_build_badge(readme, all_results):
     """
     Check that the README file has a docs build badge.
     """
@@ -110,7 +109,7 @@ class ReadTheDocsChecker:
         """
         self.build_details = []
 
-        for item in self._get_projects(self._headers):      # pylint: disable=not-an-iterable
+        for item in self._get_projects(self._headers):
             if item['repository']['url'] == self.git_origin_url:
                 all_builds = self._get_all_builds(item['slug'])
                 last_build = all_builds[0]

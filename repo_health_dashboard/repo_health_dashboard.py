@@ -2,11 +2,11 @@
 repo-health-dashboard CLI
 """
 
-import os
 import argparse
-import glob
 import codecs
 import datetime
+import glob
+import os
 
 import yaml
 
@@ -28,6 +28,12 @@ def main():
         "--output-csv",
         help="path to csv output",
         dest="output_csv",
+        default="dashboard",
+    )
+    parser.add_argument(
+        "--output-sqlite",
+        help="path to sqlite output",
+        dest="output_sqlite",
         default="dashboard",
     )
     parser.add_argument(
@@ -59,7 +65,7 @@ def main():
                 configurations[sheet] = utils.get_sheets(parsed_file_data, sheet)
 
     data_dir = os.path.abspath(args.data_dir)
-    files = glob.glob(os.path.join(data_dir, "*.yaml"), recursive=False)
+    files = glob.glob(os.path.join(data_dir, "*/*.yaml"), recursive=False)
     data = {}
     for file_path in files:
         file_name = file_path[file_path.rfind("/") + 1:]
@@ -83,6 +89,8 @@ def main():
         utils.write_squashed_metadata_to_csv(
             output, args.output_csv + "_" + key, configuration, args.append
         )
+        utils.write_squashed_metadata_to_sqlite(
+            output, f"dashboard_{key}", configuration, args.output_sqlite)
 
 
 if __name__ == "__main__":

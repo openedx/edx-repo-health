@@ -3,8 +3,9 @@ Wrapper CLI around pytest call to allow users to use checks in this repo
 without knowing much about pytest-repo-health
 """
 import sys
-import pytest
 from pathlib import Path
+
+import pytest
 
 
 def main():

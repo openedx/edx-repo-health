@@ -1,6 +1,7 @@
 """
  contains check that reads/parses dependencies of a repo
 """
+
 import csv
 import json
 import logging
@@ -8,30 +9,34 @@ import os
 import re
 import tempfile
 from pathlib import Path
-from packaging.version import parse
 
 import pytest
 import requests
+from packaging.version import parse
 from pytest_repo_health import health_metadata
 
-from repo_health import get_file_lines, DJANGO_DEPS_SHEET_URL, GITHUB_URL_PATTERN, PYPI_PACKAGE_PATTERN
+from repo_health import get_file_lines
+
 logger = logging.getLogger(__name__)
 
 MODULE_DICT_KEY = "django_packages"
 
-
-@pytest.fixture(scope='session')  # pragma: no cover
-def csv_filepath():
-    tmpdir = tempfile.mkdtemp()
-    return os.path.join(tmpdir, "django_dependencies_sheet.csv")
+GITHUB_URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).*#egg=(?P<package>[^\/]+).*"
+PYPI_PACKAGE_PATTERN = r"(?P<package_name>[^\/]+)==(?P<version>[^\/]+)"
+DJANGO_DEPS_SHEET_URL = (
+    "https://docs.google.com/spreadsheets/d/19-BzpcX3XvqlazHcLhn1ZifBMVNund15EwY3QQM390M/export?format=csv"
+)
 
 
 @pytest.fixture(name='django_deps_sheet', scope="session")  # pragma: no cover
-def django_dependency_sheet_fixture(csv_filepath):  # pylint: disable=redefined-outer-name
+def django_dependency_sheet_fixture():
     """
     Returns the path for csv file which contains django dependencies status.
     Also, makes a request for latest sheet & dumps response into the csv file if request was successful.
     """
+    tmpdir = tempfile.mkdtemp()
+    csv_filepath = os.path.join(tmpdir, "django_dependencies_sheet.csv")
+
     res = requests.get(DJANGO_DEPS_SHEET_URL)
     if res.status_code == 200:
         with open(csv_filepath, 'w', encoding="utf8") as fp:

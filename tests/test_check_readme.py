@@ -1,7 +1,7 @@
-import re
-from unittest.mock import patch
+"""Test checks of README."""
 
-import requests
+import re
+
 import responses
 
 from repo_health.check_readme import check_readme_links, module_dict_key

@@ -13,12 +13,11 @@ import requests
 from pytest_repo_health import add_key_to_metadata, health_metadata
 
 from .queries import FETCH_BUILD_CHECK_RUNS
-from .utils import parse_build_duration_response
+from .utils import github_org_repo, parse_build_duration_response
 
 logger = logging.getLogger(__name__)
 
 MODULE_DICT_KEY = "github"
-URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).git"
 
 FETCH_REPOSITORY_LANGUAGES = """
 query fetch_repository_languages ($repository_id: ID!, $cursor: String=null) {
@@ -89,10 +88,12 @@ async def fetch_languages(repo):
 
 
 @add_key_to_metadata((MODULE_DICT_KEY, "build_details"))
+@pytest.mark.asyncio
 async def check_build_duration(all_results, github_repo):
     """
     Fetches the builds details from Github and calculates the duration of each build
     """
+    github_repo = await github_repo
     repo = github_repo.object
     client = repo.http
     kwargs = {"repository_id": repo.id}
@@ -150,10 +151,12 @@ repo_license_exemptions = {
         "license": "The name of the repository's software license",
     },
 )
+@pytest.mark.asyncio
 async def check_settings(all_results, github_repo):
     """
     Get all the fields of interest from the GitHub repository object itself.
     """
+    github_repo = await github_repo
     message = github_repo.message
     github_repo = github_repo.object
 
@@ -214,10 +217,12 @@ async def check_settings(all_results, github_repo):
         "shell": "The number of bytes of shell scripts in the repository",
     }
 )
+@pytest.mark.asyncio
 async def check_languages(all_results, github_repo):
     """
     Get the number of bytes of each programming language in the repository.
     """
+    github_repo = await github_repo
     message = github_repo.message
     github_repo = github_repo.object
     if github_repo is None:
@@ -237,17 +242,16 @@ def check_branch_and_pr_count(all_results, git_origin_url):
     """
     Checks repository integrated with github actions workflow
     """
-    match = re.search(URL_PATTERN, git_origin_url)
-    repo_name = match.group("repo_name")
-    all_results[MODULE_DICT_KEY]['branch_count'] = get_branch_or_pr_count(repo_name, 'branches')
-    all_results[MODULE_DICT_KEY]['pulls_count'] = get_branch_or_pr_count(repo_name, 'pulls')
+    org_name, repo_name = github_org_repo(git_origin_url)
+    all_results[MODULE_DICT_KEY]['branch_count'] = get_branch_or_pr_count(org_name, repo_name, 'branches')
+    all_results[MODULE_DICT_KEY]['pulls_count'] = get_branch_or_pr_count(org_name, repo_name, 'pulls')
 
 
-def get_branch_or_pr_count(repo_name, pulls_or_branches):
+def get_branch_or_pr_count(org_name, repo_name, pulls_or_branches):
     """
     Get the count for branches or pull requests using Github API and add the count to report
     """
-    url = f"https://api.github.com/repos/edx/{repo_name}/{pulls_or_branches}?per_page=1"
+    url = f"https://api.github.com/repos/{org_name}/{repo_name}/{pulls_or_branches}?per_page=1"
     count = 0
 
     response = requests.get(url=url, headers={'Authorization': f'Bearer {os.environ["GITHUB_TOKEN"]}'})

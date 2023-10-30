@@ -1,6 +1,8 @@
+"""Test checks of npm package name."""
+
 import os
 
-from repo_health.check_npm_package import get_dependencies, check_npm_package, module_dict_key
+from repo_health.check_npm_package import check_npm_package, get_dependencies, module_dict_key
 
 
 def get_repo_path(repo_name):

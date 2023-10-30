@@ -1,11 +1,14 @@
+"""Test checks for ownership info."""
+
 import csv
 import os
+from unittest import mock
 
-from repo_health.check_ownership import check_ownership, MODULE_DICT_KEY
-from unittest import mock, TestCase
+from repo_health.check_ownership import MODULE_DICT_KEY, check_ownership
 
 
 def mocked_responses(*args, **kwargs):
+    """Get mock ownership CSV data."""
 
     current_dir = os.path.dirname(__file__)
 
@@ -16,12 +19,33 @@ def mocked_responses(*args, **kwargs):
 
 
 @mock.patch('repo_health.check_ownership.find_worksheet')
-@mock.patch.dict(os.environ, {"REPO_HEALTH_GOOGLE_CREDS_FILE": "test", "REPO_HEALTH_OWNERSHIP_SPREADSHEET_URL": "test", "REPO_HEALTH_REPOS_WORKSHEET_ID": "23"})
+@mock.patch.dict(os.environ, {
+    "REPO_HEALTH_GOOGLE_CREDS_FILE": "test",
+    "REPO_HEALTH_OWNERSHIP_SPREADSHEET_URL": "test",
+    "REPO_HEALTH_REPOS_WORKSHEET_ID": "23"
+})
 def test_check_ownership(mock_get):
     mock_get.return_value = mocked_responses()
 
     all_results = {MODULE_DICT_KEY: {}}
-    check_ownership(all_results, git_origin_url=f"github.com/edx/ownership_repo1.git")
+    check_ownership(all_results, git_origin_url="github.com/edx/ownership_repo1.git")
+
+    assert all_results[MODULE_DICT_KEY]['theme'] == 'openedx'
+    assert all_results[MODULE_DICT_KEY]['squad'] == 'arch'
+    assert all_results[MODULE_DICT_KEY]['priority'] == 'High'
+
+
+@mock.patch('repo_health.check_ownership.find_worksheet_with_actions')
+@mock.patch.dict(os.environ, {
+    "REPO_HEALTH_GOOGLE_CREDS_FILE": '{"type": "test", "project_id": "test", "private_key_id": "test"}',
+    "REPO_HEALTH_OWNERSHIP_SPREADSHEET_URL": "test",
+    "REPO_HEALTH_REPOS_WORKSHEET_ID": "23"
+})
+def test_check_ownership_with_actions(mock_get):
+    mock_get.return_value = mocked_responses()
+
+    all_results = {MODULE_DICT_KEY: {}}
+    check_ownership(all_results, git_origin_url="github.com/edx/ownership_repo1.git")
 
     assert all_results[MODULE_DICT_KEY]['theme'] == 'openedx'
     assert all_results[MODULE_DICT_KEY]['squad'] == 'arch'

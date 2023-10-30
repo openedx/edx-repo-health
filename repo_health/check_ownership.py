@@ -1,14 +1,15 @@
 """
 Checks to fetch repository ownership information from the Google Sheets speadsheet.
 """
+import json
 import logging
-import re
 import os
 
 import gspread
 import pytest
 from pytest_repo_health import health_metadata
-from pytest_repo_health.fixtures.github import URL_PATTERN
+
+from .utils import github_org_repo
 
 logger = logging.getLogger(__name__)
 
@@ -45,6 +46,22 @@ def find_worksheet(google_creds_file, spreadsheet_url, worksheet_id):
     return worksheet.get_all_records(expected_headers=expected_headers)
 
 
+def find_worksheet_with_actions(google_creds_file, spreadsheet_url, worksheet_id):
+    """
+    Authenticate to Google and return the matching worksheet with GitHub Actions
+    """
+    # Access credentials from GitHub Actions as json
+    all_worksheets = gspread.service_account_from_dict(json.loads(google_creds_file)) \
+                            .open_by_url(spreadsheet_url) \
+                            .worksheets()
+    matching = list(filter(lambda w: w.id == worksheet_id, all_worksheets))
+    if not matching:
+        raise KnownError(f"Cannot find a worksheet with ID {worksheet_id}")
+    worksheet = matching[0]
+    expected_headers = ["repo url", "owner.theme", "owner.squad", "owner.priority"]
+    return worksheet.get_all_records(expected_headers=expected_headers)
+
+
 @health_metadata(
     [MODULE_DICT_KEY],
     {
@@ -71,13 +88,16 @@ def check_ownership(all_results, git_origin_url):
         )
         pytest.skip("At least one of the REPO_HEALTH_* environment variables is missing")
 
-    match = re.search(URL_PATTERN, git_origin_url)
-    assert match is not None
-    org_name = match.group("org_name")
-    repo_name = match.group("repo_name")
+    org_name, repo_name = github_org_repo(git_origin_url)
     repo_url = f"https://github.com/{org_name}/{repo_name}"
     results = all_results[MODULE_DICT_KEY]
-    records = find_worksheet(google_creds_file, spreadsheet_url, worksheet_id)
+    try:
+        json.loads(google_creds_file)
+        # Using Json dict values in case of GitHub Actions
+        records = find_worksheet_with_actions(google_creds_file, spreadsheet_url, worksheet_id)
+    except ValueError:
+        # Using default string representation for Jenkins compatibility
+        records = find_worksheet(google_creds_file, spreadsheet_url, worksheet_id)
     for row in records:
         if row["repo url"] != repo_url:
             continue

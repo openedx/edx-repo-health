@@ -4,8 +4,7 @@
 #
 #    make upgrade
 #
-aiohttp==3.8.6
-aiohttp==3.8.6
+aiohttp==3.8.3
     # via
     #   -r requirements/quality.txt
     #   github-py
@@ -14,50 +13,46 @@ aiosignal==1.3.1
     # via
     #   -r requirements/quality.txt
     #   aiohttp
-asgiref==3.7.2
-asgiref==3.7.2
+asgiref==3.5.2
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==3.0.1
+astroid==2.12.13
     # via
     #   -r requirements/quality.txt
     #   pylint
     #   pylint-celery
-async-timeout==4.0.3
-async-timeout==4.0.3
+async-timeout==4.0.2
     # via
     #   -r requirements/quality.txt
     #   aiohttp
-attrs==23.1.0
-attrs==23.1.0
+attrs==22.1.0
     # via
     #   -r requirements/quality.txt
     #   aiohttp
-build==1.0.3
-build==1.0.3
+    #   pytest
+build==0.9.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
-cachetools==5.3.2
+cachetools==5.2.0
     # via
     #   -r requirements/quality.txt
     #   google-auth
-certifi==2023.7.22
-certifi==2023.7.22
+certifi==2022.9.24
     # via
+    #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   requests
-chardet==5.2.0
-chardet==5.2.0
+chardet==5.1.0
     # via diff-cover
-charset-normalizer==3.3.1
+charset-normalizer==2.1.1
     # via
+    #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   aiohttp
     #   requests
-click==8.1.7
-click==8.1.7
+click==8.1.3
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -69,98 +64,82 @@ click-log==0.4.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-code-annotations==1.5.0
-code-annotations==1.5.0
+code-annotations==1.3.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-codecov==2.1.13
+codecov==2.1.12
     # via -r requirements/ci.txt
-coverage[toml]==7.3.2
+coverage[toml]==6.5.0
     # via
+    #   -r requirements/ci.txt
     #   -r requirements/quality.txt
+    #   codecov
     #   pytest-cov
-diff-cover==8.0.0
+diff-cover==7.2.0
     # via -r requirements/dev.in
-dill==0.3.7
-dill==0.3.7
+dill==0.3.6
     # via
     #   -r requirements/quality.txt
     #   pylint
-distlib==0.3.7
-distlib==0.3.7
+distlib==0.3.6
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==3.2.22
-django==3.2.22
+django==3.2.16
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
-dockerfile==3.3.1
-dockerfile==3.3.1
+dockerfile==3.2.0
     # via -r requirements/quality.txt
-edx-lint==5.3.6
+edx-lint==5.3.0
     # via -r requirements/quality.txt
-exceptiongroup==1.1.3
-exceptiongroup==1.1.3
+exceptiongroup==1.0.4
     # via
     #   -r requirements/quality.txt
     #   pytest
-filelock==3.13.0
+filelock==3.8.2
     # via
     #   -r requirements/ci.txt
     #   tox
     #   virtualenv
-frozenlist==1.4.0
-frozenlist==1.4.0
+frozenlist==1.3.3
     # via
     #   -r requirements/quality.txt
     #   aiohttp
     #   aiosignal
-gitdb==4.0.11
+gitdb==4.0.10
     # via
     #   -r requirements/quality.txt
     #   gitpython
-github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
+github.py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/quality.txt
-gitpython==3.1.40
+gitpython==3.1.29
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.23.3
-google-auth==2.23.3
+google-auth==2.15.0
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
     #   gspread
-google-auth-oauthlib==1.1.0
-google-auth-oauthlib==1.1.0
+google-auth-oauthlib==0.7.1
     # via
     #   -r requirements/quality.txt
     #   gspread
-gspread==5.12.0
+gspread==5.7.2
     # via -r requirements/quality.txt
 idna==3.4
     # via
+    #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   requests
     #   yarl
-importlib-metadata==6.8.0
-    # via
-    #   -r requirements/pip-tools.txt
-    #   build
-iniconfig==2.0.0
-importlib-metadata==6.8.0
-    # via
-    #   -r requirements/pip-tools.txt
-    #   build
-iniconfig==2.0.0
+iniconfig==1.1.1
     # via
     #   -r requirements/quality.txt
     #   pytest
-isort==5.12.0
-isort==5.12.0
+isort==5.10.1
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -169,7 +148,11 @@ jinja2==3.1.2
     #   -r requirements/quality.txt
     #   code-annotations
     #   diff-cover
-markupsafe==2.1.3
+lazy-object-proxy==1.8.0
+    # via
+    #   -r requirements/quality.txt
+    #   astroid
+markupsafe==2.1.1
     # via
     #   -r requirements/quality.txt
     #   jinja2
@@ -177,7 +160,7 @@ mccabe==0.7.0
     # via
     #   -r requirements/quality.txt
     #   pylint
-multidict==6.0.4
+multidict==6.0.3
     # via
     #   -r requirements/quality.txt
     #   aiohttp
@@ -186,32 +169,31 @@ oauthlib==3.2.2
     # via
     #   -r requirements/quality.txt
     #   requests-oauthlib
-packaging==23.2
+packaging==21.3
     # via
-    #   -c requirements/constraints.txt
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
     #   build
     #   pytest
     #   tox
-pbr==5.11.1
-pbr==5.11.1
+pbr==5.11.0
     # via
     #   -r requirements/quality.txt
     #   stevedore
-pip-tools==7.3.0
-pip-tools==7.3.0
+pep517==0.13.0
+    # via
+    #   -r requirements/pip-tools.txt
+    #   build
+pip-tools==6.11.0
     # via -r requirements/pip-tools.txt
-platformdirs==3.11.0
-platformdirs==3.11.0
+platformdirs==2.6.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   pylint
     #   virtualenv
-pluggy==1.3.0
-pluggy==1.3.0
+pluggy==1.0.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -222,26 +204,22 @@ py==1.11.0
     # via
     #   -r requirements/ci.txt
     #   tox
-pyasn1==0.5.0
-pyasn1==0.5.0
+pyasn1==0.4.8
     # via
     #   -r requirements/quality.txt
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.3.0
-pyasn1-modules==0.3.0
+pyasn1-modules==0.2.8
     # via
     #   -r requirements/quality.txt
     #   google-auth
-pycodestyle==2.11.1
-pycodestyle==2.11.1
+pycodestyle==2.10.0
     # via -r requirements/quality.txt
-pydocstyle==6.3.0
-pydocstyle==6.3.0
+pydocstyle==6.1.1
     # via -r requirements/quality.txt
-pygments==2.16.1
+pygments==2.13.0
     # via diff-cover
-pylint==3.0.2
+pylint==2.15.8
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -252,76 +230,66 @@ pylint-celery==0.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-pylint-django==2.5.5
+pylint-django==2.5.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-pylint-plugin-utils==0.8.2
-pylint-plugin-utils==0.8.2
+pylint-plugin-utils==0.7
     # via
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pyproject-hooks==1.0.0
+pyparsing==3.0.9
     # via
+    #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
-    #   build
-pytest==7.4.3
+    #   -r requirements/quality.txt
+    #   packaging
+pytest==7.2.0
     # via
     #   -r requirements/quality.txt
     #   pytest-aiohttp
     #   pytest-asyncio
     #   pytest-cov
     #   pytest-repo-health
-pytest-aiohttp==1.0.5
-pytest-aiohttp==1.0.5
+pytest-aiohttp==1.0.4
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-pytest-asyncio==0.21.1
-pytest-asyncio==0.21.1
+pytest-asyncio==0.20.2
     # via
     #   -r requirements/quality.txt
     #   pytest-aiohttp
-pytest-cov==4.1.0
-pytest-cov==4.1.0
+pytest-cov==4.0.0
     # via -r requirements/quality.txt
-pytest-repo-health==3.0.2
-pytest-repo-health==3.0.2
+pytest-repo-health==2.2.4
     # via -r requirements/quality.txt
-python-slugify==8.0.1
-python-slugify==8.0.1
+python-slugify==7.0.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
-pytz==2023.3.post1
-pytz==2023.3.post1
+pytz==2022.6
     # via
     #   -r requirements/quality.txt
     #   django
-pyyaml==6.0.1
-pyyaml==6.0.1
+pyyaml==6.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
     #   pytest-repo-health
-    #   responses
-requests==2.31.0
-    #   responses
-requests==2.31.0
+requests==2.28.1
     # via
+    #   -r requirements/ci.txt
     #   -r requirements/quality.txt
+    #   codecov
     #   requests-oauthlib
     #   responses
 requests-oauthlib==1.3.1
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
-responses==0.23.3
-responses==0.23.3
+responses==0.22.0
     # via -r requirements/quality.txt
-rich==13.6.0
-    # via -r requirements/dev.in
 rsa==4.9
     # via
     #   -r requirements/quality.txt
@@ -331,9 +299,9 @@ six==1.16.0
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   edx-lint
+    #   google-auth
     #   tox
-smmap==5.0.1
-smmap==5.0.1
+smmap==5.0.0
     # via
     #   -r requirements/quality.txt
     #   gitdb
@@ -341,13 +309,11 @@ snowballstemmer==2.2.0
     # via
     #   -r requirements/quality.txt
     #   pydocstyle
-sqlparse==0.4.4
-sqlparse==0.4.4
+sqlparse==0.4.3
     # via
     #   -r requirements/quality.txt
     #   django
-stevedore==5.1.0
-stevedore==5.1.0
+stevedore==4.1.1
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -355,6 +321,10 @@ text-unidecode==1.3
     # via
     #   -r requirements/quality.txt
     #   python-slugify
+toml==0.10.2
+    # via
+    #   -r requirements/quality.txt
+    #   responses
 tomli==2.0.1
     # via
     #   -r requirements/ci.txt
@@ -362,67 +332,51 @@ tomli==2.0.1
     #   -r requirements/quality.txt
     #   build
     #   coverage
-    #   pip-tools
-    #   pip-tools
+    #   pep517
     #   pylint
-    #   pyproject-hooks
-    #   pyproject-hooks
     #   pytest
     #   tox
-tomlkit==0.12.1
-tomlkit==0.12.1
+tomlkit==0.11.6
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==3.28.0
-tox==3.28.0
+tox==3.27.1
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/ci.txt
     #   tox-battery
-tox-battery==0.6.2
-tox-battery==0.6.2
+tox-battery==0.6.1
     # via -r requirements/dev.in
-types-pyyaml==6.0.12.12
-types-pyyaml==6.0.12.12
+types-toml==0.10.8.1
     # via
     #   -r requirements/quality.txt
     #   responses
-typing-extensions==4.8.0
-typing-extensions==4.8.0
+typing-extensions==4.4.0
     # via
     #   -r requirements/quality.txt
-    #   asgiref
-    #   asgiref
     #   astroid
     #   pylint
-urllib3==2.0.7
+urllib3==1.26.13
     # via
+    #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   requests
     #   responses
-virtualenv==20.24.6
+virtualenv==20.17.1
     # via
     #   -r requirements/ci.txt
     #   tox
-wheel==0.41.2
-wheel==0.41.2
+wheel==0.38.4
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
-yarl==1.9.2
+wrapt==1.14.1
+    # via
+    #   -r requirements/quality.txt
+    #   astroid
+yarl==1.8.2
     # via
     #   -r requirements/quality.txt
     #   aiohttp
-zipp==3.17.0
-    # via
-    #   -r requirements/pip-tools.txt
-    #   importlib-metadata
-zipp==3.17.0
-    # via
-    #   -r requirements/pip-tools.txt
-    #   importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip

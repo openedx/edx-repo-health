@@ -15,7 +15,7 @@ aiosignal==1.3.1
     #   aiohttp
 asgiref==3.7.2
     # via django
-astroid==2.15.8
+astroid==3.0.1
     # via
     #   pylint
     #   pylint-celery
@@ -27,7 +27,7 @@ attrs==23.1.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
-cachetools==5.3.1
+cachetools==5.3.2
     # via
     #   -r requirements/test.txt
     #   google-auth
@@ -35,7 +35,7 @@ certifi==2023.7.22
     # via
     #   -r requirements/test.txt
     #   requests
-charset-normalizer==3.3.0
+charset-normalizer==3.3.2
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -52,16 +52,17 @@ code-annotations==1.5.0
 coverage[toml]==7.3.2
     # via
     #   -r requirements/test.txt
+    #   coverage
     #   pytest-cov
 dill==0.3.7
     # via pylint
-django==3.2.22
+django==3.2.23
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.in
 dockerfile==3.3.1
     # via -r requirements/test.txt
-edx-lint==5.3.4
+edx-lint==5.3.6
     # via -r requirements/quality.in
 exceptiongroup==1.1.3
     # via
@@ -72,17 +73,17 @@ frozenlist==1.4.0
     #   -r requirements/test.txt
     #   aiohttp
     #   aiosignal
-gitdb==4.0.10
+gitdb==4.0.11
     # via
     #   -r requirements/test.txt
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/test.txt
-gitpython==3.1.37
+gitpython==3.1.40
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.23.3
+google-auth==2.23.4
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -91,7 +92,7 @@ google-auth-oauthlib==1.1.0
     # via
     #   -r requirements/test.txt
     #   gspread
-gspread==5.11.3
+gspread==5.12.0
     # via -r requirements/test.txt
 idna==3.4
     # via
@@ -108,8 +109,6 @@ isort==5.12.0
     #   pylint
 jinja2==3.1.2
     # via code-annotations
-lazy-object-proxy==1.9.0
-    # via astroid
 markupsafe==2.1.3
     # via jinja2
 mccabe==0.7.0
@@ -128,7 +127,7 @@ packaging==21.3
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   pytest
-pbr==5.11.1
+pbr==6.0.0
     # via stevedore
 platformdirs==3.11.0
     # via pylint
@@ -149,7 +148,7 @@ pycodestyle==2.11.1
     # via -r requirements/quality.in
 pydocstyle==6.3.0
     # via -r requirements/quality.in
-pylint==2.17.7
+pylint==3.0.2
     # via
     #   edx-lint
     #   pylint-celery
@@ -157,7 +156,7 @@ pylint==2.17.7
     #   pylint-plugin-utils
 pylint-celery==0.3
     # via edx-lint
-pylint-django==2.5.3
+pylint-django==2.5.5
     # via edx-lint
 pylint-plugin-utils==0.8.2
     # via
@@ -167,7 +166,7 @@ pyparsing==3.1.1
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==7.4.2
+pytest==7.4.3
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp
@@ -205,7 +204,7 @@ requests-oauthlib==1.3.1
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
-responses==0.23.3
+responses==0.24.0
     # via -r requirements/test.txt
 rsa==4.9
     # via
@@ -231,24 +230,18 @@ tomli==2.0.1
     #   coverage
     #   pylint
     #   pytest
-tomlkit==0.12.1
+tomlkit==0.12.2
     # via pylint
-types-pyyaml==6.0.12.12
-    # via
-    #   -r requirements/test.txt
-    #   responses
 typing-extensions==4.8.0
     # via
     #   asgiref
     #   astroid
     #   pylint
-urllib3==2.0.6
+urllib3==2.0.7
     # via
     #   -r requirements/test.txt
     #   requests
     #   responses
-wrapt==1.15.0
-    # via astroid
 yarl==1.9.2
     # via
     #   -r requirements/test.txt

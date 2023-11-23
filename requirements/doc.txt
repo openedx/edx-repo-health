@@ -7,6 +7,7 @@
 accessible-pygments==0.0.4
     # via pydata-sphinx-theme
 aiohttp==3.9.0
+aiohttp==3.9.0
     # via
     #   -r requirements/test.txt
     #   github-py
@@ -36,6 +37,7 @@ cachetools==5.3.2
     #   -r requirements/test.txt
     #   google-auth
 certifi==2023.11.17
+certifi==2023.11.17
     # via
     #   -r requirements/test.txt
     #   requests
@@ -59,6 +61,7 @@ docutils==0.19
     #   readme-renderer
     #   restructuredtext-lint
     #   sphinx
+exceptiongroup==1.2.0
 exceptiongroup==1.2.0
     # via
     #   -r requirements/test.txt
@@ -87,8 +90,10 @@ google-auth-oauthlib==1.1.0
     # via
     #   -r requirements/test.txt
     #   gspread
-gspread==5.12.0
-    # via -r requirements/test.txt
+gspread==5.11.3
+    # via
+    #   -c requirements/constraints.txt
+    #   -r requirements/test.txt
 idna==3.4
     # via
     #   -r requirements/test.txt
@@ -131,6 +136,7 @@ pluggy==1.3.0
     #   -r requirements/test.txt
     #   pytest
 pyasn1==0.5.1
+pyasn1==0.5.1
     # via
     #   -r requirements/test.txt
     #   pyasn1-modules
@@ -141,7 +147,7 @@ pyasn1-modules==0.3.0
     #   google-auth
 pydata-sphinx-theme==0.14.3
     # via sphinx-book-theme
-pygments==2.17.1
+pygments==2.17.2
     # via
     #   accessible-pygments
     #   doc8
@@ -240,6 +246,7 @@ urllib3==2.1.0
     #   -r requirements/test.txt
     #   requests
     #   responses
+yarl==1.9.3
 yarl==1.9.3
     # via
     #   -r requirements/test.txt

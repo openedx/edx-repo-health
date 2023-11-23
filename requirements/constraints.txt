@@ -14,3 +14,7 @@
 
 # greater version breaking test.
 packaging==21.3
+
+# gspread==5.12.0 contains breaking changes 
+# which break the scheduled repo health job
+gspread<5.12.0

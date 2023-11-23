@@ -197,12 +197,12 @@ def update_datetime_in_csv(csv_file_path):
 def scrape_links():
     main_dashboard_csv_path = 'dashboard_main.csv'
     column_name = 'dependencies.pypi_all.list'
-    dependency_dashboard_csv_path = "dependencies_dashboard.csv"
+    dependency_dashboard_csv_path = "dependencies_urls.csv"
     to_return_links = []
 
     if os.path.exists(dependency_dashboard_csv_path):
         # If file exists, update latest datetime in
-        # dependencies_dashboard.csv file
+        # dependencies_urls.csv file
         update_datetime_in_csv(dependency_dashboard_csv_path)
     else:
         # If file doesn't exist, create a new one and add current date-time in the first row
@@ -219,7 +219,7 @@ def scrape_links():
     )
     for dependency_name in latest_dependencies_in_orgs:
         if dependency_name in latest_dependencies_on_dashboard:
-            continue  # skip if already exists
+            continue # skip if already exists
         source_code_link = scrape_source_code_url(dependency_name)
         row_to_append = {
             "dependency": dependency_name,
@@ -228,7 +228,7 @@ def scrape_links():
         }
         # Append data to to_return_links
         to_return_links.append(row_to_append)
-        # Append data to dependencies_dashboard.csv file
+        # Append data to dependencies_urls.csv file
         with open(dependency_dashboard_csv_path, 'a', newline='') as csv_file:
             csv_writer = csv.DictWriter(csv_file, fieldnames=row_to_append.keys())
             csv_writer.writerow(row_to_append)
@@ -238,4 +238,3 @@ def scrape_links():
 
 if __name__ == "__main__":
     scrape_links()
-  

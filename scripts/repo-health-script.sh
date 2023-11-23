@@ -150,7 +150,7 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
         for full_name in "${failed_repos[@]}"; do
             OUTPUT_FILE_NAME="${full_name}${OUTPUT_FILE_POSTFIX}"
             echo "reverting repo health data for ${OUTPUT_FILE_NAME}"
-            git checkout -- "individual_repo_data/${OUTPUT_FILE_NAME}"
+            git checkout -- "${WORKSPACE}/individual_repo_data/${OUTPUT_FILE_NAME}"
         done
     fi
 

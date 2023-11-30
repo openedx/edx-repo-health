@@ -120,3 +120,36 @@ def set_branch_and_pr_count(all_results, git_origin_url, module_dict_key):
     all_results[module_dict_key]['branch_count'] = get_branch_or_pr_count(org_name, repo_name, 'branches')
     all_results[module_dict_key]['pulls_count'] = get_branch_or_pr_count(org_name, repo_name, 'pulls')
     return all_results
+
+
+def set_pypi_name(all_results, setup_py, setup_cfg, module_dict_key):
+    # Look in setup.py for:     name="package",
+    py_names = re.findall(r"""(?m)^\s+name\s?=\s?['"]([\w-]+)['"],""", setup_py)
+    # Look in setup.cfg for:    name=package
+    cfg_names = re.findall(r"""(?m)^name\s?=\s?([\w-]+)""", setup_cfg)
+
+    names = py_names + cfg_names
+    # If the name doesn't match the expected format, don't fill it into the results.
+    if names and len(names) == 1:
+        all_results[module_dict_key]["pypi_name"] = names[0]
+    return all_results
+
+
+def set_repo_url(all_results, setup_py, setup_cfg, module_dict_key):
+    py_urls = re.findall(r"""(?m)^\s*url\s*=\s*['"]([^'"]+)['"]""", setup_py)
+    cfg_urls = re.findall(r"""(?m)^url\s*=\s*(\S+)""", setup_cfg)
+    urls = py_urls + cfg_urls
+    if urls:
+        assert len(urls) == 1
+        all_results[module_dict_key]["repo_url"] = urls[0]
+    return all_results
+
+
+def set_project_urls(all_results, setup_py, setup_cfg, module_dict_key):
+    py_urls = re.findall(r"""(?ms)^\s*project_urls\s*=\s*({[^}]+})""", setup_py)
+    cfg_urls = re.findall(r"""(?ms)^project_urls\s*=\s*(.*?)(?:^\S|^$)""", setup_cfg)
+    urls = py_urls + cfg_urls
+    if urls:
+        assert len(urls) == 1
+        all_results[module_dict_key]["project_urls"] = urls[0]
+    return all_results

@@ -1,0 +1,3 @@
+repo_name,python38,python39,python310,python.3.11,has_django,django40,django41,django42,TIMESTAMP
+django-splash,0.2.9,,,,True,1.2.0,,1.3.0,2023-11-30
+super-csv,0.9.8,,,,True,v3.1.0,,,2023-12-01

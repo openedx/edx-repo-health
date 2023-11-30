@@ -1,0 +1,18 @@
+dependencies_health_main:
+    check_order:
+        - python.3.8
+        - python.3.9
+        - python.3.10
+        - python.3.11
+        - django.has_django
+        - django.4.0
+        - django.4.1
+        - django.4.2
+    key_aliases:
+        django.has_django: has_django
+        django.4.0: django40
+        django.4.1: django41
+        django.4.2: django42
+        python.3.8: python38
+        python.3.9: python39
+        python.3.10: python310

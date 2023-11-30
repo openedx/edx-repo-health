@@ -1,0 +1,11 @@
+TIMESTAMP: 2023-12-01
+django:
+    '4.0': v3.1.0
+    '4.1': null
+    '4.2': null
+    has_django: true
+python:
+    '3.10': null
+    '3.11': null
+    '3.8': 0.9.8
+    '3.9': null

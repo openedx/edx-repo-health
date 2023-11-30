@@ -19,6 +19,13 @@ def main():
     """
     parser = argparse.ArgumentParser(description="Create basic dashboard")
     parser.add_argument(
+        "--dashboard-name",
+        help="name of dashboard to trigger e.g. repo_health, dependencies_health",
+        dest="dashboard_name",
+        default="repo_health",
+    )
+    
+    parser.add_argument(
         "--data-dir",
         help="location of where data yaml files are located",
         required=True,
@@ -54,7 +61,7 @@ def main():
     args = parser.parse_args()
     # collect configurations if they were input
     configurations = {
-        "main": {"check_order": [], "repo_name_order": [], "key_aliases": {}}
+        "dependencies_health_main": {"check_order": [], "repo_name_order": [], "key_aliases": {}}
     }
     if args.configuration:
         with codecs.open(args.configuration, "r", "utf-8") as f:
@@ -69,7 +76,10 @@ def main():
     data = {}
     for file_path in files:
         file_name = file_path[file_path.rfind("/") + 1:]
-        repo_name = file_name.replace("_repo_health.yaml", "")
+        repo_name = file_name.replace(
+            f"_{'repo' if args.dashboard_name == 'repo_health' else 'dependencies'}_health.yaml"  ,
+            ""
+        )
         # TODO(jinder): maybe add a try block here
         with codecs.open(file_path, "r", "utf-8") as f:
             file_data = f.read()
@@ -89,8 +99,9 @@ def main():
         utils.write_squashed_metadata_to_csv(
             output, args.output_csv + "_" + key, configuration, args.append
         )
-        utils.write_squashed_metadata_to_sqlite(
-            output, f"dashboard_{key}", configuration, args.output_sqlite)
+        if args.dashboard_name == 'repo_health':
+            utils.write_squashed_metadata_to_sqlite(
+                output, f"dashboard_{key}", configuration, args.output_sqlite)
 
 
 if __name__ == "__main__":

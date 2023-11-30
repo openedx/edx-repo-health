@@ -2,6 +2,8 @@
 Utility Functions
 """
 import functools
+import requests
+import json
 import operator
 import os
 import re
@@ -91,3 +93,30 @@ def github_org_repo(git_origin_url):
     match = re.search(URL_PATTERN, git_origin_url)
     assert match is not None
     return match.groups()
+
+
+def get_branch_or_pr_count(org_name, repo_name, pulls_or_branches):
+    """
+    Get the count for branches or pull requests using Github API and add the count to report
+    """
+    url = f"https://api.github.com/repos/{org_name}/{repo_name}/{pulls_or_branches}?per_page=1"
+    count = 0
+
+    response = requests.get(url=url, headers={'Authorization': f'Bearer {os.environ["GITHUB_TOKEN"]}'})
+    if response.ok and json.loads(response.content):
+        count = 1
+        if 'last' in response.links:
+            last_page = response.links['last']['url']
+            count = int(re.findall(r'page=(\d+)', last_page)[1])
+
+    return count
+
+
+def set_branch_and_pr_count(all_results, git_origin_url, module_dict_key):
+    """
+    Takes all_results dict and update branch and pr counts using git_origin_url
+    """
+    org_name, repo_name = github_org_repo(git_origin_url)
+    all_results[module_dict_key]['branch_count'] = get_branch_or_pr_count(org_name, repo_name, 'branches')
+    all_results[module_dict_key]['pulls_count'] = get_branch_or_pr_count(org_name, repo_name, 'pulls')
+    return all_results

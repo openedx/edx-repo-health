@@ -4,6 +4,10 @@ django:
     '4.1': null
     '4.2': null
     has_django: true
+github:
+    branch_count: 12
+    org_name: openedx
+    pulls_count: 8
 python:
     '3.10': null
     '3.11': null

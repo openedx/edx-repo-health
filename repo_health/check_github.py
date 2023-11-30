@@ -5,15 +5,12 @@ import functools
 import json
 import logging
 import operator
-import os
-import re
 
 import pytest
-import requests
 from pytest_repo_health import add_key_to_metadata, health_metadata
 
 from .queries import FETCH_BUILD_CHECK_RUNS
-from .utils import github_org_repo, parse_build_duration_response
+from .utils import parse_build_duration_response, set_branch_and_pr_count
 
 logger = logging.getLogger(__name__)
 
@@ -242,23 +239,8 @@ def check_branch_and_pr_count(all_results, git_origin_url):
     """
     Checks repository integrated with github actions workflow
     """
-    org_name, repo_name = github_org_repo(git_origin_url)
-    all_results[MODULE_DICT_KEY]['branch_count'] = get_branch_or_pr_count(org_name, repo_name, 'branches')
-    all_results[MODULE_DICT_KEY]['pulls_count'] = get_branch_or_pr_count(org_name, repo_name, 'pulls')
-
-
-def get_branch_or_pr_count(org_name, repo_name, pulls_or_branches):
-    """
-    Get the count for branches or pull requests using Github API and add the count to report
-    """
-    url = f"https://api.github.com/repos/{org_name}/{repo_name}/{pulls_or_branches}?per_page=1"
-    count = 0
-
-    response = requests.get(url=url, headers={'Authorization': f'Bearer {os.environ["GITHUB_TOKEN"]}'})
-    if response.ok and json.loads(response.content):
-        count = 1
-        if 'last' in response.links:
-            last_page = response.links['last']['url']
-            count = int(re.findall(r'page=(\d+)', last_page)[1])
-
-    return count
+    all_results = set_branch_and_pr_count(
+        all_results,
+        git_origin_url,
+        MODULE_DICT_KEY
+    )

@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohttp==3.9.0
+aiohttp==3.9.1
     # via
     #   -r requirements/base.txt
     #   github-py
@@ -58,7 +58,7 @@ gitpython==3.1.40
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.23.4
+google-auth==2.24.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -71,7 +71,7 @@ gspread==5.11.3
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
-idna==3.4
+idna==3.6
     # via
     #   -r requirements/base.txt
     #   requests

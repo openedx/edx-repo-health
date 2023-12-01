@@ -4,4 +4,3 @@
 -r base.txt               # Core dependencies for this package
 responses
 pytest-cov
-toml

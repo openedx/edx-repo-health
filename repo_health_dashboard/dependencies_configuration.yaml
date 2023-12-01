@@ -16,3 +16,4 @@ dependencies_health_main:
         python.3.8: python38
         python.3.9: python39
         python.3.10: python310
+        python.3.11: python311

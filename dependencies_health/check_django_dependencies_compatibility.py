@@ -4,7 +4,7 @@
 
 import logging
 
-from .utils import set_django_packages
+from repo_health.utils import set_django_packages
 
 logger = logging.getLogger(__name__)
 

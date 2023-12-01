@@ -4,6 +4,22 @@ django:
     '4.1': null
     '4.2': 1.3.0
     has_django: true
+django_packages:
+    django_32:
+        count: 10
+        list: '["django-crum", "edx-i18n-tools", "django-config-models", "pytest-django",
+            "newrelic", "django-waffle", "edx-django-utils", "code-annotations", "pylint-django",
+            "djangorestframework"]'
+    total:
+        count: 10
+        list: '["django-crum", "edx-i18n-tools", "django-config-models", "pytest-django",
+            "newrelic", "django-waffle", "edx-django-utils", "code-annotations", "pylint-django",
+            "djangorestframework"]'
+    upgraded:
+        count: 10
+        list: '["django-crum", "edx-i18n-tools", "django-config-models", "pytest-django",
+            "newrelic", "django-waffle", "edx-django-utils", "code-annotations", "pylint-django",
+            "djangorestframework"]'
 github:
     branch_count: 47
     org_name: openedx
@@ -13,6 +29,11 @@ python:
     '3.11': null
     '3.8': 0.2.9
     '3.9': null
+requires:
+    boto: false
+    django: true
+    nose: false
+    pytest: true
 setup_py:
     py38_classifiers: true
     pypi_name: django-splash

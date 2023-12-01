@@ -4,6 +4,22 @@ django:
     '4.1': null
     '4.2': null
     has_django: true
+django_packages:
+    django_32:
+        count: 12
+        list: '["pytest-django", "jsonfield", "code-annotations", "edx-celeryutils",
+            "django-model-utils", "django-waffle", "django-crum", "newrelic", "edx-i18n-tools",
+            "edx-django-utils", "pylint-django", "djangorestframework"]'
+    total:
+        count: 12
+        list: '["pytest-django", "jsonfield", "code-annotations", "edx-celeryutils",
+            "django-model-utils", "django-waffle", "django-crum", "newrelic", "edx-i18n-tools",
+            "edx-django-utils", "pylint-django", "djangorestframework"]'
+    upgraded:
+        count: 12
+        list: '["pytest-django", "jsonfield", "code-annotations", "edx-celeryutils",
+            "django-model-utils", "django-waffle", "django-crum", "newrelic", "edx-i18n-tools",
+            "edx-django-utils", "pylint-django", "djangorestframework"]'
 github:
     branch_count: 12
     org_name: openedx
@@ -13,6 +29,11 @@ python:
     '3.11': null
     '3.8': 0.9.8
     '3.9': null
+requires:
+    boto: false
+    django: true
+    nose: false
+    pytest: true
 setup_py:
     py38_classifiers: true
     pypi_name: super-csv

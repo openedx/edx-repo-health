@@ -1,10 +1,7 @@
 import pytest
-from dependencies_health.utils import (
-    find_django_version_in_setup_py_classifier,
-    get_default_branch,
-    get_release_tags,
-    is_django_package
-)
+
+from dependencies_health.utils import (find_django_version_in_setup_py_classifier, get_default_branch, get_release_tags,
+                                       is_django_package)
 
 module_dict_key = "django"
 

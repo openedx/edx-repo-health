@@ -1,9 +1,6 @@
 import pytest
-from dependencies_health.utils import (
-    find_python_version_in_config_files,
-    get_default_branch,
-    get_release_tags
-)
+
+from dependencies_health.utils import find_python_version_in_config_files, get_default_branch, get_release_tags
 
 module_dict_key = "python"
 

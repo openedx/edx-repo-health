@@ -4,7 +4,6 @@
 
 from repo_health.check_dependencies import set_repo_dependencies
 
-
 module_dict_key = "dependencies"
 
 

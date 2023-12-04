@@ -3,5 +3,5 @@
 40,edx-opaque-keys,yes,-,2.2.0,2.2.0,-,"Feb 1, 2021",,,
 103,django-storages,,1.11,1.8,1.1,-,"Jun 21, 2021",https://github.com/edx/upgrades/issues/44,,
 110,edx-django-utils,yes,-,master,4.2.0,4.2.0,"Jul 14, 2021",BOM-2634,,
-30,djangorestframework,,3.12.3,3.11.0,3.12.0,p,"Jun 30, 2021",,,3.12.4
+30,djangorestframework,,3.12.3,3.11.0,3.12.0,3.13.0,"Jun 30, 2021",,,3.12.4
 29,django-waffle,,2.2.0,0.19.0,2.0.0,-,"May 22, 2021",,,

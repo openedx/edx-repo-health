@@ -138,7 +138,7 @@ idna==3.6
     #   -r requirements/quality.txt
     #   requests
     #   yarl
-importlib-metadata==6.9.0
+importlib-metadata==7.0.0
     # via
     #   -r requirements/pip-tools.txt
     #   build
@@ -176,9 +176,8 @@ oauthlib==3.2.2
     # via
     #   -r requirements/quality.txt
     #   requests-oauthlib
-packaging==21.3
+packaging==23.2
     # via
-    #   -c requirements/constraints.txt
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -192,9 +191,8 @@ pbr==6.0.0
     #   stevedore
 pip-tools==7.3.0
     # via -r requirements/pip-tools.txt
-platformdirs==3.11.0
+platformdirs==4.0.0
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   pylint
@@ -244,13 +242,7 @@ pylint-plugin-utils==0.8.2
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pyparsing==3.1.1
-    # via
-    #   -r requirements/ci.txt
-    #   -r requirements/pip-tools.txt
-    #   -r requirements/quality.txt
-    #   packaging
-pyproject-api==1.5.0
+pyproject-api==1.6.1
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -269,7 +261,7 @@ pytest-aiohttp==1.0.5
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-pytest-asyncio==0.21.1
+pytest-asyncio==0.23.2
     # via
     #   -r requirements/quality.txt
     #   pytest-aiohttp
@@ -349,7 +341,7 @@ tomlkit==0.12.3
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.0.0
+tox==4.11.4
     # via -r requirements/ci.txt
 typing-extensions==4.8.0
     # via

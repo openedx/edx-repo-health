@@ -15,21 +15,21 @@ module_dict_key = "setup_py"
 
 
 @pytest.fixture(scope="session")
-def fixture_setup_py(repo_path):
+def fixture_setup_py(repo_path): # pylint: disable=redefined-outer-name
     """Fixture containing the text content of setup.py"""
     full_path = os.path.join(repo_path, "setup.py")
     return get_file_content(full_path)
 
 
 @pytest.fixture(scope="session")
-def fixture_setup_cfg(repo_path):
+def fixture_setup_cfg(repo_path): # pylint: disable=redefined-outer-name
     """Fixture containing the text content of setup.cfg"""
     full_path = os.path.join(repo_path, "setup.cfg")
     return get_file_content(full_path)
 
 
 @pytest.fixture(scope="session")
-def fixture_python_version(fixture_setup_py):
+def fixture_python_version(fixture_setup_py): # pylint: disable=redefined-outer-name
     """
     The list of python versions in setup.py classifiers
     """
@@ -55,6 +55,9 @@ def check_travis_python_versions(fixture_python_version, all_results):
 
 
 def set_pypi_name(all_results, fixture_setup_py, fixture_setup_cfg, module_dict_key):
+    """"
+    A generic function that is use to set pypi name in the all_results dict
+    """
     # Look in setup.py for:     name="package",
     py_names = re.findall(r"""(?m)^\s+name\s?=\s?['"]([\w-]+)['"],""", fixture_setup_py)
     # Look in setup.cfg for:    name=package
@@ -68,6 +71,9 @@ def set_pypi_name(all_results, fixture_setup_py, fixture_setup_cfg, module_dict_
 
 
 def set_repo_url(all_results, fixture_setup_py, fixture_setup_cfg, module_dict_key):
+    """
+    A generic function that is use to set repo url in the all_results dict
+    """
     py_urls = re.findall(r"""(?m)^\s*url\s*=\s*['"]([^'"]+)['"]""", fixture_setup_py)
     cfg_urls = re.findall(r"""(?m)^url\s*=\s*(\S+)""", fixture_setup_cfg)
     urls = py_urls + cfg_urls
@@ -78,6 +84,9 @@ def set_repo_url(all_results, fixture_setup_py, fixture_setup_cfg, module_dict_k
 
 
 def set_project_urls(all_results, fixture_setup_py, fixture_setup_cfg, module_dict_key):
+    """
+    A generic function that is use to set project url in the all_results dict
+    """
     py_urls = re.findall(r"""(?ms)^\s*project_urls\s*=\s*({[^}]+})""", fixture_setup_py)
     cfg_urls = re.findall(r"""(?ms)^project_urls\s*=\s*(.*?)(?:^\S|^$)""", fixture_setup_cfg)
     urls = py_urls + cfg_urls

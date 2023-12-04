@@ -12,9 +12,6 @@
 # This file contains all common constraints for edx-repos
 -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
 
-# greater version breaking test.
-packaging==21.3
-
-# gspread==5.12.0 contains breaking changes 
+# gspread==5.12.0 contains breaking changes
 # which break the scheduled repo health job
 gspread<5.12.0

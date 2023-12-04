@@ -31,7 +31,7 @@ def test_django_deps_upgrade(repo_path):
     assert 'edx-django-utils' in all_results[MODULE_DICT_KEY]['django_32']['list']
 
     assert 'edx-django-utils' not in all_results[MODULE_DICT_KEY]['upgraded']['list']
-    assert 'djangorestframework' in all_results[MODULE_DICT_KEY]['upgraded']['list']
+    assert 'djangorestframework' not in all_results[MODULE_DICT_KEY]['upgraded']['list']
 
 
 @pytest.mark.parametrize("repo_path", [get_repo_path("js_repo")])

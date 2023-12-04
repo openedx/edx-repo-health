@@ -2,7 +2,7 @@
  contains check that reads/parses dependencies of a repo
 """
 
-from repo_health.utils import set_repo_dependencies
+from repo_health.check_dependencies import set_repo_dependencies
 
 
 module_dict_key = "dependencies"

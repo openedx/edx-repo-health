@@ -2,7 +2,8 @@
 Checks repository is on github actions workflow and tests are enabled.
 """
 
-from repo_health.utils import github_org_repo, set_branch_and_pr_count
+from repo_health.utils import github_org_repo
+from repo_health.check_github import set_branch_and_pr_count
 
 module_dict_key = "github"
 

@@ -98,7 +98,7 @@ idna==3.6
     #   yarl
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==6.9.0
+importlib-metadata==7.0.0
     # via sphinx
 iniconfig==2.0.0
     # via
@@ -119,9 +119,8 @@ oauthlib==3.2.2
     # via
     #   -r requirements/test.txt
     #   requests-oauthlib
-packaging==21.3
+packaging==23.2
     # via
-    #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   pydata-sphinx-theme
     #   pytest
@@ -150,10 +149,6 @@ pygments==2.17.2
     #   pydata-sphinx-theme
     #   readme-renderer
     #   sphinx
-pyparsing==3.1.1
-    # via
-    #   -r requirements/test.txt
-    #   packaging
 pytest==7.4.3
     # via
     #   -r requirements/test.txt
@@ -165,7 +160,7 @@ pytest-aiohttp==1.0.5
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-pytest-asyncio==0.21.1
+pytest-asyncio==0.23.2
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp

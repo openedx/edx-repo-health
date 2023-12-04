@@ -16,23 +16,24 @@ def check_version_in_toml(version_type, repo_dir, version):
     pyproject_toml_file_path = os.path.join(repo_dir, "pyproject.toml")
     try:
         data = toml.load(get_file_content(pyproject_toml_file_path))
+        classifiers = data.get('project', {}).get('classifiers', [])
+        if version_type == "python":
+            return any(f"Programming Language :: Python :: {version}" in classifier for classifier in classifiers)
+        elif version_type == "django":
+            dependencies = data.get('project', {}).get('dependencies', [])
+            return any(f"Django=={version}" in classifier for classifier in dependencies)
     except FileNotFoundError:
         return False  # File not found
     except toml.TomlDecodeError:
         return False  # Invalid TOML format
 
-    classifiers = data.get('project', {}).get('classifiers', [])
-
-    if version_type == "python":
-        return any(f"Programming Language :: Python :: {version}" in classifier for classifier in classifiers)
-    elif version_type == "django":
-        dependencies = data.get('project', {}).get('dependencies', [])
-        return any(f"Django=={version}" in classifier for classifier in dependencies)
-
 
 def get_release_tags(repo_dir):
+    """
+    A util function which is returning all repo release tags
+    """
     try:
-        subprocess.run(['git', 'fetch', '--tags'], cwd=repo_dir)
+        subprocess.run(['git', 'fetch', '--tags'], cwd=repo_dir, check=True)
         git_tags = subprocess.check_output(['git', 'tag', '--sort=version:refname'], cwd=repo_dir, text=True)
         all_tags_list = git_tags.strip().split('\n')
         latest_tag = get_latest_release_tag(repo_dir)
@@ -49,6 +50,9 @@ def get_release_tags(repo_dir):
 
 
 def get_latest_release_tag(repo_dir):
+    """
+    A util function which returns a latest release tag
+    """
     try:
         # Run the Git command to get the latest tag on the specified branch
         return subprocess.check_output(
@@ -64,7 +68,10 @@ def get_latest_release_tag(repo_dir):
 
 
 def get_default_branch(repo_dir):
-    # Get the symbolic reference for the remote's HEAD
+    """
+    Get the symbolic reference for the remote's HEAD
+    or default branch name
+    """
     try:
         default_branch_ref = subprocess.check_output(
             ['git', 'symbolic-ref', 'refs/remotes/origin/HEAD'],
@@ -79,7 +86,11 @@ def get_default_branch(repo_dir):
 
 
 def find_django_version_in_setup_py_classifier(repo_dir, tag, version):
-    subprocess.run(['git', 'checkout', tag], cwd=repo_dir)
+    """
+    A utill function which is checking the provided python version
+    in classifiers inside config files like setup.py and setup.cfg
+    """
+    subprocess.run(['git', 'checkout', tag], cwd=repo_dir, check=True)
     setup_py_path = os.path.join(repo_dir, 'setup.py')
     setup_cfg_path = os.path.join(repo_dir, 'setup.cfg')
 
@@ -100,7 +111,11 @@ def find_django_version_in_setup_py_classifier(repo_dir, tag, version):
 
 
 def find_python_version_in_config_files(repo_dir, tag, version):
-    subprocess.run(['git', 'checkout', tag], cwd=repo_dir)
+    """
+    A utill function which is checking the provided python version
+    in config files like setup.py and setup.cfg
+    """
+    subprocess.run(['git', 'checkout', tag], cwd=repo_dir, check=True)
     setup_py_path = os.path.join(repo_dir, 'setup.py')
     setup_cfg_path = os.path.join(repo_dir, 'setup.cfg')
 
@@ -121,6 +136,9 @@ def find_python_version_in_config_files(repo_dir, tag, version):
 
 
 def is_django_package(repo_dir):
+    """
+    A util function that checks if it is Django package
+    """
     setup_files = ['setup.py', 'setup.cfg']
 
     for setup_file in setup_files:

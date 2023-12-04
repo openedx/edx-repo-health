@@ -12,7 +12,7 @@ def check_github_actions_integration(all_results, git_origin_url):
     """
     Checks repository's org name
     """
-    org_name, repo_name = github_org_repo(git_origin_url)
+    org_name, repo_name = github_org_repo(git_origin_url) # pylint: disable=unused-import
     all_results[module_dict_key]['org_name'] = org_name
 
 

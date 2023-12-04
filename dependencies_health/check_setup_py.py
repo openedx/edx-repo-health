@@ -6,7 +6,7 @@ And gathers info
 import re
 
 from repo_health.check_setup_py import (fixture_python_version, fixture_setup_cfg, fixture_setup_py, set_pypi_name,
-                                        set_repo_url)
+                                        set_repo_url) # pylint: disable=unused-import
 
 module_dict_key = "setup_py"
 

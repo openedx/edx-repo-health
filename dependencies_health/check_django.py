@@ -1,3 +1,6 @@
+"""
+Contains the check to check the Django versions releases
+"""
 import pytest
 
 from dependencies_health.utils import (find_django_version_in_setup_py_classifier, get_default_branch, get_release_tags,
@@ -13,9 +16,12 @@ def fixture_repo_release_tags(repo_path):
 
 
 def check_django_support_releases(repo_release_tags, all_results, repo_path):
+    """
+    Check to check the django versions in the releases
+    """
     if not repo_release_tags:
         all_results[module_dict_key] = {}
-        print(f"There is not tag found")
+        print("There is not tag found")
         return
     latest_tag_having_django_support = None
     django_versions = ['4.0', '4.1', '4.2']
@@ -27,7 +33,7 @@ def check_django_support_releases(repo_release_tags, all_results, repo_path):
         for version in django_versions:
             for tag in desc_tags_list:
                 if not find_django_version_in_setup_py_classifier(repo_path, tag, version):
-                    if tag == desc_tags_list[0]:  # if the tag is the latest, then try with the default latest/default branch as well
+                    if tag == desc_tags_list[0]: # try with default branch if the latest tag
                         default_branch = get_default_branch(repo_path)
                         if find_django_version_in_setup_py_classifier(repo_path, default_branch, version):
                             all_results[module_dict_key][version] = default_branch

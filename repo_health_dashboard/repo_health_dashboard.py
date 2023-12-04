@@ -24,7 +24,6 @@ def main():
         dest="dashboard_name",
         default="repo_health",
     )
-    
     parser.add_argument(
         "--data-dir",
         help="location of where data yaml files are located",

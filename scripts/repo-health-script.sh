@@ -43,7 +43,6 @@ METADATA_FILE_DIST="docs/checks_metadata.yaml"
 failed_repos=()
 
 OUTPUT_FILE_POSTFIX="_repo_health.yaml"
-
 # Git clone each repo in org and run checks on it
 input="repositories.txt"
 while IFS= read -r line; do
@@ -150,7 +149,7 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
         for full_name in "${failed_repos[@]}"; do
             OUTPUT_FILE_NAME="${full_name}${OUTPUT_FILE_POSTFIX}"
             echo "reverting repo health data for ${OUTPUT_FILE_NAME}"
-            git checkout -- "${WORKSPACE}/individual_repo_data/${OUTPUT_FILE_NAME}"
+            git clean -f "individual_repo_data/${OUTPUT_FILE_NAME}"
         done
     fi
 
@@ -173,7 +172,7 @@ if [[ ${#failed_repos[@]} -ne 0 ]]; then
     echo
     echo
     echo "TLDR Runbook(More detailed runbook: https://openedx.atlassian.net/wiki/spaces/AT/pages/3229057351/Repo+Health+Runbook ):"
-    echo "  To resolve, search the console output for 'ERRORS' (without the quotes), or search for any"
+    echo "  To resolve, search the console output for 'ERROR' (without the quotes), or search for any"
     echo "  of the failed repo names listed below."
     echo "The following repositories failed while executing pytest repo-health scripts causing the job to fail:"
     echo

@@ -3,39 +3,14 @@ Checks to see if setup.py follows minimum standards
 And gathers info
 """
 
-import os
 import re
 
-import pytest
 from pytest_repo_health import add_key_to_metadata
 
-from repo_health import get_file_content
+from .fixtures.config_files import (fixture_python_version, fixture_setup_cfg,  # pylint: disable=unused-import
+                                    fixture_setup_py)
 
 module_dict_key = "setup_py"
-
-
-@pytest.fixture(scope="session")
-def fixture_setup_py(repo_path): # pylint: disable=redefined-outer-name
-    """Fixture containing the text content of setup.py"""
-    full_path = os.path.join(repo_path, "setup.py")
-    return get_file_content(full_path)
-
-
-@pytest.fixture(scope="session")
-def fixture_setup_cfg(repo_path): # pylint: disable=redefined-outer-name
-    """Fixture containing the text content of setup.cfg"""
-    full_path = os.path.join(repo_path, "setup.cfg")
-    return get_file_content(full_path)
-
-
-@pytest.fixture(scope="session")
-def fixture_python_version(fixture_setup_py): # pylint: disable=redefined-outer-name
-    """
-    The list of python versions in setup.py classifiers
-    """
-    regex_pattern = r"Programming Language :: Python :: ([\d\.]+)"
-    python_classifiers = re.findall(regex_pattern, fixture_setup_py, re.MULTILINE)
-    return python_classifiers
 
 
 @add_key_to_metadata((module_dict_key, "py38_classifiers"))

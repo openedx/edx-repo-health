@@ -7,15 +7,14 @@ import json
 import logging
 import os
 import re
-import tempfile
 from pathlib import Path
 
-import pytest
-import requests
 from packaging.version import parse
 from pytest_repo_health import health_metadata
 
 from repo_health import get_file_lines
+
+from .fixtures.config_files import django_dependency_sheet_fixture  # pylint: disable=unused-import
 
 logger = logging.getLogger(__name__)
 
@@ -23,26 +22,6 @@ MODULE_DICT_KEY = "django_packages"
 
 GITHUB_URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).*#egg=(?P<package>[^\/]+).*"
 PYPI_PACKAGE_PATTERN = r"(?P<package_name>[^\/]+)==(?P<version>[^\/]+)"
-DJANGO_DEPS_SHEET_URL = (
-    "https://docs.google.com/spreadsheets/d/19-BzpcX3XvqlazHcLhn1ZifBMVNund15EwY3QQM390M/export?format=csv"
-)
-
-
-@pytest.fixture(scope="session")  # pragma: no cover
-def django_dependency_sheet_fixture():
-    """
-    Returns the path for csv file which contains django dependencies status.
-    Also, makes a request for latest sheet & dumps response into the csv file if request was successful.
-    """
-    tmpdir = tempfile.mkdtemp()
-    csv_filepath = os.path.join(tmpdir, "django_dependencies_sheet.csv")
-
-    res = requests.get(DJANGO_DEPS_SHEET_URL)
-    if res.status_code == 200:
-        with open(csv_filepath, 'w', encoding="utf8") as fp:
-            fp.write(res.text)
-
-    return csv_filepath
 
 
 class DjangoDependencyReader:
@@ -161,14 +140,14 @@ def get_upgraded_dependencies_count(repo_path, django_dependency_sheet) -> tuple
     return django_deps, deps_support_django32, upgraded_in_repo
 
 
-def set_django_packages(repo_path, all_results, django_deps_sheet, module_dict_key):
+def set_django_packages(repo_path, all_results, django_deps_sheet):
     """
     Reuseable function which is setting django packages details in all_results dict
     """
     django_deps, support_django32_deps, upgraded_in_repo = get_upgraded_dependencies_count(
         repo_path, django_deps_sheet)
 
-    all_results[module_dict_key] = {
+    all_results[MODULE_DICT_KEY] = {
         'total': {
             'count': len(django_deps),
             'list': json.dumps(django_deps),
@@ -194,13 +173,12 @@ def set_django_packages(repo_path, all_results, django_deps_sheet, module_dict_k
         "upgraded": "Dependencies that are upgraded to support Django 3.2"
     },
 )
-def check_django_dependencies_status(repo_path, all_results, django_deps_sheet):
+def check_django_dependencies_status(repo_path, all_results, django_dependency_sheet_fixture):
     """
     Test to find the django dependencies compatibility
     """
     all_results = set_django_packages(
         repo_path,
         all_results,
-        django_deps_sheet,
-        MODULE_DICT_KEY
+        django_dependency_sheet_fixture
     )

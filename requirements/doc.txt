@@ -165,7 +165,7 @@ pytest-aiohttp==1.0.5
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-pytest-asyncio==0.21.1
+pytest-asyncio==0.23.2
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp

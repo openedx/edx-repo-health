@@ -237,6 +237,11 @@ def get_dependencies(repo_path) -> dict:
     return dependencies_output
 
 
+def set_repo_dependencies(all_results, repo_path):
+    all_results[module_dict_key] = get_dependencies(repo_path)
+    return all_results
+
+
 @health_metadata(
     [module_dict_key],
     {
@@ -256,4 +261,7 @@ def check_dependencies(repo_path, all_results):
     """
     Test to find the dependencies of the repo
     """
-    all_results[module_dict_key] = get_dependencies(repo_path)
+    all_results = set_repo_dependencies(
+        all_results,
+        repo_path
+    )

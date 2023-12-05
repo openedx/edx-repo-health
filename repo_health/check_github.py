@@ -238,15 +238,6 @@ async def check_languages(all_results, github_repo):
             results[language] = 0
 
 
-def check_branch_and_pr_count(all_results, git_origin_url):
-    """
-    Checks repository integrated with github actions workflow
-    """
-    org_name, repo_name = github_org_repo(git_origin_url)
-    all_results[MODULE_DICT_KEY]['branch_count'] = get_branch_or_pr_count(org_name, repo_name, 'branches')
-    all_results[MODULE_DICT_KEY]['pulls_count'] = get_branch_or_pr_count(org_name, repo_name, 'pulls')
-
-
 def get_branch_or_pr_count(org_name, repo_name, pulls_or_branches):
     """
     Get the count for branches or pull requests using Github API and add the count to report
@@ -262,3 +253,24 @@ def get_branch_or_pr_count(org_name, repo_name, pulls_or_branches):
             count = int(re.findall(r'page=(\d+)', last_page)[1])
 
     return count
+
+
+def set_branch_and_pr_count(all_results, git_origin_url, module_dict_key):
+    """
+    Takes all_results dict and update branch and pr counts using git_origin_url
+    """
+    org_name, repo_name = github_org_repo(git_origin_url)
+    all_results[module_dict_key]['branch_count'] = get_branch_or_pr_count(org_name, repo_name, 'branches')
+    all_results[module_dict_key]['pulls_count'] = get_branch_or_pr_count(org_name, repo_name, 'pulls')
+    return all_results
+
+
+def check_branch_and_pr_count(all_results, git_origin_url):
+    """
+    Checks repository integrated with github actions workflow
+    """
+    all_results = set_branch_and_pr_count(
+        all_results,
+        git_origin_url,
+        MODULE_DICT_KEY
+    )

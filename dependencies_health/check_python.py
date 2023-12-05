@@ -40,5 +40,5 @@ def check_python_support_releases(repo_release_tags, all_results, repo_path):
                 else:
                     all_results[module_dict_key][version] = latest_tag_having_python_support
                 break
-            else:
-                latest_tag_having_python_support = tag
+            # if python version found in config files then set it as lastest tag having python support
+            latest_tag_having_python_support = tag

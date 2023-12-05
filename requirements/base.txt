@@ -77,7 +77,7 @@ pytest==7.4.3
     #   pytest-repo-health
 pytest-aiohttp==1.0.5
     # via pytest-repo-health
-pytest-asyncio==0.21.1
+pytest-asyncio==0.23.2
     # via
     #   -r requirements/base.in
     #   pytest-aiohttp

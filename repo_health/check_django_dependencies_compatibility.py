@@ -7,14 +7,15 @@ import json
 import logging
 import os
 import re
+import tempfile
 from pathlib import Path
 
+import pytest
+import requests
 from packaging.version import parse
 from pytest_repo_health import health_metadata
 
 from repo_health import get_file_lines
-
-from .fixtures.config_files import django_dependency_sheet_fixture  # pylint: disable=unused-import
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +23,26 @@ MODULE_DICT_KEY = "django_packages"
 
 GITHUB_URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).*#egg=(?P<package>[^\/]+).*"
 PYPI_PACKAGE_PATTERN = r"(?P<package_name>[^\/]+)==(?P<version>[^\/]+)"
+DJANGO_DEPS_SHEET_URL = (
+    "https://docs.google.com/spreadsheets/d/19-BzpcX3XvqlazHcLhn1ZifBMVNund15EwY3QQM390M/export?format=csv"
+)
+
+
+@pytest.fixture(name="django_dependency_sheet", scope="session")  # pragma: no cover
+def django_dependency_sheet_fixture():
+    """
+    Returns the path for csv file which contains django dependencies status.
+    Also, makes a request for latest sheet & dumps response into the csv file if request was successful.
+    """
+    tmpdir = tempfile.mkdtemp()
+    csv_filepath = os.path.join(tmpdir, "django_dependencies_sheet.csv")
+
+    res = requests.get(DJANGO_DEPS_SHEET_URL)
+    if res.status_code == 200:
+        with open(csv_filepath, 'w', encoding="utf8") as fp:
+            fp.write(res.text)
+
+    return csv_filepath
 
 
 class DjangoDependencyReader:
@@ -173,12 +194,12 @@ def set_django_packages(repo_path, all_results, django_deps_sheet):
         "upgraded": "Dependencies that are upgraded to support Django 3.2"
     },
 )
-def check_django_dependencies_status(repo_path, all_results, django_dependency_sheet_fixture):
+def check_django_dependencies_status(repo_path, all_results, django_dependency_sheet):
     """
     Test to find the django dependencies compatibility
     """
     all_results = set_django_packages(
         repo_path,
         all_results,
-        django_dependency_sheet_fixture
+        django_dependency_sheet
     )

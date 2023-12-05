@@ -7,4 +7,3 @@
 
 diff-cover                # Changeset diff test coverage
 rich                      # Fancy formatting for console dashboards
-tox-battery               # Makes tox aware of requirements file changes

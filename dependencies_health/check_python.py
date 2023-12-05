@@ -22,22 +22,23 @@ def check_python_support_releases(repo_release_tags, all_results, repo_path):
         all_results[module_dict_key] = {}
         print("There is not tag found")
         return
-    latest_tag_having_python_support = None
     python_versions = ['3.8', '3.9', '3.10', '3.11']
     all_results[module_dict_key] = {}
     desc_tags_list = list(reversed(repo_release_tags))
     for version in python_versions:
+        latest_tag_having_python_support = None
         for tag in desc_tags_list:
             if not find_python_version_in_config_files(repo_path, tag, version):
-                if tag == desc_tags_list[0]: # try with the default latest/default branch if latest tag
+                # try with the default latest/default branch if it is latest tag
+                # because support sometimes added in master or default branch and not released
+                if tag == desc_tags_list[0]:
                     default_branch = get_default_branch(repo_path)
                     if find_python_version_in_config_files(repo_path, default_branch, version):
                         all_results[module_dict_key][version] = default_branch
                     else:
                         all_results[module_dict_key][version] = None
-                    break
-
-                all_results[module_dict_key][version] = latest_tag_having_python_support
+                else:
+                    all_results[module_dict_key][version] = latest_tag_having_python_support
                 break
             else:
                 latest_tag_having_python_support = tag

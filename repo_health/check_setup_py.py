@@ -54,7 +54,7 @@ def check_travis_python_versions(fixture_python_version, all_results):
     all_results[module_dict_key]["python_versions"] = fixture_python_version
 
 
-def set_pypi_name(all_results, fixture_setup_py, fixture_setup_cfg, module_dict_key):
+def set_pypi_name(all_results, fixture_setup_py, fixture_setup_cfg):
     """"
     A generic function that is use to set pypi name in the all_results dict
     """
@@ -70,7 +70,7 @@ def set_pypi_name(all_results, fixture_setup_py, fixture_setup_cfg, module_dict_
     return all_results
 
 
-def set_repo_url(all_results, fixture_setup_py, fixture_setup_cfg, module_dict_key):
+def set_repo_url(all_results, fixture_setup_py, fixture_setup_cfg):
     """
     A generic function that is use to set repo url in the all_results dict
     """
@@ -83,7 +83,7 @@ def set_repo_url(all_results, fixture_setup_py, fixture_setup_cfg, module_dict_k
     return all_results
 
 
-def set_project_urls(all_results, fixture_setup_py, fixture_setup_cfg, module_dict_key):
+def set_project_urls(all_results, fixture_setup_py, fixture_setup_cfg):
     """
     A generic function that is use to set project url in the all_results dict
     """
@@ -104,8 +104,7 @@ def check_pypi_name(fixture_setup_py, fixture_setup_cfg, all_results):
     all_results = set_pypi_name(
         all_results,
         fixture_setup_py,
-        fixture_setup_cfg,
-        module_dict_key
+        fixture_setup_cfg
     )
 
 
@@ -117,8 +116,7 @@ def check_repo_url(fixture_setup_py, fixture_setup_cfg, all_results):
     all_results = set_repo_url(
         all_results,
         fixture_setup_py,
-        fixture_setup_cfg,
-        module_dict_key
+        fixture_setup_cfg
     )
 
 
@@ -131,6 +129,5 @@ def check_project_urls(fixture_setup_py, fixture_setup_cfg, all_results):
     all_results = set_project_urls(
         all_results,
         fixture_setup_py,
-        fixture_setup_cfg,
-        module_dict_key
+        fixture_setup_cfg
     )

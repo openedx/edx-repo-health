@@ -1,3 +1,6 @@
+"""
+Utilties having functions using in dependencies health checks
+"""
 import os
 import subprocess
 
@@ -6,7 +9,7 @@ import toml
 from repo_health import get_file_content
 
 
-def check_version_in_toml(version_type, repo_dir, version):
+def find_version_in_toml(version_type, repo_dir, version):
     """
     version_type: Django or Python
     repo_dir: repository path
@@ -22,6 +25,8 @@ def check_version_in_toml(version_type, repo_dir, version):
         elif version_type == "django":
             dependencies = data.get('project', {}).get('dependencies', [])
             return any(f"Django=={version}" in classifier for classifier in dependencies)
+        else:
+            return False
     except FileNotFoundError:
         return False  # File not found
     except toml.TomlDecodeError:
@@ -105,7 +110,7 @@ def find_django_version_in_setup_py_classifier(repo_dir, tag, version):
     if setup_cfg_path:
         if f"Framework :: Django :: {version}" in get_file_content(setup_cfg_path):
             return True
-    if check_version_in_toml("django", repo_dir, version):
+    if find_version_in_toml("django", repo_dir, version):
         return True
     return False
 
@@ -130,7 +135,7 @@ def find_python_version_in_config_files(repo_dir, tag, version):
     if setup_cfg_path:
         if f"Programming Language :: Python :: {version}" in get_file_content(setup_cfg_path):
             return True
-    if check_version_in_toml("python", repo_dir, version):
+    if find_version_in_toml("python", repo_dir, version):
         return True
     return False
 

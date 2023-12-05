@@ -237,7 +237,7 @@ def get_dependencies(repo_path) -> dict:
     return dependencies_output
 
 
-def set_repo_dependencies(all_results, repo_path, module_dict_key):
+def set_repo_dependencies(all_results, repo_path):
     all_results[module_dict_key] = get_dependencies(repo_path)
     return all_results
 
@@ -263,6 +263,5 @@ def check_dependencies(repo_path, all_results):
     """
     all_results = set_repo_dependencies(
         all_results,
-        repo_path,
-        module_dict_key
+        repo_path
     )

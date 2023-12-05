@@ -4,8 +4,6 @@
 
 from repo_health.check_dependencies import set_repo_dependencies
 
-module_dict_key = "dependencies"
-
 
 def check_dependencies(repo_path, all_results):
     """
@@ -13,6 +11,5 @@ def check_dependencies(repo_path, all_results):
     """
     all_results = set_repo_dependencies(
         all_results,
-        repo_path,
-        module_dict_key
+        repo_path
     )

@@ -18,8 +18,7 @@ def check_pypi_name(fixture_setup_py, fixture_setup_cfg, all_results):
     all_results = set_pypi_name(
         all_results,
         fixture_setup_py,
-        fixture_setup_cfg,
-        module_dict_key
+        fixture_setup_cfg
     )
 
 
@@ -44,8 +43,7 @@ def check_repo_url(fixture_setup_py, fixture_setup_cfg, all_results):
     all_results = set_repo_url(
         all_results,
         fixture_setup_py,
-        fixture_setup_cfg,
-        module_dict_key
+        fixture_setup_cfg
     )
 
 

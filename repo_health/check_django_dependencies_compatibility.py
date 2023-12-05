@@ -162,6 +162,9 @@ def get_upgraded_dependencies_count(repo_path, django_dependency_sheet) -> tuple
 
 
 def set_django_packages(repo_path, all_results, django_deps_sheet, module_dict_key):
+    """
+    Reuseable function which is setting django packages details in all_results dict
+    """
     django_deps, support_django32_deps, upgraded_in_repo = get_upgraded_dependencies_count(
         repo_path, django_deps_sheet)
 

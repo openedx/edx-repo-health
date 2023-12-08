@@ -58,7 +58,7 @@ gitpython==3.1.40
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.24.0
+google-auth==2.25.1
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -122,7 +122,7 @@ pytest-aiohttp==1.0.5
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-pytest-asyncio==0.21.1
+pytest-asyncio==0.23.2
     # via
     #   -r requirements/base.txt
     #   pytest-aiohttp
@@ -164,7 +164,7 @@ urllib3==2.1.0
     #   -r requirements/base.txt
     #   requests
     #   responses
-yarl==1.9.3
+yarl==1.9.4
     # via
     #   -r requirements/base.txt
     #   aiohttp

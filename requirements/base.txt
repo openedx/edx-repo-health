@@ -34,7 +34,7 @@ github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f
     # via -r requirements/github.in
 gitpython==3.1.40
     # via pytest-repo-health
-google-auth==2.24.0
+google-auth==2.25.1
     # via
     #   google-auth-oauthlib
     #   gspread
@@ -77,7 +77,7 @@ pytest==7.4.3
     #   pytest-repo-health
 pytest-aiohttp==1.0.5
     # via pytest-repo-health
-pytest-asyncio==0.21.1
+pytest-asyncio==0.23.2
     # via
     #   -r requirements/base.in
     #   pytest-aiohttp
@@ -99,5 +99,5 @@ tomli==2.0.1
     # via pytest
 urllib3==2.1.0
     # via requests
-yarl==1.9.3
+yarl==1.9.4
     # via aiohttp

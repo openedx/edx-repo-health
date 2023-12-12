@@ -265,6 +265,8 @@ def set_branch_and_pr_count(all_results, git_origin_url, module_dict_key):
     return all_results
 
 
+@pytest.mark.py_dependency_health
+@pytest.mark.repo_health
 def check_branch_and_pr_count(all_results, git_origin_url):
     """
     Checks repository integrated with github actions workflow

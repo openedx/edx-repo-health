@@ -6,6 +6,7 @@ import json
 import logging
 import os
 import re
+import pytest
 from abc import ABC, abstractmethod
 from pathlib import Path
 
@@ -257,6 +258,8 @@ def set_repo_dependencies(all_results, repo_path):
         "js.dev": "list of javascript development dependencies"
     },
 )
+@pytest.mark.py_dependency_health
+@pytest.mark.repo_health
 def check_dependencies(repo_path, all_results):
     """
     Test to find the dependencies of the repo

@@ -194,6 +194,8 @@ def set_django_packages(repo_path, all_results, django_deps_sheet):
         "upgraded": "Dependencies that are upgraded to support Django 3.2"
     },
 )
+@pytest.mark.py_dependency_health
+@pytest.mark.repo_health
 def check_django_dependencies_status(repo_path, all_results, django_dependency_sheet):
     """
     Test to find the django dependencies compatibility

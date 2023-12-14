@@ -195,7 +195,7 @@ def set_django_packages(repo_path, all_results, django_deps_sheet):
     },
 )
 @pytest.mark.py_dependency_health
-@pytest.mark.repo_health
+@pytest.mark.edx_health
 def check_django_dependencies_status(repo_path, all_results, django_dependency_sheet):
     """
     Test to find the django dependencies compatibility

@@ -5,6 +5,7 @@ Checks repository open dependabot alert and collects metrics.
 import logging
 import os
 
+import pytest
 import requests
 from pytest_repo_health import health_metadata
 
@@ -46,6 +47,7 @@ def get_github_dependabot_api_response(org_name, repo_name):
         "incomplete_results": "Indicates if there are additional open alerts beyond the page count limit of 100"
     }
 )
+@pytest.mark.edx_health
 def check_dependabot_alert_stats(all_results, git_origin_url):
     """
     Checks repo stats for dependabot alerts

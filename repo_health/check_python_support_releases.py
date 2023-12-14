@@ -1,11 +1,12 @@
 """
-Contains the checks to check the python versions releases
+Contains the checks to check the python support releases
 """
 import pytest
+from pytest_repo_health import health_metadata
 
-from dependencies_health.utils import find_python_version_in_config_files, get_default_branch, get_release_tags
+from .utils import find_python_version_in_config_files, get_default_branch, get_release_tags
 
-module_dict_key = "python"
+MODULE_DICT_KEY = "python"
 
 
 @pytest.fixture(name='repo_release_tags')
@@ -14,16 +15,26 @@ def fixture_repo_release_tags(repo_path):
     return get_release_tags(repo_path)
 
 
+@health_metadata(
+    [MODULE_DICT_KEY],
+    {
+        "3.8": "Which release added support for Python 3.8",
+        "3.9": "Which release added support for Python 3.9",
+        "3.10": "Which release added support for Python 3.10",
+        "3.11": "Which release added support for Python 3.11",
+    },
+)
+@pytest.mark.py_dependency_health
 def check_python_support_releases(repo_release_tags, all_results, repo_path):
     """
     Check to see the python version releases for 3.8, 3.9, 3.10, 3.11
     """
     if not repo_release_tags:
-        all_results[module_dict_key] = {}
+        all_results[MODULE_DICT_KEY] = {}
         print("There is not tag found")
         return
     python_versions = ['3.8', '3.9', '3.10', '3.11']
-    all_results[module_dict_key] = {}
+    all_results[MODULE_DICT_KEY] = {}
     desc_tags_list = list(reversed(repo_release_tags))
     for version in python_versions:
         latest_tag_having_python_support = None
@@ -34,11 +45,11 @@ def check_python_support_releases(repo_release_tags, all_results, repo_path):
                 if tag == desc_tags_list[0]:
                     default_branch = get_default_branch(repo_path)
                     if find_python_version_in_config_files(repo_path, default_branch, version):
-                        all_results[module_dict_key][version] = default_branch
+                        all_results[MODULE_DICT_KEY][version] = default_branch
                     else:
-                        all_results[module_dict_key][version] = None
+                        all_results[MODULE_DICT_KEY][version] = None
                 else:
-                    all_results[module_dict_key][version] = latest_tag_having_python_support
+                    all_results[MODULE_DICT_KEY][version] = latest_tag_having_python_support
                 break
             # if python version found in config files then set it as lastest tag having python support
             latest_tag_having_python_support = tag

@@ -72,6 +72,7 @@ def find_worksheet_with_actions(google_creds_file, spreadsheet_url, worksheet_id
         "notes": "Notes maintained by the owner",
     },
 )
+@pytest.mark.edx_health
 def check_ownership(all_results, git_origin_url):
     """
     Get all the fields of interest from the tech ownership spreadsheet entry

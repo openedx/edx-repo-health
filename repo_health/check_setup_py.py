@@ -40,7 +40,7 @@ def fixture_python_version(setup_py):
 
 @add_key_to_metadata((module_dict_key, "py38_classifiers"))
 @pytest.mark.py_dependency_health
-@pytest.mark.repo_health
+@pytest.mark.edx_health
 def check_has_python_38_classifiers(python_version, all_results):
     """
     Are there classifiers with python 3.8?
@@ -50,7 +50,7 @@ def check_has_python_38_classifiers(python_version, all_results):
 
 @add_key_to_metadata((module_dict_key, "python_versions"))
 @pytest.mark.py_dependency_health
-@pytest.mark.repo_health
+@pytest.mark.edx_health
 def check_travis_python_versions(python_version, all_results):
     """
     Add list of python versions to the results
@@ -102,7 +102,7 @@ def set_project_urls(all_results, setup_py_content, setup_cfg_content):
 
 @add_key_to_metadata((module_dict_key, "pypi_name"))
 @pytest.mark.py_dependency_health
-@pytest.mark.repo_health
+@pytest.mark.edx_health
 def check_pypi_name(setup_py, setup_cfg, all_results):
     """
     Get the name of the PyPI package for this repo.
@@ -116,7 +116,7 @@ def check_pypi_name(setup_py, setup_cfg, all_results):
 
 @add_key_to_metadata((module_dict_key, "repo_url"))
 @pytest.mark.py_dependency_health
-@pytest.mark.repo_health
+@pytest.mark.edx_health
 def check_repo_url(setup_py, setup_cfg, all_results):
     """
     Get the repo URL.
@@ -130,7 +130,7 @@ def check_repo_url(setup_py, setup_cfg, all_results):
 
 @add_key_to_metadata((module_dict_key, "project_urls"))
 @pytest.mark.py_dependency_health
-@pytest.mark.repo_health
+@pytest.mark.edx_health
 def check_project_urls(setup_py, setup_cfg, all_results):
     """
     Get the additional project URLs.

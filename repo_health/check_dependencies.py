@@ -6,10 +6,10 @@ import json
 import logging
 import os
 import re
-import pytest
 from abc import ABC, abstractmethod
 from pathlib import Path
 
+import pytest
 from pytest_repo_health import health_metadata
 
 from repo_health import get_file_content, get_file_lines
@@ -259,7 +259,7 @@ def set_repo_dependencies(all_results, repo_path):
     },
 )
 @pytest.mark.py_dependency_health
-@pytest.mark.repo_health
+@pytest.mark.edx_health
 def check_dependencies(repo_path, all_results):
     """
     Test to find the dependencies of the repo

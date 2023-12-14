@@ -4,8 +4,8 @@ Checks repository is on github actions workflow and tests are enabled.
 import json
 import logging
 import os
-import pytest
 
+import pytest
 import requests
 from pytest_repo_health import add_key_to_metadata
 
@@ -74,7 +74,7 @@ class GitHubIntegrationHandler:
 
 @add_key_to_metadata((module_dict_key,))
 @pytest.mark.py_dependency_health
-@pytest.mark.repo_health
+@pytest.mark.edx_health
 def check_github_actions_integration(all_results, git_origin_url):
     """
     Checks repository integrated with github actions workflow

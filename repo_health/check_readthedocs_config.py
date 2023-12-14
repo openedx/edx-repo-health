@@ -39,6 +39,7 @@ def fixture_readthedocs_config_details(repo_path):
 
 
 @add_key_to_metadata((module_dict_key, "exists"))
+@pytest.mark.edx_health
 def check_readthedocs_file_exists(readthedocs_config_details, all_results):
     """
     Check to see readthedocs exits
@@ -47,6 +48,7 @@ def check_readthedocs_file_exists(readthedocs_config_details, all_results):
 
 
 @add_key_to_metadata((module_dict_key, "file_name"))
+@pytest.mark.edx_health
 def check_readthedocs_file_name(readthedocs_config_details, all_results):
     """
     Check to set the readthedocs file name
@@ -57,6 +59,7 @@ def check_readthedocs_file_name(readthedocs_config_details, all_results):
 
 
 @add_key_to_metadata((module_dict_key, "version"))
+@pytest.mark.edx_health
 def check_readthedocs_file_version(readthedocs_config_details, all_results):
     """
     Check to set the file version of readthedocs file

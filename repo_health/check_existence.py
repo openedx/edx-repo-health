@@ -1,7 +1,7 @@
 """
 Functions to check the existence of files.
 """
-
+import pytest
 from pytest_repo_health import health_metadata
 
 from .utils import dir_exists, file_exists
@@ -40,6 +40,7 @@ req_paths = [
     [module_dict_key],
     req_files
 )
+@pytest.mark.edx_health
 def check_file_existence(repo_path, all_results):
     """
     Checks repository contains file which is not empty at root level
@@ -54,6 +55,7 @@ def check_file_existence(repo_path, all_results):
     [module_dict_key],
     req_dirs
 )
+@pytest.mark.edx_health
 def check_dir_existence(repo_path, all_results):
     """
     Checks whether repository contains required folders at root level
@@ -68,6 +70,7 @@ def check_dir_existence(repo_path, all_results):
     [module_dict_key],
     {key: desc for _, key, desc in req_paths},
 )
+@pytest.mark.edx_health
 def check_path_existence(repo_path, all_results):
     """
     Checks whether the repo contains required files at deep levels.
@@ -81,6 +84,7 @@ def check_path_existence(repo_path, all_results):
     [module_dict_key],
     {"README": "Basic level of documentation in the form of README.rst or README.md"}
 )
+@pytest.mark.edx_health
 def check_readme_existence(repo_path, all_results):
     """
     Check if README exists in repository.
@@ -94,6 +98,7 @@ def check_readme_existence(repo_path, all_results):
     [module_dict_key],
     {"transifex_config": "transifex config file"}
 )
+@pytest.mark.edx_health
 def check_transifex_config_existence(repo_path, all_results):
     """
     Check if transifex config exists in repository.

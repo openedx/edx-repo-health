@@ -161,12 +161,22 @@ def get_upgraded_dependencies_count(repo_path, django_dependency_sheet) -> tuple
     return django_deps, deps_support_django32, upgraded_in_repo
 
 
-def set_django_packages(repo_path, all_results, django_deps_sheet):
+@health_metadata(
+    [MODULE_DICT_KEY],
+    {
+        "total": "Dependencies that depend on Django",
+        "django_32": "Dependencies that support Django 3.2",
+        "upgraded": "Dependencies that are upgraded to support Django 3.2"
+    },
+)
+@pytest.mark.py_dependency_health
+@pytest.mark.edx_health
+def check_django_dependencies_status(repo_path, all_results, django_dependency_sheet):
     """
-    Reuseable function which is setting django packages details in all_results dict
+    Test to find the django dependencies compatibility
     """
     django_deps, support_django32_deps, upgraded_in_repo = get_upgraded_dependencies_count(
-        repo_path, django_deps_sheet)
+        repo_path, django_dependency_sheet)
 
     all_results[MODULE_DICT_KEY] = {
         'total': {
@@ -182,26 +192,3 @@ def set_django_packages(repo_path, all_results, django_deps_sheet):
             'list': json.dumps(upgraded_in_repo)
         }
     }
-
-    return all_results
-
-
-@health_metadata(
-    [MODULE_DICT_KEY],
-    {
-        "total": "Dependencies that depend on Django",
-        "django_32": "Dependencies that support Django 3.2",
-        "upgraded": "Dependencies that are upgraded to support Django 3.2"
-    },
-)
-@pytest.mark.py_dependency_health
-@pytest.mark.edx_health
-def check_django_dependencies_status(repo_path, all_results, django_dependency_sheet):
-    """
-    Test to find the django dependencies compatibility
-    """
-    all_results = set_django_packages(
-        repo_path,
-        all_results,
-        django_dependency_sheet
-    )

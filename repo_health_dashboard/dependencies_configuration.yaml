@@ -1,4 +1,4 @@
-dependencies_health_main:
+py_dependency_health:
     check_order:
         - python.3.8
         - python.3.9

@@ -129,7 +129,7 @@ failed_repo_names=$(echo "${failed_repos[*]}")
 echo "Pushing data"
 cd "${WORKSPACE}/dependencies_health_data"
 repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/repo_health_dashboard/dependencies_configuration.yaml" \
-    --output-csv "${WORKSPACE}/dashboards/dependencies_dashboard" --dashboard-name "dependencies_health"
+    --output-csv "${WORKSPACE}/dashboards/dependencies_dashboard" --dashboard-name "py_dependency_health"
 
 cd "${WORKSPACE}"
 # Only commit the data if running with master and no REPORT_DATE is set.

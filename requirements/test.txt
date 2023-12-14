@@ -33,7 +33,7 @@ charset-normalizer==3.3.2
     # via
     #   -r requirements/base.txt
     #   requests
-coverage[toml]==7.3.2
+coverage[toml]==7.3.3
     # via
     #   coverage
     #   pytest-cov
@@ -58,12 +58,12 @@ gitpython==3.1.40
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.24.0
+google-auth==2.25.2
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
     #   gspread
-google-auth-oauthlib==1.1.0
+google-auth-oauthlib==1.2.0
     # via
     #   -r requirements/base.txt
     #   gspread
@@ -154,6 +154,8 @@ smmap==5.0.1
     # via
     #   -r requirements/base.txt
     #   gitdb
+toml==0.10.2
+    # via -r requirements/base.txt
 tomli==2.0.1
     # via
     #   -r requirements/base.txt
@@ -164,7 +166,7 @@ urllib3==2.1.0
     #   -r requirements/base.txt
     #   requests
     #   responses
-yarl==1.9.3
+yarl==1.9.4
     # via
     #   -r requirements/base.txt
     #   aiohttp

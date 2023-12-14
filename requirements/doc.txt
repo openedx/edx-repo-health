@@ -25,7 +25,7 @@ attrs==23.1.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
-babel==2.13.1
+babel==2.14.0
     # via
     #   pydata-sphinx-theme
     #   sphinx
@@ -43,7 +43,7 @@ charset-normalizer==3.3.2
     # via
     #   -r requirements/test.txt
     #   requests
-coverage[toml]==7.3.2
+coverage[toml]==7.3.3
     # via
     #   -r requirements/test.txt
     #   coverage
@@ -78,12 +78,12 @@ gitpython==3.1.40
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.24.0
+google-auth==2.25.2
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
     #   gspread
-google-auth-oauthlib==1.1.0
+google-auth-oauthlib==1.2.0
     # via
     #   -r requirements/test.txt
     #   gspread
@@ -98,7 +98,7 @@ idna==3.6
     #   yarl
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==6.9.0
+importlib-metadata==7.0.0
     # via sphinx
 iniconfig==2.0.0
     # via
@@ -113,7 +113,7 @@ multidict==6.0.4
     #   -r requirements/test.txt
     #   aiohttp
     #   yarl
-nh3==0.2.14
+nh3==0.2.15
     # via readme-renderer
 oauthlib==3.2.2
     # via
@@ -229,20 +229,22 @@ sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
 stevedore==5.1.0
     # via doc8
+toml==0.10.2
+    # via -r requirements/test.txt
 tomli==2.0.1
     # via
     #   -r requirements/test.txt
     #   coverage
     #   doc8
     #   pytest
-typing-extensions==4.8.0
+typing-extensions==4.9.0
     # via pydata-sphinx-theme
 urllib3==2.1.0
     # via
     #   -r requirements/test.txt
     #   requests
     #   responses
-yarl==1.9.3
+yarl==1.9.4
     # via
     #   -r requirements/test.txt
     #   aiohttp

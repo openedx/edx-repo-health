@@ -258,24 +258,12 @@ def get_branch_or_pr_count(org_name, repo_name, pulls_or_branches):
     return count
 
 
-def set_branch_and_pr_count(all_results, git_origin_url, module_dict_key):
-    """
-    Takes all_results dict and update branch and pr counts using git_origin_url
-    """
-    org_name, repo_name = github_org_repo(git_origin_url)
-    all_results[module_dict_key]['branch_count'] = get_branch_or_pr_count(org_name, repo_name, 'branches')
-    all_results[module_dict_key]['pulls_count'] = get_branch_or_pr_count(org_name, repo_name, 'pulls')
-    return all_results
-
-
 @pytest.mark.py_dependency_health
 @pytest.mark.edx_health
 def check_branch_and_pr_count(all_results, git_origin_url):
     """
     Checks repository integrated with github actions workflow
     """
-    all_results = set_branch_and_pr_count(
-        all_results,
-        git_origin_url,
-        MODULE_DICT_KEY
-    )
+    org_name, repo_name = github_org_repo(git_origin_url)
+    all_results[MODULE_DICT_KEY]['branch_count'] = get_branch_or_pr_count(org_name, repo_name, 'branches')
+    all_results[MODULE_DICT_KEY]['pulls_count'] = get_branch_or_pr_count(org_name, repo_name, 'pulls')

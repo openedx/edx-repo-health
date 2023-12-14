@@ -8,4 +8,3 @@ isort                     # to standardize order of imports
 pycodestyle               # PEP 8 compliance validation
 pydocstyle                # PEP 257 compliance validation
 django                    # Needed for pylint-django checks in quality
-toml

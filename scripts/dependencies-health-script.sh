@@ -41,7 +41,7 @@ METADATA_FILE_DIST="docs/checks_metadata.yaml"
 
 failed_repos=()
 
-OUTPUT_FILE_POSTFIX="_dependency_health.yaml"
+OUTPUT_FILE_POSTFIX="_py_dependency_health.yaml"
 
 # Git clone each dependency repo and run checks on it
 input="repositories.txt"
@@ -98,8 +98,8 @@ while IFS= read -r line; do
     OUTPUT_FILE_NAME="${REPO_NAME}${OUTPUT_FILE_POSTFIX}"
 
     DEPENDENCIES_HEALTH_COMMAND() {
-        pytest --dependencies-health \
-            --repo-health-path "edx-repo-health/dependencies_health" \
+        pytest -m py_dependency_health --repo-health \
+            --repo-health-path "edx-repo-health/repo_health" \
             --repo-path "target-repo" \
             --repo-health-metadata "${METADATA_FILE_DIST}" \
             --output-path "${DEPENDENCIES_DATA_DIR}/${OUTPUT_FILE_NAME}" \

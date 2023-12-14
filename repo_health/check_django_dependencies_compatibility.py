@@ -147,8 +147,9 @@ def get_upgraded_dependencies_count(repo_path, django_dependency_sheet) -> tuple
             package_name = line["Django Package Name"]
             if package_name in deps.keys():  # pylint: disable=consider-iterating-dictionary
                 django_deps.append(package_name)
-
-                if line["Django 3.2"] and line["Django 3.2"] != '-':
+                # If the package support is included in the master branch but hasn't been released,
+                # it won't be regarded as a supported version.
+                if line["Django 3.2"] and line["Django 3.2"] not in ['-', 'master']:
                     deps_support_django32.append(package_name)
 
                     if parse(deps[package_name]) >= parse(line["Django 3.2"]):

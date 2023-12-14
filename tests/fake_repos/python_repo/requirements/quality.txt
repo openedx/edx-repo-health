@@ -39,7 +39,7 @@ django==2.2.24
     #   djangorestframework
     #   edx-django-utils
     #   edx-lint
-djangorestframework==3.12.4
+djangorestframework==3.13.0
     # via -r requirements/test.txt
 edx-django-utils==2.0.4
     # via

@@ -75,6 +75,7 @@ class TravisIntegrationHandler:
 
 
 @add_key_to_metadata((module_dict_key,))
+@pytest.mark.edx_health
 def check_travis_integration(all_results, git_origin_url):
     """
     Checks repository integrated with travis-ci.org or travis-ci.com

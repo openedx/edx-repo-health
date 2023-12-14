@@ -36,6 +36,8 @@ def fixture_req_lines(repo_path):
         "boto": "repo requires boto",
     },
 )
+@pytest.mark.py_dependency_health
+@pytest.mark.edx_health
 def check_requires(req_lines, all_results):
     """
     Test to find whether repo requires some key requirements

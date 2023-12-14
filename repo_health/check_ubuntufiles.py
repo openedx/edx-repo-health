@@ -232,7 +232,7 @@ class PlaybookAPTPackagesReader:
             packages = self._prepare_data(list(packages))
             return packages
 
-        except Exception as exc:  # pylint: disable=broad-except
+        except Exception as exc:  # pylint: disable=useless-suppression
             logger.exception("Following error occurred while parsing yml playbook (%s) in configuration repo: %s",
                              playbook_path, exc)
             return []
@@ -312,6 +312,7 @@ def fixture_ubuntu_content(repo_path, git_origin_url):
         "apt_get_packages": "content name published on ubuntu.",
         "yml_files": "content name published on ubuntu.",
     })
+@pytest.mark.edx_health
 def check_ubuntu_content(content, all_results):
     """
     Adding data into results.

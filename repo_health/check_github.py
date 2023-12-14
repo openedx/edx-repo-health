@@ -89,6 +89,7 @@ async def fetch_languages(repo):
 
 @add_key_to_metadata((MODULE_DICT_KEY, "build_details"))
 @pytest.mark.asyncio
+@pytest.mark.edx_health
 async def check_build_duration(all_results, github_repo):
     """
     Fetches the builds details from Github and calculates the duration of each build
@@ -152,6 +153,7 @@ repo_license_exemptions = {
     },
 )
 @pytest.mark.asyncio
+@pytest.mark.edx_health
 async def check_settings(all_results, github_repo):
     """
     Get all the fields of interest from the GitHub repository object itself.
@@ -218,6 +220,7 @@ async def check_settings(all_results, github_repo):
     }
 )
 @pytest.mark.asyncio
+@pytest.mark.edx_health
 async def check_languages(all_results, github_repo):
     """
     Get the number of bytes of each programming language in the repository.
@@ -238,15 +241,6 @@ async def check_languages(all_results, github_repo):
             results[language] = 0
 
 
-def check_branch_and_pr_count(all_results, git_origin_url):
-    """
-    Checks repository integrated with github actions workflow
-    """
-    org_name, repo_name = github_org_repo(git_origin_url)
-    all_results[MODULE_DICT_KEY]['branch_count'] = get_branch_or_pr_count(org_name, repo_name, 'branches')
-    all_results[MODULE_DICT_KEY]['pulls_count'] = get_branch_or_pr_count(org_name, repo_name, 'pulls')
-
-
 def get_branch_or_pr_count(org_name, repo_name, pulls_or_branches):
     """
     Get the count for branches or pull requests using Github API and add the count to report
@@ -262,3 +256,14 @@ def get_branch_or_pr_count(org_name, repo_name, pulls_or_branches):
             count = int(re.findall(r'page=(\d+)', last_page)[1])
 
     return count
+
+
+@pytest.mark.py_dependency_health
+@pytest.mark.edx_health
+def check_branch_and_pr_count(all_results, git_origin_url):
+    """
+    Checks repository integrated with github actions workflow
+    """
+    org_name, repo_name = github_org_repo(git_origin_url)
+    all_results[MODULE_DICT_KEY]['branch_count'] = get_branch_or_pr_count(org_name, repo_name, 'branches')
+    all_results[MODULE_DICT_KEY]['pulls_count'] = get_branch_or_pr_count(org_name, repo_name, 'pulls')

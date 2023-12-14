@@ -22,6 +22,7 @@ def fixture_dependabot_yml(repo_path):
 
 
 @add_key_to_metadata((module_dict_key, "exists"))
+@pytest.mark.edx_health
 def check_dependabot_exists(dependabot_yml, all_results):
     """
     Is dependabot.yml file exists
@@ -37,6 +38,7 @@ def check_dependabot_exists(dependabot_yml, all_results):
         "npm": "ecosystem to check node package version upgrades"
     },
 )
+@pytest.mark.edx_health
 def check_has_ecosystems(dependabot_yml, all_results):
     """
     Is dependabot.yml has github_action, pip, npm ecosystems/sections

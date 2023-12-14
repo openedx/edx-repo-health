@@ -32,6 +32,7 @@ def fixture_makefile(repo_path):
     [module_dict_key, "has_target"],
     output_keys
 )
+@pytest.mark.edx_health
 def check_has_make_target(makefile, all_results):
     """
     Checks make file has provided targets
@@ -49,6 +50,7 @@ def check_has_make_target(makefile, all_results):
         "pip-installed": "check if pip.txt was installed immediately after upgrade"
     }
 )
+@pytest.mark.edx_health
 def check_upgrade_script(makefile, all_results):
     """
     Checks if pip installed after upgrading pip.txt

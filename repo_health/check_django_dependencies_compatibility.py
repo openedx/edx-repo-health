@@ -28,7 +28,7 @@ DJANGO_DEPS_SHEET_URL = (
 )
 
 
-@pytest.fixture(name='django_deps_sheet', scope="session")  # pragma: no cover
+@pytest.fixture(name="django_dependency_sheet", scope="session")  # pragma: no cover
 def django_dependency_sheet_fixture():
     """
     Returns the path for csv file which contains django dependencies status.
@@ -169,12 +169,14 @@ def get_upgraded_dependencies_count(repo_path, django_dependency_sheet) -> tuple
         "upgraded": "Dependencies that are upgraded to support Django 3.2"
     },
 )
-def check_django_dependencies_status(repo_path, all_results, django_deps_sheet):
+@pytest.mark.py_dependency_health
+@pytest.mark.edx_health
+def check_django_dependencies_status(repo_path, all_results, django_dependency_sheet):
     """
     Test to find the django dependencies compatibility
     """
     django_deps, support_django32_deps, upgraded_in_repo = get_upgraded_dependencies_count(
-        repo_path, django_deps_sheet)
+        repo_path, django_dependency_sheet)
 
     all_results[MODULE_DICT_KEY] = {
         'total': {

@@ -37,6 +37,7 @@ def fixture_npm_package(repo_path):
     {
         "npm_package": "package name published on npm."
     })
+@pytest.mark.edx_health
 def check_npm_package(content, all_results):
     """
     verify pattern on npm site where package has prefix @edx/.

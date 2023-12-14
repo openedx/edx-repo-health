@@ -36,6 +36,7 @@ def fixture_parsed_data_travis(travis_yml):
 
 
 @add_key_to_metadata((module_dict_key, "parsable"))
+@pytest.mark.edx_health
 def check_yaml_parsable(travis_yml, all_results):
     """
     Is the travis.yml file computer parsable
@@ -91,6 +92,7 @@ def fixture_python_versions_in_travis(parsed_data_travis):
 
 
 @add_key_to_metadata((module_dict_key, "py38_tests"))
+@pytest.mark.edx_health
 def check_has_tests_with_py38(python_versions_in_travis, all_results):
     """
     Are there tests with python 3.8?
@@ -99,6 +101,7 @@ def check_has_tests_with_py38(python_versions_in_travis, all_results):
 
 
 @add_key_to_metadata((module_dict_key, "python_versions"))
+@pytest.mark.edx_health
 def check_travis_python_versions(python_versions_in_travis, all_results):
     """
     Add list of python versions to the results

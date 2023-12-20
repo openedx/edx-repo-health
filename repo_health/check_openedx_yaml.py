@@ -48,6 +48,7 @@ def fixture_parsed_data(openedx_yaml):
 
 
 @add_key_to_metadata((module_dict_key, "parsable"))
+@pytest.mark.edx_health
 def check_yaml_parsable(openedx_yaml, all_results):
     """
     Is the openedx.yaml file computer parsable
@@ -70,6 +71,7 @@ def fixture_oeps(parsed_data):
     [module_dict_key],
     output_keys
 )
+@pytest.mark.edx_health
 def check_oeps(oeps, all_results):
     """
     Check compliance with OEPs of particular interest
@@ -86,6 +88,7 @@ def check_oeps(oeps, all_results):
 
 
 @health_metadata([module_dict_key], output_keys)
+@pytest.mark.edx_health
 def check_obsolete_fields(parsed_data, all_results):
     """
     Report presence of obsolete fields
@@ -95,6 +98,7 @@ def check_obsolete_fields(parsed_data, all_results):
 
 
 @add_key_to_metadata((module_dict_key, "release"))
+@pytest.mark.edx_health
 def check_release_ref(parsed_data, all_results):
     """
     Is this repo tagged as part of Open edX releases?
@@ -104,6 +108,7 @@ def check_release_ref(parsed_data, all_results):
 
 
 @add_key_to_metadata((module_dict_key, "release-maybe"))
+@pytest.mark.edx_health
 def check_release_maybe(parsed_data, all_results):
     """
     Does this repo still have "maybe" for openedx-release? True is bad.
@@ -113,6 +118,7 @@ def check_release_maybe(parsed_data, all_results):
 
 
 @add_key_to_metadata((module_dict_key, "release-org-compliance"))
+@pytest.mark.edx_health
 def check_release_org_compliance(parsed_data, git_origin_url, all_results):
     """
     Does this repo comply with the rule that Open edX components must be in the

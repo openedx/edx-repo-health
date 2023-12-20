@@ -125,6 +125,7 @@ async def get_total_and_oldest_renovate_pull_requests(github_repo):
     }
 )
 @pytest.mark.asyncio
+@pytest.mark.edx_health
 async def check_renovate(all_results, repo_path, github_repo):
     """
     Checks whether repository contains configuration for renovate and is making PR

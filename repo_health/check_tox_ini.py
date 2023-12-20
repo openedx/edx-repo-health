@@ -27,6 +27,7 @@ def fixture_tox_ini(repo_path):
         "testenv:quality": "Env setting used to run quality linting on repo",
     },
 )
+@pytest.mark.edx_health
 def check_has_sections(tox_ini, all_results):
     """
     Test to check if tox.ini has all the standard sections
@@ -39,6 +40,7 @@ def check_has_sections(tox_ini, all_results):
 
 
 @add_key_to_metadata((module_dict_key, "uses_whitelist_externals"))
+@pytest.mark.edx_health
 def check_whitelist_externals(tox_ini, all_results):
     """
     Does tox.ini still use the deprecated "whitelist_externals" setting

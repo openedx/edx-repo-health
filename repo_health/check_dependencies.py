@@ -9,6 +9,7 @@ import re
 from abc import ABC, abstractmethod
 from pathlib import Path
 
+import pytest
 from pytest_repo_health import health_metadata
 
 from repo_health import get_file_content, get_file_lines
@@ -252,6 +253,8 @@ def get_dependencies(repo_path) -> dict:
         "js.dev": "list of javascript development dependencies"
     },
 )
+@pytest.mark.py_dependency_health
+@pytest.mark.edx_health
 def check_dependencies(repo_path, all_results):
     """
     Test to find the dependencies of the repo

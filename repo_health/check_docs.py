@@ -24,6 +24,7 @@ module_dict_key = "docs"
         "build_badge": "Check that the README file has docs build badge"
     }
 )
+@pytest.mark.edx_health
 def check_build_badge(readme, all_results):
     """
     Check that the README file has a docs build badge.
@@ -128,6 +129,7 @@ class ReadTheDocsChecker:
         "python_version": "The version of Python mentioned in .readthedocs.yml file"
     }
 )
+@pytest.mark.edx_health
 def check_python_version(repo_path, all_results):
     """
     Check the Python version mentioned in .readthedocs.yml file.
@@ -142,6 +144,7 @@ def check_python_version(repo_path, all_results):
         "build_details": "This contains the build details of all Read the Docs projects connected with the repo",
     }
 )
+@pytest.mark.edx_health
 def check_readthedocs_build(all_results, git_origin_url):
     """
     Checks the Read the Docs build status and when last build ran.

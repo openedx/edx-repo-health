@@ -5,6 +5,7 @@ Check some details in the readme file.
 import re
 import urllib.parse
 
+import pytest
 import requests
 from pytest_repo_health import health_metadata
 
@@ -53,6 +54,7 @@ BAD_THINGS = {
         for key, val in {**GOOD_THINGS, **BAD_THINGS}.items()
     }
 )
+@pytest.mark.edx_health
 def check_readme_contents(readme, all_results):
     """
     Check that the README file has or does not have desired or undesirable contents.
@@ -107,6 +109,7 @@ def is_example_url(url):
         "good_links": "Links in the README that are good.",
     }
 )
+@pytest.mark.edx_health
 def check_readme_links(readme, all_results):
     """
     Check that the links in the README actually work.

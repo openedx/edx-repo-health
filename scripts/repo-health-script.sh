@@ -97,7 +97,7 @@ while IFS= read -r line; do
     OUTPUT_FILE_NAME="${REPO_NAME}${OUTPUT_FILE_POSTFIX}"
 
     REPO_HEALTH_COMMAND() {
-        pytest --repo-health \
+        pytest -m edx_health --repo-health \
             --repo-health-path "edx-repo-health" \
             --repo-path "target-repo" \
             --repo-health-metadata "${METADATA_FILE_DIST}" \

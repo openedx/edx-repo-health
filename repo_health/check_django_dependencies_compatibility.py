@@ -28,7 +28,7 @@ DJANGO_DEPS_SHEET_URL = (
 )
 
 
-@pytest.fixture(name='django_deps_sheet', scope="session")  # pragma: no cover
+@pytest.fixture(name="django_deps_sheet", scope="session")  # pragma: no cover
 def django_dependency_sheet_fixture():
     """
     Returns the path for csv file which contains django dependencies status.
@@ -127,7 +127,7 @@ class DjangoDependencyReader:
         return self.dependencies
 
 
-def get_upgraded_dependencies_count(repo_path, django_dependency_sheet) -> tuple:
+def get_upgraded_dependencies_count(repo_path, django_deps_sheet) -> tuple:
     """
     Entry point to read, parse and calculate django dependencies
     @param repo_path: path for repo which we are calculating django deps
@@ -140,7 +140,7 @@ def get_upgraded_dependencies_count(repo_path, django_dependency_sheet) -> tuple
     deps_support_django32 = []
     upgraded_in_repo = []
 
-    csv_path = django_dependency_sheet
+    csv_path = django_deps_sheet
     with open(csv_path, encoding="utf8") as csv_file:
         csv_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
         for line in csv_reader:
@@ -169,6 +169,8 @@ def get_upgraded_dependencies_count(repo_path, django_dependency_sheet) -> tuple
         "upgraded": "Dependencies that are upgraded to support Django 3.2"
     },
 )
+@pytest.mark.py_dependency_health
+@pytest.mark.edx_health
 def check_django_dependencies_status(repo_path, all_results, django_deps_sheet):
     """
     Test to find the django dependencies compatibility

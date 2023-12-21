@@ -19,6 +19,12 @@ def main():
     """
     parser = argparse.ArgumentParser(description="Create basic dashboard")
     parser.add_argument(
+        "--dashboard-name",
+        help="name of dashboard to trigger e.g. repo_health, dependencies_health",
+        dest="dashboard_name",
+        default="repo_health",
+    )
+    parser.add_argument(
         "--data-dir",
         help="location of where data yaml files are located",
         required=True,
@@ -53,8 +59,9 @@ def main():
     )
     args = parser.parse_args()
     # collect configurations if they were input
+    configuration_name = "py_dependency_health" if args.dashboard_name == 'py_dependency_health' else "main"
     configurations = {
-        "main": {"check_order": [], "repo_name_order": [], "key_aliases": {}}
+        configuration_name: {"check_order": [], "repo_name_order": [], "key_aliases": {}}
     }
     if args.configuration:
         with codecs.open(args.configuration, "r", "utf-8") as f:
@@ -65,7 +72,8 @@ def main():
                 configurations[sheet] = utils.get_sheets(parsed_file_data, sheet)
 
     data_dir = os.path.abspath(args.data_dir)
-    files = glob.glob(os.path.join(data_dir, "*/*.yaml"), recursive=False)
+    data_files_pattern = "*/*.yaml" if args.dashboard_name == "repo_health" else "*.yaml"
+    files = glob.glob(os.path.join(data_dir, data_files_pattern), recursive=False)
     data = {}
     for file_path in files:
         file_name = file_path[file_path.rfind("/") + 1:]
@@ -89,8 +97,9 @@ def main():
         utils.write_squashed_metadata_to_csv(
             output, args.output_csv + "_" + key, configuration, args.append
         )
-        utils.write_squashed_metadata_to_sqlite(
-            output, f"dashboard_{key}", configuration, args.output_sqlite)
+        if args.dashboard_name == "repo_health":
+            utils.write_squashed_metadata_to_sqlite(
+                output, f"dashboard_{key}", configuration, args.output_sqlite)
 
 
 if __name__ == "__main__":

@@ -103,10 +103,8 @@ def find_version_in_toml(version_type, repo_dir, version):
     repo_dir: repository path
     version: version to look for
     """
-    # Read the pyproject.toml file
-    pyproject_toml_file_path = os.path.join(repo_dir, "pyproject.toml")
     try:
-        data = toml.load(get_file_content(pyproject_toml_file_path))
+        data = toml.load(os.path.join(repo_dir, "pyproject.toml"))
         classifiers = data.get('project', {}).get('classifiers', [])
         if version_type == "python":
             return any(f"Programming Language :: Python :: {version}" in classifier for classifier in classifiers)

@@ -98,8 +98,10 @@ idna==3.6
     #   yarl
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==7.0.0
-    # via sphinx
+importlib-metadata==6.11.0
+    # via
+    #   -c requirements/constraints.txt
+    #   sphinx
 iniconfig==2.0.0
     # via
     #   -r requirements/test.txt

@@ -8,8 +8,10 @@ build==1.0.3
     # via pip-tools
 click==8.1.7
     # via pip-tools
-importlib-metadata==7.0.0
-    # via build
+importlib-metadata==6.11.0
+    # via
+    #   -c requirements/constraints.txt
+    #   build
 packaging==21.3
     # via
     #   -c requirements/constraints.txt

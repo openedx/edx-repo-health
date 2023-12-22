@@ -36,7 +36,8 @@ def print_table(console: Console, title: str, cursor: sqlite3.Cursor, descriptio
         name = aliases.get(name, name)
         table.add_column(name)
     for row in cursor.fetchall():
-        table.add_row(*row)
+        cells = [str(cell) for cell in row]
+        table.add_row(*cells)
     if table.row_count > 0:
         print("")
         console.print(table)

@@ -23,13 +23,29 @@ tables:
   sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE exists__travis_yml = 1
   description: We no longer use this service, the .travis.yml file can be safely deleted.  If the repo was recently added (perhaps a fork) and actually uses Travis CI, please switch it to use GitHub Actions instead; Travis CI is poorly maintained and has had multiple security incidents leaking private credentials.
 
+- title: Not Checking for GitHub Action Version Updates
+  sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE dependabot_has_ecosystem_github_actions = 0
+  description: Dependabot should be configured to auto-generate pull requests to upgrade the GitHub Actions in use so security patches can be applied promptly.
+
 - title: Still Use nose       
   sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE requires_nose = 1
   description: This test runner was abandoned several years ago, it should be replaced with pytest.
 
+- title: Still Using Dependabot to Create JavaScript Dependency Upgrade PRs
+  sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE dependabot_has_ecosystem_npm = 1
+  description: Renovate is better suited to fulfill this need, and should be configured if that has not already been done.  If Renovate is already in use, then the extra PRs from Dependabot are redundant and should be turned off.
+
+- title: Still Using Dependabot to Create Python Dependency Upgrade PRs
+  sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE dependabot_has_ecosystem_pip = 1
+  description: The upgrade-python-requirements shared GitHub Actions workflow is better suited to fulfill this need, and should be configured if that has not already been done.  If that is already in use, then the extra PRs from Dependabot are redundant and should be turned off.
+
 - title: Missing Python 3.8 Classifier
   sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE setup_py_pypi_name IS NOT NULL AND setup_py_pypi_name != '' AND setup_py_py38_classifiers = 0
   description: All our packages should work with Python 3.8, and setup.py should declare this explicitly when true to inform users and aid in future upgrades.
+
+- title: Still Have Some Dependencies Not Tested With Django 3.2
+  sql: SELECT repo_name, ownership_squad, django_packages_total_count - django_packages_upgraded_count FROM dashboard_main WHERE django_packages_total_count > django_packages_upgraded_count
+  description: The repository still seems to use some Python package versions which depend on Django but don't officially support Django 3.2 yet.  They may in fact be working ok, but this is often a sign of poor maintenance and may cause problems with future upgrades.  Work should be scheduled to either upgrade to newer releases, fix the upstream packages, or pursue removal of these dependencies as per https://openedx.atlassian.net/wiki/spaces/AC/pages/3036972032/Handling+Outdated+Dependencies .
 
 # Use shorter and/or more readable column titles for these check names
 aliases:
@@ -40,5 +56,6 @@ aliases:
   dependabot_alerts_total_count: Total
   dependabot_alerts_incomplete_results: Incomplete?
   dependencies_github_list: List of packages
+  "django_packages_total_count - django_packages_upgraded_count": Problematic dependency count
   repo_name: Repository
   ownership_squad: Squad

@@ -13,6 +13,8 @@ aiosignal==1.3.1
     # via
     #   -r requirements/quality.txt
     #   aiohttp
+altair==5.2.0
+    # via streamlit
 asgiref==3.7.2
     # via
     #   -r requirements/quality.txt
@@ -30,6 +32,12 @@ attrs==23.1.0
     # via
     #   -r requirements/quality.txt
     #   aiohttp
+    #   jsonschema
+    #   referencing
+backports-zoneinfo==0.2.1
+    # via tzlocal
+blinker==1.7.0
+    # via streamlit
 build==1.0.3
     # via
     #   -r requirements/pip-tools.txt
@@ -39,6 +47,7 @@ cachetools==5.3.2
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   google-auth
+    #   streamlit
     #   tox
 certifi==2023.11.17
     # via
@@ -61,6 +70,7 @@ click==8.1.7
     #   code-annotations
     #   edx-lint
     #   pip-tools
+    #   streamlit
 click-log==0.4.0
     # via
     #   -r requirements/quality.txt
@@ -120,6 +130,7 @@ gitpython==3.1.40
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
+    #   streamlit
 google-auth==2.25.2
     # via
     #   -r requirements/quality.txt
@@ -138,10 +149,16 @@ idna==3.6
     #   -r requirements/quality.txt
     #   requests
     #   yarl
-importlib-metadata==7.0.0
+importlib-metadata==6.11.0
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/pip-tools.txt
     #   build
+    #   streamlit
+importlib-resources==6.1.1
+    # via
+    #   jsonschema
+    #   jsonschema-specifications
 iniconfig==2.0.0
     # via
     #   -r requirements/quality.txt
@@ -153,8 +170,14 @@ isort==5.13.2
 jinja2==3.1.2
     # via
     #   -r requirements/quality.txt
+    #   altair
     #   code-annotations
     #   diff-cover
+    #   pydeck
+jsonschema==4.20.0
+    # via altair
+jsonschema-specifications==2023.11.2
+    # via jsonschema
 markdown-it-py==3.0.0
     # via rich
 markupsafe==2.1.3
@@ -172,6 +195,13 @@ multidict==6.0.4
     #   -r requirements/quality.txt
     #   aiohttp
     #   yarl
+numpy==1.24.4
+    # via
+    #   altair
+    #   pandas
+    #   pyarrow
+    #   pydeck
+    #   streamlit
 oauthlib==3.2.2
     # via
     #   -r requirements/quality.txt
@@ -182,16 +212,27 @@ packaging==21.3
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
+    #   altair
     #   build
     #   pyproject-api
     #   pytest
+    #   streamlit
     #   tox
+pandas==2.0.3
+    # via
+    #   altair
+    #   streamlit
+    #   streamlit-aggrid
 pbr==6.0.0
     # via
     #   -r requirements/quality.txt
     #   stevedore
+pillow==10.1.0
+    # via streamlit
 pip-tools==7.3.0
     # via -r requirements/pip-tools.txt
+pkgutil-resolve-name==1.3.10
+    # via jsonschema
 platformdirs==4.1.0
     # via
     #   -r requirements/ci.txt
@@ -206,6 +247,10 @@ pluggy==1.3.0
     #   diff-cover
     #   pytest
     #   tox
+protobuf==4.25.1
+    # via streamlit
+pyarrow==14.0.2
+    # via streamlit
 pyasn1==0.5.1
     # via
     #   -r requirements/quality.txt
@@ -217,6 +262,8 @@ pyasn1-modules==0.3.0
     #   google-auth
 pycodestyle==2.11.1
     # via -r requirements/quality.txt
+pydeck==0.8.1b0
+    # via streamlit
 pydocstyle==6.3.0
     # via -r requirements/quality.txt
 pygments==2.17.2
@@ -276,6 +323,12 @@ pytest-cov==4.1.0
     # via -r requirements/quality.txt
 pytest-repo-health==3.0.2
     # via -r requirements/quality.txt
+python-dateutil==2.8.2
+    # via
+    #   pandas
+    #   streamlit
+python-decouple==3.8
+    # via streamlit-aggrid
 python-slugify==8.0.1
     # via
     #   -r requirements/quality.txt
@@ -284,17 +337,23 @@ pytz==2023.3.post1
     # via
     #   -r requirements/quality.txt
     #   django
+    #   pandas
 pyyaml==6.0.1
     # via
     #   -r requirements/quality.txt
     #   code-annotations
     #   pytest-repo-health
     #   responses
+referencing==0.32.0
+    # via
+    #   jsonschema
+    #   jsonschema-specifications
 requests==2.31.0
     # via
     #   -r requirements/quality.txt
     #   requests-oauthlib
     #   responses
+    #   streamlit
 requests-oauthlib==1.3.1
     # via
     #   -r requirements/quality.txt
@@ -302,7 +361,13 @@ requests-oauthlib==1.3.1
 responses==0.24.1
     # via -r requirements/quality.txt
 rich==13.7.0
-    # via -r requirements/dev.in
+    # via
+    #   -r requirements/dev.in
+    #   streamlit
+rpds-py==0.15.2
+    # via
+    #   jsonschema
+    #   referencing
 rsa==4.9
     # via
     #   -r requirements/quality.txt
@@ -311,6 +376,7 @@ six==1.16.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
+    #   python-dateutil
 smmap==5.0.1
     # via
     #   -r requirements/quality.txt
@@ -327,12 +393,22 @@ stevedore==5.1.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
+streamlit==1.29.0
+    # via
+    #   -r requirements/dev.in
+    #   streamlit-aggrid
+streamlit-aggrid==0.3.4.post3
+    # via -r requirements/dev.in
+tenacity==8.2.3
+    # via streamlit
 text-unidecode==1.3
     # via
     #   -r requirements/quality.txt
     #   python-slugify
 toml==0.10.2
-    # via -r requirements/quality.txt
+    # via
+    #   -r requirements/quality.txt
+    #   streamlit
 tomli==2.0.1
     # via
     #   -r requirements/ci.txt
@@ -350,20 +426,32 @@ tomlkit==0.12.3
     # via
     #   -r requirements/quality.txt
     #   pylint
+toolz==0.12.0
+    # via altair
+tornado==6.4
+    # via streamlit
 tox==4.0.0
     # via -r requirements/ci.txt
 typing-extensions==4.9.0
     # via
     #   -r requirements/quality.txt
+    #   altair
     #   asgiref
     #   astroid
     #   pylint
     #   rich
+    #   streamlit
+tzdata==2023.3
+    # via pandas
+tzlocal==5.2
+    # via streamlit
 urllib3==2.1.0
     # via
     #   -r requirements/quality.txt
     #   requests
     #   responses
+validators==0.22.0
+    # via streamlit
 virtualenv==20.25.0
     # via
     #   -r requirements/ci.txt
@@ -380,6 +468,7 @@ zipp==3.17.0
     # via
     #   -r requirements/pip-tools.txt
     #   importlib-metadata
+    #   importlib-resources
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip

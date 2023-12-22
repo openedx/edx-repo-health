@@ -12,6 +12,9 @@
 # This file contains all common constraints for edx-repos
 -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
 
+# Streamlit started declaring this constraint until newer versions can be tested, needed to use Streamlit 1.29.0
+importlib-metadata<7
+
 # greater version breaking test.
 packaging==21.3
 

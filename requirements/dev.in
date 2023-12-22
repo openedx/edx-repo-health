@@ -3,7 +3,9 @@
 
 -r pip-tools.txt          # pip-tools and its dependencies, for managing requirements files
 -r quality.txt            # Core and quality check dependencies
--r ci.txt             # tox and related dependencies
+-r ci.txt                 # tox and related dependencies
 
 diff-cover                # Changeset diff test coverage
 rich                      # Fancy formatting for console dashboards
+streamlit                 # Library used to build the interactive web dashboard
+streamlit-aggrid          # Streamlit extension for the AgGrid data grid widget

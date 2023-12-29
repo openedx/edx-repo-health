@@ -43,7 +43,7 @@ charset-normalizer==3.3.2
     # via
     #   -r requirements/test.txt
     #   requests
-coverage[toml]==7.3.4
+coverage[toml]==7.4.0
     # via
     #   -r requirements/test.txt
     #   coverage
@@ -98,7 +98,7 @@ idna==3.6
     #   yarl
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==7.0.0
+importlib-metadata==7.0.1
     # via sphinx
 iniconfig==2.0.0
     # via

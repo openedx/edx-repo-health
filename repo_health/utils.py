@@ -126,7 +126,8 @@ def get_release_tags(repo_dir):
     try:
         subprocess.run(['git', 'fetch', '--tags'], cwd=repo_dir, check=True)
         git_tags = subprocess.check_output(['git', 'tag', '--sort=version:refname'], cwd=repo_dir, text=True)
-        all_tags_list = git_tags.strip().split('\n')
+        # Filtering out empty strings or non-trivial values
+        all_tags_list = [tag for tag in git_tags.strip().split('\n') if tag.strip()]
         latest_tag = get_latest_release_tag(repo_dir)
 
         if not latest_tag and len(all_tags_list):

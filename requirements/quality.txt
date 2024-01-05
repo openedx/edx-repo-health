@@ -23,7 +23,7 @@ async-timeout==4.0.3
     # via
     #   -r requirements/test.txt
     #   aiohttp
-attrs==23.1.0
+attrs==23.2.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -82,7 +82,7 @@ gitpython==3.1.40
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.25.2
+google-auth==2.26.1
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -167,7 +167,7 @@ pyparsing==3.1.1
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==7.4.3
+pytest==7.4.4
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp
@@ -178,7 +178,7 @@ pytest-aiohttp==1.0.5
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-pytest-asyncio==0.23.2
+pytest-asyncio==0.23.3
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp

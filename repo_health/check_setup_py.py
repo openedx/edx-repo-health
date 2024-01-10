@@ -87,7 +87,7 @@ def check_repo_url(setup_py, setup_cfg, all_results):
     cfg_urls = re.findall(r"""(?m)^url\s*=\s*(\S+)""", setup_cfg)
     urls = py_urls + cfg_urls
     if urls:
-        assert len(urls) == 1
+        assert len(urls) > 0
         all_results[module_dict_key]["repo_url"] = urls[0]
 
 

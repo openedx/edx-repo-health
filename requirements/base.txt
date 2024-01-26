@@ -34,7 +34,7 @@ github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f
     # via -r requirements/github.in
 gitpython==3.1.41
     # via pytest-repo-health
-google-auth==2.26.2
+google-auth==2.27.0
     # via
     #   google-auth-oauthlib
     #   gspread
@@ -60,7 +60,7 @@ packaging==21.3
     # via
     #   -c requirements/constraints.txt
     #   pytest
-pluggy==1.3.0
+pluggy==1.4.0
     # via pytest
 pyasn1==0.5.1
     # via

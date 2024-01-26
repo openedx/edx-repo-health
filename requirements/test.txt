@@ -58,7 +58,7 @@ gitpython==3.1.41
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.26.2
+google-auth==2.27.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -94,7 +94,7 @@ packaging==21.3
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
     #   pytest
-pluggy==1.3.0
+pluggy==1.4.0
     # via
     #   -r requirements/base.txt
     #   pytest

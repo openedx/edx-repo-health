@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohttp==3.9.1
+aiohttp==3.9.3
     # via
     #   -r requirements/quality.txt
     #   github-py
@@ -65,7 +65,7 @@ click-log==0.4.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-code-annotations==1.5.0
+code-annotations==1.6.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -73,14 +73,14 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.4.0
+coverage[toml]==7.4.1
     # via
     #   -r requirements/quality.txt
     #   coverage
     #   pytest-cov
 diff-cover==8.0.3
     # via -r requirements/dev.in
-dill==0.3.7
+dill==0.3.8
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -167,7 +167,7 @@ mccabe==0.7.0
     #   pylint
 mdurl==0.1.2
     # via markdown-it-py
-multidict==6.0.4
+multidict==6.0.5
     # via
     #   -r requirements/quality.txt
     #   aiohttp
@@ -192,7 +192,7 @@ pbr==6.0.0
     #   stevedore
 pip-tools==7.3.0
     # via -r requirements/pip-tools.txt
-platformdirs==4.1.0
+platformdirs==4.2.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -268,7 +268,7 @@ pytest-aiohttp==1.0.5
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-pytest-asyncio==0.23.3
+pytest-asyncio==0.23.4
     # via
     #   -r requirements/quality.txt
     #   pytest-aiohttp
@@ -276,11 +276,11 @@ pytest-cov==4.1.0
     # via -r requirements/quality.txt
 pytest-repo-health==3.0.2
     # via -r requirements/quality.txt
-python-slugify==8.0.2
+python-slugify==8.0.3
     # via
     #   -r requirements/quality.txt
     #   code-annotations
-pytz==2023.3.post1
+pytz==2023.4
     # via
     #   -r requirements/quality.txt
     #   django
@@ -359,7 +359,7 @@ typing-extensions==4.9.0
     #   astroid
     #   pylint
     #   rich
-urllib3==2.1.0
+urllib3==2.2.0
     # via
     #   -r requirements/quality.txt
     #   requests

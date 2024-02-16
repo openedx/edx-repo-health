@@ -32,9 +32,9 @@ gitdb==4.0.11
     # via gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/github.in
-gitpython==3.1.41
+gitpython==3.1.42
     # via pytest-repo-health
-google-auth==2.27.0
+google-auth==2.28.0
     # via
     #   google-auth-oauthlib
     #   gspread
@@ -70,14 +70,14 @@ pyasn1-modules==0.3.0
     # via google-auth
 pyparsing==3.1.1
     # via packaging
-pytest==7.4.4
+pytest==8.0.0
     # via
     #   pytest-aiohttp
     #   pytest-asyncio
     #   pytest-repo-health
 pytest-aiohttp==1.0.5
     # via pytest-repo-health
-pytest-asyncio==0.23.4
+pytest-asyncio==0.23.5
     # via
     #   -r requirements/base.in
     #   pytest-aiohttp

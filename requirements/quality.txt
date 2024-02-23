@@ -27,8 +27,10 @@ attrs==23.2.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
-backports-zoneinfo==0.2.1
-    # via django
+backports-zoneinfo==0.2.1 ; python_version < "3.9"
+    # via
+    #   -c requirements/constraints.txt
+    #   django
 cachetools==5.3.3
     # via
     #   -r requirements/test.txt
@@ -58,7 +60,7 @@ dill==0.3.8
     # via pylint
 django==4.2.11
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   -c requirements/common_constraints.txt
     #   -r requirements/quality.in
 dockerfile==3.3.1
     # via -r requirements/test.txt
@@ -164,7 +166,7 @@ pylint-plugin-utils==0.8.2
     # via
     #   pylint-celery
     #   pylint-django
-pyparsing==3.1.1
+pyparsing==3.1.2
     # via
     #   -r requirements/test.txt
     #   packaging

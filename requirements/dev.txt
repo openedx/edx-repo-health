@@ -261,8 +261,9 @@ pyproject-hooks==1.0.0
     #   -r requirements/pip-tools.txt
     #   build
     #   pip-tools
-pytest==8.1.0
+pytest==8.0.2
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/quality.txt
     #   pytest-aiohttp
     #   pytest-asyncio

@@ -56,7 +56,7 @@ coverage[toml]==7.4.3
     #   pytest-cov
 dill==0.3.8
     # via pylint
-django==4.2.10
+django==4.2.11
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.in
@@ -170,6 +170,7 @@ pyparsing==3.1.1
     #   packaging
 pytest==8.0.2
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   pytest-aiohttp
     #   pytest-asyncio

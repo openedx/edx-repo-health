@@ -153,7 +153,7 @@ pyparsing==3.1.1
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==8.0.2
+pytest==8.1.0
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp

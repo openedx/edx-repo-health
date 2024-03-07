@@ -30,8 +30,9 @@ attrs==23.2.0
     # via
     #   -r requirements/quality.txt
     #   aiohttp
-backports-zoneinfo==0.2.1
+backports-zoneinfo==0.2.1 ; python_version < "3.9"
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/quality.txt
     #   django
 build==1.1.1
@@ -93,7 +94,7 @@ distlib==0.3.8
     #   virtualenv
 django==4.2.11
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   -c requirements/common_constraints.txt
     #   -r requirements/quality.txt
 dockerfile==3.3.1
     # via -r requirements/quality.txt
@@ -193,7 +194,7 @@ pbr==6.0.0
     # via
     #   -r requirements/quality.txt
     #   stevedore
-pip-tools==7.4.0
+pip-tools==7.4.1
     # via -r requirements/pip-tools.txt
 platformdirs==4.2.0
     # via
@@ -246,7 +247,7 @@ pylint-plugin-utils==0.8.2
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pyparsing==3.1.1
+pyparsing==3.1.2
     # via
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt

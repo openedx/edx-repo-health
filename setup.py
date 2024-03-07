@@ -120,6 +120,7 @@ setup(
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.12",
     ],
     entry_points={
         "console_scripts": [

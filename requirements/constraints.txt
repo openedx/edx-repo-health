@@ -10,7 +10,7 @@
 # linking to it here is good.
 
 # This file contains all common constraints for edx-repos
--c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+-c common_constraints.txt
 
 # greater version breaking test.
 packaging==21.3
@@ -21,3 +21,7 @@ gspread<5.12.0
 
 # pytest==8.1.0 breaks test plugin [needs to be investigated separately]
 pytest<8.1.0
+
+# Needed for Python 3.12 compatibility. 
+# Can be removed once support for Python<3.12 is dropped.
+backports-zoneinfo==0.2.1; python_version < "3.9"

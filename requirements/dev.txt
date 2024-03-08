@@ -142,7 +142,7 @@ idna==3.6
     #   -r requirements/quality.txt
     #   requests
     #   yarl
-importlib-metadata==7.0.1
+importlib-metadata==7.0.2
     # via
     #   -r requirements/pip-tools.txt
     #   build

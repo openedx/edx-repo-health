@@ -97,7 +97,7 @@ idna==3.6
     #   yarl
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==7.0.1
+importlib-metadata==7.0.2
     # via sphinx
 iniconfig==2.0.0
     # via

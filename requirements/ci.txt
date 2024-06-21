@@ -12,7 +12,7 @@ colorama==0.4.6
     # via tox
 distlib==0.3.8
     # via virtualenv
-filelock==3.13.1
+filelock==3.15.3
     # via
     #   tox
     #   virtualenv
@@ -21,11 +21,11 @@ packaging==21.3
     #   -c requirements/constraints.txt
     #   pyproject-api
     #   tox
-platformdirs==4.2.0
+platformdirs==4.2.2
     # via
     #   tox
     #   virtualenv
-pluggy==1.4.0
+pluggy==1.5.0
     # via tox
 pyparsing==3.1.2
     # via packaging
@@ -37,5 +37,5 @@ tomli==2.0.1
     #   tox
 tox==4.0.0
     # via -r requirements/ci.in
-virtualenv==20.25.1
+virtualenv==20.26.2
     # via tox

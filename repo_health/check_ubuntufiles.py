@@ -232,7 +232,7 @@ class PlaybookAPTPackagesReader:
             packages = self._prepare_data(list(packages))
             return packages
 
-        except Exception as exc:  # pylint: disable=useless-suppression
+        except Exception as exc:
             logger.exception("Following error occurred while parsing yml playbook (%s) in configuration repo: %s",
                              playbook_path, exc)
             return []

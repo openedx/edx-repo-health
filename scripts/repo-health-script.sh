@@ -7,7 +7,7 @@ export LANG=C.UTF-8
 
 WORKSPACE=$PWD
 # If the REPORT_DATE variable is set and not an empty string parse the date to standardize it.
-if [[ -n $REPORT_DATE ]]; then 
+if [[ -n $REPORT_DATE ]]; then
     REPORT_DATE=$(date '+%Y-%m-%d' -d "$REPORT_DATE")
 fi
 
@@ -104,7 +104,7 @@ while IFS= read -r line; do
             --output-path "${ORG_DATA_DIR}/${OUTPUT_FILE_NAME}" \
             -o log_cli=true --exitfirst --noconftest -v -c /dev/null
     }
-    
+
     if REPO_HEALTH_COMMAND; then
         true
     elif REPO_HEALTH_COMMAND; then

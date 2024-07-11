@@ -143,6 +143,6 @@ async def check_renovate(all_results, repo_path, github_repo):
     all_results[MODULE_DICT_KEY] = {
         'configured': config_exists,
         'last_pr': await get_last_pull_date(github_repo) if config_exists else None,
-        'total_open_prs': total_open_prs if config_exists else None,
-        'oldest_open_pr_date': oldest_pr_date if config_exists else None,
+        'total_open_prs': total_open_prs if config_exists else None,  # pylint: disable=possibly-used-before-assignment
+        'oldest_open_pr_date': oldest_pr_date if config_exists else None,  # pylint: disable=possibly-used-before-assignment
     }

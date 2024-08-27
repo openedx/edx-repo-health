@@ -42,7 +42,7 @@ gspread==5.11.3
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.in
-idna==3.7
+idna==3.8
     # via
     #   requests
     #   yarl
@@ -66,7 +66,7 @@ pyasn1==0.6.0
     #   rsa
 pyasn1-modules==0.4.0
     # via google-auth
-pyparsing==3.1.2
+pyparsing==3.1.4
     # via packaging
 pytest==8.0.2
     # via

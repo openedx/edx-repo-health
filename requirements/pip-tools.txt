@@ -14,7 +14,7 @@ packaging==21.3
     #   build
 pip-tools==7.4.1
     # via -r requirements/pip-tools.in
-pyparsing==3.1.2
+pyparsing==3.1.4
     # via packaging
 pyproject-hooks==1.1.0
     # via

@@ -136,7 +136,7 @@ def get_release_tags(repo_dir):
             return all_tags_list[:all_tags_list.index(latest_tag) + 1]
         else:
             return None
-    except Exception as ex:
+    except Exception as ex:  # pylint: disable=broad-exception-caught
         print(str(ex))
         return None
 

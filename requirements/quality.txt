@@ -31,7 +31,7 @@ cachetools==5.5.0
     # via
     #   -r requirements/test.txt
     #   google-auth
-certifi==2024.7.4
+certifi==2024.8.30
     # via
     #   -r requirements/test.txt
     #   requests
@@ -54,7 +54,7 @@ coverage[toml]==7.6.1
     #   pytest-cov
 dill==0.3.8
     # via pylint
-django==4.2.15
+django==4.2.16
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/quality.in
@@ -123,7 +123,7 @@ packaging==21.3
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   pytest
-pbr==6.0.0
+pbr==6.1.0
     # via stevedore
 platformdirs==4.2.2
     # via pylint
@@ -144,7 +144,7 @@ pycodestyle==2.12.1
     # via -r requirements/quality.in
 pydocstyle==6.3.0
     # via -r requirements/quality.in
-pylint==3.2.6
+pylint==3.2.7
     # via
     #   edx-lint
     #   pylint-celery
@@ -228,7 +228,7 @@ urllib3==2.2.2
     #   -r requirements/test.txt
     #   requests
     #   responses
-yarl==1.9.4
+yarl==1.9.11
     # via
     #   -r requirements/test.txt
     #   aiohttp

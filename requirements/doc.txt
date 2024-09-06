@@ -35,7 +35,7 @@ cachetools==5.5.0
     # via
     #   -r requirements/test.txt
     #   google-auth
-certifi==2024.7.4
+certifi==2024.8.30
     # via
     #   -r requirements/test.txt
     #   requests
@@ -47,11 +47,11 @@ coverage[toml]==7.6.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-doc8==1.1.1
+doc8==1.1.2
     # via -r requirements/doc.in
 dockerfile==3.3.1
     # via -r requirements/test.txt
-docutils==0.20.1
+docutils==0.21.2
     # via
     #   doc8
     #   pydata-sphinx-theme
@@ -119,7 +119,7 @@ packaging==21.3
     #   pydata-sphinx-theme
     #   pytest
     #   sphinx
-pbr==6.0.0
+pbr==6.1.0
     # via stevedore
 pluggy==1.5.0
     # via
@@ -172,7 +172,7 @@ pyyaml==6.0.2
     #   -r requirements/test.txt
     #   pytest-repo-health
     #   responses
-readme-renderer==43.0
+readme-renderer==44.0
     # via -r requirements/doc.in
 requests==2.32.3
     # via
@@ -230,7 +230,7 @@ urllib3==2.2.2
     #   -r requirements/test.txt
     #   requests
     #   responses
-yarl==1.9.4
+yarl==1.9.11
     # via
     #   -r requirements/test.txt
     #   aiohttp

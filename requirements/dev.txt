@@ -40,7 +40,7 @@ cachetools==5.5.0
     #   -r requirements/quality.txt
     #   google-auth
     #   tox
-certifi==2024.7.4
+certifi==2024.8.30
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -87,7 +87,7 @@ distlib==0.3.8
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==4.2.15
+django==4.2.16
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/quality.txt
@@ -177,7 +177,7 @@ packaging==21.3
     #   pyproject-api
     #   pytest
     #   tox
-pbr==6.0.0
+pbr==6.1.0
     # via
     #   -r requirements/quality.txt
     #   stevedore
@@ -214,7 +214,7 @@ pygments==2.18.0
     # via
     #   diff-cover
     #   rich
-pylint==3.2.6
+pylint==3.2.7
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -341,7 +341,7 @@ wheel==0.44.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
-yarl==1.9.4
+yarl==1.9.11
     # via
     #   -r requirements/quality.txt
     #   aiohttp

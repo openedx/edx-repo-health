@@ -25,7 +25,7 @@ cachetools==5.5.0
     # via
     #   -r requirements/base.txt
     #   google-auth
-certifi==2024.7.4
+certifi==2024.8.30
     # via
     #   -r requirements/base.txt
     #   requests
@@ -156,7 +156,7 @@ urllib3==2.2.2
     #   -r requirements/base.txt
     #   requests
     #   responses
-yarl==1.9.4
+yarl==1.9.11
     # via
     #   -r requirements/base.txt
     #   aiohttp

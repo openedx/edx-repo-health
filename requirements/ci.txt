@@ -12,7 +12,7 @@ colorama==0.4.6
     # via tox
 distlib==0.3.8
     # via virtualenv
-filelock==3.15.4
+filelock==3.16.0
     # via
     #   tox
     #   virtualenv
@@ -21,7 +21,7 @@ packaging==21.3
     #   -c requirements/constraints.txt
     #   pyproject-api
     #   tox
-platformdirs==4.2.2
+platformdirs==4.3.2
     # via
     #   tox
     #   virtualenv
@@ -33,5 +33,5 @@ pyproject-api==1.5.0
     # via tox
 tox==4.0.0
     # via -r requirements/ci.in
-virtualenv==20.26.3
+virtualenv==20.26.4
     # via tox

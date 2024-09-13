@@ -109,7 +109,7 @@ markupsafe==2.1.5
     # via jinja2
 mccabe==0.7.0
     # via pylint
-multidict==6.0.5
+multidict==6.1.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -125,18 +125,18 @@ packaging==21.3
     #   pytest
 pbr==6.1.0
     # via stevedore
-platformdirs==4.2.2
+platformdirs==4.3.2
     # via pylint
 pluggy==1.5.0
     # via
     #   -r requirements/test.txt
     #   pytest
-pyasn1==0.6.0
+pyasn1==0.6.1
     # via
     #   -r requirements/test.txt
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.4.0
+pyasn1-modules==0.4.1
     # via
     #   -r requirements/test.txt
     #   google-auth
@@ -223,12 +223,12 @@ toml==0.10.2
     # via -r requirements/test.txt
 tomlkit==0.13.2
     # via pylint
-urllib3==2.2.2
+urllib3==2.2.3
     # via
     #   -r requirements/test.txt
     #   requests
     #   responses
-yarl==1.9.11
+yarl==1.11.1
     # via
     #   -r requirements/test.txt
     #   aiohttp

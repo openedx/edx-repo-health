@@ -15,13 +15,18 @@
 # greater version breaking test.
 packaging==21.3
 
-# gspread==5.12.0 contains breaking changes 
+# gspread==5.12.0 contains breaking changes
 # which break the scheduled repo health job
 gspread<5.12.0
 
 # pytest==8.1.0 breaks test plugin [needs to be investigated separately]
 pytest<8.1.0
 
-# Needed for Python 3.12 compatibility. 
+# Needed for Python 3.12 compatibility.
 # Can be removed once support for Python<3.12 is dropped.
 backports-zoneinfo==0.2.1; python_version < "3.9"
+
+# date added: 13-09-24
+# setuptools > 70.3.0 breaks the repo health workflow link: https://github.com/edx/repo-health-data/actions/runs/10846619044/job/30103106806
+# Issue to remove the pin https://github.com/openedx/edx-repo-health/issues/523
+setuptools==70.3.0

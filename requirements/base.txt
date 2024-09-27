@@ -4,9 +4,9 @@
 #
 #    make upgrade
 #
-aiohappyeyeballs==2.4.0
+aiohappyeyeballs==2.4.1
     # via aiohttp
-aiohttp==3.10.5
+aiohttp==3.10.6
     # via
     #   github-py
     #   pytest-aiohttp
@@ -32,7 +32,7 @@ github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f
     # via -r requirements/github.in
 gitpython==3.1.43
     # via pytest-repo-health
-google-auth==2.34.0
+google-auth==2.35.0
     # via
     #   google-auth-oauthlib
     #   gspread
@@ -42,13 +42,13 @@ gspread==5.11.3
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.in
-idna==3.8
+idna==3.10
     # via
     #   requests
     #   yarl
 iniconfig==2.0.0
     # via pytest
-multidict==6.0.5
+multidict==6.1.0
     # via
     #   aiohttp
     #   yarl
@@ -60,11 +60,11 @@ packaging==21.3
     #   pytest
 pluggy==1.5.0
     # via pytest
-pyasn1==0.6.0
+pyasn1==0.6.1
     # via
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.4.0
+pyasn1-modules==0.4.1
     # via google-auth
 pyparsing==3.1.4
     # via packaging
@@ -96,7 +96,7 @@ smmap==5.0.1
     # via gitdb
 toml==0.10.2
     # via -r requirements/base.in
-urllib3==2.2.2
+urllib3==2.2.3
     # via requests
-yarl==1.9.11
+yarl==1.12.1
     # via aiohttp

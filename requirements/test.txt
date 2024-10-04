@@ -4,11 +4,11 @@
 #
 #    make upgrade
 #
-aiohappyeyeballs==2.4.0
+aiohappyeyeballs==2.4.3
     # via
     #   -r requirements/base.txt
     #   aiohttp
-aiohttp==3.10.5
+aiohttp==3.10.8
     # via
     #   -r requirements/base.txt
     #   github-py
@@ -52,7 +52,7 @@ gitpython==3.1.43
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.34.0
+google-auth==2.35.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -65,7 +65,7 @@ gspread==5.11.3
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
-idna==3.8
+idna==3.10
     # via
     #   -r requirements/base.txt
     #   requests
@@ -74,7 +74,7 @@ iniconfig==2.0.0
     # via
     #   -r requirements/base.txt
     #   pytest
-multidict==6.0.5
+multidict==6.1.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -92,12 +92,12 @@ pluggy==1.5.0
     # via
     #   -r requirements/base.txt
     #   pytest
-pyasn1==0.6.0
+pyasn1==0.6.1
     # via
     #   -r requirements/base.txt
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.4.0
+pyasn1-modules==0.4.1
     # via
     #   -r requirements/base.txt
     #   google-auth
@@ -151,12 +151,12 @@ smmap==5.0.1
     #   gitdb
 toml==0.10.2
     # via -r requirements/base.txt
-urllib3==2.2.2
+urllib3==2.2.3
     # via
     #   -r requirements/base.txt
     #   requests
     #   responses
-yarl==1.9.11
+yarl==1.13.1
     # via
     #   -r requirements/base.txt
     #   aiohttp

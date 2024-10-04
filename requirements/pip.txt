@@ -11,4 +11,6 @@ wheel==0.44.0
 pip==24.2
     # via -r requirements/pip.in
 setuptools==70.3.0
-    # via -r requirements/pip.in
+    # via
+    #   -c requirements/constraints.txt
+    #   -r requirements/pip.in

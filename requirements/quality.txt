@@ -48,7 +48,7 @@ click-log==0.4.0
     # via edx-lint
 code-annotations==1.8.0
     # via edx-lint
-coverage[toml]==7.6.2
+coverage[toml]==7.6.3
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -162,7 +162,7 @@ pylint-plugin-utils==0.8.2
     # via
     #   pylint-celery
     #   pylint-django
-pyparsing==3.1.4
+pyparsing==3.2.0
     # via
     #   -r requirements/test.txt
     #   packaging
@@ -232,7 +232,7 @@ urllib3==2.2.3
     #   -r requirements/test.txt
     #   requests
     #   responses
-yarl==1.14.0
+yarl==1.15.4
     # via
     #   -r requirements/test.txt
     #   aiohttp

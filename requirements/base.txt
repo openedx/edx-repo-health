@@ -68,7 +68,7 @@ pyasn1==0.6.1
     #   rsa
 pyasn1-modules==0.4.1
     # via google-auth
-pyparsing==3.1.4
+pyparsing==3.2.0
     # via packaging
 pytest==8.0.2
     # via
@@ -100,5 +100,5 @@ toml==0.10.2
     # via -r requirements/base.in
 urllib3==2.2.3
     # via requests
-yarl==1.14.0
+yarl==1.15.4
     # via aiohttp

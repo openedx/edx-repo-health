@@ -43,7 +43,7 @@ charset-normalizer==3.4.0
     # via
     #   -r requirements/test.txt
     #   requests
-coverage[toml]==7.6.2
+coverage[toml]==7.6.4
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -58,7 +58,7 @@ docutils==0.21.2
     #   readme-renderer
     #   restructuredtext-lint
     #   sphinx
-frozenlist==1.4.1
+frozenlist==1.5.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -99,7 +99,7 @@ iniconfig==2.0.0
     #   pytest
 jinja2==3.1.4
     # via sphinx
-markupsafe==3.0.1
+markupsafe==3.0.2
     # via jinja2
 multidict==6.1.0
     # via
@@ -116,7 +116,6 @@ packaging==21.3
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
-    #   pydata-sphinx-theme
     #   pytest
     #   sphinx
 pbr==6.1.0
@@ -138,7 +137,7 @@ pyasn1-modules==0.4.1
     # via
     #   -r requirements/test.txt
     #   google-auth
-pydata-sphinx-theme==0.15.4
+pydata-sphinx-theme==0.16.0
     # via sphinx-book-theme
 pygments==2.18.0
     # via
@@ -147,7 +146,7 @@ pygments==2.18.0
     #   pydata-sphinx-theme
     #   readme-renderer
     #   sphinx
-pyparsing==3.1.4
+pyparsing==3.2.0
     # via
     #   -r requirements/test.txt
     #   packaging
@@ -234,7 +233,7 @@ urllib3==2.2.3
     #   -r requirements/test.txt
     #   requests
     #   responses
-yarl==1.14.0
+yarl==1.16.0
     # via
     #   -r requirements/test.txt
     #   aiohttp

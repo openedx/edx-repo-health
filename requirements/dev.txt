@@ -73,7 +73,7 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.6.2
+coverage[toml]==7.6.4
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -100,7 +100,7 @@ filelock==3.16.1
     #   -r requirements/ci.txt
     #   tox
     #   virtualenv
-frozenlist==1.4.1
+frozenlist==1.5.0
     # via
     #   -r requirements/quality.txt
     #   aiohttp
@@ -148,7 +148,7 @@ jinja2==3.1.4
     #   diff-cover
 markdown-it-py==3.0.0
     # via rich
-markupsafe==3.0.1
+markupsafe==3.0.2
     # via
     #   -r requirements/quality.txt
     #   jinja2
@@ -238,7 +238,7 @@ pylint-plugin-utils==0.8.2
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pyparsing==3.1.4
+pyparsing==3.2.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
@@ -294,7 +294,7 @@ requests-oauthlib==2.0.0
     #   google-auth-oauthlib
 responses==0.25.3
     # via -r requirements/quality.txt
-rich==13.9.2
+rich==13.9.3
     # via -r requirements/dev.in
 rsa==4.9
     # via
@@ -337,7 +337,7 @@ urllib3==2.2.3
     #   -r requirements/quality.txt
     #   requests
     #   responses
-virtualenv==20.26.6
+virtualenv==20.27.0
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -345,7 +345,7 @@ wheel==0.44.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
-yarl==1.14.0
+yarl==1.16.0
     # via
     #   -r requirements/quality.txt
     #   aiohttp

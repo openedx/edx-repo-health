@@ -27,11 +27,11 @@ platformdirs==4.3.6
     #   virtualenv
 pluggy==1.5.0
     # via tox
-pyparsing==3.1.4
+pyparsing==3.2.0
     # via packaging
 pyproject-api==1.5.0
     # via tox
 tox==4.0.0
     # via -r requirements/ci.in
-virtualenv==20.26.6
+virtualenv==20.27.1
     # via tox

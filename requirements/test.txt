@@ -33,11 +33,11 @@ charset-normalizer==3.4.0
     # via
     #   -r requirements/base.txt
     #   requests
-coverage[toml]==7.6.2
+coverage[toml]==7.6.4
     # via pytest-cov
 dockerfile==3.3.1
     # via -r requirements/base.txt
-frozenlist==1.4.1
+frozenlist==1.5.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -105,7 +105,7 @@ pyasn1-modules==0.4.1
     # via
     #   -r requirements/base.txt
     #   google-auth
-pyparsing==3.1.4
+pyparsing==3.2.0
     # via
     #   -r requirements/base.txt
     #   packaging
@@ -125,7 +125,7 @@ pytest-asyncio==0.23.8
     # via
     #   -r requirements/base.txt
     #   pytest-aiohttp
-pytest-cov==5.0.0
+pytest-cov==6.0.0
     # via -r requirements/test.in
 pytest-repo-health==3.0.2
     # via -r requirements/base.txt
@@ -160,7 +160,7 @@ urllib3==2.2.3
     #   -r requirements/base.txt
     #   requests
     #   responses
-yarl==1.14.0
+yarl==1.17.1
     # via
     #   -r requirements/base.txt
     #   aiohttp

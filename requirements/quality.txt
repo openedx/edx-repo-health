@@ -48,7 +48,7 @@ click-log==0.4.0
     # via edx-lint
 code-annotations==1.8.0
     # via edx-lint
-coverage[toml]==7.6.2
+coverage[toml]==7.6.4
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -60,9 +60,9 @@ django==4.2.16
     #   -r requirements/quality.in
 dockerfile==3.3.1
     # via -r requirements/test.txt
-edx-lint==5.4.0
+edx-lint==5.4.1
     # via -r requirements/quality.in
-frozenlist==1.4.1
+frozenlist==1.5.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -105,7 +105,7 @@ isort==5.13.2
     #   pylint
 jinja2==3.1.4
     # via code-annotations
-markupsafe==3.0.1
+markupsafe==3.0.2
     # via jinja2
 mccabe==0.7.0
     # via pylint
@@ -162,7 +162,7 @@ pylint-plugin-utils==0.8.2
     # via
     #   pylint-celery
     #   pylint-django
-pyparsing==3.1.4
+pyparsing==3.2.0
     # via
     #   -r requirements/test.txt
     #   packaging
@@ -182,7 +182,7 @@ pytest-asyncio==0.23.8
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp
-pytest-cov==5.0.0
+pytest-cov==6.0.0
     # via -r requirements/test.txt
 pytest-repo-health==3.0.2
     # via -r requirements/test.txt
@@ -232,7 +232,7 @@ urllib3==2.2.3
     #   -r requirements/test.txt
     #   requests
     #   responses
-yarl==1.14.0
+yarl==1.17.1
     # via
     #   -r requirements/test.txt
     #   aiohttp

@@ -29,7 +29,7 @@ django-simple-history==3.0.0
 # We will pin event-tracking to do not break existing installations
 # This can be unpinned once https://github.com/openedx/edx-platform/issues/34586
 # has been resolved and edx-platform is running with pymongo>=4.4.0
-event-tracking<2.4.1
+event-tracking<3.0.1
 
 # Cause: https://github.com/openedx/edx-lint/issues/458
 # This can be unpinned once https://github.com/openedx/edx-lint/issues/459 has been resolved.

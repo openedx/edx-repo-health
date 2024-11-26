@@ -17,7 +17,7 @@ attrs==20.3.0
     # via
     #   -r requirements/quality.txt
     #   pytest
-certifi==2020.12.5
+certifi==2023.7.22
     # via
     #   -r requirements/ci.txt
     #   requests

@@ -4,15 +4,15 @@
 #
 #    make upgrade
 #
-wheel==0.44.0
+wheel==0.45.1
     # via -r requirements/pip.in
 
 # The following packages are considered to be unsafe in a requirements file:
 pip==24.2
     # via
-    #   -c requirements/common_constraints.txt
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/common_constraints.txt
     #   -r requirements/pip.in
 setuptools==70.3.0
     # via
-    #   -c requirements/constraints.txt
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/constraints.txt
     #   -r requirements/pip.in

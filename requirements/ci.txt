@@ -18,7 +18,7 @@ filelock==3.16.1
     #   virtualenv
 packaging==21.3
     # via
-    #   -c requirements/constraints.txt
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/constraints.txt
     #   pyproject-api
     #   tox
 platformdirs==4.3.6
@@ -27,11 +27,11 @@ platformdirs==4.3.6
     #   virtualenv
 pluggy==1.5.0
     # via tox
-pyparsing==3.2.0
+pyparsing==3.2.1
     # via packaging
 pyproject-api==1.5.0
     # via tox
 tox==4.0.0
     # via -r requirements/ci.in
-virtualenv==20.27.1
+virtualenv==20.28.0
     # via tox

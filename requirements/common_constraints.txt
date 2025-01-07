@@ -21,7 +21,7 @@ Django<5.0
 elasticsearch<7.14.0
 
 # django-simple-history>3.0.0 adds indexing and causes a lot of migrations to be affected
-django-simple-history==3.0.0
+django-simple-history==3.7.0
 
 # Cause: https://github.com/openedx/edx-lint/issues/458
 # This can be unpinned once https://github.com/openedx/edx-lint/issues/459 has been resolved.

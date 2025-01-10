@@ -91,7 +91,7 @@ django==4.2.17
     # via
     #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/common_constraints.txt
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/quality.txt
-dockerfile==3.3.1
+dockerfile==3.4.0
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/quality.txt
 edx-lint==5.4.1
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/quality.txt
@@ -215,7 +215,7 @@ pycodestyle==2.12.1
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/quality.txt
 pydocstyle==6.3.0
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/quality.txt
-pygments==2.18.0
+pygments==2.19.1
     # via
     #   diff-cover
     #   rich
@@ -333,12 +333,13 @@ tomlkit==0.13.2
     #   pylint
 tox==4.0.0
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/ci.txt
-urllib3==2.3.0
+urllib3==2.2.3
     # via
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/common_constraints.txt
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/quality.txt
     #   requests
     #   responses
-virtualenv==20.28.0
+virtualenv==20.28.1
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/ci.txt
     #   tox

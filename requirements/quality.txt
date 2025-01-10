@@ -58,7 +58,7 @@ django==4.2.17
     # via
     #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/common_constraints.txt
     #   -r requirements/quality.in
-dockerfile==3.3.1
+dockerfile==3.4.0
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
 edx-lint==5.4.1
     # via -r requirements/quality.in
@@ -228,8 +228,9 @@ toml==0.10.2
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
 tomlkit==0.13.2
     # via pylint
-urllib3==2.3.0
+urllib3==2.2.3
     # via
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/common_constraints.txt
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   requests
     #   responses

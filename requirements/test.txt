@@ -35,7 +35,7 @@ charset-normalizer==3.4.1
     #   requests
 coverage[toml]==7.6.10
     # via pytest-cov
-dockerfile==3.3.1
+dockerfile==3.4.0
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
 frozenlist==1.5.0
     # via
@@ -144,7 +144,7 @@ requests-oauthlib==2.0.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   google-auth-oauthlib
-responses==0.25.3
+responses==0.25.6
     # via -r requirements/test.in
 rsa==4.9
     # via
@@ -156,8 +156,9 @@ smmap==5.0.2
     #   gitdb
 toml==0.10.2
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
-urllib3==2.3.0
+urllib3==2.2.3
     # via
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/common_constraints.txt
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   requests
     #   responses

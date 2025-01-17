@@ -49,7 +49,7 @@ coverage[toml]==7.6.10
     #   pytest-cov
 doc8==1.1.2
     # via -r requirements/doc.in
-dockerfile==3.3.1
+dockerfile==3.4.0
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
 docutils==0.21.2
     # via
@@ -140,7 +140,7 @@ pyasn1-modules==0.4.1
     #   google-auth
 pydata-sphinx-theme==0.16.1
     # via sphinx-book-theme
-pygments==2.18.0
+pygments==2.19.1
     # via
     #   accessible-pygments
     #   doc8
@@ -188,7 +188,7 @@ requests-oauthlib==2.0.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   google-auth-oauthlib
-responses==0.25.3
+responses==0.25.6
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
 restructuredtext-lint==1.4.0
     # via doc8
@@ -229,8 +229,9 @@ toml==0.10.2
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
 typing-extensions==4.12.2
     # via pydata-sphinx-theme
-urllib3==2.3.0
+urllib3==2.2.3
     # via
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/common_constraints.txt
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   requests
     #   responses

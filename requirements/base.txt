@@ -20,7 +20,7 @@ certifi==2024.12.14
     # via requests
 charset-normalizer==3.4.1
     # via requests
-dockerfile==3.3.1
+dockerfile==3.4.0
     # via -r requirements/base.in
 frozenlist==1.5.0
     # via
@@ -100,7 +100,9 @@ smmap==5.0.2
     # via gitdb
 toml==0.10.2
     # via -r requirements/base.in
-urllib3==2.3.0
-    # via requests
+urllib3==2.2.3
+    # via
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/common_constraints.txt
+    #   requests
 yarl==1.18.3
     # via aiohttp

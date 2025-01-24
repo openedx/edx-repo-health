@@ -27,7 +27,7 @@ attrs==24.3.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   aiohttp
-cachetools==5.5.0
+cachetools==5.5.1
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   google-auth
@@ -46,7 +46,7 @@ click==8.1.8
     #   edx-lint
 click-log==0.4.0
     # via edx-lint
-code-annotations==2.1.0
+code-annotations==2.2.0
     # via edx-lint
 coverage[toml]==7.6.10
     # via
@@ -54,13 +54,13 @@ coverage[toml]==7.6.10
     #   pytest-cov
 dill==0.3.9
     # via pylint
-django==4.2.17
+django==4.2.18
     # via
     #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/common_constraints.txt
     #   -r requirements/quality.in
-dockerfile==3.3.1
+dockerfile==3.4.0
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
-edx-lint==5.4.1
+edx-lint==5.5.0
     # via -r requirements/quality.in
 frozenlist==1.5.0
     # via
@@ -77,7 +77,7 @@ gitpython==3.1.44
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   pytest-repo-health
-google-auth==2.37.0
+google-auth==2.38.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   google-auth-oauthlib
@@ -175,7 +175,7 @@ pytest==8.0.2
     #   pytest-asyncio
     #   pytest-cov
     #   pytest-repo-health
-pytest-aiohttp==1.0.5
+pytest-aiohttp==1.1.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   pytest-repo-health
@@ -204,7 +204,7 @@ requests-oauthlib==2.0.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   google-auth-oauthlib
-responses==0.25.3
+responses==0.25.6
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
 rsa==4.9
     # via
@@ -228,8 +228,9 @@ toml==0.10.2
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
 tomlkit==0.13.2
     # via pylint
-urllib3==2.3.0
+urllib3==2.2.3
     # via
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/common_constraints.txt
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   requests
     #   responses

@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohappyeyeballs==2.5.0
+aiohappyeyeballs==2.6.1
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   aiohttp
@@ -17,7 +17,7 @@ aiosignal==1.3.2
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   aiohttp
-attrs==25.1.0
+attrs==25.3.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   aiohttp
@@ -128,7 +128,7 @@ pytest-asyncio==0.23.8
     #   pytest-aiohttp
 pytest-cov==6.0.0
     # via -r requirements/test.in
-pytest-repo-health==3.0.2
+pytest-repo-health==3.1.0
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
 pyyaml==6.0.2
     # via
@@ -144,7 +144,7 @@ requests-oauthlib==2.0.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   google-auth-oauthlib
-responses==0.25.6
+responses==0.25.7
     # via -r requirements/test.in
 rsa==4.9
     # via

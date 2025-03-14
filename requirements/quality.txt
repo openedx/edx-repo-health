@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohappyeyeballs==2.5.0
+aiohappyeyeballs==2.6.1
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   aiohttp
@@ -19,11 +19,11 @@ aiosignal==1.3.2
     #   aiohttp
 asgiref==3.8.1
     # via django
-astroid==3.3.8
+astroid==3.3.9
     # via
     #   pylint
     #   pylint-celery
-attrs==25.1.0
+attrs==25.3.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   aiohttp
@@ -149,7 +149,7 @@ pycodestyle==2.12.1
     # via -r requirements/quality.in
 pydocstyle==6.3.0
     # via -r requirements/quality.in
-pylint==3.3.4
+pylint==3.3.5
     # via
     #   edx-lint
     #   pylint-celery
@@ -185,7 +185,7 @@ pytest-asyncio==0.23.8
     #   pytest-aiohttp
 pytest-cov==6.0.0
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
-pytest-repo-health==3.0.2
+pytest-repo-health==3.1.0
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
 python-slugify==8.0.4
     # via code-annotations
@@ -204,7 +204,7 @@ requests-oauthlib==2.0.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   google-auth-oauthlib
-responses==0.25.6
+responses==0.25.7
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
 rsa==4.9
     # via

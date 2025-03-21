@@ -6,7 +6,7 @@
 #
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.11.13
+aiohttp==3.11.14
     # via
     #   github-py
     #   pytest-aiohttp
@@ -46,9 +46,9 @@ idna==3.10
     # via
     #   requests
     #   yarl
-iniconfig==2.0.0
+iniconfig==2.1.0
     # via pytest
-multidict==6.1.0
+multidict==6.2.0
     # via
     #   aiohttp
     #   yarl

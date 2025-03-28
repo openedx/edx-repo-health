@@ -60,7 +60,7 @@ packaging==21.3
     #   pytest
 pluggy==1.5.0
     # via pytest
-propcache==0.3.0
+propcache==0.3.1
     # via
     #   aiohttp
     #   yarl
@@ -70,7 +70,7 @@ pyasn1==0.6.1
     #   rsa
 pyasn1-modules==0.4.1
     # via google-auth
-pyparsing==3.2.1
+pyparsing==3.2.3
     # via packaging
 pytest==8.0.2
     # via

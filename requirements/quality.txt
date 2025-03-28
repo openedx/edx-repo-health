@@ -48,7 +48,7 @@ click-log==0.4.0
     # via edx-lint
 code-annotations==2.2.0
     # via edx-lint
-coverage[toml]==7.7.0
+coverage[toml]==7.7.1
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   pytest-cov
@@ -131,7 +131,7 @@ pluggy==1.5.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   pytest
-propcache==0.3.0
+propcache==0.3.1
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   aiohttp
@@ -163,7 +163,7 @@ pylint-plugin-utils==0.8.2
     # via
     #   pylint-celery
     #   pylint-django
-pyparsing==3.2.1
+pyparsing==3.2.3
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   packaging

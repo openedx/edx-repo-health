@@ -43,7 +43,7 @@ charset-normalizer==3.4.1
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   requests
-coverage[toml]==7.7.0
+coverage[toml]==7.7.1
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   pytest-cov
@@ -125,7 +125,7 @@ pluggy==1.5.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   pytest
-propcache==0.3.0
+propcache==0.3.1
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   aiohttp
@@ -148,7 +148,7 @@ pygments==2.19.1
     #   pydata-sphinx-theme
     #   readme-renderer
     #   sphinx
-pyparsing==3.2.1
+pyparsing==3.2.3
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   packaging
@@ -228,7 +228,7 @@ stevedore==5.4.1
     # via doc8
 toml==0.10.2
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
-typing-extensions==4.12.2
+typing-extensions==4.13.0
     # via
     #   beautifulsoup4
     #   pydata-sphinx-theme

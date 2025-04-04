@@ -8,7 +8,7 @@ aiohappyeyeballs==2.6.1
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   aiohttp
-aiohttp==3.11.14
+aiohttp==3.11.16
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   github-py
@@ -33,7 +33,7 @@ charset-normalizer==3.4.1
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   requests
-coverage[toml]==7.7.1
+coverage[toml]==7.8.0
     # via pytest-cov
 dockerfile==3.4.0
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
@@ -74,7 +74,7 @@ iniconfig==2.1.0
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   pytest
-multidict==6.2.0
+multidict==6.3.2
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   aiohttp
@@ -102,7 +102,7 @@ pyasn1==0.6.1
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.4.1
+pyasn1-modules==0.4.2
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   google-auth
@@ -126,7 +126,7 @@ pytest-asyncio==0.23.8
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt
     #   pytest-aiohttp
-pytest-cov==6.0.0
+pytest-cov==6.1.0
     # via -r requirements/test.in
 pytest-repo-health==3.1.0
     # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/base.txt

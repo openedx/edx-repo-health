@@ -6,7 +6,7 @@
 #
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.11.14
+aiohttp==3.11.16
     # via
     #   github-py
     #   pytest-aiohttp
@@ -48,7 +48,7 @@ idna==3.10
     #   yarl
 iniconfig==2.1.0
     # via pytest
-multidict==6.2.0
+multidict==6.3.2
     # via
     #   aiohttp
     #   yarl
@@ -68,7 +68,7 @@ pyasn1==0.6.1
     # via
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.4.1
+pyasn1-modules==0.4.2
     # via google-auth
 pyparsing==3.2.3
     # via packaging

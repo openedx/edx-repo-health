@@ -6,7 +6,7 @@
 #
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.11.14
+aiohttp==3.11.16
     # via
     #   github-py
     #   pytest-aiohttp
@@ -48,7 +48,7 @@ idna==3.10
     #   yarl
 iniconfig==2.1.0
     # via pytest
-multidict==6.2.0
+multidict==6.4.3
     # via
     #   aiohttp
     #   yarl
@@ -68,7 +68,7 @@ pyasn1==0.6.1
     # via
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.4.1
+pyasn1-modules==0.4.2
     # via google-auth
 pyparsing==3.2.3
     # via packaging
@@ -104,5 +104,5 @@ urllib3==2.2.3
     # via
     #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/common_constraints.txt
     #   requests
-yarl==1.18.3
+yarl==1.19.0
     # via aiohttp

@@ -35,7 +35,7 @@ cachetools==5.5.2
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   google-auth
-certifi==2025.1.31
+certifi==2025.4.26
     # via
     #   -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/test.txt
     #   requests

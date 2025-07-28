@@ -5,12 +5,14 @@
 #    make upgrade
 #
 cachetools==5.5.2
-    # via tox
+    # via
+    #   -c requirements/constraints.txt
+    #   tox
 chardet==5.2.0
     # via tox
 colorama==0.4.6
     # via tox
-distlib==0.3.9
+distlib==0.4.0
     # via virtualenv
 filelock==3.18.0
     # via
@@ -21,11 +23,11 @@ packaging==21.3
     #   -c requirements/constraints.txt
     #   pyproject-api
     #   tox
-platformdirs==4.3.7
+platformdirs==4.3.8
     # via
     #   tox
     #   virtualenv
-pluggy==1.5.0
+pluggy==1.6.0
     # via tox
 pyparsing==3.2.3
     # via packaging
@@ -33,5 +35,5 @@ pyproject-api==1.5.0
     # via tox
 tox==4.0.0
     # via -r requirements/ci.in
-virtualenv==20.31.1
+virtualenv==20.32.0
     # via tox

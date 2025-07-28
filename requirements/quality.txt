@@ -8,18 +8,18 @@ aiohappyeyeballs==2.6.1
     # via
     #   -r requirements/test.txt
     #   aiohttp
-aiohttp==3.11.18
+aiohttp==3.12.14
     # via
     #   -r requirements/test.txt
     #   github-py
     #   pytest-aiohttp
-aiosignal==1.3.2
+aiosignal==1.4.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
-asgiref==3.8.1
+asgiref==3.9.1
     # via django
-astroid==3.3.9
+astroid==3.3.11
     # via
     #   pylint
     #   pylint-celery
@@ -29,9 +29,10 @@ attrs==25.3.0
     #   aiohttp
 cachetools==5.5.2
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   google-auth
-certifi==2025.4.26
+certifi==2025.7.14
     # via
     #   -r requirements/test.txt
     #   requests
@@ -39,7 +40,7 @@ charset-normalizer==3.4.2
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.1.8
+click==8.2.1
     # via
     #   click-log
     #   code-annotations
@@ -48,13 +49,13 @@ click-log==0.4.0
     # via edx-lint
 code-annotations==2.3.0
     # via edx-lint
-coverage[toml]==7.8.0
+coverage[toml]==7.10.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
 dill==0.4.0
     # via pylint
-django==4.2.20
+django==4.2.23
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/quality.in
@@ -62,7 +63,7 @@ dockerfile==3.4.0
     # via -r requirements/test.txt
 edx-lint==5.6.0
     # via -r requirements/quality.in
-frozenlist==1.6.0
+frozenlist==1.7.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -73,11 +74,11 @@ gitdb==4.0.12
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/test.txt
-gitpython==3.1.44
+gitpython==3.1.45
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.40.0
+google-auth==2.40.3
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -109,12 +110,12 @@ markupsafe==3.0.2
     # via jinja2
 mccabe==0.7.0
     # via pylint
-multidict==6.4.3
+multidict==6.6.3
     # via
     #   -r requirements/test.txt
     #   aiohttp
     #   yarl
-oauthlib==3.2.2
+oauthlib==3.3.1
     # via
     #   -r requirements/test.txt
     #   requests-oauthlib
@@ -125,13 +126,14 @@ packaging==21.3
     #   pytest
 pbr==6.1.1
     # via stevedore
-platformdirs==4.3.7
+platformdirs==4.3.8
     # via pylint
-pluggy==1.5.0
+pluggy==1.6.0
     # via
     #   -r requirements/test.txt
     #   pytest
-propcache==0.3.1
+    #   pytest-cov
+propcache==0.3.2
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -145,7 +147,7 @@ pyasn1-modules==0.4.2
     # via
     #   -r requirements/test.txt
     #   google-auth
-pycodestyle==2.13.0
+pycodestyle==2.14.0
     # via -r requirements/quality.in
 pydocstyle==6.3.0
     # via -r requirements/quality.in
@@ -159,7 +161,7 @@ pylint-celery==0.3
     # via edx-lint
 pylint-django==2.6.1
     # via edx-lint
-pylint-plugin-utils==0.8.2
+pylint-plugin-utils==0.9.0
     # via
     #   pylint-celery
     #   pylint-django
@@ -183,7 +185,7 @@ pytest-asyncio==0.23.8
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp
-pytest-cov==6.1.1
+pytest-cov==6.2.1
     # via -r requirements/test.txt
 pytest-repo-health==3.2.0
     # via -r requirements/test.txt
@@ -195,7 +197,7 @@ pyyaml==6.0.2
     #   code-annotations
     #   pytest-repo-health
     #   responses
-requests==2.32.3
+requests==2.32.4
     # via
     #   -r requirements/test.txt
     #   requests-oauthlib
@@ -216,7 +218,7 @@ smmap==5.0.2
     # via
     #   -r requirements/test.txt
     #   gitdb
-snowballstemmer==2.2.0
+snowballstemmer==3.0.1
     # via pydocstyle
 sqlparse==0.5.3
     # via django
@@ -226,15 +228,19 @@ text-unidecode==1.3
     # via python-slugify
 toml==0.10.2
     # via -r requirements/test.txt
-tomlkit==0.13.2
+tomlkit==0.13.3
     # via pylint
+typing-extensions==4.14.1
+    # via
+    #   -r requirements/test.txt
+    #   aiosignal
 urllib3==2.2.3
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/test.txt
     #   requests
     #   responses
-yarl==1.20.0
+yarl==1.20.1
     # via
     #   -r requirements/test.txt
     #   aiohttp

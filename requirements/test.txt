@@ -8,12 +8,12 @@ aiohappyeyeballs==2.6.1
     # via
     #   -r requirements/base.txt
     #   aiohttp
-aiohttp==3.11.18
+aiohttp==3.12.14
     # via
     #   -r requirements/base.txt
     #   github-py
     #   pytest-aiohttp
-aiosignal==1.3.2
+aiosignal==1.4.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -23,9 +23,10 @@ attrs==25.3.0
     #   aiohttp
 cachetools==5.5.2
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/base.txt
     #   google-auth
-certifi==2025.4.26
+certifi==2025.7.14
     # via
     #   -r requirements/base.txt
     #   requests
@@ -33,11 +34,11 @@ charset-normalizer==3.4.2
     # via
     #   -r requirements/base.txt
     #   requests
-coverage[toml]==7.8.0
+coverage[toml]==7.10.1
     # via pytest-cov
 dockerfile==3.4.0
     # via -r requirements/base.txt
-frozenlist==1.6.0
+frozenlist==1.7.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -48,11 +49,11 @@ gitdb==4.0.12
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/base.txt
-gitpython==3.1.44
+gitpython==3.1.45
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.40.0
+google-auth==2.40.3
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -74,12 +75,12 @@ iniconfig==2.1.0
     # via
     #   -r requirements/base.txt
     #   pytest
-multidict==6.4.3
+multidict==6.6.3
     # via
     #   -r requirements/base.txt
     #   aiohttp
     #   yarl
-oauthlib==3.2.2
+oauthlib==3.3.1
     # via
     #   -r requirements/base.txt
     #   requests-oauthlib
@@ -88,11 +89,12 @@ packaging==21.3
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
     #   pytest
-pluggy==1.5.0
+pluggy==1.6.0
     # via
     #   -r requirements/base.txt
     #   pytest
-propcache==0.3.1
+    #   pytest-cov
+propcache==0.3.2
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -126,7 +128,7 @@ pytest-asyncio==0.23.8
     # via
     #   -r requirements/base.txt
     #   pytest-aiohttp
-pytest-cov==6.1.1
+pytest-cov==6.2.1
     # via -r requirements/test.in
 pytest-repo-health==3.2.0
     # via -r requirements/base.txt
@@ -135,7 +137,7 @@ pyyaml==6.0.2
     #   -r requirements/base.txt
     #   pytest-repo-health
     #   responses
-requests==2.32.3
+requests==2.32.4
     # via
     #   -r requirements/base.txt
     #   requests-oauthlib
@@ -156,13 +158,17 @@ smmap==5.0.2
     #   gitdb
 toml==0.10.2
     # via -r requirements/base.txt
+typing-extensions==4.14.1
+    # via
+    #   -r requirements/base.txt
+    #   aiosignal
 urllib3==2.2.3
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/base.txt
     #   requests
     #   responses
-yarl==1.20.0
+yarl==1.20.1
     # via
     #   -r requirements/base.txt
     #   aiohttp

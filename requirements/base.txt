@@ -16,7 +16,7 @@ attrs==25.3.0
     # via aiohttp
 cachetools==5.5.2
     # via
-    #   -c requirements/constraints.txt
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/constraints.txt
     #   google-auth
 certifi==2025.7.14
     # via requests
@@ -31,7 +31,7 @@ frozenlist==1.7.0
 gitdb==4.0.12
     # via gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
-    # via -r requirements/github.in
+    # via -r /home/runner/work/edx-repo-health/edx-repo-health/requirements/github.in
 gitpython==3.1.45
     # via pytest-repo-health
 google-auth==2.40.3
@@ -42,7 +42,7 @@ google-auth-oauthlib==1.2.2
     # via gspread
 gspread==5.11.3
     # via
-    #   -c requirements/constraints.txt
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/constraints.txt
     #   -r requirements/base.in
 idna==3.10
     # via
@@ -58,7 +58,7 @@ oauthlib==3.3.1
     # via requests-oauthlib
 packaging==21.3
     # via
-    #   -c requirements/constraints.txt
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/constraints.txt
     #   pytest
 pluggy==1.6.0
     # via pytest
@@ -76,7 +76,7 @@ pyparsing==3.2.3
     # via packaging
 pytest==8.0.2
     # via
-    #   -c requirements/constraints.txt
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/constraints.txt
     #   pytest-aiohttp
     #   pytest-asyncio
     #   pytest-repo-health
@@ -106,7 +106,7 @@ typing-extensions==4.14.1
     # via aiosignal
 urllib3==2.2.3
     # via
-    #   -c requirements/common_constraints.txt
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/common_constraints.txt
     #   requests
 yarl==1.20.1
     # via aiohttp

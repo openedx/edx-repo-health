@@ -26,7 +26,7 @@ pytest<8.1.0
 # Can be removed once support for Python<3.12 is dropped.
 backports-zoneinfo==0.2.1; python_version < "3.9"
 
-# date added: 13-09-24
+# date added: 28-07-25
 # conflicting version are causing a failure: https://github.com/openedx/edx-repo-health/actions/runs/16510678524/job/46700605303#step:6:911
 # Issue to remove the pin https://github.com/openedx/edx-repo-health/issues/598
 cachetools==5.5.2

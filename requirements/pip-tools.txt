@@ -10,9 +10,9 @@ click==8.2.1
     # via pip-tools
 packaging==21.3
     # via
-    #   -c requirements/constraints.txt
+    #   -c /home/runner/work/edx-repo-health/edx-repo-health/requirements/constraints.txt
     #   build
-pip-tools==7.4.1
+pip-tools==7.5.0
     # via -r requirements/pip-tools.in
 pyparsing==3.2.3
     # via packaging

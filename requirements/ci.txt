@@ -6,7 +6,7 @@
 #
 cachetools==5.5.2
     # via
-    #   -c requirements/constraints.txt
+    #   -c constraints.txt
     #   tox
 chardet==5.2.0
     # via tox
@@ -14,13 +14,13 @@ colorama==0.4.6
     # via tox
 distlib==0.4.0
     # via virtualenv
-filelock==3.18.0
+filelock==3.20.3
     # via
     #   tox
     #   virtualenv
 packaging==21.3
     # via
-    #   -c requirements/constraints.txt
+    #   -c constraints.txt
     #   pyproject-api
     #   tox
 platformdirs==4.3.8
@@ -34,6 +34,6 @@ pyparsing==3.2.3
 pyproject-api==1.5.0
     # via tox
 tox==4.0.0
-    # via -r requirements/ci.in
+    # via -r ci.in
 virtualenv==20.32.0
     # via tox

@@ -109,7 +109,7 @@ setup(
     include_package_data=True,
     install_requires=load_requirements("requirements/base.in"),
     packages=["repo_health_dashboard", "repo_health_dashboard.utils"],
-    python_requires=">=3.11",
+    python_requires=">=3.12",
     license="Apache Software License 2.0",
     zip_safe=False,
     keywords="Django edx",
@@ -119,7 +119,6 @@ setup(
         "License :: OSI Approved :: Apache Software License",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
     ],
     entry_points={

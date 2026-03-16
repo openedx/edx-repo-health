@@ -38,7 +38,8 @@ upgrade: ## update the requirements/*.txt files with the latest packages satisfy
 upgrade: $(COMMON_CONSTRAINTS_TXT) ## update the requirements/*.txt files satisfying requirements/*.in
 	sed 's/Django<4.0//g' requirements/common_constraints.txt > requirements/common_constraints.tmp
 	mv requirements/common_constraints.tmp requirements/common_constraints.txt
-	pip install -qr requirements/pip-tools.txt
+	python -m pip install -U "pip<24.3"
+	python -m pip install -U -r requirements/pip-tools.txt
 	$(PIP_COMPILE) --allow-unsafe --rebuild -o requirements/pip.txt requirements/pip.in
 	$(PIP_COMPILE) -o requirements/pip-tools.txt requirements/pip-tools.in
 	$(PIP_COMPILE) -o requirements/base.txt requirements/base.in

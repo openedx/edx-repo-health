@@ -13,7 +13,7 @@
 -c common_constraints.txt
 
 # greater version breaking test.
-packaging==21.3
+packaging==22
 
 # gspread==5.12.0 contains breaking changes
 # which break the scheduled repo health job

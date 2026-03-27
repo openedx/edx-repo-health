@@ -23,7 +23,7 @@ astroid==4.0.4
     # via
     #   pylint
     #   pylint-celery
-attrs==25.4.0
+attrs==26.1.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -35,7 +35,7 @@ cffi==2.0.0
     # via
     #   -r requirements/test.txt
     #   cryptography
-charset-normalizer==3.4.5
+charset-normalizer==3.4.6
     # via
     #   -r requirements/test.txt
     #   requests
@@ -46,13 +46,13 @@ click==8.3.1
     #   edx-lint
 click-log==0.4.0
     # via edx-lint
-code-annotations==2.3.2
+code-annotations==3.0.0
     # via edx-lint
-coverage[toml]==7.13.4
+coverage[toml]==7.13.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==46.0.5
+cryptography==46.0.6
     # via
     #   -r requirements/test.txt
     #   google-auth
@@ -64,7 +64,7 @@ django==5.2.12
     #   -r requirements/quality.in
 dockerfile==3.4.0
     # via -r requirements/test.txt
-edx-lint==5.6.0
+edx-lint==6.0.0
     # via -r requirements/quality.in
 frozenlist==1.8.0
     # via
@@ -81,7 +81,7 @@ gitpython==3.1.46
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.48.0
+google-auth==2.49.1
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -139,11 +139,10 @@ propcache==0.4.1
     #   -r requirements/test.txt
     #   aiohttp
     #   yarl
-pyasn1==0.6.2
+pyasn1==0.6.3
     # via
     #   -r requirements/test.txt
     #   pyasn1-modules
-    #   rsa
 pyasn1-modules==0.4.2
     # via
     #   -r requirements/test.txt
@@ -190,7 +189,7 @@ pytest-asyncio==0.23.8
     # via
     #   -r requirements/test.txt
     #   pytest-aiohttp
-pytest-cov==7.0.0
+pytest-cov==7.1.0
     # via -r requirements/test.txt
 pytest-repo-health==3.2.1
     # via -r requirements/test.txt
@@ -202,7 +201,7 @@ pyyaml==6.0.3
     #   code-annotations
     #   pytest-repo-health
     #   responses
-requests==2.32.5
+requests==2.33.0
     # via
     #   -r requirements/test.txt
     #   requests-oauthlib
@@ -213,13 +212,9 @@ requests-oauthlib==2.0.0
     #   google-auth-oauthlib
 responses==0.26.0
     # via -r requirements/test.txt
-rsa==4.9.1
-    # via
-    #   -r requirements/test.txt
-    #   google-auth
 six==1.17.0
     # via edx-lint
-smmap==5.0.2
+smmap==5.0.3
     # via
     #   -r requirements/test.txt
     #   gitdb

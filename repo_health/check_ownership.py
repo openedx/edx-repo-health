@@ -89,6 +89,13 @@ def check_ownership(all_results, git_origin_url):
         )
         pytest.skip("At least one of the REPO_HEALTH_* environment variables is missing")
 
+    if not google_creds_file.strip():
+        logger.error(
+            "Environment variable %s is set but empty.",
+            GOOGLE_CREDENTIALS,
+        )
+        pytest.skip(f"Environment variable {GOOGLE_CREDENTIALS} is set but empty")
+
     org_name, repo_name = github_org_repo(git_origin_url)
     repo_url = f"https://github.com/{org_name}/{repo_name}"
     results = all_results[MODULE_DICT_KEY]

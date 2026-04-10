@@ -15,7 +15,6 @@ fi
 # Get list of repos in given organizations
 ##########################################
 
-pip-sync -q repo_tools/requirements/base.txt
 pip install -q -e repo_tools
 cd "$WORKSPACE"
 touch "repositories.txt"
@@ -32,7 +31,6 @@ done
 ############################
 
 # Install checks and dashboarding script, this should also install pytest-repo-health
-pip-sync -q edx-repo-health/requirements/base.txt
 pip install -q -e edx-repo-health
 
 # data destination folder setup

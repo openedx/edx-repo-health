@@ -154,6 +154,9 @@ def check_readthedocs_build(all_results, git_origin_url):
     except KeyError:
         logger.error("READTHEDOCS_API_KEY is missing in environment variables")
         pytest.skip("READTHEDOCS_API_KEY is missing in environment variables")
+    if not token:
+        logger.error("READTHEDOCS_API_KEY is empty in environment variables")
+        pytest.skip("READTHEDOCS_API_KEY is empty in environment variables")
 
     rtd_checker = ReadTheDocsChecker(git_origin_url=git_origin_url, token=token)
     rtd_checker.update_build_details()

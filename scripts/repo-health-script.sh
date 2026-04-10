@@ -102,7 +102,9 @@ while IFS= read -r line; do
             --repo-path "target-repo" \
             --repo-health-metadata "${METADATA_FILE_DIST}" \
             --output-path "${ORG_DATA_DIR}/${OUTPUT_FILE_NAME}" \
-            -o log_cli=true --exitfirst --noconftest -v -c /dev/null
+            -o log_cli=true --exitfirst --noconftest -v -c /dev/null \
+            -p no:cacheprovider \
+            -W ignore::pytest.PytestUnknownMarkWarning
     }
 
     if REPO_HEALTH_COMMAND; then

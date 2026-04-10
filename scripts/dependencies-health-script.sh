@@ -39,6 +39,7 @@ pip install -q -e edx-repo-health
 # data destination folder setup
 
 METADATA_FILE_DIST="docs/checks_metadata.yaml"
+mkdir -p "$(dirname "${METADATA_FILE_DIST}")"
 
 failed_repos=()
 

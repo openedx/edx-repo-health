@@ -72,7 +72,7 @@ while IFS= read -r line; do
     fi
 
     echo "Processing repo: ${FULL_NAME}"
-    (( repo_count++ ))
+    (( ++repo_count ))
 
     rm -rf target-repo
     if ! git clone -- "${line/https:\/\//https:\/\/$GITHUB_TOKEN@}" target-repo; then

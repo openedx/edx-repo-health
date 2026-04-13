@@ -83,12 +83,13 @@ while IFS= read -r line; do
     echo "Cloned repo: ${FULL_NAME}"
     cd target-repo
     echo "Stepping into target-repo"
+    DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
     # If the REPORT_DATE variable is set and not an empty string.
     if [[ -n $REPORT_DATE ]]; then
         # If a specific date is given for report
         FIRST_COMMIT=$(git log --reverse --format="format:%ci" | sed -n 1p)
         if [[ $REPORT_DATE > ${FIRST_COMMIT:0:10} ]]; then
-            git checkout "$(git rev-list -n 1 --before="${REPORT_DATE} 00:00" master)"
+            git checkout "$(git rev-list -n 1 --before="${REPORT_DATE} 00:00" "${DEFAULT_BRANCH}")"
         else
             echo "${REPO_NAME} doesn't have any commits prior to ${REPORT_DATE}"
             failed_repos+=("$FULL_NAME")
@@ -143,9 +144,9 @@ cd "${WORKSPACE}"
 # Only commit the data if running with master and no REPORT_DATE is set.
 if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
     ###########################################
-    # Commit files and push to repo-health-data
+    # Commit files and push to target data repo
     ###########################################
-    echo "Commit new files and push to master..."
+    echo "Commit new files and push to ${TARGET_REPO_BRANCH}..."
 
     commit_message="chore: Update repo health data files"
 
@@ -161,7 +162,7 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
         done
     fi
 
-    git checkout master
+    git checkout "${TARGET_REPO_BRANCH}"
     if git diff-index --quiet HEAD; then
         # No changes found in the working directory
         echo "No changes to commit"
@@ -172,7 +173,7 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
         git config --global user.name "Repo Health Bot"
         git config --global user.email "${GITHUB_USER_EMAIL}"
         git commit -m "${commit_message}"
-        git push origin master
+        git push origin "${TARGET_REPO_BRANCH}"
     fi
 fi
 

@@ -44,7 +44,13 @@ failed_repos=()
 OUTPUT_FILE_POSTFIX="_repo_health.yaml"
 # Git clone each repo in org and run checks on it
 input="repositories.txt"
+repo_count=0
 while IFS= read -r line; do
+    if [[ -n "${MAX_REPOS}" && "${repo_count}" -ge "${MAX_REPOS}" ]]; then
+        echo "Reached MAX_REPOS limit of ${MAX_REPOS}, stopping."
+        break
+    fi
+
     cd "$WORKSPACE"
     if [[ "${line}" =~ ^(git@github\.com:|https://github\.com/)([a-zA-Z0-9_.-]+?)/([a-zA-Z0-9_.-]+?)\.git$ ]]; then
         ORG_NAME="${BASH_REMATCH[2]}"
@@ -66,6 +72,7 @@ while IFS= read -r line; do
     fi
 
     echo "Processing repo: ${FULL_NAME}"
+    (( repo_count++ ))
 
     rm -rf target-repo
     if ! git clone -- "${line/https:\/\//https:\/\/$GITHUB_TOKEN@}" target-repo; then

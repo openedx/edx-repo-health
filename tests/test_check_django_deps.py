@@ -4,7 +4,8 @@ import os
 
 import pytest
 
-from repo_health.check_django_dependencies_compatibility import (MODULE_DICT_KEY, DjangoDependencyReader,
+from repo_health.check_django_dependencies_compatibility import (MODULE_DICT_KEY, TARGET_DJANGO_KEY,
+                                                                 DjangoDependencyReader,
                                                                  check_django_dependencies_status)
 
 TEST_CSV_PATH = os.path.join(os.path.dirname(__file__), 'data/mock_django_dependencies_sheet.csv')
@@ -22,13 +23,13 @@ def test_django_deps_upgrade(repo_path):
 
     assert all_results[MODULE_DICT_KEY]
     assert all_results[MODULE_DICT_KEY]['total']['count'] == 3
-    assert all_results[MODULE_DICT_KEY]['django_32']['count'] == 2
+    assert all_results[MODULE_DICT_KEY][TARGET_DJANGO_KEY]['count'] == 2
     assert all_results[MODULE_DICT_KEY]['upgraded']['count'] == 1
 
     assert 'django-waffle' in all_results[MODULE_DICT_KEY]['total']['list']
-    assert 'django-waffle' not in all_results[MODULE_DICT_KEY]['django_32']['list']
+    assert 'django-waffle' not in all_results[MODULE_DICT_KEY][TARGET_DJANGO_KEY]['list']
 
-    assert 'edx-django-utils' in all_results[MODULE_DICT_KEY]['django_32']['list']
+    assert 'edx-django-utils' in all_results[MODULE_DICT_KEY][TARGET_DJANGO_KEY]['list']
 
     assert 'edx-django-utils' not in all_results[MODULE_DICT_KEY]['upgraded']['list']
     assert 'djangorestframework' in all_results[MODULE_DICT_KEY]['upgraded']['list']
@@ -41,7 +42,7 @@ def test_django_deps_upgrade_non_django_repo(repo_path):
 
     assert all_results[MODULE_DICT_KEY]
     assert all_results[MODULE_DICT_KEY]['total']['count'] == 0
-    assert all_results[MODULE_DICT_KEY]['django_32']['count'] == 0
+    assert all_results[MODULE_DICT_KEY][TARGET_DJANGO_KEY]['count'] == 0
     assert all_results[MODULE_DICT_KEY]['upgraded']['count'] == 0
 
 

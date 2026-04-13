@@ -32,11 +32,14 @@ echo "$filtered_urls" > "repositories.txt"
 #########################################
 
 # Install checks and dashboarding script, this should also install pytest-repo-health
+# Install all locked deps (including github-py which is a git+ URL excluded from install_requires)
+pip install -q -r edx-repo-health/requirements/base.txt
 pip install -q -e edx-repo-health
 
 # data destination folder setup
 
 METADATA_FILE_DIST="docs/checks_metadata.yaml"
+mkdir -p "$(dirname "${METADATA_FILE_DIST}")"
 
 failed_repos=()
 

@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 import requests
-from packaging.version import parse
+from packaging.version import InvalidVersion, parse
 from pytest_repo_health import health_metadata
 
 from repo_health import get_file_lines
@@ -24,8 +24,14 @@ MODULE_DICT_KEY = "django_packages"
 GITHUB_URL_PATTERN = r"github.com[/:](?P<org_name>[^/]+)/(?P<repo_name>[^/]+).*#egg=(?P<package>[^\/]+).*"
 PYPI_PACKAGE_PATTERN = r"(?P<package_name>[^\/]+)==(?P<version>[^\/]+)"
 DJANGO_DEPS_SHEET_URL = (
-    "https://docs.google.com/spreadsheets/d/19-BzpcX3XvqlazHcLhn1ZifBMVNund15EwY3QQM390M/export?format=csv"
+    "https://docs.google.com/spreadsheets/d/1UKHpv0IGcsTyAB2DbpxluRJujjhRrhVd9-y-qdMIoqw/export?format=csv"
 )
+
+# Target Django version for the current upgrade campaign.
+# Set TARGET_DJANGO_VERSION env var (e.g. "4.2" or "5.2") to track a different release.
+TARGET_DJANGO_VERSION = os.environ.get("TARGET_DJANGO_VERSION", "4.2")
+TARGET_DJANGO_COLUMN = f"Django {TARGET_DJANGO_VERSION}"
+TARGET_DJANGO_KEY = f"django_{TARGET_DJANGO_VERSION.replace('.', '')}"
 
 
 @pytest.fixture(name="django_deps_sheet", scope="session")  # pragma: no cover
@@ -137,7 +143,7 @@ def get_upgraded_dependencies_count(repo_path, django_deps_sheet) -> tuple:
     reader_instance = DjangoDependencyReader(repo_path)
     deps = reader_instance.read()
     django_deps = []
-    deps_support_django32 = []
+    deps_support_target = []
     upgraded_in_repo = []
 
     csv_path = django_deps_sheet
@@ -148,25 +154,33 @@ def get_upgraded_dependencies_count(repo_path, django_deps_sheet) -> tuple:
             if package_name in deps.keys():  # pylint: disable=consider-iterating-dictionary
                 django_deps.append(package_name)
 
-                if line["Django 3.2"] and line["Django 3.2"] != '-':
-                    deps_support_django32.append(package_name)
+                sheet_version = line.get(TARGET_DJANGO_COLUMN, "")
+                if sheet_version and sheet_version != '-':
+                    deps_support_target.append(package_name)
 
-                    if parse(deps[package_name]) >= parse(line["Django 3.2"]):
-                        upgraded_in_repo.append(package_name)
+                    try:
+                        if parse(deps[package_name]) >= parse(sheet_version):
+                            upgraded_in_repo.append(package_name)
+                    except InvalidVersion:
+                        logger.warning(
+                            "Skipping version comparison for '%s': invalid version string "
+                            "(repo version=%r, sheet version=%r)",
+                            package_name, deps[package_name], sheet_version,
+                        )
 
     django_deps = list(set(django_deps))
-    deps_support_django32 = list(set(deps_support_django32))
+    deps_support_target = list(set(deps_support_target))
     upgraded_in_repo = list(set(upgraded_in_repo))
 
-    return django_deps, deps_support_django32, upgraded_in_repo
+    return django_deps, deps_support_target, upgraded_in_repo
 
 
 @health_metadata(
     [MODULE_DICT_KEY],
     {
         "total": "Dependencies that depend on Django",
-        "django_32": "Dependencies that support Django 3.2",
-        "upgraded": "Dependencies that are upgraded to support Django 3.2"
+        TARGET_DJANGO_KEY: f"Dependencies that support Django {TARGET_DJANGO_VERSION}",
+        "upgraded": f"Dependencies that are upgraded to support Django {TARGET_DJANGO_VERSION}",
     },
 )
 @pytest.mark.py_dependency_health
@@ -175,7 +189,7 @@ def check_django_dependencies_status(repo_path, all_results, django_deps_sheet):
     """
     Test to find the django dependencies compatibility
     """
-    django_deps, support_django32_deps, upgraded_in_repo = get_upgraded_dependencies_count(
+    django_deps, support_target_deps, upgraded_in_repo = get_upgraded_dependencies_count(
         repo_path, django_deps_sheet)
 
     all_results[MODULE_DICT_KEY] = {
@@ -183,9 +197,9 @@ def check_django_dependencies_status(repo_path, all_results, django_deps_sheet):
             'count': len(django_deps),
             'list': json.dumps(django_deps),
         },
-        'django_32': {
-            'count': len(support_django32_deps),
-            'list': json.dumps(support_django32_deps)
+        TARGET_DJANGO_KEY: {
+            'count': len(support_target_deps),
+            'list': json.dumps(support_target_deps)
         },
         'upgraded': {
             'count': len(upgraded_in_repo),

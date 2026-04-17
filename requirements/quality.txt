@@ -122,7 +122,7 @@ oauthlib==3.3.1
     # via
     #   -r requirements/test.txt
     #   requests-oauthlib
-packaging==26.0
+packaging==26.1
     # via
     #   -r requirements/test.txt
     #   pytest

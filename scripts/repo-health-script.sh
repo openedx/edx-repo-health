@@ -98,7 +98,7 @@ while IFS= read -r line; do
     fi
 
     cd "$WORKSPACE"
-    ORG_DATA_DIR="individual_repo_data/${ORG_NAME}"
+    ORG_DATA_DIR="${WORKSPACE}/repo-health-data/individual_repo_data/${ORG_NAME}"
     # make sure destination folder exists
     mkdir -p "$ORG_DATA_DIR"
 
@@ -136,9 +136,9 @@ IFS=,
 failed_repo_names=$(echo "${failed_repos[*]}")
 
 echo "Pushing data"
-cd "${WORKSPACE}/individual_repo_data"
+cd "${WORKSPACE}/repo-health-data/individual_repo_data"
 repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/repo_health_dashboard/configuration.yaml" \
-    --output-csv "${WORKSPACE}/dashboards/dashboard"
+    --output-csv "${WORKSPACE}/repo-health-data/dashboards/dashboard"
 
 cd "${WORKSPACE}"
 # Only commit the data if running with master and no REPORT_DATE is set.
@@ -150,7 +150,7 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
 
     commit_message="chore: Update repo health data files"
 
-    cd "${WORKSPACE}"
+    cd "${WORKSPACE}/repo-health-data"
 
     if [[ ${#failed_repos[@]} -ne 0 ]]; then
         commit_message+="\nFollowing repos failed repo health checks\n ${failed_repo_names}"

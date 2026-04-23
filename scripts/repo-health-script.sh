@@ -173,7 +173,39 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
         git config --global user.name "Repo Health Bot"
         git config --global user.email "${GITHUB_USER_EMAIL}"
         git commit -m "${commit_message}"
-        git push origin "${TARGET_REPO_BRANCH}"
+
+        # Try pushing directly to the target branch; if that fails (e.g. no
+        # write access to the default/protected branch), fall back to opening
+        # a pull request from a dedicated branch.
+        if push_output=$(git push origin "${TARGET_REPO_BRANCH}" 2>&1); then
+            echo "Pushed directly to ${TARGET_REPO_BRANCH}"
+        else
+            echo "Direct push to ${TARGET_REPO_BRANCH} failed: ${push_output}"
+            echo "Falling back to PR workflow"
+
+            if ! command -v gh &>/dev/null; then
+                echo "Error: GitHub CLI (gh) is not available – cannot create PR"
+                exit 1
+            fi
+
+            # Force-push is acceptable here: this is a single-purpose automated
+            # data branch with no human commits, overwritten on every run.
+            PR_BRANCH="data/repo-health-update"
+            git checkout -B "${PR_BRANCH}"
+            git push origin "${PR_BRANCH}" --force
+
+            # Create a pull request, or skip if one is already open.
+            existing_pr_count=$(gh pr list --head "${PR_BRANCH}" --state open --json number --jq 'length')
+            if [[ "${existing_pr_count}" -gt 0 ]]; then
+                echo "An open PR from ${PR_BRANCH} already exists – force-pushed updated data"
+            else
+                gh pr create \
+                    --title "chore: Update repo health data" \
+                    --body "Automated repo health data update created because the bot could not push directly to \`${TARGET_REPO_BRANCH}\`." \
+                    --base "${TARGET_REPO_BRANCH}" \
+                    --head "${PR_BRANCH}"
+            fi
+        fi
     fi
 fi
 

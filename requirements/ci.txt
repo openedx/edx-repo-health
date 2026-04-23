@@ -8,18 +8,18 @@ cachetools==5.5.2
     # via
     #   -c requirements/constraints.txt
     #   tox
-chardet==7.4.2
+chardet==7.4.3
     # via tox
 colorama==0.4.6
     # via tox
 distlib==0.4.0
     # via virtualenv
-filelock==3.25.2
+filelock==3.28.0
     # via
     #   python-discovery
     #   tox
     #   virtualenv
-packaging==26.0
+packaging==26.1
     # via
     #   pyproject-api
     #   tox
@@ -36,5 +36,5 @@ python-discovery==1.2.2
     # via virtualenv
 tox==4.27.0
     # via -r requirements/ci.in
-virtualenv==21.2.1
+virtualenv==21.2.4
     # via tox

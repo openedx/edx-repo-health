@@ -47,7 +47,7 @@ cffi==2.0.0
     # via
     #   -r requirements/quality.txt
     #   cryptography
-chardet==7.4.2
+chardet==7.4.3
     # via
     #   -r requirements/ci.txt
     #   diff-cover
@@ -102,7 +102,7 @@ dockerfile==3.4.0
     # via -r requirements/quality.txt
 edx-lint==6.0.0
     # via -r requirements/quality.txt
-filelock==3.25.2
+filelock==3.28.0
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -175,7 +175,7 @@ oauthlib==3.3.1
     # via
     #   -r requirements/quality.txt
     #   requests-oauthlib
-packaging==26.0
+packaging==26.1
     # via
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
@@ -345,7 +345,7 @@ urllib3==2.6.3
     #   -r requirements/quality.txt
     #   requests
     #   responses
-virtualenv==21.2.1
+virtualenv==21.2.4
     # via
     #   -r requirements/ci.txt
     #   tox

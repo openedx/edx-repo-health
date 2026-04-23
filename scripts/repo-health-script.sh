@@ -98,7 +98,7 @@ while IFS= read -r line; do
     fi
 
     cd "$WORKSPACE"
-    ORG_DATA_DIR="individual_repo_data/${ORG_NAME}"
+    ORG_DATA_DIR="${WORKSPACE}/individual_repo_data/${ORG_NAME}"
     # make sure destination folder exists
     mkdir -p "$ORG_DATA_DIR"
 
@@ -150,30 +150,73 @@ if [[ ${EDX_REPO_HEALTH_BRANCH} == 'master' && -z ${REPORT_DATE} ]]; then
 
     commit_message="chore: Update repo health data files"
 
-    cd "${WORKSPACE}"
+    # Work inside the cloned target repo from here on.
+    cd "${WORKSPACE}/repo-health-data"
+    echo "DEBUG: working directory is now $(pwd)"
+    echo "DEBUG: git remote: $(git remote -v)"
+    echo "DEBUG: current branch: $(git branch --show-current)"
+
+    # Copy freshly generated data into the target repo working tree.
+    mkdir -p dashboards individual_repo_data
+    cp -r "${WORKSPACE}/dashboards/." dashboards/
+    cp -r "${WORKSPACE}/individual_repo_data/." individual_repo_data/
+    echo "DEBUG: files copied into repo-health-data"
 
     if [[ ${#failed_repos[@]} -ne 0 ]]; then
         commit_message+="\nFollowing repos failed repo health checks\n ${failed_repo_names}"
 
         for full_name in "${failed_repos[@]}"; do
             OUTPUT_FILE_NAME="${full_name}${OUTPUT_FILE_POSTFIX}"
-            echo "reverting repo health data for ${OUTPUT_FILE_NAME}"
-            git clean -f "individual_repo_data/${OUTPUT_FILE_NAME}"
+            echo "Reverting repo health data for ${OUTPUT_FILE_NAME}"
+            # Restore tracked file to HEAD state; remove if untracked.
+            if git ls-files --error-unmatch "individual_repo_data/${OUTPUT_FILE_NAME}" &>/dev/null; then
+                git checkout HEAD -- "individual_repo_data/${OUTPUT_FILE_NAME}"
+            else
+                rm -f "individual_repo_data/${OUTPUT_FILE_NAME}"
+            fi
         done
     fi
 
-    git checkout "${TARGET_REPO_BRANCH}"
-    if git diff-index --quiet HEAD; then
-        # No changes found in the working directory
+    git config --global user.name "Repo Health Bot"
+    git config --global user.email "${GITHUB_USER_EMAIL}"
+    git add dashboards individual_repo_data
+    echo "DEBUG: git status after staging:"
+    git status
+
+    if git diff --cached --quiet; then
         echo "No changes to commit"
     else
-        # Changes found in the working directory
-        git add dashboards
-        git add individual_repo_data
-        git config --global user.name "Repo Health Bot"
-        git config --global user.email "${GITHUB_USER_EMAIL}"
         git commit -m "${commit_message}"
-        git push origin "${TARGET_REPO_BRANCH}"
+        echo "DEBUG: committed successfully"
+
+        # Try pushing directly to the target branch; if that fails fall back to a PR.
+        if push_output=$(git push origin "${TARGET_REPO_BRANCH}" 2>&1); then
+            echo "Pushed directly to ${TARGET_REPO_BRANCH}"
+        else
+            echo "Direct push to ${TARGET_REPO_BRANCH} failed: ${push_output}"
+            echo "Falling back to PR workflow"
+
+            if ! command -v gh &>/dev/null; then
+                echo "Error: GitHub CLI (gh) is not available – cannot create PR"
+                exit 1
+            fi
+
+            PR_BRANCH="data/repo-health-update"
+            git checkout -B "${PR_BRANCH}"
+            git push origin "${PR_BRANCH}" --force
+
+            existing_pr_count=$(GH_TOKEN="${GITHUB_TOKEN}" gh pr list --head "${PR_BRANCH}" --state open --json number --jq 'length')
+            if [[ "${existing_pr_count}" -gt 0 ]]; then
+                echo "An open PR from ${PR_BRANCH} already exists – force-pushed updated data"
+            else
+                GH_TOKEN="${GITHUB_TOKEN}" gh pr create \
+                    --title "chore: Update repo health data" \
+                    --body "Automated repo health data update created because the bot could not push directly to \`${TARGET_REPO_BRANCH}\`." \
+                    --base "${TARGET_REPO_BRANCH}" \
+                    --head "${PR_BRANCH}"
+                echo "Pull request created from ${PR_BRANCH} into ${TARGET_REPO_BRANCH}"
+            fi
+        fi
     fi
 fi
 

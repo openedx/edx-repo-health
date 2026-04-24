@@ -31,7 +31,7 @@ babel==2.18.0
     #   sphinx
 beautifulsoup4==4.14.3
     # via pydata-sphinx-theme
-certifi==2026.2.25
+certifi==2026.4.22
     # via
     #   -r requirements/test.txt
     #   requests
@@ -73,7 +73,7 @@ gitdb==4.0.12
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/test.txt
-gitpython==3.1.46
+gitpython==3.1.47
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
@@ -90,7 +90,7 @@ gspread==5.11.3
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
-idna==3.11
+idna==3.13
     # via
     #   -r requirements/test.txt
     #   requests

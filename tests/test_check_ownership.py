@@ -2,6 +2,7 @@
 
 import csv
 import os
+from pathlib import Path
 from unittest import mock
 
 from repo_health.check_ownership import MODULE_DICT_KEY, check_ownership
@@ -28,7 +29,7 @@ def test_check_ownership(mock_get):
     mock_get.return_value = mocked_responses()
 
     all_results = {MODULE_DICT_KEY: {}}
-    check_ownership(all_results, git_origin_url="github.com/edx/ownership_repo1.git")
+    check_ownership(all_results, git_origin_url="github.com/edx/ownership_repo1.git", repo_path="")
 
     assert all_results[MODULE_DICT_KEY]['theme'] == 'openedx'
     assert all_results[MODULE_DICT_KEY]['squad'] == 'arch'
@@ -45,8 +46,25 @@ def test_check_ownership_with_actions(mock_get):
     mock_get.return_value = mocked_responses()
 
     all_results = {MODULE_DICT_KEY: {}}
-    check_ownership(all_results, git_origin_url="github.com/edx/ownership_repo1.git")
+    check_ownership(all_results, git_origin_url="github.com/edx/ownership_repo1.git", repo_path="")
 
     assert all_results[MODULE_DICT_KEY]['theme'] == 'openedx'
     assert all_results[MODULE_DICT_KEY]['squad'] == 'arch'
     assert all_results[MODULE_DICT_KEY]['priority'] == 'High'
+
+
+def test_check_ownership_uses_catalog_info_without_sheet_env(tmp_path):
+    catalog = Path(tmp_path) / "catalog-info.yaml"
+    catalog.write_text("spec:\n  owner: user:alice\n", encoding="utf-8")
+
+    all_results = {MODULE_DICT_KEY: {}}
+    with mock.patch.dict(os.environ, {}, clear=True):
+        check_ownership(
+            all_results,
+            git_origin_url="github.com/edx/ownership_repo1.git",
+            repo_path=str(tmp_path),
+        )
+
+    assert all_results[MODULE_DICT_KEY]["owner"] == "user:alice"
+    assert all_results[MODULE_DICT_KEY]["owner_kind"] == "user"
+    assert all_results[MODULE_DICT_KEY]["owner_name"] == "alice"

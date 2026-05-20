@@ -7,6 +7,7 @@ import os
 
 import gspread
 import pytest
+import yaml
 from pytest_repo_health import health_metadata
 
 from .utils import github_org_repo
@@ -20,6 +21,8 @@ GOOGLE_CREDENTIALS = "REPO_HEALTH_GOOGLE_CREDS_FILE"
 REPO_HEALTH_SHEET_URL = "REPO_HEALTH_OWNERSHIP_SPREADSHEET_URL"
 
 REPO_HEALTH_WORKSHEET = "REPO_HEALTH_REPOS_WORKSHEET_ID"
+
+CATALOG_INFO_FILE = "catalog-info.yaml"
 
 
 class KnownError(Exception):
@@ -62,9 +65,50 @@ def find_worksheet_with_actions(google_creds_file, spreadsheet_url, worksheet_id
     return worksheet.get_all_records(expected_headers=expected_headers)
 
 
+def _catalog_owner(repo_path):
+    """Return owner metadata from catalog-info.yaml, if available."""
+    if not repo_path:
+        return None, None, None
+
+    catalog_path = os.path.join(repo_path, CATALOG_INFO_FILE)
+    if not os.path.exists(catalog_path):
+        return None, None, None
+
+    try:
+        with open(catalog_path, encoding="utf-8") as stream:
+            data = yaml.safe_load(stream) or {}
+    except (OSError, yaml.YAMLError) as exc:
+        logger.warning("Could not parse %s: %s", catalog_path, exc)
+        return None, None, None
+
+    if not isinstance(data, dict):
+        return None, None, None
+
+    spec = data.get("spec") or {}
+    if not isinstance(spec, dict):
+        return None, None, None
+
+    owner = spec.get("owner")
+    if not isinstance(owner, str) or not owner.strip():
+        return None, None, None
+
+    owner = owner.strip()
+    owner_kind = "unknown"
+    owner_name = owner
+    if ":" in owner:
+        owner_kind, owner_name = owner.split(":", 1)
+        owner_kind = owner_kind.strip().lower() or "unknown"
+        owner_name = owner_name.strip() or owner
+
+    return owner, owner_kind, owner_name
+
+
 @health_metadata(
     [MODULE_DICT_KEY],
     {
+        "owner": "Owner from catalog-info.yaml (spec.owner)",
+        "owner_kind": "Owner kind from catalog-info.yaml (user/group)",
+        "owner_name": "Owner name from catalog-info.yaml",
         "theme": "Theme that owns the component",
         "squad": "Squad that owns the component",
         "priority": "How critical is the component to edX?",
@@ -73,32 +117,38 @@ def find_worksheet_with_actions(google_creds_file, spreadsheet_url, worksheet_id
     },
 )
 @pytest.mark.edx_health
-def check_ownership(all_results, git_origin_url):
+def check_ownership(all_results, git_origin_url, repo_path=None):
     """
     Get all the fields of interest from the tech ownership spreadsheet entry
     for the repository.
     """
+    org_name, repo_name = github_org_repo(git_origin_url)
+    repo_url = f"https://github.com/{org_name}/{repo_name}"
+    results = all_results[MODULE_DICT_KEY]
+
+    owner, owner_kind, owner_name = _catalog_owner(repo_path)
+    if owner:
+        results["owner"] = owner
+        results["owner_kind"] = owner_kind
+        results["owner_name"] = owner_name
+
     try:
         google_creds_file = os.environ[GOOGLE_CREDENTIALS]
         spreadsheet_url = os.environ[REPO_HEALTH_SHEET_URL]
         worksheet_id = int(os.environ[REPO_HEALTH_WORKSHEET])
     except KeyError:
-        logger.error(
-            "At least one of the following REPO_HEALTH_* environment variables is missing:\n %s \n %s \n %s",
-            GOOGLE_CREDENTIALS, REPO_HEALTH_SHEET_URL, REPO_HEALTH_WORKSHEET
+        logger.warning(
+            "Ownership spreadsheet env vars are not fully configured; using catalog-info.yaml only."
         )
-        pytest.skip("At least one of the REPO_HEALTH_* environment variables is missing")
+        return
 
     if not google_creds_file.strip():
-        logger.error(
-            "Environment variable %s is set but empty.",
+        logger.warning(
+            "Environment variable %s is set but empty; using catalog-info.yaml only.",
             GOOGLE_CREDENTIALS,
         )
-        pytest.skip(f"Environment variable {GOOGLE_CREDENTIALS} is set but empty")
+        return
 
-    org_name, repo_name = github_org_repo(git_origin_url)
-    repo_url = f"https://github.com/{org_name}/{repo_name}"
-    results = all_results[MODULE_DICT_KEY]
     try:
         json.loads(google_creds_file)
         # Using Json dict values in case of GitHub Actions
@@ -106,9 +156,14 @@ def check_ownership(all_results, git_origin_url):
     except ValueError:
         # Using default string representation for Jenkins compatibility
         records = find_worksheet(google_creds_file, spreadsheet_url, worksheet_id)
+    except KnownError as exc:
+        logger.warning("Ownership worksheet not available: %s", exc.message)
+        return
+
     for row in records:
         if row["repo url"] != repo_url:
             continue
         results["theme"] = row["owner.theme"]
         results["squad"] = row["owner.squad"]
         results["priority"] = row["owner.priority"]
+        break

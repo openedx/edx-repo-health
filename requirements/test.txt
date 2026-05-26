@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohappyeyeballs==2.6.1
+aiohappyeyeballs==2.6.2
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -21,7 +21,7 @@ attrs==26.1.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
-certifi==2026.4.22
+certifi==2026.5.20
     # via
     #   -r requirements/base.txt
     #   requests
@@ -56,7 +56,7 @@ gitpython==3.1.50
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.52.0
+google-auth==2.53.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -69,7 +69,7 @@ gspread==5.11.3
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
-idna==3.15
+idna==3.16
     # via
     #   -r requirements/base.txt
     #   requests
@@ -147,7 +147,7 @@ requests-oauthlib==2.0.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
-responses==0.26.0
+responses==0.26.1
     # via -r requirements/test.in
 smmap==5.0.3
     # via
@@ -164,7 +164,7 @@ urllib3==2.7.0
     #   -r requirements/base.txt
     #   requests
     #   responses
-yarl==1.23.0
+yarl==1.24.2
     # via
     #   -r requirements/base.txt
     #   aiohttp

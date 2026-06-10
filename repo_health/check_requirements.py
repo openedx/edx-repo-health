@@ -32,8 +32,6 @@ def fixture_req_lines(repo_path):
     {
         "django": "repo requires django",
         "pytest": "repo requires pytest",
-        "nose": "repo requires nose",
-        "boto": "repo requires boto",
     },
 )
 @pytest.mark.py_dependency_health
@@ -42,16 +40,9 @@ def check_requires(req_lines, all_results):
     """
     Test to find whether repo requires some key requirements
     """
-    important_requirments = ["django", "pytest", "nose"]
+    important_requirments = ["django", "pytest"]
     for req in important_requirments:
         all_results[module_dict_key][req] = False
         for line in req_lines:
             if re.search(req, line):
-                all_results[module_dict_key][req] = True
-
-    should_exact_match_requirements = ['boto']
-    for req in should_exact_match_requirements:
-        all_results[module_dict_key][req] = False
-        for line in req_lines:
-            if line.split('=')[0] == req:
                 all_results[module_dict_key][req] = True

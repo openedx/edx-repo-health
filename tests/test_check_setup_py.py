@@ -1,13 +1,28 @@
 """Test checks of setup.py."""
 
+import re
 from pathlib import Path
 
 import pytest
 
 from repo_health import get_file_content
-from repo_health.check_setup_py import check_project_urls, check_pypi_name, check_repo_url, module_dict_key
+from repo_health.check_setup_py import (check_has_python_312_classifiers, check_project_urls, check_pypi_name,
+                                        check_repo_url, module_dict_key)
 
 FAKE_REPO_ROOT = Path(__file__).parent / "fake_repos"
+
+
+@pytest.mark.parametrize("fake_repo, result", [
+    ("kodegail", True),
+    ("just_setup_py", False),
+    ("docs_repo", False),
+])
+def test_check_has_python_312_classifiers(fake_repo, result):
+    setup_py = get_file_content(FAKE_REPO_ROOT / fake_repo / "setup.py")
+    python_version = re.findall(r"Programming Language :: Python :: ([\d\.]+)", setup_py, re.MULTILINE)
+    all_results = {module_dict_key: {}}
+    check_has_python_312_classifiers(python_version, all_results)
+    assert all_results[module_dict_key]["py312_classifiers"] == result
 
 
 @pytest.mark.parametrize("fake_repo, pypi_name", [

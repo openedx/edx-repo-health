@@ -19,9 +19,9 @@ tables:
   sql: SELECT repo_name, ownership_squad, dependencies_github_list FROM dashboard_main WHERE dependencies_github_count > 0
   description: Installing Python packages directly from GitHub significantly slows down installation of dependencies and prevents auto-detection of new package versions which may have security patches and other valuable improvements.  Switch these to install from PyPI if at all possible.  For more details, see the second part of https://docs.openedx.org/projects/openedx-proposals/en/latest/best-practices/oep-0018-bp-python-dependencies.html#rationale
 
-- title: Missing Python 3.8 Classifier
-  sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE setup_py_pypi_name IS NOT NULL AND setup_py_pypi_name != '' AND setup_py_py38_classifiers = 0
-  description: All our packages should work with Python 3.8, and setup.py should declare this explicitly when true to inform users and aid in future upgrades.
+- title: Missing Python 3.12 Classifier
+  sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE setup_py_pypi_name IS NOT NULL AND setup_py_pypi_name != '' AND setup_py_py312_classifiers = 0
+  description: All our packages should support Python 3.12, and setup.py/setup.cfg/pyproject.toml should declare this explicitly to inform users and aid in future upgrades.
 
 # Use shorter and/or more readable column titles for these check names
 aliases:

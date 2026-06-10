@@ -19,10 +19,6 @@ tables:
   sql: SELECT repo_name, ownership_squad, dependencies_github_list FROM dashboard_main WHERE dependencies_github_count > 0
   description: Installing Python packages directly from GitHub significantly slows down installation of dependencies and prevents auto-detection of new package versions which may have security patches and other valuable improvements.  Switch these to install from PyPI if at all possible.  For more details, see the second part of https://docs.openedx.org/projects/openedx-proposals/en/latest/best-practices/oep-0018-bp-python-dependencies.html#rationale
 
-- title: Still Have Travis CI Configuration
-  sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE exists__travis_yml = 1
-  description: We no longer use this service, the .travis.yml file can be safely deleted.  If the repo was recently added (perhaps a fork) and actually uses Travis CI, please switch it to use GitHub Actions instead; Travis CI is poorly maintained and has had multiple security incidents leaking private credentials.
-
 - title: Still Use nose       
   sql: SELECT repo_name, ownership_squad FROM dashboard_main WHERE requires_nose = 1
   description: This test runner was abandoned several years ago, it should be replaced with pytest.

@@ -12,7 +12,6 @@ req_files = {
     "openedx.yaml": "openedx.yaml contains repository metadata as outlined in OEP-2",
     "Makefile": "Make targets",
     "tox.ini": "Tox configuration",
-    ".travis.yml": "Travis configuration",
     "CHANGELOG.rst": "Change history",
     "pylintrc": "Pylint configuration",
     "setup.cfg": "Application setup configuration",

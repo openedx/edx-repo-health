@@ -14,6 +14,14 @@ Change Log
 Unreleased
 **********
 
+Removed
+=======
+* Removed Travis CI checks (``check_travis_yml.py``, ``check_travis_integration.py``)
+  and associated tests. Travis CI is no longer used by any tracked repository.
+  Removed CSV columns: ``exists..travis.yml``, ``travis_ci.active``,
+  ``travis_ci.active_on_com``, ``travis_ci.active_on_org``, ``travis_yml.parsable``,
+  ``travis_yml.py38_tests``, ``travis_yml.python_versions``
+
 
 [2.0.0] - 2025-05-07
 ********************

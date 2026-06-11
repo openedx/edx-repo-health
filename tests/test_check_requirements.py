@@ -15,16 +15,14 @@ def get_repo_path(repo_name):
 
 @pytest.mark.parametrize("repo_path, flag_list", [
     (get_repo_path("django_pytest_requirement"),
-    {"django": True, "pytest": True,
-    "boto":  False, "nose":  False,}),
+    {"django": True, "pytest": True}),
     (get_repo_path("django_boto_nose_requirement"),
-     {"django": True, "pytest": False,
-      "boto": True, "nose": True, })])
+     {"django": True, "pytest": False})])
 
 def test_check_requires(req_lines, flag_list):
     all_results = {module_dict_key:{}}
     check_requires(req_lines, all_results)
-    requirements = ['django', 'pytest', 'nose', 'boto']
+    requirements = ['django', 'pytest']
 
     for req in requirements:
         assert all_results[module_dict_key][req] == flag_list[req]

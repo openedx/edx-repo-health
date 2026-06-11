@@ -38,14 +38,14 @@ def fixture_python_version(setup_py):
     return python_classifiers
 
 
-@add_key_to_metadata((module_dict_key, "py38_classifiers"))
+@add_key_to_metadata((module_dict_key, "py312_classifiers"))
 @pytest.mark.py_dependency_health
 @pytest.mark.edx_health
-def check_has_python_38_classifiers(python_version, all_results):
+def check_has_python_312_classifiers(python_version, all_results):
     """
-    Are there classifiers with python 3.8?
+    Are there classifiers with python 3.12?
     """
-    all_results[module_dict_key]["py38_classifiers"] = "3.8" in python_version
+    all_results[module_dict_key]["py312_classifiers"] = "3.12" in python_version
 
 
 @add_key_to_metadata((module_dict_key, "python_versions"))

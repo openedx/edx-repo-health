@@ -247,7 +247,12 @@ def write_squashed_metadata_to_sqlite(metadata_by_repo, table_name, configuratio
         else:
             sqlite_columns.append(f'{columns[index]} text')
 
-    query = f"CREATE TABLE IF NOT EXISTS {table_name} ({', '.join(sqlite_columns)})"
+    # Drop and recreate the table so its schema always matches the current set
+    # of checks. The .sqlite3 file is committed and reused across runs, so
+    # CREATE TABLE IF NOT EXISTS would keep a stale schema and cause a
+    # column/value count mismatch whenever checks are added or removed.
+    c.execute(f"DROP TABLE IF EXISTS {table_name}")
+    query = f"CREATE TABLE {table_name} ({', '.join(sqlite_columns)})"
     c.execute(query)
 
     # Iterate through the data and insert in database

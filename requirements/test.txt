@@ -8,7 +8,7 @@ aiohappyeyeballs==2.6.2
     # via
     #   -r requirements/base.txt
     #   aiohttp
-aiohttp==3.14.0
+aiohttp==3.14.1
     # via
     #   -r requirements/base.txt
     #   github-py
@@ -35,7 +35,7 @@ charset-normalizer==3.4.7
     #   requests
 coverage[toml]==7.14.1
     # via pytest-cov
-cryptography==48.0.0
+cryptography==48.0.1
     # via
     #   -r requirements/base.txt
     #   google-auth
@@ -121,7 +121,7 @@ pytest==8.0.2
     #   pytest-asyncio
     #   pytest-cov
     #   pytest-repo-health
-pytest-aiohttp==1.1.0
+pytest-aiohttp==1.1.1
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health

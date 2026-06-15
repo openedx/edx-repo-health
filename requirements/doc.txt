@@ -10,7 +10,7 @@ aiohappyeyeballs==2.6.2
     # via
     #   -r requirements/test.txt
     #   aiohttp
-aiohttp==3.14.0
+aiohttp==3.14.1
     # via
     #   -r requirements/test.txt
     #   github-py
@@ -29,7 +29,7 @@ babel==2.18.0
     # via
     #   pydata-sphinx-theme
     #   sphinx
-beautifulsoup4==4.14.3
+beautifulsoup4==4.15.0
     # via pydata-sphinx-theme
 certifi==2026.5.20
     # via
@@ -47,7 +47,7 @@ coverage[toml]==7.14.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==48.0.0
+cryptography==48.0.1
     # via
     #   -r requirements/test.txt
     #   google-auth
@@ -160,7 +160,7 @@ pytest==8.0.2
     #   pytest-asyncio
     #   pytest-cov
     #   pytest-repo-health
-pytest-aiohttp==1.1.0
+pytest-aiohttp==1.1.1
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
@@ -177,7 +177,7 @@ pyyaml==6.0.3
     #   -r requirements/test.txt
     #   pytest-repo-health
     #   responses
-readme-renderer==44.0
+readme-renderer==45.0
     # via -r requirements/doc.in
 requests==2.34.2
     # via

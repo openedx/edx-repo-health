@@ -19,11 +19,18 @@ pip install -q -e repo_tools
 cd "$WORKSPACE"
 touch "repositories.txt"
 org_list=($ORG_NAMES)
+# get_org_repo_urls' --ignore-repo is a repeatable option that matches one repo
+# name per flag. Expand the space-separated REPOS_TO_IGNORE list into one
+# --ignore-repo flag per repo so that more than a single repo can be ignored.
+ignore_repo_flags=()
+for repo in ${REPOS_TO_IGNORE}; do
+    ignore_repo_flags+=(--ignore-repo "${repo}")
+done
 for ORG_NAME in "${org_list[@]}"; do
     echo "Getting repo urls for org: ${ORG_NAME}"
     get_org_repo_urls "${ORG_NAME}" --url_type https --forks --add_archived \
         --output_file "repositories.txt" --username "${GITHUB_USER_EMAIL}" \
-        --token "${GITHUB_TOKEN}" --ignore-repo "${REPOS_TO_IGNORE}"
+        --token "${GITHUB_TOKEN}" "${ignore_repo_flags[@]}"
 done
 
 ############################

@@ -8,8 +8,12 @@
 # tests/fake_repos/. Real PRs (e.g. for /requirements) are left untouched.
 name: Close Dependabot PRs for test fixtures
 
+# Uses `pull_request` (not `pull_request_target`): this job never checks out
+# PR code, and Dependabot-triggered runs get a read-only token that we opt
+# back into write for via the `permissions:` key below — GitHub's recommended
+# pattern for automating Dependabot PRs.
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, reopened, synchronize]
 
 permissions:

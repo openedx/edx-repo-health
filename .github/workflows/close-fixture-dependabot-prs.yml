@@ -1,0 +1,33 @@
+# Dependabot security updates cannot be scoped by .github/dependabot.yml
+# (security updates are driven by the dependency graph and ignore the
+# version-update `directories` config). The repos under tests/fake_repos/ are
+# test fixtures that intentionally pin old, vulnerable dependency versions, so
+# Dependabot keeps opening security PRs for them that we never want to merge.
+#
+# This workflow auto-closes any Dependabot PR whose manifest lives under
+# tests/fake_repos/. Real PRs (e.g. for /requirements) are left untouched.
+name: Close Dependabot PRs for test fixtures
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  close-fixture-pr:
+    # Dependabot encodes the manifest directory in the branch name, e.g.
+    # dependabot/pip/tests/fake_repos/python_repo/requirements/idna-3.15
+    if: >-
+      github.actor == 'dependabot[bot]' &&
+      contains(github.event.pull_request.head.ref, 'tests/fake_repos')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close the PR and delete its branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          gh pr close "$PR_URL" --delete-branch --comment \
+            "Auto-closing: \`tests/fake_repos/\` holds test fixtures that intentionally pin old dependency versions, so Dependabot upgrade/security PRs for these paths are never merged. Security updates can't be scoped away via \`.github/dependabot.yml\`, so this is handled here instead."

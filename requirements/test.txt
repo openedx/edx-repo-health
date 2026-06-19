@@ -21,7 +21,7 @@ attrs==26.1.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
-certifi==2026.5.20
+certifi==2026.6.17
     # via
     #   -r requirements/base.txt
     #   requests
@@ -35,7 +35,7 @@ charset-normalizer==3.4.7
     #   requests
 coverage[toml]==7.14.1
     # via pytest-cov
-cryptography==48.0.1
+cryptography==49.0.0
     # via
     #   -r requirements/base.txt
     #   google-auth
@@ -56,7 +56,7 @@ gitpython==3.1.50
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.53.0
+google-auth==2.55.0
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib

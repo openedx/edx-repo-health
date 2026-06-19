@@ -27,7 +27,7 @@ attrs==26.1.0
     # via
     #   -r requirements/test.txt
     #   aiohttp
-certifi==2026.5.20
+certifi==2026.6.17
     # via
     #   -r requirements/test.txt
     #   requests
@@ -52,7 +52,7 @@ coverage[toml]==7.14.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==48.0.1
+cryptography==49.0.0
     # via
     #   -r requirements/test.txt
     #   google-auth
@@ -81,7 +81,7 @@ gitpython==3.1.50
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.53.0
+google-auth==2.55.0
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -154,7 +154,7 @@ pycparser==3.0
     #   cffi
 pydocstyle==6.3.0
     # via -r requirements/quality.in
-pylint==4.0.5
+pylint==4.0.6
     # via
     #   edx-lint
     #   pylint-celery

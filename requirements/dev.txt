@@ -39,7 +39,7 @@ cachetools==5.5.2
     #   -c requirements/constraints.txt
     #   -r requirements/ci.txt
     #   tox
-certifi==2026.5.20
+certifi==2026.6.17
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -80,7 +80,7 @@ coverage[toml]==7.14.1
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==48.0.1
+cryptography==49.0.0
     # via
     #   -r requirements/quality.txt
     #   google-auth
@@ -90,7 +90,7 @@ dill==0.4.1
     # via
     #   -r requirements/quality.txt
     #   pylint
-distlib==0.4.2
+distlib==0.4.3
     # via
     #   -r requirements/ci.txt
     #   virtualenv
@@ -102,7 +102,7 @@ dockerfile==3.4.0
     # via -r requirements/quality.txt
 edx-lint==6.1.0
     # via -r requirements/quality.txt
-filelock==3.29.3
+filelock==3.29.4
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -123,7 +123,7 @@ gitpython==3.1.50
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.53.0
+google-auth==2.55.0
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
@@ -228,7 +228,7 @@ pygments==2.20.0
     # via
     #   diff-cover
     #   rich
-pylint==4.0.5
+pylint==4.0.6
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -347,7 +347,7 @@ urllib3==2.7.0
     #   -r requirements/quality.txt
     #   requests
     #   responses
-virtualenv==21.4.3
+virtualenv==21.5.1
     # via
     #   -r requirements/ci.txt
     #   tox

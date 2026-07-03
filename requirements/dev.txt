@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohappyeyeballs==2.6.2
+aiohappyeyeballs==2.7.1
     # via
     #   -r requirements/quality.txt
     #   aiohttp
@@ -56,7 +56,7 @@ charset-normalizer==3.4.7
     # via
     #   -r requirements/quality.txt
     #   requests
-click==8.4.1
+click==8.4.2
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -76,7 +76,7 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.14.1
+coverage[toml]==7.15.0
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -123,7 +123,7 @@ gitpython==3.1.50
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.55.0
+google-auth==2.55.1
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
@@ -320,7 +320,7 @@ sqlparse==0.5.5
     # via
     #   -r requirements/quality.txt
     #   django
-stevedore==5.8.0
+stevedore==5.9.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -337,7 +337,7 @@ tomlkit==0.15.0
     #   pylint
 tox==4.27.0
     # via -r requirements/ci.txt
-typing-extensions==4.15.0
+typing-extensions==4.16.0
     # via
     #   -r requirements/quality.txt
     #   aiohttp

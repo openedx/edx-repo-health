@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-aiohappyeyeballs==2.6.2
+aiohappyeyeballs==2.7.1
     # via
     #   -r requirements/base.txt
     #   aiohttp
@@ -33,7 +33,7 @@ charset-normalizer==3.4.7
     # via
     #   -r requirements/base.txt
     #   requests
-coverage[toml]==7.14.1
+coverage[toml]==7.15.0
     # via pytest-cov
 cryptography==49.0.0
     # via
@@ -56,7 +56,7 @@ gitpython==3.1.50
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.55.0
+google-auth==2.55.1
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -155,7 +155,7 @@ smmap==5.0.3
     #   gitdb
 toml==0.10.2
     # via -r requirements/base.txt
-typing-extensions==4.15.0
+typing-extensions==4.16.0
     # via
     #   -r requirements/base.txt
     #   aiohttp

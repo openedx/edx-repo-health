@@ -35,11 +35,11 @@ certifi==2026.6.17
     # via
     #   -r requirements/test.txt
     #   requests
-cffi==2.0.0
+cffi==2.1.0
     # via
     #   -r requirements/test.txt
     #   cryptography
-charset-normalizer==3.4.7
+charset-normalizer==3.4.9
     # via
     #   -r requirements/test.txt
     #   requests
@@ -77,7 +77,7 @@ gitpython==3.1.50
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.55.1
+google-auth==2.55.2
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -131,7 +131,7 @@ propcache==0.5.2
     #   -r requirements/test.txt
     #   aiohttp
     #   yarl
-pyasn1==0.6.3
+pyasn1==0.6.4
     # via
     #   -r requirements/test.txt
     #   pyasn1-modules
@@ -189,7 +189,7 @@ requests-oauthlib==2.0.0
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
-responses==0.26.1
+responses==0.26.2
     # via -r requirements/test.txt
 restructuredtext-lint==2.0.2
     # via doc8

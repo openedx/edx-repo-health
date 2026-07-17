@@ -17,7 +17,7 @@ aiosignal==1.4.0
     # via
     #   -r requirements/quality.txt
     #   aiohttp
-asgiref==3.11.1
+asgiref==3.12.1
     # via
     #   -r requirements/quality.txt
     #   django
@@ -43,7 +43,7 @@ certifi==2026.6.17
     # via
     #   -r requirements/quality.txt
     #   requests
-cffi==2.0.0
+cffi==2.1.0
     # via
     #   -r requirements/quality.txt
     #   cryptography
@@ -52,7 +52,7 @@ chardet==7.4.3
     #   -r requirements/ci.txt
     #   diff-cover
     #   tox
-charset-normalizer==3.4.7
+charset-normalizer==3.4.9
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -76,7 +76,7 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.15.0
+coverage[toml]==7.15.2
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -94,7 +94,7 @@ distlib==0.4.3
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==5.2.15
+django==5.2.16
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/quality.txt
@@ -102,7 +102,7 @@ dockerfile==3.4.0
     # via -r requirements/quality.txt
 edx-lint==6.1.0
     # via -r requirements/quality.txt
-filelock==3.29.4
+filelock==3.30.2
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -119,11 +119,11 @@ gitdb==4.0.12
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/quality.txt
-gitpython==3.1.50
+gitpython==3.1.52
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.55.1
+google-auth==2.56.0
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
@@ -208,7 +208,7 @@ propcache==0.5.2
     #   -r requirements/quality.txt
     #   aiohttp
     #   yarl
-pyasn1==0.6.3
+pyasn1==0.6.4
     # via
     #   -r requirements/quality.txt
     #   pyasn1-modules
@@ -239,7 +239,7 @@ pylint-celery==0.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-pylint-django==2.7.0
+pylint-django==2.8.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -275,9 +275,9 @@ pytest-asyncio==0.23.8
     #   pytest-aiohttp
 pytest-cov==7.1.0
     # via -r requirements/quality.txt
-pytest-repo-health==3.2.1
+pytest-repo-health==4.0.0
     # via -r requirements/quality.txt
-python-discovery==1.4.2
+python-discovery==1.4.4
     # via
     #   -r requirements/ci.txt
     #   virtualenv
@@ -300,7 +300,7 @@ requests-oauthlib==2.0.0
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
-responses==0.26.1
+responses==0.26.2
     # via -r requirements/quality.txt
 rich==15.0.0
     # via -r requirements/dev.in
@@ -347,7 +347,7 @@ urllib3==2.7.0
     #   -r requirements/quality.txt
     #   requests
     #   responses
-virtualenv==21.5.1
+virtualenv==21.6.1
     # via
     #   -r requirements/ci.txt
     #   tox

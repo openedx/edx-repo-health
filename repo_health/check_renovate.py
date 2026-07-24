@@ -63,14 +63,15 @@ async def get_last_pull_date(github_repo):
 
     _json = {
         "query": LAST_PR_QUERY,
-        "variables": kwargs_edx,
+        "variables": kwargs_open_edx,
     }
     data = await client.request(json=_json)
 
     if not data['search']['nodes']:
+      # Fall back to the legacy edx/ org for repos not yet migrated to openedx/.
       data = await client.request(json={
         "query": LAST_PR_QUERY,
-        "variables": kwargs_open_edx
+        "variables": kwargs_edx
       })
 
     if len(data['search']['nodes']):

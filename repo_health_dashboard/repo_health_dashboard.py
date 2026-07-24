@@ -100,6 +100,13 @@ def main():
         if args.dashboard_name == "repo_health":
             utils.write_squashed_metadata_to_sqlite(
                 output, f"dashboard_{key}", configuration, args.output_sqlite)
+            # Accumulate the "main" snapshot into a rolling history file the
+            # dashboard reads for trends (no runtime GitHub API calls).
+            if key == "main":
+                utils.update_history_csv(
+                    f"{args.output_csv}_{key}.csv",
+                    os.path.join(os.path.dirname(args.output_csv) or ".", "dashboard_history.csv"),
+                )
 
 
 if __name__ == "__main__":

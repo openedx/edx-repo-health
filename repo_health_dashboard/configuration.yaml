@@ -1,8 +1,15 @@
 main:
     check_order:
+        - ownership.owner
+        - ownership.owner_kind
+        - ownership.owner_name
         - ownership.theme
         - ownership.squad
         - ownership.priority
+        - github.contributor_count_90d
+        - github.release_count_12mo
+        - github.pr_closure_ratio_90d
+        - github.median_pr_response_seconds
         - makefile.upgrade
     key_aliases:
         tox_ini.has_section.tox: tox_tox_section

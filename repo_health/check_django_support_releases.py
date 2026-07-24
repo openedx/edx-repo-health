@@ -22,6 +22,9 @@ def fixture_repo_release_tags(repo_path):
         "4.0": "Which release added support for Django 4.0",
         "4.1": "Which release added support for Django 4.1",
         "4.2": "Which release added support for Django 4.2",
+        "5.0": "Which release added support for Django 5.0",
+        "5.1": "Which release added support for Django 5.1",
+        "5.2": "Which release added support for Django 5.2",
     },
 )
 @pytest.mark.py_dependency_health
@@ -33,7 +36,7 @@ def check_django_support_releases(repo_release_tags, all_results, repo_path):
         all_results[MODULE_DICT_KEY] = {}
         print("There is not tag found")
         return
-    django_versions = ['4.0', '4.1', '4.2']
+    django_versions = ['4.0', '4.1', '4.2', '5.0', '5.1', '5.2']
     all_results[MODULE_DICT_KEY] = {}
     desc_tags_list = list(reversed(repo_release_tags))
     if not is_django_package(repo_path):

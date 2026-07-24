@@ -100,6 +100,11 @@ def _catalog_owner(repo_path):
         owner_kind = owner_kind.strip().lower() or "unknown"
         owner_name = owner_name.strip() or owner
 
+    # Backstage entity refs may carry a namespace (e.g. "group:default/team-x").
+    # Strip the "<namespace>/" prefix so owner_name is the bare team/user name.
+    if "/" in owner_name:
+        owner_name = owner_name.split("/", 1)[1].strip() or owner_name
+
     return owner, owner_kind, owner_name
 
 
@@ -122,23 +127,46 @@ def check_ownership(all_results, git_origin_url, repo_path=None):
     Get all the fields of interest from the tech ownership spreadsheet entry
     for the repository.
     """
-    org_name, repo_name = github_org_repo(git_origin_url)
-    repo_url = f"https://github.com/{org_name}/{repo_name}"
     results = all_results[MODULE_DICT_KEY]
 
+    # catalog-info.yaml (OEP-55 spec.owner) is the primary, in-repo ownership
+    # source. Always emit the keys (empty when absent) so the aggregated CSV
+    # carries the column and coverage math has something to count.
     owner, owner_kind, owner_name = _catalog_owner(repo_path)
-    if owner:
-        results["owner"] = owner
-        results["owner_kind"] = owner_kind
-        results["owner_name"] = owner_name
+    results["owner"] = owner or ""
+    results["owner_kind"] = owner_kind or ""
+    results["owner_name"] = owner_name or ""
+
+    # The Google Sheet (theme/squad/priority) is a secondary, org-specific
+    # source (2U). Everything below is best-effort and must never crash the
+    # check: a bad origin URL or misconfigured env falls back to catalog-info.
+    try:
+        org_name, repo_name = github_org_repo(git_origin_url)
+    except (AssertionError, AttributeError, ValueError):
+        logger.warning(
+            "Could not parse org/repo from %r; using catalog-info.yaml only.",
+            git_origin_url,
+        )
+        return
+    repo_url = f"https://github.com/{org_name}/{repo_name}"
 
     try:
         google_creds_file = os.environ[GOOGLE_CREDENTIALS]
         spreadsheet_url = os.environ[REPO_HEALTH_SHEET_URL]
-        worksheet_id = int(os.environ[REPO_HEALTH_WORKSHEET])
+        worksheet_id_raw = os.environ[REPO_HEALTH_WORKSHEET]
     except KeyError:
         logger.warning(
             "Ownership spreadsheet env vars are not fully configured; using catalog-info.yaml only."
+        )
+        return
+
+    try:
+        worksheet_id = int(worksheet_id_raw)
+    except ValueError:
+        logger.warning(
+            "%s is not an integer (%r); using catalog-info.yaml only.",
+            REPO_HEALTH_WORKSHEET,
+            worksheet_id_raw,
         )
         return
 

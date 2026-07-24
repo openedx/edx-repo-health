@@ -1,5 +1,6 @@
 """Test checks for GitHub integrations."""
 
+import json
 import os
 from unittest import mock
 
@@ -51,3 +52,20 @@ def test_check_github_integration_false(mock_get):
 
     assert all_results[module_dict_key] is False
     assert all_results["org_name"] == 'edx'
+
+
+@mock.patch('repo_health.check_github_integration.get_githubworkflow_api_response')
+def test_check_github_integration_true_for_non_whitelisted_ci_name(mock_get):
+    """A CI workflow whose filename isn't one of the legacy three still counts."""
+    content = json.dumps({
+        "total_count": 1,
+        "workflows": [
+            {"path": ".github/workflows/python-ci.yml", "state": "active"},
+        ],
+    })
+    mock_get.return_value = MockResponse(content, 200)
+
+    all_results = {module_dict_key: {}}
+    check_github_actions_integration(all_results, git_origin_url="github.com/openedx/repo.git")
+
+    assert all_results[module_dict_key] is True

@@ -22,18 +22,20 @@ def fixture_repo_release_tags(repo_path):
         "3.9": "Which release added support for Python 3.9",
         "3.10": "Which release added support for Python 3.10",
         "3.11": "Which release added support for Python 3.11",
+        "3.12": "Which release added support for Python 3.12",
+        "3.13": "Which release added support for Python 3.13",
     },
 )
 @pytest.mark.py_dependency_health
 def check_python_support_releases(repo_release_tags, all_results, repo_path):
     """
-    Check to see the python version releases for 3.8, 3.9, 3.10, 3.11, 3.12
+    Check to see the python version releases for 3.8 through 3.13
     """
     if not repo_release_tags:
         all_results[MODULE_DICT_KEY] = {}
         print("There is not tag found")
         return
-    python_versions = ['3.8', '3.9', '3.10', '3.11', '3.12']
+    python_versions = ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
     all_results[MODULE_DICT_KEY] = {}
     desc_tags_list = list(reversed(repo_release_tags))
     for version in python_versions:

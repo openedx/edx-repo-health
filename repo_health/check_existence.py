@@ -16,6 +16,7 @@ req_files = {
     "pylintrc": "Pylint configuration",
     "setup.cfg": "Application setup configuration",
     "setup.py": "Application setup",
+    "pyproject.toml": "PEP 518/621 build configuration and project metadata",
     ".coveragerc": "Test coverage configuration",
     ".editorconfig": "IDE configuration",
     ".pii_annotations.yml": "PII annotations as outline in OEP-0030",

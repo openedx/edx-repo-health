@@ -2,10 +2,102 @@
 utils used to create dashboard
 """
 import csv
+import datetime
 import html
 import os
 import re
 import sqlite3
+
+
+def _parse_timestamp_date(value):
+    """Parse a CSV TIMESTAMP cell (date or datetime) into a date; None on failure."""
+    text = str(value).strip()
+    if not text:
+        return None
+    try:
+        return datetime.date.fromisoformat(text[:10])
+    except ValueError:
+        return None
+
+
+# The dashboard's trend views (scoring, weekly-change diff, sparklines) only read
+# the boolean check columns plus a handful of score-feeding github.* metrics.
+# The large list/blob columns are dead weight in a 30-day history file, so we
+# drop them: it keeps the committed file and the runtime fetch ~4x smaller.
+HISTORY_GITHUB_KEEP = {
+    "github.last_push",
+    "github.median_pr_response_seconds",
+    "github.pr_closure_ratio_90d",
+    "github.release_count_12mo",
+    "github.contributor_count_90d",
+}
+
+
+def _keep_history_column(column):
+    """Whether a column is worth retaining in the trimmed history file."""
+    if column in ("repo_name", "TIMESTAMP"):
+        return True
+    if column.endswith(".list") or column == "github.build_details":
+        return False
+    if column.startswith("language_bytes."):
+        return False
+    if column.startswith("github."):
+        # Keep only the score-feeding github metrics; drop bulky metadata.
+        return column in HISTORY_GITHUB_KEEP
+    return True
+
+
+def update_history_csv(main_csv_path, history_csv_path, history_days=30, today=None):
+    """Accumulate daily snapshots into a rolling, trimmed history CSV.
+
+    The dashboard reads trend history from this single pre-computed file rather
+    than enumerating git history at runtime. Each run appends the current
+    snapshot (rows of ``main_csv_path``, keyed by their TIMESTAMP) to
+    ``history_csv_path``, replaces any rows sharing today's timestamp (so a
+    re-run is idempotent), prunes rows older than ``history_days``, and keeps
+    only the columns the dashboard's trend views need (see ``_keep_history_column``)
+    to bound file size and git growth.
+    """
+    if not os.path.exists(main_csv_path):
+        return
+
+    with open(main_csv_path, newline="", encoding="utf8") as handle:
+        reader = csv.DictReader(handle)
+        main_rows = list(reader)
+        main_fields = reader.fieldnames or []
+    if not main_rows:
+        return
+
+    history_rows = []
+    history_fields = []
+    if os.path.exists(history_csv_path):
+        with open(history_csv_path, newline="", encoding="utf8") as handle:
+            reader = csv.DictReader(handle)
+            history_rows = list(reader)
+            history_fields = reader.fieldnames or []
+
+    # Union of columns (so newly-added checks don't drop older snapshots' data),
+    # then trim to just the columns the dashboard actually reads.
+    fields = list(dict.fromkeys(list(history_fields) + list(main_fields)))
+    fields = [field for field in fields if _keep_history_column(field)]
+
+    # Drop existing history rows that share a timestamp with this run (idempotent re-run).
+    current_timestamps = {row.get("TIMESTAMP", "") for row in main_rows}
+    combined = [row for row in history_rows if row.get("TIMESTAMP", "") not in current_timestamps]
+    combined.extend(main_rows)
+
+    cutoff = (today or datetime.date.today()) - datetime.timedelta(days=int(history_days))
+    kept = []
+    for row in combined:
+        stamp = _parse_timestamp_date(row.get("TIMESTAMP", ""))
+        if stamp is None or stamp >= cutoff:
+            kept.append(row)
+
+    with open(history_csv_path, "w", newline="", encoding="utf8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        for row in kept:
+            writer.writerow({field: row.get(field, "") for field in fields})
 
 
 def squash_dict(input_dict, delimiter="."):

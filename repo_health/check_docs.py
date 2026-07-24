@@ -96,12 +96,23 @@ class ReadTheDocsChecker:
 
     def get_python_version(self):
         """
-        Returns the version of Python mentioned in .readthedocs.yml file.
+        Returns the version of Python mentioned in the Read the Docs config.
+
+        Prefers the RTD v2 location ``build.tools.python``; falls back to the
+        deprecated ``python.version`` key so older configs still report.
         """
         parsed_data = self._parse_readthedocs_yml_file()
-        if "python" in parsed_data.keys():
-            if "version" in parsed_data['python'].keys():
-                return parsed_data['python']['version']
+
+        build = parsed_data.get("build")
+        if isinstance(build, dict):
+            tools = build.get("tools")
+            if isinstance(tools, dict) and tools.get("python"):
+                return tools["python"]
+
+        python = parsed_data.get("python")
+        if isinstance(python, dict) and python.get("version"):
+            return python["version"]
+
         return None
 
     def update_build_details(self):

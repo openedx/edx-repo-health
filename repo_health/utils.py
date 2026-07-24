@@ -239,4 +239,13 @@ def is_django_package(repo_dir):
             if "'Framework :: Django" in get_file_content(file_path):
                 return True
 
+    # PEP 621 projects declare classifiers in pyproject.toml.
+    try:
+        data = toml.load(os.path.join(repo_dir, "pyproject.toml"))
+        classifiers = data.get('project', {}).get('classifiers', [])
+        if any("Framework :: Django" in classifier for classifier in classifiers):
+            return True
+    except (FileNotFoundError, toml.TomlDecodeError):
+        pass
+
     return False

@@ -7,6 +7,10 @@ import logging
 import operator
 import os
 import re
+import statistics
+import subprocess
+import time
+from datetime import datetime, timedelta, timezone
 
 import pytest
 import requests
@@ -267,3 +271,163 @@ def check_branch_and_pr_count(all_results, git_origin_url):
     org_name, repo_name = github_org_repo(git_origin_url)
     all_results[MODULE_DICT_KEY]['branch_count'] = get_branch_or_pr_count(org_name, repo_name, 'branches')
     all_results[MODULE_DICT_KEY]['pulls_count'] = get_branch_or_pr_count(org_name, repo_name, 'pulls')
+
+
+# ---------------------------------------------------------------------------
+# Activity signals feeding the dashboard's activity score metrics
+# ---------------------------------------------------------------------------
+
+# Recent PRs for closure-ratio and first-response metrics. Capped at 100 PRs
+# (one query, no pagination) to stay within the Actions token budget; for very
+# active repos this may not cover a full 90-day window — a documented limit.
+FETCH_RECENT_PRS = """
+query recent_prs ($owner: String!, $name: String!) {
+  repository (owner: $owner, name: $name) {
+    pullRequests (first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
+      nodes {
+        createdAt
+        state
+        author { login }
+        comments (first: 20) { nodes { createdAt author { login } } }
+        reviews (first: 10) { nodes { createdAt author { login } } }
+      }
+    }
+  }
+}
+"""
+
+
+def _run_git(repo_path, *args):
+    """Run a git command in repo_path, returning stdout (raises on failure)."""
+    return subprocess.check_output(
+        ["git", "-C", repo_path, *args], text=True, stderr=subprocess.DEVNULL
+    )
+
+
+def _distinct_authors_since(repo_path, days):
+    """Count distinct commit-author emails in the last ``days`` days (local git)."""
+    try:
+        out = _run_git(repo_path, "log", f"--since={days}.days.ago", "--format=%ae")
+    except (subprocess.CalledProcessError, OSError):
+        return None
+    return len({line.strip() for line in out.splitlines() if line.strip()})
+
+
+def _releases_last_12mo(repo_path, *, now=None):
+    """Count git tags created in the last 12 months (local git, no API)."""
+    try:
+        out = _run_git(repo_path, "for-each-ref", "--format=%(creatordate:unix)", "refs/tags")
+    except (subprocess.CalledProcessError, OSError):
+        return None
+    cutoff = (now if now is not None else time.time()) - 365 * 24 * 3600
+    count = 0
+    for line in out.splitlines():
+        line = line.strip()
+        if line.isdigit() and int(line) >= cutoff:
+            count += 1
+    return count
+
+
+def _parse_github_dt(value):
+    """Parse a GitHub ISO-8601 UTC timestamp; None on failure."""
+    try:
+        return datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    except (ValueError, TypeError):
+        return None
+
+
+def _is_bot(login):
+    return not login or login.lower().endswith("[bot]") or login.lower() in {"web-flow"}
+
+
+def parse_pr_activity(nodes, reference_dt, window_days=90):
+    """Return (opened_count, closure_ratio, median_first_response_seconds).
+
+    - closure_ratio: PRs opened in the window that are now CLOSED/MERGED, over
+      all PRs opened in the window (None when none opened).
+    - median_first_response_seconds: median seconds from PR creation to the
+      first review/comment by someone other than the author (bots excluded);
+      None when there are no measurable responses.
+    """
+    cutoff = reference_dt - timedelta(days=window_days)
+    opened = 0
+    closed = 0
+    response_seconds = []
+    for pr in nodes or []:
+        created = _parse_github_dt(pr.get("createdAt"))
+        if created is None or created < cutoff:
+            continue
+        opened += 1
+        if pr.get("state") in {"CLOSED", "MERGED"}:
+            closed += 1
+
+        author = ((pr.get("author") or {}).get("login") or "").lower()
+        events = list((pr.get("comments") or {}).get("nodes", []))
+        events += list((pr.get("reviews") or {}).get("nodes", []))
+        first_response = None
+        for event in events:
+            login = (event.get("author") or {}).get("login") or ""
+            if _is_bot(login) or login.lower() == author:
+                continue
+            stamp = _parse_github_dt(event.get("createdAt"))
+            if stamp is None:
+                continue
+            if first_response is None or stamp < first_response:
+                first_response = stamp
+        if first_response is not None:
+            response_seconds.append((first_response - created).total_seconds())
+
+    closure_ratio = round(closed / opened, 4) if opened else None
+    median_response = int(statistics.median(response_seconds)) if response_seconds else None
+    return opened, closure_ratio, median_response
+
+
+@health_metadata(
+    [MODULE_DICT_KEY],
+    {
+        "contributor_count_90d": "Distinct commit authors in the last 90 days",
+        "release_count_12mo": "Number of release tags created in the last 12 months",
+    },
+)
+@pytest.mark.edx_health
+def check_activity_signals(all_results, repo_path):
+    """
+    Local-git activity signals (no GitHub API): recent contributors and releases.
+    """
+    results = all_results[MODULE_DICT_KEY]
+    results["contributor_count_90d"] = _distinct_authors_since(repo_path, 90)
+    results["release_count_12mo"] = _releases_last_12mo(repo_path)
+
+
+@health_metadata(
+    [MODULE_DICT_KEY],
+    {
+        "pr_closure_ratio_90d": "Closed/merged over opened PRs in the last 90 days",
+        "median_pr_response_seconds": "Median seconds to first non-author response on recent PRs",
+    },
+)
+@pytest.mark.asyncio
+@pytest.mark.edx_health
+async def check_pr_activity(all_results, github_repo):
+    """
+    PR responsiveness signals via one GraphQL query (closure ratio, first-response time).
+    """
+    github_repo = await github_repo
+    repo = github_repo.object
+    if repo is None:
+        logger.error(github_repo.message)
+        pytest.skip("There was an error fetching data from GitHub")
+
+    variables = {"owner": repo.owner.login, "name": repo.name}
+    data = await repo.http.request(json={"query": FETCH_RECENT_PRS, "variables": variables})
+    try:
+        nodes = data["repository"]["pullRequests"]["nodes"]
+    except (KeyError, TypeError):
+        return
+
+    _, closure_ratio, median_response = parse_pr_activity(nodes, datetime.now(timezone.utc))
+    results = all_results[MODULE_DICT_KEY]
+    if closure_ratio is not None:
+        results["pr_closure_ratio_90d"] = closure_ratio
+    if median_response is not None:
+        results["median_pr_response_seconds"] = median_response

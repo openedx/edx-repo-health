@@ -15,6 +15,15 @@ logger = logging.getLogger(__name__)
 
 module_dict_key = "github_actions"
 
+# Active workflows that are maintenance automation rather than CI. A repo whose
+# only active workflows are these is not considered CI-integrated.
+NON_CI_WORKFLOWS = {
+    "upgrade-python-requirements.yml",
+    "add-remove-label-on-comment.yml",
+    "self-assign-issue.yml",
+    "add-depr-ticket-to-depr-board.yml",
+}
+
 
 def get_githubworkflow_api_response(org_name, repo_name):
     """
@@ -61,14 +70,16 @@ class GitHubIntegrationHandler:
         self.api_data = json.loads(self.api_response.content)
 
         if self.api_data and 'workflows' in self.api_data:
+            # An active workflow that isn't pure maintenance automation means
+            # GitHub Actions CI is configured. The previous hardcoded allow-list
+            # of three filenames (ci.yml, playbook-test.yml, syntax-test.yml)
+            # reported False for the many repos that use other CI workflow
+            # names, wrongly failing ci_status. A deny-list of known non-CI
+            # automation fails safe: unrecognized workflows count as CI.
             self.github_actions = [
                 True for workflow in self.api_data['workflows']
-
-                if workflow['path'] in [
-                    '.github/workflows/ci.yml',
-                    '.github/workflows/playbook-test.yml',
-                    '.github/workflows/syntax-test.yml'
-                ] and workflow['state'] == 'active'
+                if workflow.get('state') == 'active'
+                and os.path.basename(workflow.get('path', '')) not in NON_CI_WORKFLOWS
             ]
 
 

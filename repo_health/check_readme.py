@@ -18,6 +18,7 @@ GOOD_THINGS = {
     "security": {
         "description": "Has a security contact",
         "re": [
+            r"security@openedx\.org",
             r"security@edx\.org",
         ],
     },

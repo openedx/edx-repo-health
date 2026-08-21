@@ -8,7 +8,7 @@ cachetools==5.5.2
     # via
     #   -c requirements/constraints.txt
     #   tox
-chardet==7.5.1
+chardet==7.6.0
     # via tox
 colorama==0.4.6
     # via tox

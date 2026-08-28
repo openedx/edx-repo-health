@@ -26,7 +26,7 @@ pyparsing==2.4.7          # via packaging
 python-slugify==4.0.1     # via code-annotations
 pytz==2021.1              # via babel, django
 pyyaml==5.4.1             # via code-annotations
-requests==2.25.1          # via sphinx
+requests==2.32.4          # via sphinx
 six==1.15.0               # via edx-sphinx-theme, stevedore
 smmap==4.0.0              # via gitdb
 snowballstemmer==2.1.0    # via sphinx

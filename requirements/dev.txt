@@ -30,7 +30,7 @@ attrs==26.1.0
     # via
     #   -r requirements/quality.txt
     #   aiohttp
-build==1.6.0
+build==1.6.1
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
@@ -102,7 +102,7 @@ dockerfile==3.4.0
     # via -r requirements/quality.txt
 edx-lint==6.2.0
     # via -r requirements/quality.txt
-filelock==3.32.5
+filelock==3.32.6
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -119,11 +119,11 @@ gitdb==4.0.12
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/quality.txt
-gitpython==3.1.61
+gitpython==3.1.62
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.57.0
+google-auth==2.58.0
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
@@ -166,7 +166,7 @@ mccabe==0.7.0
     #   pylint
 mdurl==0.1.2
     # via markdown-it-py
-multidict==6.7.1
+multidict==6.8.0
     # via
     #   -r requirements/quality.txt
     #   aiohttp
@@ -191,7 +191,7 @@ packaging==26.3
     #   wheel
 pip-tools==7.6.1
     # via -r requirements/pip-tools.txt
-platformdirs==4.11.7
+platformdirs==4.11.8
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -284,7 +284,7 @@ python-discovery==1.6.0
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-python-slugify==8.0.4
+python-slugify==9.0.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -350,7 +350,7 @@ urllib3==2.7.0
     #   -r requirements/quality.txt
     #   requests
     #   responses
-virtualenv==21.7.8
+virtualenv==21.7.9
     # via
     #   -r requirements/ci.txt
     #   tox

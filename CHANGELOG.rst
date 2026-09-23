@@ -14,6 +14,11 @@ Change Log
 Unreleased
 **********
 
+Fixed
+=====
+* ``check_ownership`` now receives the ``repo_path`` fixture. The ``None`` default
+  stopped pytest from injecting it, so ``ownership.owner*`` columns were always empty.
+
 Removed
 =======
 * Removed Travis CI checks (``check_travis_yml.py``, ``check_travis_integration.py``)

@@ -122,7 +122,7 @@ def _catalog_owner(repo_path):
     },
 )
 @pytest.mark.edx_health
-def check_ownership(all_results, git_origin_url, repo_path=None):
+def check_ownership(all_results, git_origin_url, repo_path):
     """
     Get all the fields of interest from the tech ownership spreadsheet entry
     for the repository.

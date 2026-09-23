@@ -1,6 +1,7 @@
 """Test checks for ownership info."""
 
 import csv
+import inspect
 import os
 from pathlib import Path
 from unittest import mock
@@ -121,3 +122,9 @@ def test_check_ownership_survives_non_integer_worksheet_id(tmp_path):
     check_ownership(all_results, git_origin_url="github.com/openedx/repo.git", repo_path=str(tmp_path))
 
     assert all_results[MODULE_DICT_KEY]["owner_name"] == "carol"
+
+
+def test_check_ownership_requires_repo_path_fixture():
+    """pytest only injects fixtures into parameters without defaults."""
+    repo_path = inspect.signature(check_ownership).parameters["repo_path"]
+    assert repo_path.default is inspect.Parameter.empty

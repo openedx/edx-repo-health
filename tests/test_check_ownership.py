@@ -128,3 +128,53 @@ def test_check_ownership_requires_repo_path_fixture():
     """pytest only injects fixtures into parameters without defaults."""
     repo_path = inspect.signature(check_ownership).parameters["repo_path"]
     assert repo_path.default is inspect.Parameter.empty
+
+
+def test_check_ownership_emits_lifecycle_type_and_release(tmp_path):
+    """Catalog lifecycle, type and the openedx.org/release annotation are emitted."""
+    catalog = Path(tmp_path) / "catalog-info.yaml"
+    catalog.write_text(
+        "metadata:\n"
+        "  annotations:\n"
+        "    openedx.org/release: \"master\"\n"
+        "spec:\n"
+        "  owner: group:openedx-unmaintained\n"
+        "  type: 'xblock'\n"
+        "  lifecycle: 'production'\n",
+        encoding="utf-8",
+    )
+
+    all_results = {MODULE_DICT_KEY: {}}
+    with mock.patch.dict(os.environ, {}, clear=True):
+        check_ownership(all_results, git_origin_url="github.com/openedx/repo.git", repo_path=str(tmp_path))
+
+    assert all_results[MODULE_DICT_KEY]["lifecycle"] == "production"
+    assert all_results[MODULE_DICT_KEY]["component_type"] == "xblock"
+    assert all_results[MODULE_DICT_KEY]["release"] == "master"
+
+
+def test_check_ownership_null_release_annotation_is_empty(tmp_path):
+    """`openedx.org/release: null` means not in releases, emitted as empty."""
+    catalog = Path(tmp_path) / "catalog-info.yaml"
+    catalog.write_text(
+        "metadata:\n  annotations:\n    openedx.org/release: null\nspec:\n  owner: user:dave\n",
+        encoding="utf-8",
+    )
+
+    all_results = {MODULE_DICT_KEY: {}}
+    with mock.patch.dict(os.environ, {}, clear=True):
+        check_ownership(all_results, git_origin_url="github.com/openedx/repo.git", repo_path=str(tmp_path))
+
+    assert all_results[MODULE_DICT_KEY]["release"] == ""
+    assert all_results[MODULE_DICT_KEY]["lifecycle"] == ""
+    assert all_results[MODULE_DICT_KEY]["owner_name"] == "dave"
+
+
+def test_check_ownership_emits_empty_catalog_details_when_no_catalog(tmp_path):
+    """Detail keys are always present (empty) so the CSV columns exist."""
+    all_results = {MODULE_DICT_KEY: {}}
+    with mock.patch.dict(os.environ, {}, clear=True):
+        check_ownership(all_results, git_origin_url="github.com/openedx/repo.git", repo_path=str(tmp_path))
+
+    for key in ("lifecycle", "component_type", "release"):
+        assert all_results[MODULE_DICT_KEY][key] == ""

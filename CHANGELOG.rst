@@ -14,6 +14,13 @@ Change Log
 Unreleased
 **********
 
+Added
+=====
+* ``check_ownership`` emits ``lifecycle``, ``component_type`` and ``release`` from
+  ``catalog-info.yaml`` (``spec.lifecycle``, ``spec.type`` and the ``openedx.org/release``
+  annotation). New CSV columns: ``ownership.lifecycle``, ``ownership.component_type``,
+  ``ownership.release``.
+
 Fixed
 =====
 * ``check_ownership`` now receives the ``repo_path`` fixture. The ``None`` default

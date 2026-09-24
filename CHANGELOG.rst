@@ -16,6 +16,10 @@ Unreleased
 
 Added
 =====
+* ``check_pr_activity`` emits ``pr_opened_90d``: PRs opened in the last 90 days, always
+  present (0 for a dormant repo), counted from the 100 most recent PRs so capped at 100.
+  New CSV column: ``github.pr_opened_90d``. Closure ratio and median response stay absent
+  when no PRs were opened, since they are undefined rather than zero.
 * ``check_ownership`` emits ``lifecycle``, ``component_type`` and ``release`` from
   ``catalog-info.yaml`` (``spec.lifecycle``, ``spec.type`` and the ``openedx.org/release``
   annotation). New CSV columns: ``ownership.lifecycle``, ``ownership.component_type``,

@@ -4,7 +4,7 @@ import subprocess
 from datetime import datetime, timezone
 
 from repo_health.check_github import (MODULE_DICT_KEY, _distinct_authors_since, _releases_last_12mo,
-                                      check_activity_signals, parse_pr_activity)
+                                      check_activity_signals, parse_pr_activity, pr_activity_results)
 
 REFERENCE = datetime(2026, 6, 1, tzinfo=timezone.utc)
 
@@ -53,6 +53,29 @@ def test_parse_pr_activity_ignores_author_and_bot_responses():
 
 def test_parse_pr_activity_empty():
     assert parse_pr_activity([], REFERENCE) == (0, None, None)
+
+
+def test_pr_activity_results_reports_zero_opened_for_dormant_repo():
+    """No PRs in the window: the count is an explicit 0 and the ratios stay absent."""
+    nodes = [_pr("2026-01-01T00:00:00Z", "MERGED", "author", [("2026-01-02T00:00:00Z", "reviewer")])]
+
+    assert pr_activity_results(nodes, REFERENCE) == {"pr_opened_90d": 0}
+
+
+def test_pr_activity_results_includes_all_keys_when_measurable():
+    nodes = [_pr("2026-05-20T00:00:00Z", "MERGED", "author", [("2026-05-21T00:00:00Z", "reviewer")])]
+
+    assert pr_activity_results(nodes, REFERENCE) == {
+        "pr_opened_90d": 1,
+        "pr_closure_ratio_90d": 1.0,
+        "median_pr_response_seconds": 86400,
+    }
+
+
+def test_pr_activity_results_omits_median_without_responses():
+    nodes = [_pr("2026-05-20T00:00:00Z", "OPEN", "me", [("2026-05-20T01:00:00Z", "me")])]
+
+    assert pr_activity_results(nodes, REFERENCE) == {"pr_opened_90d": 1, "pr_closure_ratio_90d": 0.0}
 
 
 def _init_repo(path):

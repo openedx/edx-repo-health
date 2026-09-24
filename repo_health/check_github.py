@@ -399,9 +399,26 @@ def check_activity_signals(all_results, repo_path):
     results["release_count_12mo"] = _releases_last_12mo(repo_path)
 
 
+def pr_activity_results(nodes, reference_dt):
+    """Map fetched PR nodes to the result keys check_pr_activity emits.
+
+    ``pr_opened_90d`` is always present, so a repo with no recent PRs reads 0
+    rather than blank. The ratio and median stay absent in that case: they are
+    undefined, not zero.
+    """
+    opened, closure_ratio, median_response = parse_pr_activity(nodes, reference_dt)
+    results = {"pr_opened_90d": opened}
+    if closure_ratio is not None:
+        results["pr_closure_ratio_90d"] = closure_ratio
+    if median_response is not None:
+        results["median_pr_response_seconds"] = median_response
+    return results
+
+
 @health_metadata(
     [MODULE_DICT_KEY],
     {
+        "pr_opened_90d": "PRs opened in the last 90 days (counted from the 100 most recent PRs, so capped at 100)",
         "pr_closure_ratio_90d": "Closed/merged over opened PRs in the last 90 days",
         "median_pr_response_seconds": "Median seconds to first non-author response on recent PRs",
     },
@@ -425,9 +442,4 @@ async def check_pr_activity(all_results, github_repo):
     except (KeyError, TypeError):
         return
 
-    _, closure_ratio, median_response = parse_pr_activity(nodes, datetime.now(timezone.utc))
-    results = all_results[MODULE_DICT_KEY]
-    if closure_ratio is not None:
-        results["pr_closure_ratio_90d"] = closure_ratio
-    if median_response is not None:
-        results["median_pr_response_seconds"] = median_response
+    all_results[MODULE_DICT_KEY].update(pr_activity_results(nodes, datetime.now(timezone.utc)))

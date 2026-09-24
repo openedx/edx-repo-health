@@ -24,6 +24,8 @@ REPO_HEALTH_WORKSHEET = "REPO_HEALTH_REPOS_WORKSHEET_ID"
 
 CATALOG_INFO_FILE = "catalog-info.yaml"
 
+RELEASE_ANNOTATION = "openedx.org/release"
+
 
 class KnownError(Exception):
     """
@@ -65,34 +67,40 @@ def find_worksheet_with_actions(google_creds_file, spreadsheet_url, worksheet_id
     return worksheet.get_all_records(expected_headers=expected_headers)
 
 
-def _catalog_owner(repo_path):
-    """Return owner metadata from catalog-info.yaml, if available."""
+def _load_catalog(repo_path):
+    """Return the parsed catalog-info.yaml as a dict, or {} when absent or invalid."""
     if not repo_path:
-        return None, None, None
+        return {}
 
     catalog_path = os.path.join(repo_path, CATALOG_INFO_FILE)
     if not os.path.exists(catalog_path):
-        return None, None, None
+        return {}
 
     try:
         with open(catalog_path, encoding="utf-8") as stream:
             data = yaml.safe_load(stream) or {}
     except (OSError, yaml.YAMLError) as exc:
         logger.warning("Could not parse %s: %s", catalog_path, exc)
+        return {}
+
+    return data if isinstance(data, dict) else {}
+
+
+def _section(catalog, key):
+    value = catalog.get(key) or {}
+    return value if isinstance(value, dict) else {}
+
+
+def _text(value):
+    return value.strip() if isinstance(value, str) else ""
+
+
+def _catalog_owner(catalog):
+    """Return (owner, owner_kind, owner_name) from spec.owner, or Nones."""
+    owner = _text(_section(catalog, "spec").get("owner"))
+    if not owner:
         return None, None, None
 
-    if not isinstance(data, dict):
-        return None, None, None
-
-    spec = data.get("spec") or {}
-    if not isinstance(spec, dict):
-        return None, None, None
-
-    owner = spec.get("owner")
-    if not isinstance(owner, str) or not owner.strip():
-        return None, None, None
-
-    owner = owner.strip()
     owner_kind = "unknown"
     owner_name = owner
     if ":" in owner:
@@ -108,12 +116,26 @@ def _catalog_owner(repo_path):
     return owner, owner_kind, owner_name
 
 
+def _catalog_details(catalog):
+    """Return (lifecycle, component_type, release) from catalog-info.yaml."""
+    spec = _section(catalog, "spec")
+    annotations = _section(_section(catalog, "metadata"), "annotations")
+    return (
+        _text(spec.get("lifecycle")),
+        _text(spec.get("type")),
+        _text(annotations.get(RELEASE_ANNOTATION)),
+    )
+
+
 @health_metadata(
     [MODULE_DICT_KEY],
     {
         "owner": "Owner from catalog-info.yaml (spec.owner)",
         "owner_kind": "Owner kind from catalog-info.yaml (user/group)",
         "owner_name": "Owner name from catalog-info.yaml",
+        "lifecycle": "Lifecycle from catalog-info.yaml (spec.lifecycle)",
+        "component_type": "Component type from catalog-info.yaml (spec.type)",
+        "release": "Release branch from the openedx.org/release annotation (empty if not in releases)",
         "theme": "Theme that owns the component",
         "squad": "Squad that owns the component",
         "priority": "How critical is the component to edX?",
@@ -132,10 +154,12 @@ def check_ownership(all_results, git_origin_url, repo_path):
     # catalog-info.yaml (OEP-55 spec.owner) is the primary, in-repo ownership
     # source. Always emit the keys (empty when absent) so the aggregated CSV
     # carries the column and coverage math has something to count.
-    owner, owner_kind, owner_name = _catalog_owner(repo_path)
+    catalog = _load_catalog(repo_path)
+    owner, owner_kind, owner_name = _catalog_owner(catalog)
     results["owner"] = owner or ""
     results["owner_kind"] = owner_kind or ""
     results["owner_name"] = owner_name or ""
+    results["lifecycle"], results["component_type"], results["release"] = _catalog_details(catalog)
 
     # The Google Sheet (theme/squad/priority) is a secondary, org-specific
     # source (2U). Everything below is best-effort and must never crash the

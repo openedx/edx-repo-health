@@ -281,20 +281,41 @@ def check_branch_and_pr_count(all_results, git_origin_url):
 # (one query, no pagination) to stay within the Actions token budget; for very
 # active repos this may not cover a full 90-day window — a documented limit.
 FETCH_RECENT_PRS = """
-query recent_prs ($owner: String!, $name: String!) {
+query recent_activity ($owner: String!, $name: String!) {
   repository (owner: $owner, name: $name) {
+    defaultBranchRef { target { ... on Commit { statusCheckRollup { state } } } }
+    openIssues: issues (states: OPEN) { totalCount }
+    openPullRequests: pullRequests (states: OPEN) { totalCount }
+    oldestOpenPullRequest: pullRequests (states: OPEN, first: 1, orderBy: {field: CREATED_AT, direction: ASC}) {
+      nodes { createdAt }
+    }
+    goodFirstIssue: label (name: "good first issue") { issues (states: OPEN) { totalCount } }
+    issues (first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
+      nodes {
+        createdAt
+        closedAt
+        state
+        authorAssociation
+        author { __typename login }
+        comments (first: 10) { nodes { createdAt author { __typename login } } }
+      }
+    }
     pullRequests (first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
       nodes {
         createdAt
+        mergedAt
         state
-        author { login }
-        comments (first: 20) { nodes { createdAt author { login } } }
-        reviews (first: 10) { nodes { createdAt author { login } } }
+        authorAssociation
+        author { __typename login }
+        comments (first: 20) { nodes { createdAt author { __typename login } } }
+        reviews (first: 10) { nodes { createdAt author { __typename login } } }
       }
     }
   }
 }
 """
+
+NEWCOMER_ASSOCIATIONS = {"FIRST_TIME_CONTRIBUTOR", "FIRST_TIMER"}
 
 
 def _run_git(repo_path, *args):
@@ -336,8 +357,48 @@ def _parse_github_dt(value):
         return None
 
 
-def _is_bot(login):
-    return not login or login.lower().endswith("[bot]") or login.lower() in {"web-flow"}
+# GitHub Apps come back as __typename Bot; these automation accounts are plain Users.
+AUTOMATION_LOGINS = {"web-flow", "openedx-webhooks", "codecov-commenter", "sonarcloud"}
+
+
+def _is_automation(actor):
+    actor = actor or {}
+    login = (actor.get("login") or "").lower()
+    return (
+        not login
+        or actor.get("__typename") == "Bot"
+        or login.endswith(("[bot]", "-bot"))
+        or login in AUTOMATION_LOGINS
+    )
+
+
+def _first_response_seconds(item):
+    """Seconds from creation to the first comment/review by someone other than
+    the author (bots excluded), or None when nobody else has responded."""
+    created = _parse_github_dt(item.get("createdAt"))
+    if created is None:
+        return None
+    author = ((item.get("author") or {}).get("login") or "").lower()
+    events = list((item.get("comments") or {}).get("nodes", []))
+    events += list((item.get("reviews") or {}).get("nodes", []))
+    stamps = []
+    for event in events:
+        actor = event.get("author") or {}
+        if _is_automation(actor) or (actor.get("login") or "").lower() == author:
+            continue
+        stamp = _parse_github_dt(event.get("createdAt"))
+        if stamp is not None:
+            stamps.append(stamp)
+    return (min(stamps) - created).total_seconds() if stamps else None
+
+
+def _in_window(item, reference_dt, window_days):
+    created = _parse_github_dt(item.get("createdAt"))
+    return created is not None and created >= reference_dt - timedelta(days=window_days)
+
+
+def _median(values):
+    return int(statistics.median(values)) if values else None
 
 
 def parse_pr_activity(nodes, reference_dt, window_days=90):
@@ -346,37 +407,15 @@ def parse_pr_activity(nodes, reference_dt, window_days=90):
     - closure_ratio: PRs opened in the window that are now CLOSED/MERGED, over
       all PRs opened in the window (None when none opened).
     - median_first_response_seconds: median seconds from PR creation to the
-      first review/comment by someone other than the author (bots excluded);
+      first review/comment by someone other than the author, on PRs opened by
+      people; automation authors and responders are excluded;
       None when there are no measurable responses.
     """
-    cutoff = reference_dt - timedelta(days=window_days)
-    opened = 0
-    closed = 0
-    response_seconds = []
-    for pr in nodes or []:
-        created = _parse_github_dt(pr.get("createdAt"))
-        if created is None or created < cutoff:
-            continue
-        opened += 1
-        if pr.get("state") in {"CLOSED", "MERGED"}:
-            closed += 1
-
-        author = ((pr.get("author") or {}).get("login") or "").lower()
-        events = list((pr.get("comments") or {}).get("nodes", []))
-        events += list((pr.get("reviews") or {}).get("nodes", []))
-        first_response = None
-        for event in events:
-            login = (event.get("author") or {}).get("login") or ""
-            if _is_bot(login) or login.lower() == author:
-                continue
-            stamp = _parse_github_dt(event.get("createdAt"))
-            if stamp is None:
-                continue
-            if first_response is None or stamp < first_response:
-                first_response = stamp
-        if first_response is not None:
-            response_seconds.append((first_response - created).total_seconds())
-
+    recent = [pr for pr in nodes or [] if _in_window(pr, reference_dt, window_days)]
+    opened = len(recent)
+    closed = sum(pr.get("state") in {"CLOSED", "MERGED"} for pr in recent)
+    human_authored = [pr for pr in recent if not _is_automation(pr.get("author"))]
+    response_seconds = [seconds for seconds in map(_first_response_seconds, human_authored) if seconds is not None]
     closure_ratio = round(closed / opened, 4) if opened else None
     median_response = int(statistics.median(response_seconds)) if response_seconds else None
     return opened, closure_ratio, median_response
@@ -397,6 +436,101 @@ def check_activity_signals(all_results, repo_path):
     results = all_results[MODULE_DICT_KEY]
     results["contributor_count_90d"] = _distinct_authors_since(repo_path, 90)
     results["release_count_12mo"] = _releases_last_12mo(repo_path)
+
+
+def parse_pr_speed(nodes, reference_dt, window_days=90):
+    """Median seconds from creation to merge for PRs merged in the window."""
+    cutoff = reference_dt - timedelta(days=window_days)
+    durations = []
+    for pr in nodes or []:
+        created = _parse_github_dt(pr.get("createdAt"))
+        merged = _parse_github_dt(pr.get("mergedAt"))
+        if created and merged and merged >= cutoff:
+            durations.append((merged - created).total_seconds())
+    return _median(durations)
+
+
+def parse_newcomers(nodes, reference_dt, window_days=90):
+    """(first-timer PRs opened in the window, their median first-response seconds).
+
+    A first-timer is GitHub's FIRST_TIME_CONTRIBUTOR / FIRST_TIMER association on
+    the PR, bots excluded. Only these aggregates are emitted, never the authors.
+    """
+    firsts = [
+        pr for pr in nodes or []
+        if _in_window(pr, reference_dt, window_days)
+        and pr.get("authorAssociation") in NEWCOMER_ASSOCIATIONS
+        and not _is_automation(pr.get("author"))
+    ]
+    responses = [seconds for seconds in map(_first_response_seconds, firsts) if seconds is not None]
+    return len(firsts), _median(responses)
+
+
+def parse_issue_activity(nodes, reference_dt, window_days=90, stale_days=180):
+    """(opened in window, closure ratio, median first response seconds, stale open count).
+
+    Counted from the 100 most recent issues, so values saturate on very busy repos.
+    """
+    issues = [issue for issue in nodes or [] if not _is_automation(issue.get("author"))]
+    recent = [issue for issue in issues if _in_window(issue, reference_dt, window_days)]
+    closed = sum(issue.get("state") == "CLOSED" for issue in recent)
+    closure_ratio = round(closed / len(recent), 4) if recent else None
+    responses = [seconds for seconds in map(_first_response_seconds, recent) if seconds is not None]
+    stale_cutoff = reference_dt - timedelta(days=stale_days)
+    stale = sum(
+        issue.get("state") == "OPEN" and (_parse_github_dt(issue.get("createdAt")) or reference_dt) < stale_cutoff
+        for issue in issues
+    )
+    return len(recent), closure_ratio, _median(responses), stale
+
+
+def _total(repository, field):
+    return ((repository.get(field) or {}).get("totalCount"))
+
+
+def repository_snapshot_results(repository, reference_dt):
+    """Point-in-time counts and states from the activity query."""
+    results = {}
+    target = ((repository.get("defaultBranchRef") or {}).get("target") or {})
+    rollup = target.get("statusCheckRollup") or {}
+    if rollup.get("state"):
+        results["default_branch_ci_state"] = rollup["state"]
+    for key, field in (("issues_open", "openIssues"), ("prs_open", "openPullRequests")):
+        if _total(repository, field) is not None:
+            results[key] = _total(repository, field)
+    oldest = ((repository.get("oldestOpenPullRequest") or {}).get("nodes") or [])
+    oldest_created = _parse_github_dt(oldest[0].get("createdAt")) if oldest else None
+    if oldest_created:
+        results["oldest_open_pr_days"] = (reference_dt - oldest_created).days
+    label = repository.get("goodFirstIssue")
+    results["good_first_issues_open"] = ((label or {}).get("issues") or {}).get("totalCount") or 0
+    return results
+
+
+def repository_activity_results(repository, reference_dt):
+    """Every result key the activity query feeds; undefined values stay absent."""
+    pr_nodes = (repository.get("pullRequests") or {}).get("nodes", [])
+    issue_nodes = (repository.get("issues") or {}).get("nodes", [])
+    results = pr_activity_results(pr_nodes, reference_dt)
+    results.update(repository_snapshot_results(repository, reference_dt))
+
+    time_to_merge = parse_pr_speed(pr_nodes, reference_dt)
+    if time_to_merge is not None:
+        results["median_pr_time_to_merge_seconds"] = time_to_merge
+
+    first_timer_prs, first_timer_response = parse_newcomers(pr_nodes, reference_dt)
+    results["first_timer_prs_90d"] = first_timer_prs
+    if first_timer_response is not None:
+        results["first_timer_median_first_response_seconds"] = first_timer_response
+
+    opened, closure, response, stale = parse_issue_activity(issue_nodes, reference_dt)
+    results["issues_opened_90d"] = opened
+    results["issues_stale_open_180d"] = stale
+    if closure is not None:
+        results["issue_closure_ratio_90d"] = closure
+    if response is not None:
+        results["median_issue_first_response_seconds"] = response
+    return results
 
 
 def pr_activity_results(nodes, reference_dt):
@@ -421,13 +555,26 @@ def pr_activity_results(nodes, reference_dt):
         "pr_opened_90d": "PRs opened in the last 90 days (counted from the 100 most recent PRs, so capped at 100)",
         "pr_closure_ratio_90d": "Closed/merged over opened PRs in the last 90 days",
         "median_pr_response_seconds": "Median seconds to first non-author response on recent PRs",
+        "median_pr_time_to_merge_seconds": "Median seconds from creation to merge for PRs merged in the last 90 days",
+        "prs_open": "Open pull requests",
+        "oldest_open_pr_days": "Age in days of the oldest open pull request",
+        "default_branch_ci_state": "Combined status of checks on the default branch head (SUCCESS, FAILURE, PENDING, ERROR); absent when the repo has no checks",
+        "issues_open": "Open issues",
+        "issues_opened_90d": "Issues opened in the last 90 days, bots excluded (from the 100 most recent)",
+        "issue_closure_ratio_90d": "Closed over opened issues in the last 90 days",
+        "median_issue_first_response_seconds": "Median seconds to first non-author response on issues opened in the last 90 days",
+        "issues_stale_open_180d": "Open issues older than 180 days among the 100 most recent issues",
+        "first_timer_prs_90d": "PRs opened in the last 90 days by first-time contributors (GitHub authorAssociation), bots excluded",
+        "first_timer_median_first_response_seconds": "Median seconds to first response on first-time contributors' PRs in the last 90 days",
+        "good_first_issues_open": "Open issues labelled 'good first issue'",
     },
 )
 @pytest.mark.asyncio
 @pytest.mark.edx_health
 async def check_pr_activity(all_results, github_repo):
     """
-    PR responsiveness signals via one GraphQL query (closure ratio, first-response time).
+    Activity signals via one GraphQL query: PR and issue flow, backlog, default
+    branch CI state and first-time contributor responsiveness.
     """
     github_repo = await github_repo
     repo = github_repo.object
@@ -437,9 +584,8 @@ async def check_pr_activity(all_results, github_repo):
 
     variables = {"owner": repo.owner.login, "name": repo.name}
     data = await repo.http.request(json={"query": FETCH_RECENT_PRS, "variables": variables})
-    try:
-        nodes = data["repository"]["pullRequests"]["nodes"]
-    except (KeyError, TypeError):
+    repository = (data or {}).get("repository")
+    if not repository:
         return
 
-    all_results[MODULE_DICT_KEY].update(pr_activity_results(nodes, datetime.now(timezone.utc)))
+    all_results[MODULE_DICT_KEY].update(repository_activity_results(repository, datetime.now(timezone.utc)))

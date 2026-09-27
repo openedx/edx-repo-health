@@ -51,6 +51,17 @@ def test_lockfile_age_prefers_uv_lock_over_newer_requirements(tmp_path):
     assert lockfile_age_days(str(tmp_path)) == 5
 
 
+def test_lockfile_age_ignores_deleted_lockfiles(tmp_path):
+    commit = _repo(tmp_path)
+    commit("Alice", "alice@example.com", "package-lock.json", days_ago=20)
+    commit("Alice", "alice@example.com", "requirements/old.txt", days_ago=10)
+    (tmp_path / "requirements" / "old.txt").unlink()
+    subprocess.run(["git", "-C", str(tmp_path), "-c", "user.name=A", "-c", "user.email=a@example.com",
+                    "commit", "-qam", "drop"], check=True, capture_output=True)
+
+    assert lockfile_age_days(str(tmp_path)) == 20
+
+
 def test_lockfile_age_none_without_lockfiles(tmp_path):
     _repo(tmp_path)("Alice", "alice@example.com", "README.rst")
 

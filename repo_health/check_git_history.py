@@ -60,6 +60,8 @@ def lockfile_age_days(repo_path, now=None):
     """Days since the first lockfile kind present was last committed, or None."""
     now = now if now is not None else time.time()
     for pathspec in LOCKFILE_PATHSPECS:
+        if not _run_git(repo_path, "ls-files", "--", *pathspec).strip():
+            continue
         stamp = _run_git(repo_path, "log", "-1", "--format=%ct", "--", *pathspec).strip()
         if stamp.isdigit():
             return int((now - int(stamp)) // 86400)

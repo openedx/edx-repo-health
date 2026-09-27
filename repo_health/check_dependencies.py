@@ -47,6 +47,11 @@ default_output = {
 }
 
 
+
+def is_vcs_requirement(line):
+    """True for ``git+https://...`` and pip-compile's ``name @ git+https://...`` lines."""
+    return re.match(r'^(\S+\s*@\s*)?git\+', line) is not None
+
 class DependencyReader(ABC):
     """
     class containing the read/parse logic for dependencies
@@ -152,7 +157,7 @@ class PythonDependencyReader(DependencyReader):
             lines = get_file_lines(file_path)
             stripped_lines = [re.sub(r' +#.*', "", line).replace('-e ', "")
                               for line in lines if line and not line.startswith("#")]
-            github_packages.extend([line for line in stripped_lines if re.match(r'^git\+.*', line)])
+            github_packages.extend([line for line in stripped_lines if is_vcs_requirement(line)])
             pypi_packages.extend([line for line in stripped_lines if line not in github_packages and "==" in line])
 
         self.github_dependencies = list(set(github_packages))
@@ -204,7 +209,7 @@ class PythonDependencyReader(DependencyReader):
             for line in lines if line and not line.startswith("#")
         ]
 
-        github_packages = [line for line in stripped_lines if re.match(r'^git\+.*', line)]
+        github_packages = [line for line in stripped_lines if is_vcs_requirement(line)]
 
         return {
             'github': github_packages,

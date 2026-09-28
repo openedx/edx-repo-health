@@ -4,9 +4,8 @@ import subprocess
 from datetime import datetime, timezone
 
 from repo_health.check_github import (MODULE_DICT_KEY, _distinct_authors_since, _releases_last_12mo,
-                                      check_activity_signals, parse_issue_activity, parse_newcomers,
-                                      parse_pr_activity, parse_pr_speed, pr_activity_results,
-                                      repository_activity_results)
+                                      check_activity_signals, parse_issue_activity, parse_newcomers, parse_pr_activity,
+                                      parse_pr_speed, pr_activity_results, repository_activity_results)
 
 REFERENCE = datetime(2026, 6, 1, tzinfo=timezone.utc)
 

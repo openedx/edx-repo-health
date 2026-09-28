@@ -558,14 +558,18 @@ def pr_activity_results(nodes, reference_dt):
         "median_pr_time_to_merge_seconds": "Median seconds from creation to merge for PRs merged in the last 90 days",
         "prs_open": "Open pull requests",
         "oldest_open_pr_days": "Age in days of the oldest open pull request",
-        "default_branch_ci_state": "Combined status of checks on the default branch head (SUCCESS, FAILURE, PENDING, ERROR); absent when the repo has no checks",
+        "default_branch_ci_state": "Combined status of checks on the default branch head "
+                                   "(SUCCESS, FAILURE, PENDING, ERROR); absent when the repo has no checks",
         "issues_open": "Open issues",
         "issues_opened_90d": "Issues opened in the last 90 days, bots excluded (from the 100 most recent)",
         "issue_closure_ratio_90d": "Closed over opened issues in the last 90 days",
-        "median_issue_first_response_seconds": "Median seconds to first non-author response on issues opened in the last 90 days",
+        "median_issue_first_response_seconds": "Median seconds to first non-author response on issues "
+                                               "opened in the last 90 days",
         "issues_stale_open_180d": "Open issues older than 180 days among the 100 most recent issues",
-        "first_timer_prs_90d": "PRs opened in the last 90 days by first-time contributors (GitHub authorAssociation), bots excluded",
-        "first_timer_median_first_response_seconds": "Median seconds to first response on first-time contributors' PRs in the last 90 days",
+        "first_timer_prs_90d": "PRs opened in the last 90 days by first-time contributors "
+                               "(GitHub authorAssociation), bots excluded",
+        "first_timer_median_first_response_seconds": "Median seconds to first response on first-time "
+                                                     "contributors' PRs in the last 90 days",
         "good_first_issues_open": "Open issues labelled 'good first issue'",
     },
 )

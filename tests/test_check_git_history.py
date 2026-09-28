@@ -5,8 +5,8 @@ import time
 from collections import defaultdict
 
 from repo_health.check_dependencies import is_vcs_requirement
-from repo_health.check_git_history import (MODULE_DICT_KEY, absence_factor, check_git_history,
-                                           human_commit_authors, lockfile_age_days)
+from repo_health.check_git_history import (MODULE_DICT_KEY, absence_factor, check_git_history, human_commit_authors,
+                                           lockfile_age_days)
 
 
 def _repo(path):

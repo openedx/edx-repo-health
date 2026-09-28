@@ -4,7 +4,8 @@ import subprocess
 from datetime import datetime, timezone
 
 from repo_health.check_github import (MODULE_DICT_KEY, _distinct_authors_since, _releases_last_12mo,
-                                      check_activity_signals, parse_pr_activity, pr_activity_results)
+                                      check_activity_signals, parse_issue_activity, parse_newcomers, parse_pr_activity,
+                                      parse_pr_speed, pr_activity_results, repository_activity_results)
 
 REFERENCE = datetime(2026, 6, 1, tzinfo=timezone.utc)
 
@@ -115,3 +116,132 @@ def test_local_git_helpers_are_resilient_to_bad_path(tmp_path):
     bad.mkdir()
     assert _distinct_authors_since(str(bad), 90) is None
     assert _releases_last_12mo(str(bad)) is None
+
+
+def _node(created, *, state="OPEN", merged=None, closed=None, association="MEMBER", author="author", events=()):
+    return {
+        "createdAt": created,
+        "mergedAt": merged,
+        "closedAt": closed,
+        "state": state,
+        "authorAssociation": association,
+        "author": {"login": author},
+        "comments": {"nodes": [{"createdAt": ts, "author": {"login": login}} for ts, login in events]},
+        "reviews": {"nodes": []},
+    }
+
+
+def test_parse_pr_speed_uses_prs_merged_in_the_window():
+    nodes = [
+        _node("2026-05-01T00:00:00Z", state="MERGED", merged="2026-05-03T00:00:00Z"),
+        _node("2026-05-10T00:00:00Z", state="MERGED", merged="2026-05-11T00:00:00Z"),
+        _node("2025-12-01T00:00:00Z", state="MERGED", merged="2025-12-02T00:00:00Z"),
+        _node("2026-05-20T00:00:00Z"),
+    ]
+
+    assert parse_pr_speed(nodes, REFERENCE) == int((2 * 86400 + 86400) / 2)
+
+
+def test_parse_pr_speed_none_without_merges():
+    assert parse_pr_speed([_node("2026-05-20T00:00:00Z")], REFERENCE) is None
+
+
+def test_parse_newcomers_counts_first_time_contributors_and_skips_bots():
+    nodes = [
+        _node("2026-05-20T00:00:00Z", association="FIRST_TIME_CONTRIBUTOR", author="new1",
+              events=[("2026-05-21T00:00:00Z", "maintainer")]),
+        _node("2026-05-18T00:00:00Z", association="FIRST_TIMER", author="new2"),
+        _node("2026-05-19T00:00:00Z", association="FIRST_TIME_CONTRIBUTOR", author="helper[bot]"),
+        _node("2026-05-19T00:00:00Z", association="CONTRIBUTOR", author="regular"),
+        _node("2026-01-01T00:00:00Z", association="FIRST_TIME_CONTRIBUTOR", author="old"),
+    ]
+
+    assert parse_newcomers(nodes, REFERENCE) == (2, 86400)
+
+
+def test_parse_issue_activity_counts_flow_and_stale_backlog():
+    nodes = [
+        _node("2026-05-20T00:00:00Z", state="CLOSED", closed="2026-05-22T00:00:00Z", author="u1",
+              events=[("2026-05-20T12:00:00Z", "maintainer")]),
+        _node("2026-05-25T00:00:00Z", author="u2"),
+        _node("2025-10-01T00:00:00Z", author="u3"),
+        _node("2026-05-26T00:00:00Z", author="renovate[bot]"),
+    ]
+
+    assert parse_issue_activity(nodes, REFERENCE) == (2, 0.5, 43200, 1)
+
+
+def test_repository_activity_results_combines_every_signal():
+    repository = {
+        "defaultBranchRef": {"target": {"statusCheckRollup": {"state": "FAILURE"}}},
+        "openIssues": {"totalCount": 4},
+        "openPullRequests": {"totalCount": 2},
+        "oldestOpenPullRequest": {"nodes": [{"createdAt": "2026-05-01T00:00:00Z"}]},
+        "goodFirstIssue": {"issues": {"totalCount": 3}},
+        "issues": {"nodes": [_node("2026-05-25T00:00:00Z", author="u1")]},
+        "pullRequests": {"nodes": [
+            _node("2026-05-20T00:00:00Z", state="MERGED", merged="2026-05-21T00:00:00Z",
+                  association="FIRST_TIME_CONTRIBUTOR", author="new", events=[("2026-05-20T06:00:00Z", "maintainer")]),
+        ]},
+    }
+
+    results = repository_activity_results(repository, REFERENCE)
+
+    assert results == {
+        "pr_opened_90d": 1,
+        "pr_closure_ratio_90d": 1.0,
+        "median_pr_response_seconds": 21600,
+        "default_branch_ci_state": "FAILURE",
+        "issues_open": 4,
+        "prs_open": 2,
+        "oldest_open_pr_days": 31,
+        "good_first_issues_open": 3,
+        "median_pr_time_to_merge_seconds": 86400,
+        "first_timer_prs_90d": 1,
+        "first_timer_median_first_response_seconds": 21600,
+        "issues_opened_90d": 1,
+        "issues_stale_open_180d": 0,
+        "issue_closure_ratio_90d": 0.0,
+    }
+
+
+def test_repository_without_checks_or_label_leaves_ci_absent_and_counts_zero():
+    repository = {"defaultBranchRef": {"target": {"statusCheckRollup": None}}, "goodFirstIssue": None,
+                  "issues": {"nodes": []}, "pullRequests": {"nodes": []}}
+
+    results = repository_activity_results(repository, REFERENCE)
+
+    assert "default_branch_ci_state" not in results
+    assert results["good_first_issues_open"] == 0
+    assert results["first_timer_prs_90d"] == 0
+    assert results["issues_opened_90d"] == 0
+    assert "issue_closure_ratio_90d" not in results
+
+
+def test_automation_accounts_do_not_count_as_responses():
+    nodes = [_node("2026-05-20T00:00:00Z", association="FIRST_TIME_CONTRIBUTOR", author="new",
+                   events=[("2026-05-20T00:00:05Z", "openedx-webhooks"),
+                           ("2026-05-20T00:01:00Z", "edx-requirements-bot"),
+                           ("2026-05-21T00:00:00Z", "maintainer")])]
+
+    assert parse_newcomers(nodes, REFERENCE) == (1, 86400)
+
+
+def test_github_app_actors_do_not_count_as_responses():
+    node = _node("2026-05-20T00:00:00Z", association="FIRST_TIME_CONTRIBUTOR", author="new")
+    node["comments"]["nodes"] = [
+        {"createdAt": "2026-05-20T00:00:10Z", "author": {"__typename": "Bot", "login": "dependabot"}},
+        {"createdAt": "2026-05-22T00:00:00Z", "author": {"__typename": "User", "login": "maintainer"}},
+    ]
+
+    assert parse_newcomers([node], REFERENCE) == (1, 172800)
+
+
+def test_pr_response_ignores_prs_opened_by_automation():
+    nodes = [
+        _node("2026-05-20T00:00:00Z", author="renovate", events=[("2026-05-20T00:00:30Z", "maintainer")]),
+        _node("2026-05-20T00:00:00Z", author="person", events=[("2026-05-21T00:00:00Z", "maintainer")]),
+    ]
+    nodes[0]["author"]["__typename"] = "Bot"
+
+    assert parse_pr_activity(nodes, REFERENCE) == (2, 0.0, 86400)

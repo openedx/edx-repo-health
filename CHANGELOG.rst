@@ -16,6 +16,14 @@ Unreleased
 
 Added
 =====
+* ``check_pr_activity`` extends its single GraphQL query (no extra API calls) and emits
+  repository snapshot and flow signals: ``default_branch_ci_state`` (latest commit status
+  rollup; absent when the repo has no checks), ``issues_open``, ``prs_open``,
+  ``oldest_open_pr_days``, ``good_first_issues_open``, ``median_pr_time_to_merge_seconds``,
+  ``issues_opened_90d``, ``issue_closure_ratio_90d``, ``median_issue_first_response_seconds``,
+  ``issues_stale_open_180d``, ``first_timer_prs_90d`` and
+  ``first_timer_median_first_response_seconds``. Newcomer values are aggregates from GitHub's
+  ``authorAssociation``; no author is ever emitted. New CSV columns under ``github.``.
 * ``check_pr_activity`` emits ``pr_opened_90d``: PRs opened in the last 90 days, always
   present (0 for a dormant repo), counted from the 100 most recent PRs so capped at 100.
   New CSV column: ``github.pr_opened_90d``. Closure ratio and median response stay absent
@@ -27,6 +35,12 @@ Added
 
 Fixed
 =====
+* ``median_pr_response_seconds`` no longer counts automation as a response or measures PRs
+  opened by automation. GraphQL returns GitHub Apps with bare logins (``dependabot``,
+  ``codecov``, ``copilot-pull-request-reviewer``), so the ``[bot]`` suffix test never matched;
+  actors are now checked by ``__typename`` plus known automation users (``openedx-webhooks``,
+  ``*-bot``). Response times rise on most repos, and repos whose recent PRs are all
+  automation-authored now have no value.
 * ``check_ownership`` now receives the ``repo_path`` fixture. The ``None`` default
   stopped pytest from injecting it, so ``ownership.owner*`` columns were always empty.
 

@@ -48,7 +48,7 @@ click-log==0.4.0
     # via edx-lint
 code-annotations==3.0.0
     # via edx-lint
-coverage[toml]==7.16.0
+coverage[toml]==7.16.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -77,11 +77,11 @@ gitdb==4.0.12
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/test.txt
-gitpython==3.1.61
+gitpython==3.1.62
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.57.0
+google-auth==2.58.1
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
@@ -94,7 +94,7 @@ gspread==5.11.3
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
-idna==3.19
+idna==3.20
     # via
     #   -r requirements/test.txt
     #   requests
@@ -113,7 +113,7 @@ markupsafe==3.0.3
     # via jinja2
 mccabe==0.7.0
     # via pylint
-multidict==6.7.1
+multidict==6.9.1
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -128,14 +128,14 @@ packaging==26.3
     # via
     #   -r requirements/test.txt
     #   pytest
-platformdirs==4.11.7
+platformdirs==4.11.12
     # via pylint
 pluggy==1.6.0
     # via
     #   -r requirements/test.txt
     #   pytest
     #   pytest-cov
-propcache==0.5.2
+propcache==0.5.4
     # via
     #   -r requirements/test.txt
     #   aiohttp
@@ -148,7 +148,7 @@ pyasn1-modules==0.4.2
     # via
     #   -r requirements/test.txt
     #   google-auth
-pycodestyle==2.14.0
+pycodestyle==2.15.0
     # via -r requirements/quality.in
 pycparser==3.0
     # via
@@ -156,7 +156,7 @@ pycparser==3.0
     #   cffi
 pydocstyle==6.3.0
     # via -r requirements/quality.in
-pylint==4.0.8
+pylint==4.0.9
     # via
     #   edx-lint
     #   pylint-celery
@@ -190,7 +190,7 @@ pytest-cov==7.1.0
     # via -r requirements/test.txt
 pytest-repo-health==4.0.0
     # via -r requirements/test.txt
-python-slugify==8.0.4
+python-slugify==9.1.1
     # via code-annotations
 pyyaml==6.0.3
     # via
@@ -234,12 +234,12 @@ typing-extensions==4.16.0
     #   -r requirements/test.txt
     #   aiohttp
     #   aiosignal
-urllib3==2.7.0
+urllib3==2.8.0
     # via
     #   -r requirements/test.txt
     #   requests
     #   responses
-yarl==1.24.5
+yarl==1.25.1
     # via
     #   -r requirements/test.txt
     #   aiohttp

@@ -16,6 +16,11 @@ Unreleased
 
 Added
 =====
+* New ``check_git_history`` reads the local clone (no API calls) and emits
+  ``commits_365d`` (non-merge commits by people), ``absence_factor_365d`` (fewest people who
+  made half of those commits, the CHAOSS Contributor Absence Factor) and
+  ``lockfile_age_days`` (days since ``uv.lock``, else ``requirements/*.txt``, else
+  ``package-lock.json`` was last committed). New CSV columns under ``git.``.
 * ``check_pr_activity`` extends its single GraphQL query (no extra API calls) and emits
   repository snapshot and flow signals: ``default_branch_ci_state`` (latest commit status
   rollup; absent when the repo has no checks), ``issues_open``, ``prs_open``,
@@ -35,6 +40,8 @@ Added
 
 Fixed
 =====
+* ``dependencies.github`` now counts pip-compile's ``name @ git+https://...`` lines, not only
+  ``git+https://...`` ones, so the count is no longer always 0 on pip-tools repos.
 * ``median_pr_response_seconds`` no longer counts automation as a response or measures PRs
   opened by automation. GraphQL returns GitHub Apps with bare logins (``dependabot``,
   ``codecov``, ``copilot-pull-request-reviewer``), so the ``[bot]`` suffix test never matched;

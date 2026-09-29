@@ -245,3 +245,15 @@ def test_pr_response_ignores_prs_opened_by_automation():
     nodes[0]["author"]["__typename"] = "Bot"
 
     assert parse_pr_activity(nodes, REFERENCE) == (2, 0.0, 86400)
+
+
+def test_parse_newcomers_counts_none_association_seen_by_tokens_without_push_access():
+    nodes = [
+        _node("2026-05-20T00:00:00Z", association="NONE", author="new1",
+              events=[("2026-05-20T12:00:00Z", "maintainer")]),
+        _node("2026-05-19T00:00:00Z", association="NONE", author="dependabot"),
+        _node("2026-05-18T00:00:00Z", association="CONTRIBUTOR", author="private-member"),
+    ]
+    nodes[1]["author"]["__typename"] = "Bot"
+
+    assert parse_newcomers(nodes, REFERENCE) == (1, 43200)

@@ -315,7 +315,9 @@ query recent_activity ($owner: String!, $name: String!) {
 }
 """
 
-NEWCOMER_ASSOCIATIONS = {"FIRST_TIME_CONTRIBUTOR", "FIRST_TIMER"}
+# GitHub reports FIRST_TIME_CONTRIBUTOR / FIRST_TIMER only to viewers with push access;
+# any other token sees NONE for the same PR. Counting NONE keeps the result token-independent.
+NEWCOMER_ASSOCIATIONS = {"FIRST_TIME_CONTRIBUTOR", "FIRST_TIMER", "NONE"}
 
 
 def _run_git(repo_path, *args):
@@ -453,8 +455,9 @@ def parse_pr_speed(nodes, reference_dt, window_days=90):
 def parse_newcomers(nodes, reference_dt, window_days=90):
     """(first-timer PRs opened in the window, their median first-response seconds).
 
-    A first-timer is GitHub's FIRST_TIME_CONTRIBUTOR / FIRST_TIMER association on
-    the PR, bots excluded. Only these aggregates are emitted, never the authors.
+    A first-timer is a PR author with no earlier commit in the repo (GitHub's
+    FIRST_TIME_CONTRIBUTOR, FIRST_TIMER or NONE association), bots excluded. Only these
+    aggregates are emitted, never the authors.
     """
     firsts = [
         pr for pr in nodes or []
@@ -566,7 +569,7 @@ def pr_activity_results(nodes, reference_dt):
         "median_issue_first_response_seconds": "Median seconds to first non-author response on issues "
                                                "opened in the last 90 days",
         "issues_stale_open_180d": "Open issues older than 180 days among the 100 most recent issues",
-        "first_timer_prs_90d": "PRs opened in the last 90 days by first-time contributors "
+        "first_timer_prs_90d": "PRs opened in the last 90 days by authors with no earlier commit in the repo "
                                "(GitHub authorAssociation), bots excluded",
         "first_timer_median_first_response_seconds": "Median seconds to first response on first-time "
                                                      "contributors' PRs in the last 90 days",

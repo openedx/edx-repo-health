@@ -40,6 +40,10 @@ Added
 
 Fixed
 =====
+* ``first_timer_prs_90d`` was 0 for every repo in the wg-maintenance run. GitHub reports
+  ``FIRST_TIME_CONTRIBUTOR`` / ``FIRST_TIMER`` only to viewers with push access; the job's
+  token sees ``NONE`` for the same PRs. ``NONE`` now counts as a newcomer (bots already
+  excluded), so the result no longer depends on the token's permissions.
 * ``dependencies.github`` now counts pip-compile's ``name @ git+https://...`` lines, not only
   ``git+https://...`` ones, so the count is no longer always 0 on pip-tools repos.
 * ``median_pr_response_seconds`` no longer counts automation as a response or measures PRs

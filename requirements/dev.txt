@@ -21,7 +21,7 @@ asgiref==3.12.1
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==4.0.4
+astroid==4.3.3
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -52,7 +52,7 @@ chardet==7.6.0
     #   -r requirements/ci.txt
     #   diff-cover
     #   tox
-charset-normalizer==3.5.1
+charset-normalizer==3.5.2
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -76,11 +76,11 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.16.1
+coverage[toml]==7.16.2
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==50.0.1
+cryptography==50.0.2
     # via
     #   -r requirements/quality.txt
     #   google-auth
@@ -102,7 +102,7 @@ dockerfile==3.4.0
     # via -r requirements/quality.txt
 edx-lint==6.2.0
     # via -r requirements/quality.txt
-filelock==4.0.3
+filelock==4.0.9
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -119,16 +119,16 @@ gitdb==4.0.12
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/quality.txt
-gitpython==3.1.62
+gitpython==3.2.0
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.58.1
+google-auth==2.59.1
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
     #   gspread
-google-auth-oauthlib==1.4.1
+google-auth-oauthlib==1.5.0
     # via
     #   -r requirements/quality.txt
     #   gspread
@@ -145,7 +145,7 @@ iniconfig==2.3.0
     # via
     #   -r requirements/quality.txt
     #   pytest
-isort==9.0.1
+isort==9.0.2
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -175,7 +175,7 @@ mypy-extensions==1.1.0
     # via
     #   -r requirements/quality.txt
     #   isort
-oauthlib==3.3.1
+oauthlib==4.0.0
     # via
     #   -r requirements/quality.txt
     #   requests-oauthlib
@@ -188,10 +188,11 @@ packaging==26.3
     #   pyproject-api
     #   pytest
     #   tox
+    #   virtualenv
     #   wheel
 pip-tools==7.6.1
     # via -r requirements/pip-tools.txt
-platformdirs==4.11.12
+platformdirs==4.12.2
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -231,7 +232,7 @@ pygments==2.21.0
     # via
     #   diff-cover
     #   rich
-pylint==4.0.9
+pylint==4.1.1
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -284,7 +285,7 @@ python-discovery==1.6.1
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-python-slugify==9.1.1
+python-slugify==9.1.2
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -350,7 +351,7 @@ urllib3==2.8.0
     #   -r requirements/quality.txt
     #   requests
     #   responses
-virtualenv==21.12.1
+virtualenv==21.14.3
     # via
     #   -r requirements/ci.txt
     #   tox

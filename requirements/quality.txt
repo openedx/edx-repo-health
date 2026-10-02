@@ -19,7 +19,7 @@ aiosignal==1.4.0
     #   aiohttp
 asgiref==3.12.1
     # via django
-astroid==4.0.4
+astroid==4.3.3
     # via
     #   pylint
     #   pylint-celery
@@ -35,7 +35,7 @@ cffi==2.1.1
     # via
     #   -r requirements/test.txt
     #   cryptography
-charset-normalizer==3.5.1
+charset-normalizer==3.5.2
     # via
     #   -r requirements/test.txt
     #   requests
@@ -48,11 +48,11 @@ click-log==0.4.0
     # via edx-lint
 code-annotations==3.0.0
     # via edx-lint
-coverage[toml]==7.16.1
+coverage[toml]==7.16.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==50.0.1
+cryptography==50.0.2
     # via
     #   -r requirements/test.txt
     #   google-auth
@@ -77,16 +77,16 @@ gitdb==4.0.12
     #   gitpython
 github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6
     # via -r requirements/test.txt
-gitpython==3.1.62
+gitpython==3.2.0
     # via
     #   -r requirements/test.txt
     #   pytest-repo-health
-google-auth==2.58.1
+google-auth==2.59.1
     # via
     #   -r requirements/test.txt
     #   google-auth-oauthlib
     #   gspread
-google-auth-oauthlib==1.4.1
+google-auth-oauthlib==1.5.0
     # via
     #   -r requirements/test.txt
     #   gspread
@@ -103,7 +103,7 @@ iniconfig==2.3.0
     # via
     #   -r requirements/test.txt
     #   pytest
-isort==9.0.1
+isort==9.0.2
     # via
     #   -r requirements/quality.in
     #   pylint
@@ -120,7 +120,7 @@ multidict==6.9.1
     #   yarl
 mypy-extensions==1.1.0
     # via isort
-oauthlib==3.3.1
+oauthlib==4.0.0
     # via
     #   -r requirements/test.txt
     #   requests-oauthlib
@@ -128,7 +128,7 @@ packaging==26.3
     # via
     #   -r requirements/test.txt
     #   pytest
-platformdirs==4.11.12
+platformdirs==4.12.2
     # via pylint
 pluggy==1.6.0
     # via
@@ -156,7 +156,7 @@ pycparser==3.0
     #   cffi
 pydocstyle==6.3.0
     # via -r requirements/quality.in
-pylint==4.0.9
+pylint==4.1.1
     # via
     #   edx-lint
     #   pylint-celery
@@ -190,7 +190,7 @@ pytest-cov==7.1.0
     # via -r requirements/test.txt
 pytest-repo-health==4.0.0
     # via -r requirements/test.txt
-python-slugify==9.1.1
+python-slugify==9.1.2
     # via code-annotations
 pyyaml==6.0.3
     # via

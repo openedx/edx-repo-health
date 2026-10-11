@@ -85,7 +85,7 @@ filelock==3.0.12
     #   virtualenv
 freezegun==1.1.0
     # via -r requirements/quality.txt
-idna==2.10
+idna==3.15
     # via
     #   -r requirements/ci.txt
     #   requests

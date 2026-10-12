@@ -1,6 +1,6 @@
 include CHANGELOG.rst
 include LICENSE.txt
 include README.rst
-recursive-include repo_health *.html *.png *.gif *.js *.css *.jpg *.jpeg *.svg *.py
-recursive-include repo_health_dashboard *.html *.png *.gif *.js *.css *.jpg *.jpeg *.svg *.py
-recursive-include scripts *.py
+recursive-include src/repo_health *.html *.png *.gif *.js *.css *.jpg *.jpeg *.svg *.py
+recursive-include src/repo_health_dashboard *.html *.png *.gif *.js *.css *.jpg *.jpeg *.svg *.py
+recursive-include src/scripts *.py

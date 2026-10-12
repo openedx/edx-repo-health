@@ -1,6 +1,6 @@
 *.class
 *.pyc
-*.egg-info/*
+**/*.egg-info/*
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

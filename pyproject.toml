@@ -44,6 +44,7 @@ local_scheme = "no-local-version"
 fallback_version = "0.0.0.dev0"
 
 [tool.setuptools.packages.find]
+where = ["src"]
 include = ["repo_health*", "repo_health_dashboard*", "scripts*"]
 exclude = ["*.tests", "*.tests.*"]
 
@@ -55,7 +56,7 @@ exclude = ["*.tests", "*.tests.*"]
 
 [tool.coverage.run]
 branch = true
-source = ["repo_health"]
+source_pkgs = ["repo_health"]
 omit = ["*/tests/*", "*/__pycache__/*"]
 
 [tool.coverage.report]

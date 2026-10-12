@@ -142,7 +142,7 @@ failed_repo_names=$(echo "${failed_repos[*]}")
 
 echo "Pushing data"
 cd "${WORKSPACE}/individual_repo_data"
-repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/repo_health_dashboard/configuration.yaml" \
+repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/src/repo_health_dashboard/configuration.yaml" \
     --output-csv "${WORKSPACE}/dashboards/dashboard"
 
 cd "${WORKSPACE}"

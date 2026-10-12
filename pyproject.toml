@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm>8.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edx-repo-health"
+dynamic = ["version"]
+description = "A set of checks of the health of repositories."
+readme = "README.rst"
+license = "Apache-2.0"
+license-files = ["LICENSE.txt"]
+requires-python = ">=3.12"
+authors = [
+    { name = "edX", email = "oscm@edx.org" },
+]
+keywords = ["Django", "edx"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "dockerfile",
+    "github-py @ git+https://github.com/ShineyDev/github.py.git@8e3514010eb35a91e012f2935f48138b3c35cef6",
+    "gspread",
+    "pytest-asyncio",
+    "pytest-repo-health",
+    "pyyaml",
+    "toml",
+]
+
+[project.urls]
+Homepage = "https://github.com/openedx/edx-repo-health"
+
+[project.scripts]
+repo_health_dashboard = "repo_health_dashboard.repo_health_dashboard:main"
+run_checks = "scripts.run_checks:main"
+
+[tool.setuptools_scm]
+version_scheme = "only-version"
+local_scheme = "no-local-version"
+fallback_version = "0.0.0.dev0"
+
+[tool.setuptools.packages.find]
+include = ["repo_health*", "repo_health_dashboard*", "scripts*"]
+exclude = ["*.tests", "*.tests.*"]
+
+[tool.setuptools.package-data]
+"repo_health_dashboard" = ["*.yaml"]
+
+[tool.setuptools.exclude-package-data]
+"*" = ["tests*", "*.tests*"]
+
+[tool.coverage.run]
+branch = true
+source = ["repo_health"]
+omit = ["*/tests/*", "*/__pycache__/*"]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
+
+[tool.coverage.html]
+directory = "htmlcov"

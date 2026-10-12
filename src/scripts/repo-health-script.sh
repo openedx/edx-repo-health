@@ -38,8 +38,6 @@ done
 ############################
 
 # Install checks and dashboarding script, this should also install pytest-repo-health
-# Install all locked deps (including github-py which is a git+ URL excluded from install_requires)
-pip install -q -r edx-repo-health/requirements/base.txt
 pip install -q -e edx-repo-health
 
 # data destination folder setup
@@ -144,7 +142,7 @@ failed_repo_names=$(echo "${failed_repos[*]}")
 
 echo "Pushing data"
 cd "${WORKSPACE}/individual_repo_data"
-repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/repo_health_dashboard/configuration.yaml" \
+repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/src/repo_health_dashboard/configuration.yaml" \
     --output-csv "${WORKSPACE}/dashboards/dashboard"
 
 cd "${WORKSPACE}"

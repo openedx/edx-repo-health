@@ -68,7 +68,7 @@ The following describes the repo health pipeline that currently uses ``edx-repo-
 
 .. _org-repo-health-report: https://tools-edx-jenkins.edx.org/job/RepoHealth/job/org-repo-health-report/
 .. _org-repo-health-report job definition: https://github.com/edx/jenkins-job-dsl-internal/blob/master/jobs/tools-edx-jenkins.edx.org/createRepoHealthJobs.groovy
-.. _repo_health_dashboard script: https://github.com/openedx/edx-repo-health/blob/master/repo_health_dashboard/repo_health_dashboard.py
+.. _repo_health_dashboard script: https://github.com/openedx/edx-repo-health/blob/master/src/repo_health_dashboard/repo_health_dashboard.py
 .. _repo-health-data: https://github.com/openedx/repo-health-data
 .. _Repo Health Dashboard: https://docs.google.com/spreadsheets/d/1VCxNVq-niT-uv5BFmsYPF21r6I2-IQ-GJbidF0zUPBc/edit#gid=921158295
 

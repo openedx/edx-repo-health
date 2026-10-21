@@ -39,7 +39,7 @@ cachetools==5.5.2
     #   -c requirements/constraints.txt
     #   -r requirements/ci.txt
     #   tox
-certifi==2026.7.22
+certifi==2026.10.19
     # via
     #   -r requirements/quality.txt
     #   requests

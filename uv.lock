@@ -921,7 +921,7 @@ test-base = [
 requires-dist = [
     { name = "dockerfile" },
     { name = "github-py", git = "https://github.com/ShineyDev/github.py.git?rev=8e3514010eb35a91e012f2935f48138b3c35cef6" },
-    { name = "gspread" },
+    { name = "gspread", specifier = "<5.12.0" },
     { name = "pytest-asyncio" },
     { name = "pytest-repo-health" },
     { name = "pyyaml" },

@@ -32,8 +32,6 @@ echo "$filtered_urls" > "repositories.txt"
 #########################################
 
 # Install checks and dashboarding script, this should also install pytest-repo-health
-# Install all locked deps (including github-py which is a git+ URL excluded from install_requires)
-pip install -q -r edx-repo-health/requirements/base.txt
 pip install -q -e edx-repo-health
 
 # data destination folder setup
@@ -105,7 +103,7 @@ while IFS= read -r line; do
 
     DEPENDENCIES_HEALTH_COMMAND() {
         pytest -m py_dependency_health --repo-health \
-            --repo-health-path "edx-repo-health/repo_health" \
+            --repo-health-path "edx-repo-health/src/repo_health" \
             --repo-path "target-repo" \
             --repo-health-metadata "${METADATA_FILE_DIST}" \
             --output-path "${DEPENDENCIES_DATA_DIR}/${OUTPUT_FILE_NAME}" \
@@ -134,7 +132,7 @@ failed_repo_names=$(echo "${failed_repos[*]}")
 
 echo "Pushing data"
 cd "${WORKSPACE}/dependencies_health_data"
-repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/repo_health_dashboard/dependencies_configuration.yaml" \
+repo_health_dashboard --data-dir . --configuration "${WORKSPACE}/edx-repo-health/src/repo_health_dashboard/dependencies_configuration.yaml" \
     --output-csv "${WORKSPACE}/dashboards/dashboard" --dashboard-name "py_dependency_health"
 
 cd "${WORKSPACE}"

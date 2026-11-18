@@ -37,6 +37,10 @@ done
 # Run checks on repositories
 ############################
 
+# Install the locked dependencies first so the constraints in pyproject.toml
+# (e.g. pytest<8.1.0) apply. --no-hashes because pip can't hash the git dependency.
+uv export --frozen --no-hashes --no-emit-project --project edx-repo-health -o edx-repo-health-requirements.txt
+pip install -q -r edx-repo-health-requirements.txt
 # Install checks and dashboarding script, this should also install pytest-repo-health
 pip install -q -e edx-repo-health
 

@@ -25,7 +25,7 @@ docs: ## generate Sphinx HTML documentation, including API docs
 	$(BROWSER)docs/_build/html/index.html
 
 upgrade: ## update the edx_lint-managed uv constraints and the uv.lock file
-	uv run --with edx-lint edx_lint write_uv_constraints pyproject.toml
+	uv run --with 'edx-lint>=6.2' edx_lint write_uv_constraints pyproject.toml
 	uv lock --upgrade
 
 quality: ## check coding style with pycodestyle and pylint

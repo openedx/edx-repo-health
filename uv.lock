@@ -950,7 +950,7 @@ dev = [
     { name = "diff-cover" },
     { name = "django" },
     { name = "doc8" },
-    { name = "edx-lint" },
+    { name = "edx-lint", specifier = ">=6.2" },
     { name = "isort" },
     { name = "pycodestyle" },
     { name = "pydocstyle" },
@@ -976,7 +976,7 @@ doc = [
 ]
 quality = [
     { name = "django" },
-    { name = "edx-lint" },
+    { name = "edx-lint", specifier = ">=6.2" },
     { name = "isort" },
     { name = "pycodestyle" },
     { name = "pydocstyle" },

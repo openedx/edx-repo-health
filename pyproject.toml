@@ -81,7 +81,7 @@ test = [{include-group = "test-base"}]
 quality = [
     {include-group = "test"},
     "django",
-    "edx-lint",
+    "edx-lint>=6.2",
     "isort",
     "pycodestyle",
     "pydocstyle",

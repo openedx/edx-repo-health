@@ -5,7 +5,7 @@ package dependencies yet (and won't be until this experiment is validated a
 little further).
 
 Don't run this script directly, instead run:
-streamlit run scripts/streamlit_dashboard.py -- path_to_data.sqlite3
+streamlit run src/scripts/streamlit_dashboard.py -- path_to_data.sqlite3
 """
 import sqlite3
 import sys

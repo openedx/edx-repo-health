@@ -8,11 +8,12 @@ import codecs
 import glob
 import os
 from configparser import ConfigParser
+from importlib.metadata import version
 
 import dockerfile
 import pytest
 
-__version__ = "3.0.0"
+__version__ = version("edx-repo-health")
 
 
 def parse_config_file(path):

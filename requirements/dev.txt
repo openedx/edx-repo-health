@@ -56,7 +56,7 @@ charset-normalizer==3.5.2
     # via
     #   -r requirements/quality.txt
     #   requests
-click==8.5.0
+click==8.5.1
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -68,7 +68,7 @@ click-log==0.4.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-code-annotations==3.0.0
+code-annotations==3.1.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -76,7 +76,7 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.17.2
+coverage[toml]==7.17.3
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -84,7 +84,7 @@ cryptography==50.0.2
     # via
     #   -r requirements/quality.txt
     #   google-auth
-diff-cover==11.0.1
+diff-cover==11.0.4
     # via -r requirements/dev.in
 dill==0.4.1
     # via
@@ -100,9 +100,9 @@ django==5.2.19
     #   -r requirements/quality.txt
 dockerfile==3.4.0
     # via -r requirements/quality.txt
-edx-lint==6.2.0
+edx-lint==6.3.1
     # via -r requirements/quality.txt
-filelock==4.2.9
+filelock==4.2.12
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -123,7 +123,7 @@ gitpython==3.2.1
     # via
     #   -r requirements/quality.txt
     #   pytest-repo-health
-google-auth==2.62.1
+google-auth==2.62.2
     # via
     #   -r requirements/quality.txt
     #   google-auth-oauthlib
@@ -154,7 +154,7 @@ jinja2==3.1.6
     #   -r requirements/quality.txt
     #   code-annotations
     #   diff-cover
-markdown-it-py==4.2.0
+markdown-it-py==4.3.0
     # via rich
 markupsafe==3.0.4
     # via
@@ -190,9 +190,9 @@ packaging==26.3
     #   tox
     #   virtualenv
     #   wheel
-pip-tools==7.6.2
+pip-tools==7.7.0
     # via -r requirements/pip-tools.txt
-platformdirs==4.14.5
+platformdirs==4.14.7
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -232,7 +232,7 @@ pygments==2.21.0
     # via
     #   diff-cover
     #   rich
-pylint==4.1.3
+pylint==4.1.4
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -252,7 +252,7 @@ pylint-plugin-utils==0.9.0
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pyproject-api==1.12.4
+pyproject-api==1.12.6
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -281,11 +281,11 @@ pytest-cov==7.1.0
     # via -r requirements/quality.txt
 pytest-repo-health==4.0.0
     # via -r requirements/quality.txt
-python-discovery==1.9.4
+python-discovery==1.9.6
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-python-slugify==9.1.3
+python-slugify==9.2.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -324,7 +324,7 @@ sqlparse==0.6.1
     # via
     #   -r requirements/quality.txt
     #   django
-stevedore==5.9.1
+stevedore==5.10.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -351,7 +351,7 @@ urllib3==2.8.0
     #   -r requirements/quality.txt
     #   requests
     #   responses
-virtualenv==21.15.5
+virtualenv==21.15.9
     # via
     #   -r requirements/ci.txt
     #   tox

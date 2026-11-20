@@ -33,7 +33,7 @@ charset-normalizer==3.5.2
     # via
     #   -r requirements/base.txt
     #   requests
-coverage[toml]==7.17.2
+coverage[toml]==7.17.3
     # via pytest-cov
 cryptography==50.0.2
     # via
@@ -56,7 +56,7 @@ gitpython==3.2.1
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.62.1
+google-auth==2.62.2
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib

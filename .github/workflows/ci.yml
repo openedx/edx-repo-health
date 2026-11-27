@@ -17,7 +17,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         python-version: ['3.12']
-        toxenv: [py312, quality]
+        toxenv: [py312, quality, build]
 
     steps:
     - name: Checkout Repo

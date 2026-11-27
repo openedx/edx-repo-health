@@ -878,6 +878,10 @@ dependencies = [
 ]
 
 [package.dev-dependencies]
+build = [
+    { name = "build" },
+    { name = "twine" },
+]
 ci = [
     { name = "tox" },
     { name = "tox-uv" },
@@ -902,14 +906,12 @@ dev = [
     { name = "twine" },
 ]
 doc = [
-    { name = "build" },
     { name = "doc8" },
     { name = "pytest-cov" },
     { name = "readme-renderer" },
     { name = "responses" },
     { name = "sphinx" },
     { name = "sphinx-book-theme" },
-    { name = "twine" },
 ]
 quality = [
     { name = "django" },
@@ -941,6 +943,10 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
+build = [
+    { name = "build" },
+    { name = "twine" },
+]
 ci = [
     { name = "tox" },
     { name = "tox-uv", specifier = ">=1" },
@@ -965,14 +971,12 @@ dev = [
     { name = "twine" },
 ]
 doc = [
-    { name = "build" },
     { name = "doc8" },
     { name = "pytest-cov" },
     { name = "readme-renderer" },
     { name = "responses" },
     { name = "sphinx" },
     { name = "sphinx-book-theme" },
-    { name = "twine" },
 ]
 quality = [
     { name = "django" },

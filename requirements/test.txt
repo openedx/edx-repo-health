@@ -21,7 +21,7 @@ attrs==26.1.0
     # via
     #   -r requirements/base.txt
     #   aiohttp
-certifi==2026.10.23
+certifi==2026.11.20
     # via
     #   -r requirements/base.txt
     #   requests
@@ -29,11 +29,11 @@ cffi==2.1.1
     # via
     #   -r requirements/base.txt
     #   cryptography
-charset-normalizer==3.5.2
+charset-normalizer==3.5.3
     # via
     #   -r requirements/base.txt
     #   requests
-coverage[toml]==7.17.2
+coverage[toml]==7.17.5
     # via pytest-cov
 cryptography==50.0.2
     # via
@@ -56,7 +56,7 @@ gitpython==3.2.1
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
-google-auth==2.62.1
+google-auth==2.63.1
     # via
     #   -r requirements/base.txt
     #   google-auth-oauthlib
@@ -87,7 +87,7 @@ oauthlib==4.0.1
     # via
     #   -r requirements/base.txt
     #   requests-oauthlib
-packaging==26.3
+packaging==26.4
     # via
     #   -r requirements/base.txt
     #   pytest
@@ -133,7 +133,7 @@ pytest-cov==7.1.0
     # via -r requirements/test.in
 pytest-repo-health==4.0.0
     # via -r requirements/base.txt
-pyyaml==6.0.3
+pyyaml==6.0.4
     # via
     #   -r requirements/base.txt
     #   pytest-repo-health
